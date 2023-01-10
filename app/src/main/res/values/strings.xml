@@ -85,6 +85,8 @@
     <!-- Label section -->
     <string name="money_count_label">Money count</string>
     <string name="current_round_label">Current Round</string>
+    <string name="target_round_label">Target Round</string>
+    <string name="target_tower_label">Target Tower</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>

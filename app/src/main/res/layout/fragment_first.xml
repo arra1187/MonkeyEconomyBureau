@@ -122,7 +122,7 @@
         app:layout_constraintTop_toTopOf="@+id/background3" />
 
     <ImageView
-        android:id="@+id/tower_1_header"
+        android:id="@+id/target_tower_header"
         android:layout_width="67dp"
         android:layout_height="65dp"
         android:layout_marginTop="15dp"
@@ -131,19 +131,19 @@
         android:text="@string/first_tower"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/tower_1_dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/target_tower_dropdown"
         app:layout_constraintStart_toStartOf="@+id/background_view"
         app:layout_constraintTop_toTopOf="@+id/background_view" />
 
     <View
-        android:id="@+id/tower_1_dropdown_background"
+        android:id="@+id/target_tower_dropdown_background"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/tower_1_dropdown"
-        app:layout_constraintEnd_toEndOf="@+id/tower_1_dropdown"
-        app:layout_constraintStart_toStartOf="@+id/tower_1_dropdown"
-        app:layout_constraintTop_toTopOf="@+id/tower_1_dropdown" />
+        app:layout_constraintBottom_toBottomOf="@+id/target_tower_dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/target_tower_dropdown"
+        app:layout_constraintStart_toStartOf="@+id/target_tower_dropdown"
+        app:layout_constraintTop_toTopOf="@+id/target_tower_dropdown" />
 
     <View
         android:id="@+id/difficulty_dropdown_background"
@@ -156,7 +156,7 @@
         app:layout_constraintTop_toTopOf="@+id/difficulty_dropdown" />
 
     <Spinner
-        android:id="@+id/tower_1_dropdown"
+        android:id="@+id/target_tower_dropdown"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -164,7 +164,7 @@
         android:contentDescription="@string/tower_selection"
         app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
-        app:layout_constraintStart_toEndOf="@+id/tower_1_header"
+        app:layout_constraintStart_toEndOf="@+id/target_tower_header"
         app:layout_constraintTop_toTopOf="@+id/background_view" />
 
     <Spinner
@@ -178,37 +178,37 @@
         app:layout_constraintTop_toBottomOf="@+id/background_view" />
 
     <Spinner
-        android:id="@+id/tower_1_top_path"
+        android:id="@+id/target_tower_top_path"
         android:layout_width="52dp"
         android:layout_height="48dp"
         android:background="@drawable/spinner_template"
         android:contentDescription="@string/path_1"
         app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
-        app:layout_constraintEnd_toStartOf="@+id/tower_1_middle_path"
+        app:layout_constraintEnd_toStartOf="@+id/target_tower_middle_path"
         app:layout_constraintStart_toEndOf="@+id/tower_tab_button"
-        app:layout_constraintTop_toBottomOf="@+id/tower_1_dropdown" />
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_dropdown" />
 
     <Spinner
-        android:id="@+id/tower_1_middle_path"
+        android:id="@+id/target_tower_middle_path"
         android:layout_width="52dp"
         android:layout_height="48dp"
         android:background="@drawable/spinner_template"
         android:contentDescription="@string/path_2"
         app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
-        app:layout_constraintEnd_toStartOf="@+id/tower_1_bottom_path"
-        app:layout_constraintStart_toEndOf="@+id/tower_1_top_path"
-        app:layout_constraintTop_toBottomOf="@+id/tower_1_dropdown" />
+        app:layout_constraintEnd_toStartOf="@+id/target_tower_bottom_path"
+        app:layout_constraintStart_toEndOf="@+id/target_tower_top_path"
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_dropdown" />
 
     <Spinner
-        android:id="@+id/tower_1_bottom_path"
+        android:id="@+id/target_tower_bottom_path"
         android:layout_width="52dp"
         android:layout_height="48dp"
         android:background="@drawable/spinner_template"
         android:contentDescription="@string/path_3"
         app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
-        app:layout_constraintStart_toEndOf="@+id/tower_1_middle_path"
-        app:layout_constraintTop_toBottomOf="@+id/tower_1_dropdown" />
+        app:layout_constraintStart_toEndOf="@+id/target_tower_middle_path"
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_dropdown" />
 
     <Button
         android:id="@+id/tower_tab_button"
@@ -218,9 +218,9 @@
         android:fontFamily="serif-monospace"
         android:text="@string/first_tower"
         app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
-        app:layout_constraintEnd_toStartOf="@id/tower_1_top_path"
+        app:layout_constraintEnd_toStartOf="@id/target_tower_top_path"
         app:layout_constraintStart_toStartOf="@id/background_view"
-        app:layout_constraintTop_toBottomOf="@+id/tower_1_header" />
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_header" />
 
     <Button
         android:id="@+id/add_same_tower_button"
@@ -234,7 +234,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/background_view"
         app:layout_constraintEnd_toEndOf="@id/background_view"
         app:layout_constraintStart_toStartOf="@id/background_view"
-        app:layout_constraintTop_toBottomOf="@+id/tower_1_dropdown" />
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_dropdown" />
 
     <Button
         android:id="@+id/add_different_tower_button"

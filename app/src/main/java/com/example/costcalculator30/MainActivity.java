@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        Spinner tower_1_dropDown = findViewById(R.id.tower_1_dropdown);
+        Spinner tower_1_dropDown = findViewById(R.id.target_tower_dropdown);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.towers, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -50,16 +50,16 @@ public class MainActivity extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
         difficulty_dropDown.setAdapter(adapter2);
 
-        Spinner top_path = findViewById(R.id.tower_1_top_path);
+        Spinner top_path = findViewById(R.id.target_tower_top_path);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
                 R.array.upgrades, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_item);
         top_path.setAdapter(adapter3);
 
-        Spinner middle_path = findViewById(R.id.tower_1_middle_path);
+        Spinner middle_path = findViewById(R.id.target_tower_middle_path);
         middle_path.setAdapter(adapter3);
 
-        Spinner bottom_path = findViewById(R.id.tower_1_bottom_path);
+        Spinner bottom_path = findViewById(R.id.target_tower_bottom_path);
         bottom_path.setAdapter(adapter3);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
