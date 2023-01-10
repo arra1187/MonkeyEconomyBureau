@@ -1,16 +1,93 @@
 <resources>
+    <!-- Strings used for logistics -->
     <string name="app_name">Cost Calculator 3.0</string>
     <string name="action_settings">Settings</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Useless strings -->
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Heading Strings -->
     <string name="app_heading">MONKEY ECONOMY BUREAU</string>
-    <string name="menu_button">MENU</string>
-    <string name="page_heading_1">Cost</string>
+    <string name="page_heading_1.1">Cost</string>
     <string name="page_heading_2">Calculator</string>
+    <string name="page_heading_1.2">Affordability</string>
+
+    <!-- Button Strings -->
+    <string name="menu_button">MENU</string>
+    <string name="help_button">Help</string>
+    <string name="add_same_tower_button">Add Same Tower</string>
+    <string name="add_different_tower_button">Add Different Tower</string>
+    <string name="mk">Set Monkey Knowledge</string>
+
+    <!-- Tower section -->
+    <string name="first_tower">Dart 1  </string>
+    <string name="tower_selection">Select Tower</string>
+    <string name="path_1">Top</string>
+    <string name="path_2">Mid</string>
+    <string name="path_3">Low</string>
+
+    <!-- Image section -->
+    <string name="dart_symbol">A symbol for dart monkeys</string>
+
+    <!-- Tower dropdown -->
+    <string-array name="towers">
+        <item>Select Tower</item>
+        <item>Dart Monkey</item>
+        <item>Boomerang Monkey</item>
+        <item>Bomb Shooter</item>
+        <item>Tack Shooter</item>
+        <item>Ice Monkey</item>
+        <item>Glue Gunner</item>
+        <item>Sniper Monkey</item>
+        <item>Monkey Sub</item>
+        <item>Monkey Buccaneer</item>
+        <item>Monkey Ace</item>
+        <item>Heli Pilot</item>
+        <item>Mortar Monkey</item>
+        <item>Dartling Gunner</item>
+        <item>Wizard Monkey</item>
+        <item>Super Monkey</item>
+        <item>Ninja Monkey</item>
+        <item>Alchemist</item>
+        <item>Druid</item>
+        <item>Banana Farm</item>
+        <item>Spike Factory</item>
+        <item>Monkey Village</item>
+        <item>Engineer Monkey</item>
+    </string-array>
+
+    <!-- Upgrade dropdowns -->
+    <string-array name="upgrades">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- Difficulty dropdown -->
+    <string-array name="difficulties">
+        <item>Select Difficulty</item>
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+        <item>Impoppable</item>
+    </string-array>
+
+    <!-- Label section -->
+    <string name="money_count_label">Money count</string>
+    <string name="current_round_label">Current Round</string>
+
+    <!-- Mischellaneous section -->
+    <string name="default_price">$0</string>
+
+
 </resources>
