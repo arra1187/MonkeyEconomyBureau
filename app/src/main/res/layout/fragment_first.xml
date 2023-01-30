@@ -276,7 +276,7 @@
         android:id="@+id/final_price"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:background="#673AB7"
+        android:background="@color/purple"
         android:text="@string/default_price"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

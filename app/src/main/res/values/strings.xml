@@ -25,6 +25,7 @@
     <string name="add_same_tower_button">Add Same Tower</string>
     <string name="add_different_tower_button">Add Different Tower</string>
     <string name="mk">Set Monkey Knowledge</string>
+    <string name="target_button_label">Target  </string>
 
     <!-- Tower section -->
     <string name="first_tower">Dart 1  </string>
@@ -87,6 +88,9 @@
     <string name="current_round_label">Current Round</string>
     <string name="target_round_label">Target Round</string>
     <string name="target_tower_label">Target Tower</string>
+
+    <!-- Content Description -->
+    <string name="difficulty_description">Choose difficulty</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>
