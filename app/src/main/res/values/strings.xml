@@ -26,6 +26,7 @@
     <string name="add_different_tower_button">Add Different Tower</string>
     <string name="mk">Set Monkey Knowledge</string>
     <string name="target_button_label">Target  </string>
+    <string name="x_button">X</string>
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>

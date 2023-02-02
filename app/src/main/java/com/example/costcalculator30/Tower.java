@@ -1,18 +1,22 @@
 package com.example.costcalculator30;
 
-public class Tower extends Defence
+public class Tower
 {
     private int mTopPath;
     private int mMiddlePath;
     private int mBottomPath;
+
     private double [] mTopPathDiscounts;
     private double [] mMiddlePathDiscounts;
     private double [] mBottomPathDiscounts;
     private double mBaseDiscount;
 
-    Tower(String title)
+    Tower()
     {
-        super(title);
+        mTopPath = 0;
+        mMiddlePath = 0;
+        mBottomPath = 0;
+        mBaseDiscount = 0;
     }
 
     public void setUpgrades(int topPath, int middlePath, int bottomPath)
@@ -33,12 +37,12 @@ public class Tower extends Defence
 
         if(bottomPath != 0)
         {
-            mTopPathDiscounts = new double[bottomPath];
+            mBottomPathDiscounts = new double[bottomPath];
         }
     }
 
     public void setDiscounts(double [] topPathDiscounts, double [] middlePathDiscounts,
-                             double [] bottomPathDiscounts)
+                             double [] bottomPathDiscounts, double baseDiscount)
     {
         int count = 0;
 
@@ -63,5 +67,7 @@ public class Tower extends Defence
             mBottomPathDiscounts[count] = discount;
             count++;
         }
+
+        mBaseDiscount = baseDiscount;
     }
 }

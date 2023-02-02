@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upgradesLayout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/discountsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/base_cost_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button7"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button8"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button4"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button9"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button5"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button10"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button6"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button12"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button8"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button2"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button13"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button9"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button7"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button3"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button14"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button10"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button8"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button4"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button10"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button15"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button11"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button9"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button5"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toTopOf="@+id/base_cost_button16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button10"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button6"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button12"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button13"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button7"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button13"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button14"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button12"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button8"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button14"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button15"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button13"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button9"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button15"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_cost_button16"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button14"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button10"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/base_cost_button16"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/green_rectangle_button_template"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/base_cost_button15"
+            app:layout_constraintTop_toBottomOf="@+id/base_cost_button11"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/discountsLayout"
+        android:layout_width="409dp"
+        android:layout_height="534dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upgradesLayout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
