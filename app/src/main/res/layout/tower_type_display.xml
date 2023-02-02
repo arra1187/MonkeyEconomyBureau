@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/target_tower_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tower_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/target_tower_header"
+            android:layout_width="67dp"
+            android:layout_height="65dp"
+            android:background="@drawable/dart_monkey_symbol"
+            android:contentDescription="@string/dart_symbol"
+            android:text="@string/first_tower"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/target_tower_dropdown_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/target_tower_dropdown_background"
+            android:layout_width="210dp"
+            android:layout_height="48dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/target_tower_dropdown"
+            app:layout_constraintEnd_toEndOf="@+id/target_tower_dropdown"
+            app:layout_constraintStart_toStartOf="@+id/target_tower_dropdown"
+            app:layout_constraintTop_toTopOf="@+id/target_tower_dropdown" />
+
+        <Spinner
+            android:id="@+id/target_tower_dropdown"
+            android:layout_width="210dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/tower_selection"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/target_tower_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tower_type"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_same_tower_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_tower_constraint" />
+
+    <Button
+        android:id="@+id/add_same_tower_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_rectangle_button_template"
+        android:contentDescription="@string/add_same_tower_button"
+        android:fontFamily="serif-monospace"
+        android:text="@string/add_same_tower_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tower_type" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

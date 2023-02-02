@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/tower_tab_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drop_down_button"
+        android:fontFamily="serif-monospace"
+        android:text="@string/first_tower"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/top_path"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/drop_down_triangle"
+        android:layout_width="15dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="50dp"
+        android:elevation="20dp"
+        android:src="@drawable/asset_triangle_down"
+        app:layout_constraintBottom_toBottomOf="@+id/tower_tab_button"
+        app:layout_constraintEnd_toEndOf="@+id/tower_tab_button"
+        app:layout_constraintStart_toStartOf="@+id/tower_tab_button"
+        app:layout_constraintTop_toTopOf="@+id/tower_tab_button" />
+
+    <Spinner
+        android:id="@+id/top_path"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:background="@drawable/spinner_template"
+        android:contentDescription="@string/path_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/middle_path"
+        app:layout_constraintStart_toEndOf="@+id/tower_tab_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/middle_path"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:background="@drawable/spinner_template"
+        android:contentDescription="@string/path_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bottom_path"
+        app:layout_constraintStart_toEndOf="@+id/top_path"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.489" />
+
+    <Spinner
+        android:id="@+id/bottom_path"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:background="@drawable/spinner_template"
+        android:contentDescription="@string/path_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/middle_path"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
