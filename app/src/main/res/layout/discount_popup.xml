@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upgradesLayout"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/discountsLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,195 +21,320 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/zero"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button7"
+            app:layout_constraintEnd_toStartOf="@+id/middle_path_tier_1_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button2"
+            android:id="@+id/top_path_tier_1_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button7"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button3"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/middle_path_tier_1_button"
+            app:layout_constraintEnd_toStartOf="@+id/top_path_tier_2_button"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/base_cost_button"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="@string/one" />
 
         <Button
-            android:id="@+id/base_cost_button3"
+            android:id="@+id/top_path_tier_2_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button8"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button4"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button2"
+            android:text="@string/two"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/middle_path_tier_2_button"
+            app:layout_constraintEnd_toStartOf="@+id/top_path_tier_3_button"
+            app:layout_constraintStart_toEndOf="@+id/top_path_tier_1_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button4"
+            android:id="@+id/top_path_tier_3_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button9"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button5"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button3"
+            android:text="@string/three"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/middle_path_tier_3_button"
+            app:layout_constraintEnd_toStartOf="@+id/top_path_tier_4_button"
+            app:layout_constraintStart_toEndOf="@+id/top_path_tier_2_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button5"
+            android:id="@+id/top_path_tier_4_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button10"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button6"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button4"
+            android:text="@string/four"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/middle_path_tier_4_button"
+            app:layout_constraintEnd_toStartOf="@+id/top_path_tier_5_button"
+            app:layout_constraintStart_toEndOf="@+id/top_path_tier_3_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button6"
+            android:id="@+id/top_path_tier_5_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button11"
+            android:text="@string/five"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/middle_path_tier_5_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button5"
+            app:layout_constraintStart_toEndOf="@+id/top_path_tier_4_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button7"
+            android:id="@+id/middle_path_tier_1_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button12"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button8"
+            android:text="@string/one"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_path_tier_1_button"
+            app:layout_constraintEnd_toStartOf="@+id/middle_path_tier_2_button"
             app:layout_constraintStart_toEndOf="@+id/base_cost_button"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button2"
+            app:layout_constraintTop_toBottomOf="@+id/top_path_tier_1_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button8"
+            android:id="@+id/middle_path_tier_2_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button13"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button9"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button7"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button3"
+            android:text="@string/two"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_path_tier_2_button"
+            app:layout_constraintEnd_toStartOf="@+id/middle_path_tier_3_button"
+            app:layout_constraintStart_toEndOf="@+id/middle_path_tier_1_button"
+            app:layout_constraintTop_toBottomOf="@+id/top_path_tier_2_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button9"
+            android:id="@+id/middle_path_tier_3_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button14"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button10"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button8"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button4"
+            android:text="@string/three"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_path_tier_3_button"
+            app:layout_constraintEnd_toStartOf="@+id/middle_path_tier_4_button"
+            app:layout_constraintStart_toEndOf="@+id/middle_path_tier_2_button"
+            app:layout_constraintTop_toBottomOf="@+id/top_path_tier_3_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button10"
+            android:id="@+id/middle_path_tier_4_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button15"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button11"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button9"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button5"
+            android:text="@string/four"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_path_tier_4_button"
+            app:layout_constraintEnd_toStartOf="@+id/middle_path_tier_5_button"
+            app:layout_constraintStart_toEndOf="@+id/middle_path_tier_3_button"
+            app:layout_constraintTop_toBottomOf="@+id/top_path_tier_4_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button11"
+            android:id="@+id/middle_path_tier_5_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="17dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/green_rectangle_button_template"
-            app:layout_constraintBottom_toTopOf="@+id/base_cost_button16"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_path_tier_5_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button10"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button6"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintStart_toEndOf="@+id/middle_path_tier_4_button"
+            app:layout_constraintTop_toBottomOf="@+id/top_path_tier_5_button"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="@string/five" />
 
         <Button
-            android:id="@+id/base_cost_button12"
+            android:id="@+id/bottom_path_tier_1_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button13"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_path_tier_2_button"
             app:layout_constraintStart_toEndOf="@+id/base_cost_button"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button7"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/middle_path_tier_1_button"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:text="@string/one" />
 
         <Button
-            android:id="@+id/base_cost_button13"
+            android:id="@+id/bottom_path_tier_2_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/two"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button14"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button12"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button8"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_path_tier_3_button"
+            app:layout_constraintStart_toEndOf="@+id/bottom_path_tier_1_button"
+            app:layout_constraintTop_toBottomOf="@+id/middle_path_tier_2_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button14"
+            android:id="@+id/bottom_path_tier_3_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/three"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button15"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button13"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button9"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_path_tier_4_button"
+            app:layout_constraintStart_toEndOf="@+id/bottom_path_tier_2_button"
+            app:layout_constraintTop_toBottomOf="@+id/middle_path_tier_3_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button15"
+            android:id="@+id/bottom_path_tier_4_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/four"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/base_cost_button16"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button14"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button10"
+            app:layout_constraintEnd_toStartOf="@+id/bottom_path_tier_5_button"
+            app:layout_constraintStart_toEndOf="@+id/bottom_path_tier_3_button"
+            app:layout_constraintTop_toBottomOf="@+id/middle_path_tier_4_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/base_cost_button16"
+            android:id="@+id/bottom_path_tier_5_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/five"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/base_cost_button15"
-            app:layout_constraintTop_toBottomOf="@+id/base_cost_button11"
+            app:layout_constraintStart_toEndOf="@+id/bottom_path_tier_4_button"
+            app:layout_constraintTop_toBottomOf="@+id/middle_path_tier_5_button"
             tools:ignore="SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/discountsLayout"
         android:layout_width="409dp"
-        android:layout_height="534dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upgradesLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/upgradesLayout">
+
+        <ImageView
+            android:id="@+id/monkey_business_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/monkey_commerce_button"
+            app:layout_constraintEnd_toStartOf="@+id/temple_discount_1_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/monkey_commerce_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/temple_discount_2_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monkey_business_button"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/temple_discount_1_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/temple_discount_2_button"
+            app:layout_constraintEnd_toStartOf="@+id/tier_5_temple_discount_1_button"
+            app:layout_constraintStart_toEndOf="@+id/monkey_business_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/temple_discount_2_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tier_5_temple_discount_button"
+            app:layout_constraintStart_toEndOf="@+id/monkey_commerce_button"
+            app:layout_constraintTop_toBottomOf="@+id/temple_discount_1_button"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/tier_5_temple_discount_1_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/tier_5_temple_discount_button"
+            app:layout_constraintEnd_toStartOf="@+id/primary_mentoring_bonus_button"
+            app:layout_constraintStart_toEndOf="@+id/temple_discount_1_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/tier_5_temple_discount_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/primary_expertise_bonus_button"
+            app:layout_constraintStart_toEndOf="@+id/temple_discount_2_button"
+            app:layout_constraintTop_toBottomOf="@+id/tier_5_temple_discount_1_button"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/primary_mentoring_bonus_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/primary_expertise_bonus_button"
+            app:layout_constraintEnd_toStartOf="@+id/one_two_tree_discount_button"
+            app:layout_constraintStart_toEndOf="@+id/tier_5_temple_discount_1_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/primary_expertise_bonus_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/one_two_tree_discount_button"
+            app:layout_constraintStart_toEndOf="@+id/tier_5_temple_discount_button"
+            app:layout_constraintTop_toBottomOf="@+id/primary_mentoring_bonus_button"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+
+        <ImageView
+            android:id="@+id/one_two_tree_discount_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/primary_mentoring_bonus_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cost_calculator_symbol" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
