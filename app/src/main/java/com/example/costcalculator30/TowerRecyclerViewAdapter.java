@@ -1,10 +1,13 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 
@@ -19,10 +22,12 @@ public class TowerRecyclerViewAdapter
     private ArrayList<Tower> mTowers;
     private String mTitle;
     int count;
+    Context mContext;
 
-    public TowerRecyclerViewAdapter()
+    public TowerRecyclerViewAdapter(Context context)
     {
         count = 0;
+        mContext = context;
     }
 
     public TowerRecyclerViewAdapter(ArrayList<Tower> towers)
@@ -41,7 +46,7 @@ public class TowerRecyclerViewAdapter
 
         count++;
 
-        return new ViewHolder(view, count);
+        return new ViewHolder(view, count, mContext);
     }
 
     @Override
@@ -69,13 +74,16 @@ public class TowerRecyclerViewAdapter
         private Spinner mBottomPath;
 
         private Button mDiscountButton;
-        private Button mRemoveTowerButton;
+        private ImageButton mRemoveTowerButton;
 
-        public ViewHolder(@NonNull View itemView, int towerNumber)
+        private Context mContext;
+
+        public ViewHolder(@NonNull View itemView, int towerNumber, Context context)
         {
             super(itemView);
 
             mTowerNumber = towerNumber;
+            mContext = context;
         }
 
         public void setTower(Tower tower)
@@ -122,7 +130,7 @@ public class TowerRecyclerViewAdapter
 
             if(mRemoveTowerButton == null)
             {
-                mRemoveTowerButton = (Button) itemView.findViewById(R.id.remove_tower_button);
+                mRemoveTowerButton = (ImageButton) itemView.findViewById(R.id.remove_tower_button);
             }
 
             mTopPath.setAdapter(UpgradeAdapter);
@@ -137,8 +145,14 @@ public class TowerRecyclerViewAdapter
             {
                 @Override
                 public void onClick(View view) {
-                    PopupMenu discountPopup = new PopupMenu(itemView.getContext(), mDiscountButton);
-                    discountPopup.getMenuInflater().inflate();
+                    //PopupMenu discountPopup = new PopupMenu(itemView.getContext(), mDiscountButton);
+                    //discountPopup.getMenuInflater().inflate(R.layout.discount_popup, discountPopup.getMenu());
+
+                    //Pass in context from the first fragment
+
+                    LayoutInflater layoutInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View discountPopup = layoutInflater.inflate(R.layout.discount_popup, null);
+
                 }
             });
 

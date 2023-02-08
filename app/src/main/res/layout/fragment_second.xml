@@ -7,10 +7,10 @@
     tools:context=".FirstFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/target_tower_constraint"
+        android:id="@+id/app_header_constraint"
         android:layout_width="0dp"
         android:layout_height="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraint2"
+        app:layout_constraintBottom_toTopOf="@+id/page_header_constraint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,13 +62,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint2"
+        android:id="@+id/page_header_constraint"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        app:layout_constraintBottom_toTopOf="@id/constraint3"
+        app:layout_constraintBottom_toTopOf="@id/calculator_constraint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/target_tower_constraint">
+        app:layout_constraintTop_toBottomOf="@id/app_header_constraint">
 
          <View
             android:id="@+id/background2"
@@ -123,13 +123,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint3"
+        android:id="@+id/calculator_constraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraint2">
+        app:layout_constraintTop_toBottomOf="@id/page_header_constraint">
 
         <View
             android:id="@+id/background3"

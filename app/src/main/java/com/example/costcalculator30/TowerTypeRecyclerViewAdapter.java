@@ -1,5 +1,6 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,12 @@ public class TowerTypeRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerTypeRecyclerViewAdapter.ViewHolder>
 {
     private ArrayList<String> mTowers;
+    private Context mContext;
 
-    public TowerTypeRecyclerViewAdapter(ArrayList<String> towers)
+    public TowerTypeRecyclerViewAdapter(ArrayList<String> towers, Context context)
     {
         mTowers = towers;
+        mContext = context;
     }
 
     @NonNull
@@ -29,7 +32,7 @@ public class TowerTypeRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_type_display,
                 parent, false);
         TowerTypeRecyclerViewAdapter.ViewHolder holder
-                = new TowerTypeRecyclerViewAdapter.ViewHolder(view);
+                = new TowerTypeRecyclerViewAdapter.ViewHolder(view, mContext);
         return holder;
     }
 
@@ -53,12 +56,14 @@ public class TowerTypeRecyclerViewAdapter
         private Spinner mSelectTower;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView mRVTowers;
+        private Context mContext;
 
-        public ViewHolder(@NonNull View itemView)
+        public ViewHolder(@NonNull View itemView, Context context)
         {
             super(itemView);
 
-            mAdapter = new TowerRecyclerViewAdapter();
+            mContext = context;
+            mAdapter = new TowerRecyclerViewAdapter(mContext);
             mRVTowers.setAdapter(mAdapter);
         }
 
