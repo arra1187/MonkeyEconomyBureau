@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.costcalculator30.FirstFragment"
+        android:name="com.example.costcalculator30.CostCalculator"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_cost_calculator">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.costcalculator30.SecondFragment"
+        android:name="com.example.costcalculator30.AffordabilityCalculator"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_affordability_calculator">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

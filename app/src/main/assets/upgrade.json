@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Dart Monkey",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Sharp Shots",
+    "mUpgradeID": 11,
+    "mTower": "Dart Monkey",
+    "mCost": 140
+  },
+
+  {
+    "mTitle": "Razor Sharp Shots",
+    "mUpgradeID": 12,
+    "mTower": "Dart Monkey",
+    "mCost": 220
+  },
+
+  {
+    "mTitle": "Spike-o-pult",
+    "mUpgradeID": 13,
+    "mTower": "Dart Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Juggernaut",
+    "mUpgradeID": 14,
+    "mTower": "Dart Monkey",
+    "mCost": 1800
+  },
+
+  {
+    "mTitle": "Ultra-Juggernaut",
+    "mUpgradeID": 15,
+    "mTower": "Dart Monkey",
+    "mCost": 15000
+  },
+
+  {
+    "mTitle": "Quick Shots",
+    "mUpgradeID": 21,
+    "mTower": "Dart Monkey",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Very Quick Shots",
+    "mUpgradeID": 22,
+    "mTower": "Dart Monkey",
+    "mCost": 190
+  },
+
+  {
+    "mTitle": "Triple Shot",
+    "mUpgradeID": 23,
+    "mTower": "Dart Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Super Monkey Fan Club",
+    "mUpgradeID": 24,
+    "mTower": "Dart Monkey",
+    "mCost": 8000
+  },
+
+  {
+    "mTitle": "Plasma Monkey Fan Club",
+    "mUpgradeID": 25,
+    "mTower": "Dart Monkey",
+    "mCost": 45000
+  },
+
+  {
+    "mTitle": "Long Range Darts",
+    "mUpgradeID": 31,
+    "mTower": "Dart Monkey",
+    "mCost": 90
+  },
+
+  {
+    "mTitle": "Enhanced Eyesight",
+    "mUpgradeID": 32,
+    "mTower": "Dart Monkey",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Crossbow",
+    "mUpgradeID": 33,
+    "mTower": "Dart Monkey",
+    "mCost": 625
+  },
+
+  {
+    "mTitle": "Sharp Shooter",
+    "mUpgradeID": 34,
+    "mTower": "Dart Monkey",
+    "mCost": 2000
+  },
+
+  {
+    "mTitle": "Plasma Monkey Fan Club",
+    "mUpgradeID": 35,
+    "mTower": "Dart Monkey",
+    "mCost": 23500
+  },
+
+  {
+    "mTitle": "Apex Plasma Master",
+    "mUpgradeID": 6,
+    "mTower": "Dart Monkey",
+    "mCost": 350000
+  }
+]

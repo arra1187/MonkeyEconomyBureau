@@ -10,11 +10,11 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.costcalculator30.databinding.FragmentSecondBinding;
+import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorBinding;
 
-public class SecondFragment extends Fragment {
+public class AffordabilityCalculator extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentAffordabilityCalculatorBinding binding;
 
     private EditText mMoneyCount;
     private EditText mCurrentRound;
@@ -27,7 +27,7 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        binding = FragmentSecondBinding.inflate(inflater, container,
+        binding = FragmentAffordabilityCalculatorBinding.inflate(inflater, container,
           false);
         return binding.getRoot();
 
@@ -47,7 +47,7 @@ public class SecondFragment extends Fragment {
         /*binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
+                NavHostFragment.findNavController(AffordabilityCalculator.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });*/

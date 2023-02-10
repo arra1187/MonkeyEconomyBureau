@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".CostCalculator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/app_header_constraint"
@@ -230,7 +230,7 @@
             android:id="@+id/towerConstraint"
             android:layout_width="0dp"
             android:layout_height="192dp"
-            app:layout_constraintBottom_toBottomOf=""
+            app:layout_constraintBottom_toTopOf="@id/modifierConstraint"
             app:layout_constraintEnd_toEndOf="@+id/background_view"
             app:layout_constraintStart_toStartOf="@+id/background_view"
             app:layout_constraintTop_toBottomOf="@+id/roundConstraint">

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    android:onClick="onClickMenu"
+    tools:context=".CostCalculator">
 
     <View
         android:id="@+id/background1"
@@ -31,10 +32,10 @@
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:background="#86A1C1"
+        app:layout_constraintBottom_toTopOf="@+id/background3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/background1"
-        app:layout_constraintBottom_toTopOf="@+id/background3" />
+        app:layout_constraintTop_toBottomOf="@+id/background1" />
 
     <TextView
         android:id="@+id/app_header"
@@ -60,6 +61,7 @@
         android:fontFamily="serif-monospace"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:onClick="onClickMenu"
         android:text="@string/menu_button"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -291,11 +293,11 @@
         android:layout_width="96dp"
         android:layout_height="120dp"
         android:src="@drawable/cost_calculator_symbol"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="58dp"
         app:layout_constraintBottom_toTopOf="@+id/background3"
         app:layout_constraintEnd_toEndOf="@+id/background2"
         app:layout_constraintStart_toEndOf="@+id/page_header2"
-        app:layout_constraintTop_toTopOf="@+id/background2"/>
+        app:layout_constraintTop_toTopOf="@+id/background2"
+        tools:layout_editor_absoluteX="299dp"
+        tools:layout_editor_absoluteY="58dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

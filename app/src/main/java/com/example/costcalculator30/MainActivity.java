@@ -1,5 +1,7 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -12,21 +14,35 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class MainActivity extends AppCompatActivity
+{
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ExecutorService mExecutor;
+    private UpgradeDatabase mDatabase;
+    private UpgradeDao mUpgradeDao;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -38,35 +54,57 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        Spinner tower_1_dropDown = findViewById(R.id.target_tower_dropdown);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.towers, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        tower_1_dropDown.setAdapter(adapter1);
+        mExecutor = Executors.newSingleThreadExecutor ();
+        mExecutor.execute(() ->
+        {
+            String jsonString;
+            JSONArray jsonArray;
 
-        Spinner difficulty_dropDown = findViewById(R.id.difficulty_dropdown);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.difficulties, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        difficulty_dropDown.setAdapter(adapter2);
+            String title, tower;
+            int upgradeID, cost;
 
-        Spinner top_path = findViewById(R.id.top_path);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.upgrades, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        top_path.setAdapter(adapter3);
+            mDatabase = Room.databaseBuilder (getApplicationContext (),
+                    UpgradeDatabase.class, "Upgrade-db").build();
 
-        Spinner middle_path = findViewById(R.id.middle_path);
-        middle_path.setAdapter(adapter3);
+            mUpgradeDao = mDatabase.upgradeDao();
 
-        Spinner bottom_path = findViewById(R.id.bottom_path);
-        bottom_path.setAdapter(adapter3);
+            mUpgradeDao.deleteAll();
+
+            jsonString = loadJSONFromAsset(getApplicationContext());
+
+            try
+            {
+                jsonArray = new JSONArray(jsonString);
+
+                for(int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                    title = jsonItem.getString("mTitle");
+                    upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                    tower = jsonItem.getString("mTower");
+                    cost = Integer.parseInt(jsonItem.getString("mCost"));
+
+                    Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+
+                    mUpgradeDao.insert(newUpgrade);
+                }
+            }
+            catch(JSONException exception)
+            {
+                exception.printStackTrace();
+            }
+        });
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
+
+                Intent intent = new Intent(getApplicationContext(), DatabaseTest.class);
+
+                startActivity(intent);
             }
         });
     }
@@ -98,5 +136,28 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private String loadJSONFromAsset(Context context)
+    {
+        String jsonString = null;
+        try
+        {
+          InputStream inputStream = context.getAssets().open("upgrade.json");
+          int size = inputStream.available();
+          byte[] buffer = new byte[size];
+
+          inputStream.read(buffer);
+          inputStream.close();
+
+          jsonString = new String(buffer, "UTF-8");
+        }
+        catch(IOException exception)
+        {
+            exception.printStackTrace();
+            return null;
+        }
+
+        return jsonString;
     }
 }

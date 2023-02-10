@@ -40,7 +40,8 @@ public class TowerTypeRecyclerViewAdapter
     public void onBindViewHolder(@NonNull TowerTypeRecyclerViewAdapter.ViewHolder holder,
                                  int position)
     {
-        holder.setTower(mTowers.get(position));
+        //holder.setTower(mTowers.get(position));
+        mTowers.set(position, holder.getTower());
         holder.bindData();
     }
 
