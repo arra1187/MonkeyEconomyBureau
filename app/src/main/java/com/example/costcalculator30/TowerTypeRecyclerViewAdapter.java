@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class TowerTypeRecyclerViewAdapter
 {
     private ArrayList<String> mTowers;
     private Context mContext;
+    private ArrayList<Integer> mTowerCosts;
 
     public TowerTypeRecyclerViewAdapter(ArrayList<String> towers, Context context)
     {
@@ -42,7 +44,22 @@ public class TowerTypeRecyclerViewAdapter
     {
         //holder.setTower(mTowers.get(position));
         mTowers.set(position, holder.getTower());
+        //mFinalCost.set(position, holder.getTowerCost())
         holder.bindData();
+    }
+
+    public void getFinalCost()
+    {
+        /*
+        int finalCost = 0;
+
+        for(ArrayList<Integer> mTowerCosts : towerCost)
+        {
+            finalCost += towerCost;
+        }
+
+        return finalCost;
+        */
     }
 
     @Override
@@ -56,7 +73,7 @@ public class TowerTypeRecyclerViewAdapter
         private String mTower;
         private Spinner mSelectTower;
         private RecyclerView.Adapter mAdapter;
-        private RecyclerView mRVTowers;
+        private RecyclerView mTowersRecycler;
         private Context mContext;
 
         public ViewHolder(@NonNull View itemView, Context context)
@@ -64,8 +81,6 @@ public class TowerTypeRecyclerViewAdapter
             super(itemView);
 
             mContext = context;
-            mAdapter = new TowerRecyclerViewAdapter(mContext);
-            mRVTowers.setAdapter(mAdapter);
         }
 
         public void setTower(String tower)
@@ -76,6 +91,11 @@ public class TowerTypeRecyclerViewAdapter
         public String getTower()
         {
             return mTower;
+        }
+
+        public int getTowerCost()
+        {
+            //return mAdapter.getTowerCost()
         }
 
         public void bindData()
@@ -91,8 +111,10 @@ public class TowerTypeRecyclerViewAdapter
             }
 
             mSelectTower.setAdapter(UpgradeAdapter);
-
             mTower = mSelectTower.getSelectedItem().toString();
+
+            mAdapter = new TowerRecyclerViewAdapter(mContext);
+            mTowersRecycler.setAdapter(mAdapter);
         }
     }
 }

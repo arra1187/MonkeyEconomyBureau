@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,9 @@ public class CostCalculator extends Fragment
     private RecyclerView mTowerRecycler;
     private RecyclerView.Adapter mTowerTypeAdapter;
     private ArrayList<String> mTowers;
+    private UpgradeDao mUpgradeDao;
+    private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +59,8 @@ public class CostCalculator extends Fragment
 
         mTowerTypeAdapter = new TowerTypeRecyclerViewAdapter(mTowers, getContext());
 
+        mUpgradeDao = viewModel.getUpgradeDao();
+
         Spinner difficulty_dropDown = view.findViewById(R.id.difficulty_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
@@ -67,6 +73,11 @@ public class CostCalculator extends Fragment
 
             }
         });
+    }
+
+    void onClickEnter(View view)
+    {
+        //int cost = mTowerTypeAdapter.getCalculatedCost();
     }
 
     @Override

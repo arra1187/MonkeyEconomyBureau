@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,6 +43,11 @@ public class MainActivity extends AppCompatActivity
     private ExecutorService mExecutor;
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    private final Fragment myFragment = new Fragment();
+
+    private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -94,6 +103,8 @@ public class MainActivity extends AppCompatActivity
             {
                 exception.printStackTrace();
             }
+
+            viewModel.setUpgradeDao(mUpgradeDao);
         });
 
         binding.fab.setOnClickListener(new View.OnClickListener() {

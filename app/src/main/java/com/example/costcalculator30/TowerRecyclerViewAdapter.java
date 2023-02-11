@@ -53,7 +53,9 @@ public class TowerRecyclerViewAdapter
     public void onBindViewHolder(@NonNull TowerRecyclerViewAdapter.ViewHolder holder,
                                  int position)
     {
-        holder.setTower(mTowers.get(position));
+        //holder.setTower(mTowers.get(position));
+        mTowers.set(position, holder.getTower());
+        holder.setTitle(mTitle);
         holder.bindData();
     }
 
@@ -61,6 +63,20 @@ public class TowerRecyclerViewAdapter
     public int getItemCount()
     {
         return mTowers.size();
+    }
+
+    public int getTowerCost()
+    {
+        /*
+        int towerCost = 0;
+
+        for(ArrayList<Tower> mTowers : tower)
+        {
+            towerCost += tower.getCost()
+        }
+
+        return finalCost;
+        */
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -78,12 +94,14 @@ public class TowerRecyclerViewAdapter
 
         private Context mContext;
 
-        public ViewHolder(@NonNull View itemView, int towerNumber, Context context)
+        public ViewHolder(@NonNull View itemView, int towerNumber, Context context, String title)
         {
             super(itemView);
 
             mTowerNumber = towerNumber;
             mContext = context;
+            mTitle = title;
+            mTower = new Tower(title);
         }
 
         public void setTower(Tower tower)
