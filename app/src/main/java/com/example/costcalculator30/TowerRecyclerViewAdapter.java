@@ -23,11 +23,13 @@ public class TowerRecyclerViewAdapter
     private String mTitle;
     int count;
     Context mContext;
+    UpgradeDao mUpgradeDao;
 
-    public TowerRecyclerViewAdapter(Context context)
+    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao)
     {
         count = 0;
         mContext = context;
+        mUpgradeDao = upgradeDao;
     }
 
     public TowerRecyclerViewAdapter(ArrayList<Tower> towers)
@@ -46,7 +48,7 @@ public class TowerRecyclerViewAdapter
 
         count++;
 
-        return new ViewHolder(view, count, mContext);
+        return new ViewHolder(view, count, mContext, mTitle, mUpgradeDao);
     }
 
     @Override
@@ -67,16 +69,14 @@ public class TowerRecyclerViewAdapter
 
     public int getTowerCost()
     {
-        /*
-        int towerCost = 0;
+        int finalCost = 0;
 
-        for(ArrayList<Tower> mTowers : tower)
+        for(Tower tower : mTowers)
         {
-            towerCost += tower.getCost()
+            finalCost += tower.getTowerCost();
         }
 
         return finalCost;
-        */
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -84,6 +84,7 @@ public class TowerRecyclerViewAdapter
         private Tower mTower;
         private String mTitle;
         private int mTowerNumber;
+        private UpgradeDao mUpgradeDao;
 
         private Spinner mTopPath;
         private Spinner mMiddlePath;
@@ -94,14 +95,16 @@ public class TowerRecyclerViewAdapter
 
         private Context mContext;
 
-        public ViewHolder(@NonNull View itemView, int towerNumber, Context context, String title)
+        public ViewHolder(@NonNull View itemView, int towerNumber,
+                          Context context, String title, UpgradeDao upgradeDao)
         {
             super(itemView);
 
             mTowerNumber = towerNumber;
             mContext = context;
             mTitle = title;
-            mTower = new Tower(title);
+            mTower = new Tower(title, mUpgradeDao);
+            mUpgradeDao = upgradeDao;
         }
 
         public void setTower(Tower tower)

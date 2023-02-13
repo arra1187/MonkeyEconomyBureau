@@ -25,11 +25,11 @@ public class CostCalculator extends Fragment
 
     private FragmentCostCalculatorBinding binding;
     private RecyclerView mTowerRecycler;
-    private RecyclerView.Adapter mTowerTypeAdapter;
+    //private RecyclerView.Adapter mTowerTypeAdapter;
+    private TowerTypeRecyclerViewAdapter mTowerTypeAdapter;
     private ArrayList<String> mTowers;
     private UpgradeDao mUpgradeDao;
     private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,9 +57,10 @@ public class CostCalculator extends Fragment
         mTowers = new ArrayList<>();
         mTowers.add("Select Tower");
 
-        mTowerTypeAdapter = new TowerTypeRecyclerViewAdapter(mTowers, getContext());
-
         mUpgradeDao = viewModel.getUpgradeDao();
+
+        mTowerTypeAdapter = new TowerTypeRecyclerViewAdapter(mTowers, getContext(), mUpgradeDao);
+        mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
         Spinner difficulty_dropDown = view.findViewById(R.id.difficulty_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -77,7 +78,7 @@ public class CostCalculator extends Fragment
 
     void onClickEnter(View view)
     {
-        //int cost = mTowerTypeAdapter.getCalculatedCost();
+        int cost = mTowerTypeAdapter.getFinalCost();
     }
 
     @Override

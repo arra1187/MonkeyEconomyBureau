@@ -19,11 +19,13 @@ public class TowerTypeRecyclerViewAdapter
     private ArrayList<String> mTowers;
     private Context mContext;
     private ArrayList<Integer> mTowerCosts;
+    private UpgradeDao mUpgradeDao;
 
-    public TowerTypeRecyclerViewAdapter(ArrayList<String> towers, Context context)
+    public TowerTypeRecyclerViewAdapter(ArrayList<String> towers, Context context, UpgradeDao upgradeDao)
     {
         mTowers = towers;
         mContext = context;
+        mUpgradeDao = upgradeDao;
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public class TowerTypeRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_type_display,
                 parent, false);
         TowerTypeRecyclerViewAdapter.ViewHolder holder
-                = new TowerTypeRecyclerViewAdapter.ViewHolder(view, mContext);
+                = new TowerTypeRecyclerViewAdapter.ViewHolder(view, mContext, mUpgradeDao);
         return holder;
     }
 
@@ -44,22 +46,20 @@ public class TowerTypeRecyclerViewAdapter
     {
         //holder.setTower(mTowers.get(position));
         mTowers.set(position, holder.getTower());
-        //mFinalCost.set(position, holder.getTowerCost())
+        mTowerCosts.set(position, holder.getTowerCost());
         holder.bindData();
     }
 
-    public void getFinalCost()
+    public int getFinalCost()
     {
-        /*
         int finalCost = 0;
 
-        for(ArrayList<Integer> mTowerCosts : towerCost)
+        for(int cost : mTowerCosts)
         {
-            finalCost += towerCost;
+            finalCost += cost;
         }
 
         return finalCost;
-        */
     }
 
     @Override
@@ -72,15 +72,18 @@ public class TowerTypeRecyclerViewAdapter
     {
         private String mTower;
         private Spinner mSelectTower;
-        private RecyclerView.Adapter mAdapter;
+        //private RecyclerView.Adapter mAdapter;
+        private TowerRecyclerViewAdapter mAdapter;
         private RecyclerView mTowersRecycler;
         private Context mContext;
+        private UpgradeDao mUpgradeDao;
 
-        public ViewHolder(@NonNull View itemView, Context context)
+        public ViewHolder(@NonNull View itemView, Context context, UpgradeDao upgradeDao)
         {
             super(itemView);
 
             mContext = context;
+            mUpgradeDao = upgradeDao;
         }
 
         public void setTower(String tower)
@@ -95,7 +98,7 @@ public class TowerTypeRecyclerViewAdapter
 
         public int getTowerCost()
         {
-            //return mAdapter.getTowerCost()
+            return mAdapter.getTowerCost();
         }
 
         public void bindData()
@@ -113,7 +116,7 @@ public class TowerTypeRecyclerViewAdapter
             mSelectTower.setAdapter(UpgradeAdapter);
             mTower = mSelectTower.getSelectedItem().toString();
 
-            mAdapter = new TowerRecyclerViewAdapter(mContext);
+            mAdapter = new TowerRecyclerViewAdapter(mContext, mUpgradeDao);
             mTowersRecycler.setAdapter(mAdapter);
         }
     }

@@ -3,6 +3,7 @@ package com.example.costcalculator30;
 public class Tower
 {
     private String mTitle;
+    private UpgradeDao mUpgradeDao;
 
     private int mTopPath;
     private int mMiddlePath;
@@ -17,18 +18,36 @@ public class Tower
     private double [] mBottomPathDiscounts;
     private double mBaseDiscount;
 
-    Tower(String title)
+    Tower(String title, UpgradeDao upgradeDao)
     {
         mTitle = title;
         mTopPath = 0;
         mMiddlePath = 0;
         mBottomPath = 0;
         mBaseDiscount = 0;
+        mUpgradeDao = upgradeDao;
     }
 
     public int getTowerCost()
     {
+        int towerCost = 0;
 
+        for(int i = 0; i < mTopPath; i++)
+        {
+            towerCost += mUpgradeDao.getCost(mTitle, 10 + i);
+        }
+
+        for(int i = 0; i < mMiddlePath; i++)
+        {
+            towerCost += mUpgradeDao.getCost(mTitle, 20 + i);
+        }
+
+        for(int i = 0; i < mBottomPath; i++)
+        {
+            towerCost += mUpgradeDao.getCost(mTitle, 30 + i);
+        }
+
+        return towerCost;
     }
 
     public void setUpgrades(int topPath, int middlePath, int bottomPath)
