@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,12 +25,14 @@ public class CostCalculator extends Fragment
 {
 
     private FragmentCostCalculatorBinding binding;
-    private RecyclerView mTowerRecycler;
     //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerTypeRecyclerViewAdapter mTowerTypeAdapter;
     private ArrayList<String> mTowers;
     private UpgradeDao mUpgradeDao;
     private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
+
+    private RecyclerView mTowerRecycler;
+    private TextView mFinalPrice;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,9 @@ public class CostCalculator extends Fragment
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });*/
+
+        mFinalPrice = view.findViewById(R.id.final_price);
+        mFinalPrice.setText("$0");
 
         mTowerRecycler = view.findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -79,6 +85,8 @@ public class CostCalculator extends Fragment
     void onClickEnter(View view)
     {
         int cost = mTowerTypeAdapter.getFinalCost();
+        String price = "$" + cost;
+        mFinalPrice.setText(price);
     }
 
     @Override
