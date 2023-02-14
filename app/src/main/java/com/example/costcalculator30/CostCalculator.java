@@ -29,7 +29,7 @@ public class CostCalculator extends Fragment
     private TowerTypeRecyclerViewAdapter mTowerTypeAdapter;
     private ArrayList<String> mTowers;
     private UpgradeDao mUpgradeDao;
-    private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
+    private DatabaseViewModel viewModel;
 
     private RecyclerView mTowerRecycler;
     private TextView mFinalPrice;
@@ -53,6 +53,8 @@ public class CostCalculator extends Fragment
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });*/
+
+        viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
         mFinalPrice = view.findViewById(R.id.final_price);
         mFinalPrice.setText("$0");

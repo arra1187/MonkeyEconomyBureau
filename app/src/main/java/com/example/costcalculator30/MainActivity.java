@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     private final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     private final Fragment myFragment = new Fragment();
 
-    private DatabaseViewModel viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
+    private DatabaseViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
         mExecutor = Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
