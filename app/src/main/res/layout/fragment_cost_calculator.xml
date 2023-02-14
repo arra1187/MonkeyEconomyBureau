@@ -259,6 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/green_rectangle_button_template"
+                android:onClick="onClickEnter"
                 android:text="@string/enter_button_label"
                 app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
                 app:layout_constraintEnd_toStartOf="@+id/final_price"

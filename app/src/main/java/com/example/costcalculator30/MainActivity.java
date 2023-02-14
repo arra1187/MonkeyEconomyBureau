@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -29,8 +27,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
@@ -65,49 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
-        mExecutor = Executors.newSingleThreadExecutor ();
-        mExecutor.execute(() ->
-        {
-            String jsonString;
-            JSONArray jsonArray;
-
-            String title, tower;
-            int upgradeID, cost;
-
-            mDatabase = Room.databaseBuilder (getApplicationContext (),
-                    UpgradeDatabase.class, "Upgrade-db").build();
-
-            mUpgradeDao = mDatabase.upgradeDao();
-
-            mUpgradeDao.deleteAll();
-
-            jsonString = loadJSONFromAsset(getApplicationContext());
-
-            try
-            {
-                jsonArray = new JSONArray(jsonString);
-
-                for(int i = 0; i < jsonArray.length(); i++)
-                {
-                    JSONObject jsonItem = jsonArray.getJSONObject(i);
-
-                    title = jsonItem.getString("mTitle");
-                    upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                    tower = jsonItem.getString("mTower");
-                    cost = Integer.parseInt(jsonItem.getString("mCost"));
-
-                    Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
-
-                    mUpgradeDao.insert(newUpgrade);
-                }
-            }
-            catch(JSONException exception)
-            {
-                exception.printStackTrace();
-            }
-
-            viewModel.setUpgradeDao(mUpgradeDao);
-        });
+        getDatabase();
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,5 +126,52 @@ public class MainActivity extends AppCompatActivity
         }
 
         return jsonString;
+    }
+
+    private void getDatabase()
+    {
+        mExecutor = Executors.newSingleThreadExecutor ();
+        mExecutor.execute(() ->
+        {
+            String jsonString;
+            JSONArray jsonArray;
+
+            String title, tower;
+            int upgradeID, cost;
+
+            mDatabase = Room.databaseBuilder (getApplicationContext (),
+                    UpgradeDatabase.class, "Upgrade-db").build();
+
+            mUpgradeDao = mDatabase.mUpgradeDao();
+
+            mUpgradeDao.deleteAll();
+
+            jsonString = loadJSONFromAsset(getApplicationContext());
+
+            try
+            {
+                jsonArray = new JSONArray(jsonString);
+
+                for(int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                    title = jsonItem.getString("mTitle");
+                    upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                    tower = jsonItem.getString("mTower");
+                    cost = Integer.parseInt(jsonItem.getString("mCost"));
+
+                    Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+
+                    mUpgradeDao.insert(newUpgrade);
+                }
+            }
+            catch(JSONException exception)
+            {
+                exception.printStackTrace();
+            }
+
+            viewModel.setUpgradeDao(mUpgradeDao);
+        });
     }
 }

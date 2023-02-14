@@ -46,7 +46,7 @@ public class TowerTypeRecyclerViewAdapter
     {
         //holder.setTower(mTowers.get(position));
         mTowers.set(position, holder.getTower());
-        mTowerCosts.set(position, holder.getTowerCost());
+        //mTowerCosts.set(position, holder.getTowerCost());
         holder.bindData();
     }
 
@@ -98,7 +98,9 @@ public class TowerTypeRecyclerViewAdapter
 
         public int getTowerCost()
         {
-            return mAdapter.getTowerCost();
+            //return mAdapter.getTowerCost();
+
+            return 1;
         }
 
         public void bindData()
@@ -117,7 +119,7 @@ public class TowerTypeRecyclerViewAdapter
             mTower = mSelectTower.getSelectedItem().toString();
 
             mAdapter = new TowerRecyclerViewAdapter(mContext, mUpgradeDao);
-            mTowersRecycler.setAdapter(mAdapter);
+            //mTowersRecycler.setAdapter(mAdapter);
         }
     }
 }

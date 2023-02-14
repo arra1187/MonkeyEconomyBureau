@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 public class CostCalculator extends Fragment
 {
-
-    private FragmentCostCalculatorBinding binding;
+    //private FragmentCostCalculatorBinding binding;
     //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerTypeRecyclerViewAdapter mTowerTypeAdapter;
     private ArrayList<String> mTowers;
@@ -38,8 +37,11 @@ public class CostCalculator extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        binding = FragmentCostCalculatorBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        //binding = FragmentCostCalculatorBinding.inflate(inflater, container, false);
+
+        View fragmentFirstLayout = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
+
+        return fragmentFirstLayout;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
@@ -74,17 +76,17 @@ public class CostCalculator extends Fragment
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        difficulty_dropDown.setAdapter(adapter);
+        //difficulty_dropDown.setAdapter(adapter);
 
-        view.findViewById(R.id.tower_tab_button).setOnClickListener(new View.OnClickListener() {
+        /*view.findViewById(R.id.tower_tab_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });
+        });*/
     }
 
-    void onClickEnter(View view)
+    public void onClickEnter(View view)
     {
         int cost = mTowerTypeAdapter.getFinalCost();
         String price = "$" + cost;
@@ -94,6 +96,6 @@ public class CostCalculator extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }

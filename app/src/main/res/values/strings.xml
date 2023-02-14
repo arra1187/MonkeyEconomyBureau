@@ -24,6 +24,7 @@
     <string name="help_button">Help</string>
     <string name="add_same_tower_button">Add Same Tower</string>
     <string name="add_different_tower_button">Add Different Tower</string>
+    <string name="add_tower_button">Add Tower</string>
     <string name="mk">Set Monkey Knowledge</string>
     <string name="target_button_label">Target  </string>
     <string name="x_button">X</string>
