@@ -153,60 +153,135 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tower_recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/modifier_constraint"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tower_constraint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@id/modifier_constraint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background3" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tower_selector_constraint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/target_tower_header"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/dart_monkey_symbol"
+                    android:contentDescription="@string/dart_symbol"
+                    android:text="@string/first_tower"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/target_tower_dropdown_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/target_tower_dropdown_background"
+                    android:layout_width="210dp"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/target_tower_dropdown"
+                    app:layout_constraintEnd_toEndOf="@+id/target_tower_dropdown"
+                    app:layout_constraintStart_toStartOf="@+id/target_tower_dropdown"
+                    app:layout_constraintTop_toTopOf="@+id/target_tower_dropdown" />
+
+                <Spinner
+                    android:id="@+id/target_tower_dropdown"
+                    android:layout_width="210dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/tower_selection"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/target_tower_header"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/sky_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tower_selector_constraint" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tower_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/modifier_constraint"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toTopOf="@id/final_price_constraint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tower_recyclerView">
+            app:layout_constraintTop_toBottomOf="@id/tower_constraint">
 
             <Button
-                android:id="@+id/add_different_tower_button2"
+                android:id="@+id/add_tower_button"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/green_rectangle_button_template"
                 android:contentDescription="@string/add_same_tower_button"
                 android:fontFamily="serif-monospace"
-                android:text="@string/add_different_tower_button"
-                app:layout_constraintBottom_toTopOf="@+id/difficulty_dropdown_background2"
+                android:text="@string/add_tower_button"
+                app:layout_constraintBottom_toTopOf="@+id/difficulty_dropdown_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/difficulty_dropdown_background2"
+                android:id="@+id/difficulty_dropdown_background"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="@+id/difficulty_dropdown2"
-                app:layout_constraintEnd_toEndOf="@+id/difficulty_dropdown2"
+                app:layout_constraintBottom_toBottomOf="@+id/difficulty_dropdown"
+                app:layout_constraintEnd_toEndOf="@+id/difficulty_dropdown"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/difficulty_dropdown2"
-                app:layout_constraintTop_toTopOf="@+id/difficulty_dropdown2" />
+                app:layout_constraintStart_toStartOf="@+id/difficulty_dropdown"
+                app:layout_constraintTop_toTopOf="@+id/difficulty_dropdown" />
 
             <Spinner
-                android:id="@+id/difficulty_dropdown2"
+                android:id="@+id/difficulty_dropdown"
                 android:layout_width="170dp"
                 android:layout_height="48dp"
                 android:contentDescription="@string/tower_selection"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/set_monkey_knowledge_button2"
+                app:layout_constraintEnd_toStartOf="@+id/set_monkey_knowledge_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_different_tower_button2" />
+                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
 
             <Button
-                android:id="@+id/set_monkey_knowledge_button2"
+                android:id="@+id/set_monkey_knowledge_button"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tan_rectangle_button_template"
@@ -215,15 +290,15 @@
                 android:text="@string/mk"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/difficulty_dropdown_background2"
-                app:layout_constraintTop_toBottomOf="@+id/add_different_tower_button2" />
+                app:layout_constraintStart_toEndOf="@+id/difficulty_dropdown_background"
+                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/final_price_constraint"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -237,8 +312,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.494" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/final_price"
@@ -251,18 +325,6 @@
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
                 app:layout_constraintEnd_toEndOf="@+id/final_price_view"
-                app:layout_constraintStart_toEndOf="@+id/enter_button"
-                app:layout_constraintTop_toTopOf="@+id/final_price_view" />
-
-            <Button
-                android:id="@+id/enter_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/green_rectangle_button_template"
-                android:onClick="onClickEnter"
-                android:text="@string/enter_button_label"
-                app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
-                app:layout_constraintEnd_toStartOf="@+id/final_price"
                 app:layout_constraintStart_toStartOf="@+id/final_price_view"
                 app:layout_constraintTop_toTopOf="@+id/final_price_view" />
 

@@ -25,13 +25,16 @@ public class CostCalculator extends Fragment
 {
     //private FragmentCostCalculatorBinding binding;
     //private RecyclerView.Adapter mTowerTypeAdapter;
-    private TowerTypeRecyclerViewAdapter mTowerTypeAdapter;
-    private ArrayList<String> mTowers;
+    private TowerRecyclerViewAdapter mTowerTypeAdapter;
+    private ArrayList<Tower> mTowers;
     private UpgradeDao mUpgradeDao;
     private DatabaseViewModel viewModel;
 
     private RecyclerView mTowerRecycler;
     private TextView mFinalPrice;
+
+    private Spinner mTowerDropdown;
+    private Spinner mDifficultyDropdown;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,22 +42,9 @@ public class CostCalculator extends Fragment
     {
         //binding = FragmentCostCalculatorBinding.inflate(inflater, container, false);
 
-        View fragmentFirstLayout = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
+        View view = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
 
-        return fragmentFirstLayout;
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-    {
-        super.onViewCreated(view, savedInstanceState);
-
-        /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View background_view) {
-                NavHostFragment.findNavController(CostCalculator.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });*/
+        //return fragmentFirstLayout;
 
         viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
@@ -65,32 +55,52 @@ public class CostCalculator extends Fragment
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mTowers = new ArrayList<>();
-        mTowers.add("Select Tower");
+        //mTowers.add("Select Tower");
 
         mUpgradeDao = viewModel.getUpgradeDao();
 
-        mTowerTypeAdapter = new TowerTypeRecyclerViewAdapter(mTowers, getContext(), mUpgradeDao);
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(mTowers, getContext(), mUpgradeDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
-        Spinner difficulty_dropDown = view.findViewById(R.id.difficulty_dropdown);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+        mTowerDropdown = view.findViewById(R.id.target_tower_dropdown);
+        ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.towers, android.R.layout.simple_spinner_item);
+        towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mTowerDropdown.setAdapter(towerAdapter);
+
+        mDifficultyDropdown = view.findViewById(R.id.difficulty_dropdown);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        //difficulty_dropDown.setAdapter(adapter);
+        mDifficultyDropdown.setAdapter(adapter);
 
-        /*view.findViewById(R.id.tower_tab_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
+        return view;
     }
 
-    public void onClickEnter(View view)
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
-        int cost = mTowerTypeAdapter.getFinalCost();
-        String price = "$" + cost;
-        mFinalPrice.setText(price);
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String newTowerTitle = mTowerDropdown.getSelectedItem().toString();
+
+                if(newTowerTitle.equals("Select Tower"))
+                {
+                    Toast errorToast = Toast.makeText(getActivity(), "Select tower before pressing the Add Tower button", Toast.LENGTH_LONG);
+                    errorToast.show();
+
+                    return;
+                }
+
+                Tower newTower = new Tower(newTowerTitle, mUpgradeDao);
+
+                mTowers.add(newTower);
+                mTowerTypeAdapter.notifyItemInserted(mTowers.size() - 1);
+            }
+        });
     }
 
     @Override

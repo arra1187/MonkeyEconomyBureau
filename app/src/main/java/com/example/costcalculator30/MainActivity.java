@@ -36,12 +36,13 @@ public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
     private ExecutorService mExecutor;
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
     private FragmentManager fragmentManager = getSupportFragmentManager();
-    private final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    private final Fragment myFragment = new Fragment();
+    //private final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    //private final Fragment myFragment = new Fragment();
 
     private DatabaseViewModel viewModel;
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         getDatabase();
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override

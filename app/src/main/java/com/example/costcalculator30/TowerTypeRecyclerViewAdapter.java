@@ -118,7 +118,7 @@ public class TowerTypeRecyclerViewAdapter
             mSelectTower.setAdapter(UpgradeAdapter);
             mTower = mSelectTower.getSelectedItem().toString();
 
-            mAdapter = new TowerRecyclerViewAdapter(mContext, mUpgradeDao);
+            //mAdapter = new TowerRecyclerViewAdapter(mContext, mUpgradeDao);
             //mTowersRecycler.setAdapter(mAdapter);
         }
     }

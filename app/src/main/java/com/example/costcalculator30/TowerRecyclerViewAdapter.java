@@ -20,22 +20,16 @@ public class TowerRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerRecyclerViewAdapter.ViewHolder>
 {
     private ArrayList<Tower> mTowers;
-    private String mTitle;
-    int count;
+    String mTitle;
     Context mContext;
     UpgradeDao mUpgradeDao;
 
-    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao)
-    {
-        count = 0;
-        mContext = context;
-        mUpgradeDao = upgradeDao;
-    }
-
-    public TowerRecyclerViewAdapter(ArrayList<Tower> towers)
+    public TowerRecyclerViewAdapter(ArrayList<Tower> towers, Context context, UpgradeDao upgradeDao)
     {
         mTowers = towers;
-        count = 0;
+        mContext = context;
+        mUpgradeDao = upgradeDao;
+        mTitle = "";
     }
 
     @NonNull
@@ -46,17 +40,16 @@ public class TowerRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
                 false);
 
-        count++;
 
-        return new ViewHolder(view, count, mContext, mTitle, mUpgradeDao);
+        return new ViewHolder(view, mContext, mTitle, mUpgradeDao);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TowerRecyclerViewAdapter.ViewHolder holder,
                                  int position)
     {
-        //holder.setTower(mTowers.get(position));
-        mTowers.set(position, holder.getTower());
+        holder.setTower(mTowers.get(position));
+        //mTowers.set(position, holder.getTower());
         holder.setTitle(mTitle);
         holder.bindData();
     }
@@ -67,23 +60,15 @@ public class TowerRecyclerViewAdapter
         return mTowers.size();
     }
 
-    public int getTowerCost()
+    public void setTitle(String title)
     {
-        int finalCost = 0;
-
-        for(Tower tower : mTowers)
-        {
-            finalCost += tower.getTowerCost();
-        }
-
-        return finalCost;
+        mTitle = title;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         private Tower mTower;
         private String mTitle;
-        private int mTowerNumber;
         private UpgradeDao mUpgradeDao;
 
         private Spinner mTopPath;
@@ -95,16 +80,14 @@ public class TowerRecyclerViewAdapter
 
         private Context mContext;
 
-        public ViewHolder(@NonNull View itemView, int towerNumber,
-                          Context context, String title, UpgradeDao upgradeDao)
+        public ViewHolder(@NonNull View itemView, Context context, String title, UpgradeDao upgradeDao)
         {
             super(itemView);
 
-            mTowerNumber = towerNumber;
             mContext = context;
             mTitle = title;
-            mTower = new Tower(title, mUpgradeDao);
             mUpgradeDao = upgradeDao;
+            mTower = new Tower(title, mUpgradeDao);
         }
 
         public void setTower(Tower tower)
