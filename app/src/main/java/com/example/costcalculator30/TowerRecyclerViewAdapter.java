@@ -1,15 +1,18 @@
 package com.example.costcalculator30;
 
 import android.content.Context;
+import android.media.Image;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +23,6 @@ public class TowerRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerRecyclerViewAdapter.ViewHolder>
 {
     private ArrayList<Tower> mTowers;
-    String mTitle;
     Context mContext;
     UpgradeDao mUpgradeDao;
 
@@ -29,7 +31,6 @@ public class TowerRecyclerViewAdapter
         mTowers = towers;
         mContext = context;
         mUpgradeDao = upgradeDao;
-        mTitle = "";
     }
 
     @NonNull
@@ -37,11 +38,11 @@ public class TowerRecyclerViewAdapter
     public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                       int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_tower_display, parent,
                 false);
 
 
-        return new ViewHolder(view, mContext, mTitle, mUpgradeDao);
+        return new ViewHolder(view, mContext, mUpgradeDao);
     }
 
     @Override
@@ -50,7 +51,57 @@ public class TowerRecyclerViewAdapter
     {
         holder.setTower(mTowers.get(position));
         //mTowers.set(position, holder.getTower());
-        holder.setTitle(mTitle);
+
+        holder.getRemoveButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTowers.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+            }
+        });
+
+        holder.getTopPath().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                int newTopPath = Integer.parseInt(parent.getItemAtPosition(position).toString());
+
+                mTowers.get(holder.getAdapterPosition()).setTopPath(newTopPath);
+            }
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
+        holder.getMiddlePath().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                int newMiddlePath = Integer.parseInt(parent.getItemAtPosition(position).toString());
+
+                mTowers.get(holder.getAdapterPosition()).setMiddlePath(newMiddlePath);
+            }
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
+        holder.getBottomPath().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                int newBottomPath = Integer.parseInt(parent.getItemAtPosition(position).toString());
+
+                mTowers.get(holder.getAdapterPosition()).setBottomPath(newBottomPath);
+            }
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
         holder.bindData();
     }
 
@@ -60,34 +111,28 @@ public class TowerRecyclerViewAdapter
         return mTowers.size();
     }
 
-    public void setTitle(String title)
-    {
-        mTitle = title;
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         private Tower mTower;
         private String mTitle;
         private UpgradeDao mUpgradeDao;
 
-        private Spinner mTopPath;
-        private Spinner mMiddlePath;
-        private Spinner mBottomPath;
-
         private Button mDiscountButton;
-        private ImageButton mRemoveTowerButton;
+
+        private ArrayAdapter<CharSequence> mUpgradeAdapter;
 
         private Context mContext;
 
-        public ViewHolder(@NonNull View itemView, Context context, String title, UpgradeDao upgradeDao)
+        public ViewHolder(@NonNull View itemView, Context context, UpgradeDao upgradeDao)
         {
             super(itemView);
 
             mContext = context;
-            mTitle = title;
             mUpgradeDao = upgradeDao;
-            mTower = new Tower(title, mUpgradeDao);
+
+            mUpgradeAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
+                android.R.layout.simple_spinner_item);
+            mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         }
 
         public void setTower(Tower tower)
@@ -105,65 +150,59 @@ public class TowerRecyclerViewAdapter
             return mTower;
         }
 
+        public ImageButton getRemoveButton()
+        {
+            return (ImageButton) itemView.findViewById(R.id.remove_tower_button);
+        }
+
+        public Spinner getTopPath()
+        {
+            Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
+
+            topPath.setAdapter(mUpgradeAdapter);
+
+            return topPath;
+        }
+
+        public Spinner getMiddlePath()
+        {
+            Spinner middlePath = (Spinner) itemView.findViewById(R.id.middle_path);
+
+            middlePath.setAdapter(mUpgradeAdapter);
+
+            return middlePath;
+        }
+
+        public Spinner getBottomPath()
+        {
+            Spinner bottomPath = (Spinner) itemView.findViewById(R.id.bottom_path);
+
+            bottomPath.setAdapter(mUpgradeAdapter);
+
+            return bottomPath;
+        }
+
         public void bindData()
         {
-            ArrayAdapter<CharSequence> UpgradeAdapter
-                    = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
-                    android.R.layout.simple_spinner_item);
-            UpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-            if(mTopPath == null)
-            {
-                mTopPath = (Spinner) itemView.findViewById(R.id.top_path);
-            }
-
-            if(mMiddlePath == null)
-            {
-                mMiddlePath = (Spinner) itemView.findViewById(R.id.middle_path);
-            }
-
-            if(mBottomPath == null)
-            {
-                mBottomPath = (Spinner) itemView.findViewById(R.id.bottom_path);
-            }
-
             if(mDiscountButton == null)
             {
                 mDiscountButton = (Button) itemView.findViewById(R.id.tower_tab_button);
             }
 
-            if(mRemoveTowerButton == null)
-            {
-                mRemoveTowerButton = (ImageButton) itemView.findViewById(R.id.remove_tower_button);
-            }
-
-            mTopPath.setAdapter(UpgradeAdapter);
-            mMiddlePath.setAdapter(UpgradeAdapter);
-            mBottomPath.setAdapter(UpgradeAdapter);
-
-            mTower.setUpgrades(Integer.parseInt(mTopPath.getSelectedItem().toString()),
-                               Integer.parseInt(mMiddlePath.getSelectedItem().toString()),
-                               Integer.parseInt(mBottomPath.getSelectedItem().toString()));
+            //mTower.setUpgrades(Integer.parseInt(mTopPath.getSelectedItem().toString()),
+                               //Integer.parseInt(mMiddlePath.getSelectedItem().toString()),
+                               //Integer.parseInt(mBottomPath.getSelectedItem().toString()));
 
             mDiscountButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view)
+                {
                     //PopupMenu discountPopup = new PopupMenu(itemView.getContext(), mDiscountButton);
                     //discountPopup.getMenuInflater().inflate(R.layout.discount_popup, discountPopup.getMenu());
 
-                    //Pass in context from the first fragment
-
                     LayoutInflater layoutInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View discountPopup = layoutInflater.inflate(R.layout.discount_popup, null);
-
-                }
-            });
-
-            mRemoveTowerButton.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view) {
 
                 }
             });

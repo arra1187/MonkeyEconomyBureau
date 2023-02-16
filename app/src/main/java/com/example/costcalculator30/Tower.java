@@ -28,6 +28,11 @@ public class Tower
         mUpgradeDao = upgradeDao;
     }
 
+    public String getTitle()
+    {
+        return mTitle;
+    }
+
     public int getTowerCost()
     {
         int towerCost = 0;
@@ -48,6 +53,36 @@ public class Tower
         }
 
         return towerCost;
+    }
+
+    public void setTopPath(int topPath)
+    {
+        mTopPath = topPath;
+
+        if(topPath != 0)
+        {
+            mTopPathDiscounts = new double[topPath];
+        }
+    }
+
+    public void setMiddlePath(int middlePath)
+    {
+        mMiddlePath = middlePath;
+
+        if(middlePath != 0)
+        {
+            mMiddlePathDiscounts = new double[middlePath];
+        }
+    }
+
+    public void setBottomPath(int bottomPath)
+    {
+        mBottomPath = bottomPath;
+
+        if(bottomPath != 0)
+        {
+            mBottomPathDiscounts = new double[bottomPath];
+        }
     }
 
     public void setUpgrades(int topPath, int middlePath, int bottomPath)
