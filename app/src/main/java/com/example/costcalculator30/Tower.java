@@ -35,7 +35,7 @@ public class Tower
 
     public int getTowerCost()
     {
-        int towerCost = 0;
+        int towerCost = mUpgradeDao.getCost(mTitle, 0);
 
         for(int i = 0; i < mTopPath; i++)
         {

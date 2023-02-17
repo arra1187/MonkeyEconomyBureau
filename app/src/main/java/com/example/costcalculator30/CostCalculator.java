@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,13 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.costcalculator30.databinding.FragmentCostCalculatorBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CostCalculator extends Fragment
 {
     //private FragmentCostCalculatorBinding binding;
     //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
-    private ArrayList<Tower> mTowers;
     private UpgradeDao mUpgradeDao;
     private DatabaseViewModel viewModel;
 
@@ -54,12 +56,9 @@ public class CostCalculator extends Fragment
         mTowerRecycler = view.findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mTowers = new ArrayList<>();
-        //mTowers.add("Select Tower");
-
         mUpgradeDao = viewModel.getUpgradeDao();
 
-        mTowerTypeAdapter = new TowerRecyclerViewAdapter(mTowers, getContext(), mUpgradeDao);
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
         mTowerDropdown = view.findViewById(R.id.target_tower_dropdown);
@@ -81,7 +80,8 @@ public class CostCalculator extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -97,8 +97,36 @@ public class CostCalculator extends Fragment
 
                 Tower newTower = new Tower(newTowerTitle, mUpgradeDao);
 
-                mTowers.add(newTower);
-                mTowerTypeAdapter.notifyItemInserted(mTowers.size() - 1);
+                ConnectTowerList.getTowers().add(newTower);
+                mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
+            }
+        });
+
+        view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast towerToast = Toast.makeText(getActivity(), "There are " + ConnectTowerList.getTowers().size() + " towers.", Toast.LENGTH_LONG);
+                towerToast.show();
+            }
+        });
+
+        ConnectTowerList.addMyArrayListListener(new ConnectionArrayListChangedListener() {
+            @Override
+            public void OnMyArrayListChanged()
+            {
+                int finalPrice = 0;
+                String finalPriceDisplay;
+
+                for(Tower tower : ConnectTowerList.getTowers())
+                {
+                    finalPrice += tower.getTowerCost();
+                }
+
+                finalPriceDisplay = "$" + finalPrice;
+
+                mFinalPrice.setText(finalPriceDisplay);
             }
         });
     }

@@ -1,8 +1,6 @@
 package com.example.costcalculator30;
 
 import android.content.Context;
-import android.media.Image;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,25 +8,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TowerRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerRecyclerViewAdapter.ViewHolder>
 {
-    private ArrayList<Tower> mTowers;
+    //private ArrayList<Tower> mTowers;
     Context mContext;
     UpgradeDao mUpgradeDao;
 
-    public TowerRecyclerViewAdapter(ArrayList<Tower> towers, Context context, UpgradeDao upgradeDao)
+    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao)
     {
-        mTowers = towers;
         mContext = context;
         mUpgradeDao = upgradeDao;
     }
@@ -49,13 +46,14 @@ public class TowerRecyclerViewAdapter
     public void onBindViewHolder(@NonNull TowerRecyclerViewAdapter.ViewHolder holder,
                                  int position)
     {
-        holder.setTower(mTowers.get(position));
-        //mTowers.set(position, holder.getTower());
+        holder.setTower(ConnectTowerList.getTowers().get(position));
 
-        holder.getRemoveButton().setOnClickListener(new View.OnClickListener() {
+        holder.getRemoveButton().setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                mTowers.remove(holder.getAdapterPosition());
+            public void onClick(View view)
+            {
+                ConnectTowerList.removeTower(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
             }
         });
@@ -65,8 +63,10 @@ public class TowerRecyclerViewAdapter
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 int newTopPath = Integer.parseInt(parent.getItemAtPosition(position).toString());
+                ArrayList<Tower> towers = ConnectTowerList.getTowers();
+                towers.get(holder.getAdapterPosition()).setTopPath(newTopPath);
 
-                mTowers.get(holder.getAdapterPosition()).setTopPath(newTopPath);
+                ConnectTowerList.setTowers(towers);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -80,7 +80,10 @@ public class TowerRecyclerViewAdapter
             {
                 int newMiddlePath = Integer.parseInt(parent.getItemAtPosition(position).toString());
 
-                mTowers.get(holder.getAdapterPosition()).setMiddlePath(newMiddlePath);
+                ArrayList<Tower> towers = ConnectTowerList.getTowers();
+                towers.get(holder.getAdapterPosition()).setMiddlePath(newMiddlePath);
+
+                ConnectTowerList.setTowers(towers);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -94,7 +97,10 @@ public class TowerRecyclerViewAdapter
             {
                 int newBottomPath = Integer.parseInt(parent.getItemAtPosition(position).toString());
 
-                mTowers.get(holder.getAdapterPosition()).setBottomPath(newBottomPath);
+                ArrayList<Tower> towers = ConnectTowerList.getTowers();
+                towers.get(holder.getAdapterPosition()).setBottomPath(newBottomPath);
+
+                ConnectTowerList.setTowers(towers);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -108,7 +114,7 @@ public class TowerRecyclerViewAdapter
     @Override
     public int getItemCount()
     {
-        return mTowers.size();
+        return ConnectTowerList.getTowers().size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
