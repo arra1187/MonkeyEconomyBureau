@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity
     private ExecutorService mExecutor;
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
-    private FragmentManager fragmentManager = getSupportFragmentManager();
-    //private final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    //private final Fragment myFragment = new Fragment();
-
-    private DatabaseViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,8 +54,6 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
 
         getDatabase();
 
@@ -106,6 +99,11 @@ public class MainActivity extends AppCompatActivity
                 || super.onSupportNavigateUp();
     }
 
+    public UpgradeDao getUpgradeDao()
+    {
+        return mUpgradeDao;
+    }
+
     private String loadJSONFromAsset(Context context)
     {
         String jsonString = null;
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity
             String title, tower;
             int upgradeID, cost;
 
-            mDatabase = Room.databaseBuilder (getApplicationContext (),
+            mDatabase = Room.databaseBuilder (getApplicationContext(),
                     UpgradeDatabase.class, "Upgrade-db").build();
 
             mUpgradeDao = mDatabase.mUpgradeDao();
@@ -171,8 +169,6 @@ public class MainActivity extends AppCompatActivity
             {
                 exception.printStackTrace();
             }
-
-            viewModel.setUpgradeDao(mUpgradeDao);
         });
     }
 }

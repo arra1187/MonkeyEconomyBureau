@@ -1,5 +1,6 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,19 +19,28 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.FragmentCostCalculatorBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CostCalculator extends Fragment
 {
     //private FragmentCostCalculatorBinding binding;
     //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
+    private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
-    private DatabaseViewModel viewModel;
 
     private RecyclerView mTowerRecycler;
     private TextView mFinalPrice;
@@ -48,15 +58,16 @@ public class CostCalculator extends Fragment
 
         //return fragmentFirstLayout;
 
-        viewModel = new ViewModelProvider(this).get(DatabaseViewModel.class);
+        //mDatabase = UpgradeDatabase.getDatabase(getContext());
+        //mUpgradeDao = mDatabase.mUpgradeDao();
+
+        getDatabase();
 
         mFinalPrice = view.findViewById(R.id.final_price);
         mFinalPrice.setText("$0");
 
         mTowerRecycler = view.findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mUpgradeDao = viewModel.getUpgradeDao();
 
         mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
@@ -135,5 +146,73 @@ public class CostCalculator extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
         //binding = null;
+    }
+
+    private String loadJSONFromAsset(Context context)
+    {
+        String jsonString = null;
+        try
+        {
+            InputStream inputStream = context.getAssets().open("upgrade.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+
+            inputStream.read(buffer);
+            inputStream.close();
+
+            jsonString = new String(buffer, "UTF-8");
+        }
+        catch(IOException exception)
+        {
+            exception.printStackTrace();
+            return null;
+        }
+
+        return jsonString;
+    }
+
+    private void getDatabase()
+    {
+        ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
+        mExecutor.execute(() ->
+        {
+            String jsonString;
+            JSONArray jsonArray;
+
+            String title, tower;
+            int upgradeID, cost;
+
+            mDatabase = Room.databaseBuilder (getContext(),
+                    UpgradeDatabase.class, "Upgrade-db").build();
+
+            mUpgradeDao = mDatabase.mUpgradeDao();
+
+            mUpgradeDao.deleteAll();
+
+            jsonString = loadJSONFromAsset(getContext());
+
+            try
+            {
+                jsonArray = new JSONArray(jsonString);
+
+                for(int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                    title = jsonItem.getString("mTitle");
+                    upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                    tower = jsonItem.getString("mTower");
+                    cost = Integer.parseInt(jsonItem.getString("mCost"));
+
+                    Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+
+                    mUpgradeDao.insert(newUpgrade);
+                }
+            }
+            catch(JSONException exception)
+            {
+                exception.printStackTrace();
+            }
+        });
     }
 }

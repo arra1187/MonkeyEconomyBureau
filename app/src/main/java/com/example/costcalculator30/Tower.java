@@ -1,22 +1,29 @@
 package com.example.costcalculator30;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Tower
 {
     private String mTitle;
-    private UpgradeDao mUpgradeDao;
 
     private int mTopPath;
     private int mMiddlePath;
     private int mBottomPath;
 
-    private int mTopPathCost;
-    private int mMiddlePathCost;
-    private int mBottomPathCost;
-
     private double [] mTopPathDiscounts;
     private double [] mMiddlePathDiscounts;
     private double [] mBottomPathDiscounts;
     private double mBaseDiscount;
+
+    private int mBaseCost;
+    private int mTopPathCosts[];
+    private int mMiddlePathCosts[];
+    private int mBottomPathCosts[];
+    private int mParagonCost;
+
+    private final int numTiers = 5;
 
     Tower(String title, UpgradeDao upgradeDao)
     {
@@ -25,7 +32,33 @@ public class Tower
         mMiddlePath = 0;
         mBottomPath = 0;
         mBaseDiscount = 0;
-        mUpgradeDao = upgradeDao;
+
+        mTopPathCosts = new int[numTiers];
+        mMiddlePathCosts = new int[numTiers];
+        mBottomPathCosts = new int[numTiers];
+
+        ExecutorService mExecutor = Executors.newSingleThreadExecutor ();
+        mExecutor.execute(() ->
+        {
+            mBaseCost = upgradeDao.getCost(mTitle, 0);
+
+            for (int i = 0; i < numTiers; i++)
+            {
+                mTopPathCosts[i] = upgradeDao.getCost(mTitle, 10 + i + 1);
+            }
+
+            for (int i = 0; i < numTiers; i++)
+            {
+                mMiddlePathCosts[i] = upgradeDao.getCost(mTitle, 20 + i + 1);
+            }
+
+            for (int i = 0; i < numTiers; i++)
+            {
+                mBottomPathCosts[i] = upgradeDao.getCost(mTitle, 30 + i + 1);
+            }
+
+            mParagonCost = upgradeDao.getCost(mTitle, 6);
+        });
     }
 
     public String getTitle()
@@ -35,21 +68,21 @@ public class Tower
 
     public int getTowerCost()
     {
-        int towerCost = mUpgradeDao.getCost(mTitle, 0);
+        int towerCost = mBaseCost;
 
-        for(int i = 0; i < mTopPath; i++)
+        for (int i = 0; i < mTopPath; i++)
         {
-            towerCost += mUpgradeDao.getCost(mTitle, 10 + i);
+            towerCost += mTopPathCosts[i];
         }
 
-        for(int i = 0; i < mMiddlePath; i++)
+        for (int i = 0; i < mMiddlePath; i++)
         {
-            towerCost += mUpgradeDao.getCost(mTitle, 20 + i);
+            towerCost += mMiddlePathCosts[i];
         }
 
-        for(int i = 0; i < mBottomPath; i++)
+        for (int i = 0; i < mBottomPath; i++)
         {
-            towerCost += mUpgradeDao.getCost(mTitle, 30 + i);
+            towerCost += mBottomPathCosts[i];
         }
 
         return towerCost;

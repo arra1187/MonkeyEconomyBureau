@@ -37,6 +37,6 @@ public interface UpgradeDao
     @Query("Select * from Upgrade WHERE title like :str")
     List<Upgrade> getAllContains(String str);
 
-    @Query("Select cost from Upgrade WHERE title = :title AND upgradeID = :upgradeID")
-    int getCost(String title, int upgradeID);
+    @Query("Select cost from Upgrade WHERE tower = :tower AND upgradeID = :upgradeID")
+    int getCost(String tower, int upgradeID);
 }
