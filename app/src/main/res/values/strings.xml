@@ -100,6 +100,8 @@
     <string name="target_round_label">Target Round</string>
     <string name="target_tower_label">Target Tower</string>
     <string name="database_test_label">Enter Dart Monkey Upgrade</string>
+    <string name="affordability_calculator_label">Affordability Calculator</string>
+    <string name="cost_calculator_label">Cost Calculator</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>

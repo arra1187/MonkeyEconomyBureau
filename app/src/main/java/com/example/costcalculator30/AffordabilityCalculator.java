@@ -9,6 +9,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorBinding;
 
@@ -51,6 +52,15 @@ public class AffordabilityCalculator extends Fragment {
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });*/
+
+        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                NavHostFragment.findNavController(AffordabilityCalculator.this).navigate(AffordabilityCalculatorDirections.moveToCC());
+            }
+        });
     }
 
     @Override

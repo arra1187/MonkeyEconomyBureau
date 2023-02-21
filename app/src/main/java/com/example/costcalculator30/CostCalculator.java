@@ -123,6 +123,15 @@ public class CostCalculator extends Fragment
             }
         });
 
+        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
+            }
+        });
+
         ConnectTowerList.addMyArrayListListener(new ConnectionArrayListChangedListener() {
             @Override
             public void OnMyArrayListChanged()
