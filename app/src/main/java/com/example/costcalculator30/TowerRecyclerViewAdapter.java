@@ -1,6 +1,9 @@
 package com.example.costcalculator30;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -124,11 +128,13 @@ public class TowerRecyclerViewAdapter
         private UpgradeDao mUpgradeDao;
 
         private Button mDiscountButton;
+        private ImageView mTowerSymbol;
 
         private ArrayAdapter<CharSequence> mUpgradeAdapter;
 
         private Context mContext;
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         public ViewHolder(@NonNull View itemView, Context context, UpgradeDao upgradeDao)
         {
             super(itemView);
@@ -190,14 +196,28 @@ public class TowerRecyclerViewAdapter
 
         public void bindData()
         {
+            Drawable towerSymbol = null;
+
             if(mDiscountButton == null)
             {
                 mDiscountButton = (Button) itemView.findViewById(R.id.tower_tab_button);
             }
+            if(mTowerSymbol == null)
+            {
+                mTowerSymbol = (ImageView) itemView.findViewById(R.id.tower_symbol);
+            }
 
-            //mTower.setUpgrades(Integer.parseInt(mTopPath.getSelectedItem().toString()),
-                               //Integer.parseInt(mMiddlePath.getSelectedItem().toString()),
-                               //Integer.parseInt(mBottomPath.getSelectedItem().toString()));
+            switch(mTower.getTitle())
+            {
+                case "Dart Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.new_dart_monkey_symbol);
+                    break;
+                case "Boomerang Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.boomerang_monkey_symbol);
+                    break;
+            }
+
+            mTowerSymbol.setImageDrawable(towerSymbol);
 
             mDiscountButton.setOnClickListener(new View.OnClickListener()
             {

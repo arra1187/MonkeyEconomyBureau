@@ -70,7 +70,7 @@ public abstract class UpgradeDatabase extends RoomDatabase
         String jsonString = null;
         try
         {
-            InputStream inputStream = context.getAssets().open("upgrade.json");
+            InputStream inputStream = context.getAssets().open("dart.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
 

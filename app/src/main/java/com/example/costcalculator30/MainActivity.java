@@ -1,17 +1,10 @@
 package com.example.costcalculator30;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,7 +13,6 @@ import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.ActivityMainBinding;
 
-import android.view.Menu;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
@@ -70,12 +62,12 @@ public class MainActivity extends AppCompatActivity
         });*/
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -109,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         String jsonString = null;
         try
         {
-          InputStream inputStream = context.getAssets().open("upgrade.json");
+          InputStream inputStream = context.getAssets().open("dart.json");
           int size = inputStream.available();
           byte[] buffer = new byte[size];
 

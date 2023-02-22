@@ -13,7 +13,7 @@
         android:fontFamily="serif-monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/top_path"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/tower_symbol"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -93,7 +93,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/tower_symbol"
         android:layout_width="49dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"

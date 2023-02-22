@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Boomerang Monkey",
+    "mCost": 325
+  },
+
+  {
+    "mTitle": "Improved Rangs",
+    "mUpgradeID": 11,
+    "mTower": "Boomerang Monkey",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Glaives",
+    "mUpgradeID": 12,
+    "mTower": "Boomerang Monkey",
+    "mCost": 280
+  },
+
+  {
+    "mTitle": "Glaive Ricochet",
+    "mUpgradeID": 13,
+    "mTower": "Boomerang Monkey",
+    "mCost": 1300
+  },
+
+  {
+    "mTitle": "M.O.A.R Glaives",
+    "mUpgradeID": 14,
+    "mTower": "Boomerang Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Glaive Lord",
+    "mUpgradeID": 15,
+    "mTower": "Boomerang Monkey",
+    "mCost": 32400
+  },
+
+  {
+    "mTitle": "Faster Throwing",
+    "mUpgradeID": 21,
+    "mTower": "Boomerang Monkey",
+    "mCost": 175
+  },
+
+  {
+    "mTitle": "Faster Rangs",
+    "mUpgradeID": 22,
+    "mTower": "Boomerang Monkey",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Bionic Boomerang",
+    "mUpgradeID": 23,
+    "mTower": "Boomerang Monkey",
+    "mCost": 1450
+  },
+
+  {
+    "mTitle": "Turbo Charge",
+    "mUpgradeID": 24,
+    "mTower": "Boomerang Monkey",
+    "mCost": 4200
+  },
+
+  {
+    "mTitle": "Perma Charge",
+    "mUpgradeID": 25,
+    "mTower": "Boomerang Monkey",
+    "mCost": 35000
+  },
+
+  {
+    "mTitle": "Long Range Rangs",
+    "mUpgradeID": 31,
+    "mTower": "Boomerang Monkey",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Red Hot Rangs",
+    "mUpgradeID": 32,
+    "mTower": "Boomerang Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Kylie Boomerang",
+    "mUpgradeID": 33,
+    "mTower": "Boomerang Monkey",
+    "mCost": 1300
+  },
+
+  {
+    "mTitle": "MOAB Press",
+    "mUpgradeID": 34,
+    "mTower": "Boomerang Monkey",
+    "mCost": 2400
+  },
+
+  {
+    "mTitle": "MOAB Domination",
+    "mUpgradeID": 35,
+    "mTower": "Boomerang Monkey",
+    "mCost": 50000
+  },
+
+  {
+    "mTitle": "Glaive Dominus",
+    "mUpgradeID": 6,
+    "mTower": "Boomerang Monkey",
+    "mCost": 325000
+  }
+]
