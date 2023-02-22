@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -77,6 +78,8 @@ public class CostCalculator extends Fragment
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mDifficultyDropdown.setAdapter(adapter);
 
+        mDifficultyDropdown.setSelection(1);
+
         return view;
     }
 
@@ -103,6 +106,7 @@ public class CostCalculator extends Fragment
 
                 ConnectTowerList.getTowers().add(newTower);
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
+                mTowerRecycler.scrollToPosition(mTowerTypeAdapter.getItemCount() - 1);
             }
         });
 
@@ -125,29 +129,71 @@ public class CostCalculator extends Fragment
             }
         });
 
-        ConnectTowerList.addMyArrayListListener(new ConnectionArrayListChangedListener() {
+        mDifficultyDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                updateFinalPrice();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+
+        ConnectTowerList.addMyArrayListListener(new ConnectionArrayListChangedListener()
+        {
             @Override
             public void OnMyArrayListChanged()
             {
-                int finalPrice = 0;
-                String finalPriceDisplay;
-
-                for(Tower tower : ConnectTowerList.getTowers())
-                {
-                    finalPrice += tower.getTowerCost();
-                }
-
-                finalPriceDisplay = "$" + finalPrice;
-
-                mFinalPrice.setText(finalPriceDisplay);
+                updateFinalPrice();
             }
         });
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
         //binding = null;
+    }
+
+    private void updateFinalPrice()
+    {
+        final double EASY_MULTIPLIER = 0.85;
+        final double HARD_MULTIPLIER = 1.075;
+        final double IMPOPPABLE_MULTIPLIER = 1.2;
+
+        int finalPrice = 0;
+        String finalPriceDisplay;
+        String difficulty;
+
+        for(Tower tower : ConnectTowerList.getTowers())
+        {
+            finalPrice += tower.getTowerCost();
+        }
+
+        difficulty = mDifficultyDropdown.getSelectedItem().toString();
+
+        switch(difficulty)
+        {
+            case "Easy":
+                finalPrice *= EASY_MULTIPLIER;
+                break;
+            case "Hard":
+                finalPrice *= HARD_MULTIPLIER;
+                break;
+            case "Impoppable":
+                finalPrice *= IMPOPPABLE_MULTIPLIER;
+                break;
+        }
+
+        finalPriceDisplay = "$" + finalPrice;
+
+        mFinalPrice.setText(finalPriceDisplay);
     }
 
     private String loadJSONFromAsset(Context context)
