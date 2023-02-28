@@ -75,6 +75,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <!-- Numbers -->
@@ -84,6 +85,7 @@
     <string name="three">3</string>
     <string name="four">4</string>
     <string name="five">5</string>
+    <string name="six">6</string>
 
     <!-- Difficulty dropdown -->
     <string-array name="difficulties">

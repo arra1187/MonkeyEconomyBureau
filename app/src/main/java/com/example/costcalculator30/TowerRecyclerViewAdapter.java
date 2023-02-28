@@ -145,11 +145,22 @@ public class TowerRecyclerViewAdapter
             mUpgradeAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
                 android.R.layout.simple_spinner_item);
             mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+            if(mTower != null)
+            {
+                Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
+                topPath.setAdapter(mUpgradeAdapter);
+                topPath.setSelection(mTower.getTopPath());
+            }
         }
 
         public void setTower(Tower tower)
         {
             mTower = tower;
+
+            Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
+            topPath.setAdapter(mUpgradeAdapter);
+            topPath.setSelection(tower.getTopPath());
         }
 
         public void setTitle(String title)

@@ -1,15 +1,28 @@
 package com.example.costcalculator30;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
+@Entity
 public class Tower
 {
+    @PrimaryKey(autoGenerate = true)
+    private int nid;
+
+    @ColumnInfo(name = "title")
     private String mTitle;
 
+    @ColumnInfo()
     private int mTopPath;
+
+    @ColumnInfo()
     private int mMiddlePath;
+
+    @ColumnInfo()
     private int mBottomPath;
 
     private double [] mTopPathDiscounts;
@@ -21,9 +34,8 @@ public class Tower
     private int mTopPathCosts[];
     private int mMiddlePathCosts[];
     private int mBottomPathCosts[];
-    private int mParagonCost;
 
-    private final int numTiers = 5;
+    private final int numTiers = 6;
 
     Tower(String title, UpgradeDao upgradeDao)
     {
@@ -40,6 +52,8 @@ public class Tower
         ExecutorService mExecutor = Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
+            int paragonCost;
+
             mBaseCost = upgradeDao.getCost(mTitle, 0);
 
             for (int i = 0; i < numTiers; i++)
@@ -57,7 +71,11 @@ public class Tower
                 mBottomPathCosts[i] = upgradeDao.getCost(mTitle, 30 + i + 1);
             }
 
-            mParagonCost = upgradeDao.getCost(mTitle, 6);
+            paragonCost = upgradeDao.getCost(mTitle, 6);
+
+            mTopPathCosts[numTiers - 1] = paragonCost;
+            mMiddlePathCosts[numTiers - 1] = paragonCost;
+            mBottomPathCosts[numTiers - 1] = paragonCost;
         });
     }
 
@@ -86,6 +104,11 @@ public class Tower
         }
 
         return towerCost;
+    }
+
+    public int getTopPath()
+    {
+        return mTopPath;
     }
 
     public void setTopPath(int topPath)
