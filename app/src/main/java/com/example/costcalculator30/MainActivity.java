@@ -13,6 +13,7 @@ import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.ActivityMainBinding;
 
+import android.view.Menu;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
+        final String appName = getApplicationContext().getResources().getString(R.string.app_name);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -47,7 +51,10 @@ public class MainActivity extends AppCompatActivity
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        getDatabase();
+        //getActionBar().setTitle(appName);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(appName);
+
+        //getDatabase();
 
         /*binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +69,12 @@ public class MainActivity extends AppCompatActivity
         });*/
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

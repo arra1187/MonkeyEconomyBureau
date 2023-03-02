@@ -39,7 +39,7 @@ public class TowerRecyclerViewAdapter
     public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                       int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_tower_display, parent,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
                 false);
 
 
@@ -51,6 +51,12 @@ public class TowerRecyclerViewAdapter
                                  int position)
     {
         holder.setTower(ConnectTowerList.getTowers().get(position));
+
+        /*int topPath = holder.getTower().getTopPath();
+
+        holder.getTopPath().setSelection(topPath);
+        holder.getMiddlePath().setSelection(holder.getTower().getMiddlePath());
+        holder.getBottomPath().setSelection(holder.getTower().getBottomPath());*/
 
         holder.getRemoveButton().setOnClickListener(new View.OnClickListener()
         {
@@ -127,6 +133,10 @@ public class TowerRecyclerViewAdapter
         private String mTitle;
         private UpgradeDao mUpgradeDao;
 
+        private Spinner mTopPath;
+        private Spinner mMiddlePath;
+        private Spinner mBottomPath;
+
         private Button mDiscountButton;
         private ImageView mTowerSymbol;
 
@@ -146,12 +156,21 @@ public class TowerRecyclerViewAdapter
                 android.R.layout.simple_spinner_item);
             mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
-            if(mTower != null)
+            mTopPath = (Spinner) itemView.findViewById(R.id.top_path);
+            mTopPath.setAdapter(mUpgradeAdapter);
+
+            mMiddlePath = (Spinner) itemView.findViewById(R.id.middle_path);
+            mMiddlePath.setAdapter(mUpgradeAdapter);
+
+            mBottomPath = (Spinner) itemView.findViewById(R.id.bottom_path);
+            mBottomPath.setAdapter(mUpgradeAdapter);
+
+            /*if(mTower != null)
             {
                 Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
                 topPath.setAdapter(mUpgradeAdapter);
                 topPath.setSelection(mTower.getTopPath());
-            }
+            }*/
         }
 
         public void setTower(Tower tower)
@@ -159,8 +178,16 @@ public class TowerRecyclerViewAdapter
             mTower = tower;
 
             Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
+
+            mUpgradeAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
+                    android.R.layout.simple_spinner_item);
+            mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
             topPath.setAdapter(mUpgradeAdapter);
-            topPath.setSelection(tower.getTopPath());
+
+            int value = tower.getTopPath();
+
+            topPath.setSelection(value);
         }
 
         public void setTitle(String title)
@@ -177,6 +204,7 @@ public class TowerRecyclerViewAdapter
         {
             return (ImageButton) itemView.findViewById(R.id.remove_tower_button);
         }
+
 
         public Spinner getTopPath()
         {
@@ -205,9 +233,14 @@ public class TowerRecyclerViewAdapter
             return bottomPath;
         }
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         public void bindData()
         {
             Drawable towerSymbol = null;
+
+            mTopPath.setSelection(mTower.getTopPath());
+            mMiddlePath.setSelection(mTower.getMiddlePath());
+            mBottomPath.setSelection(mTower.getBottomPath());
 
             if(mDiscountButton == null)
             {
@@ -225,6 +258,12 @@ public class TowerRecyclerViewAdapter
                     break;
                 case "Boomerang Monkey":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.boomerang_monkey_symbol);
+                    break;
+                case "Bomb Shooter":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.bomb_shooter_symbol);
+                    break;
+                case "Tack Shooter":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.tack_shooter_symbol);
                     break;
             }
 

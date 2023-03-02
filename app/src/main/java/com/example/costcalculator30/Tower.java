@@ -2,48 +2,74 @@ package com.example.costcalculator30;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Entity
+//@Entity
 public class Tower
 {
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private int nid;
 
-    @ColumnInfo(name = "title")
+    //@ColumnInfo(name = "title")
     private String mTitle;
 
-    @ColumnInfo()
+    //@ColumnInfo(name = "topPath")
     private int mTopPath;
 
-    @ColumnInfo()
+    //@ColumnInfo(name = "middlePath")
     private int mMiddlePath;
 
-    @ColumnInfo()
+    //@ColumnInfo(name = "bottomPath")
     private int mBottomPath;
 
-    private double [] mTopPathDiscounts;
-    private double [] mMiddlePathDiscounts;
-    private double [] mBottomPathDiscounts;
-    private double mBaseDiscount;
+    //@ColumnInfo(name = "towerCost")
+    private int mTowerCost;
 
+    //@ColumnInfo(name = "upgradeDao")
+    //private UpgradeDao mUpgradeDao;
+
+    /*@ColumnInfo(name = "topPathDiscounts")
+    private double [] mTopPathDiscounts;
+
+    @ColumnInfo(name = "middlePathDiscounts")
+    private double [] mMiddlePathDiscounts;
+
+    @ColumnInfo(name = "bottomPathDiscounts")
+    private double [] mBottomPathDiscounts;
+
+    @ColumnInfo(name = "baseDiscount")
+    private double mBaseDiscount;*/
+
+    //@ColumnInfo(name = "baseCost")
+    @Ignore
     private int mBaseCost;
+
+    //@ColumnInfo(name = "topPathCosts")
+    @Ignore
     private int mTopPathCosts[];
+
+    //@ColumnInfo(name = "middlePathCosts")
+    @Ignore
     private int mMiddlePathCosts[];
+
+    //@ColumnInfo(name = "bottomPathCosts")
+    @Ignore
     private int mBottomPathCosts[];
 
+    @Ignore
     private final int numTiers = 6;
 
-    Tower(String title, UpgradeDao upgradeDao)
+    Tower(String title, int topPath, int middlePath, int bottomPath, int towerCost, UpgradeDao upgradeDao)
     {
         mTitle = title;
-        mTopPath = 0;
-        mMiddlePath = 0;
-        mBottomPath = 0;
-        mBaseDiscount = 0;
+        mTopPath = topPath;
+        mMiddlePath = middlePath;
+        mBottomPath = bottomPath;
+        //mBaseDiscount = 0;
 
         mTopPathCosts = new int[numTiers];
         mMiddlePathCosts = new int[numTiers];
@@ -84,31 +110,51 @@ public class Tower
         return mTitle;
     }
 
+    public int getNid()
+    {
+        return nid;
+    }
+
     public int getTowerCost()
     {
-        int towerCost = mBaseCost;
+        mTowerCost = mBaseCost;
 
         for (int i = 0; i < mTopPath; i++)
         {
-            towerCost += mTopPathCosts[i];
+            mTowerCost += mTopPathCosts[i];
         }
 
         for (int i = 0; i < mMiddlePath; i++)
         {
-            towerCost += mMiddlePathCosts[i];
+            mTowerCost += mMiddlePathCosts[i];
         }
 
         for (int i = 0; i < mBottomPath; i++)
         {
-            towerCost += mBottomPathCosts[i];
+            mTowerCost += mBottomPathCosts[i];
         }
 
-        return towerCost;
+        return mTowerCost;
     }
 
     public int getTopPath()
     {
         return mTopPath;
+    }
+
+    public int getMiddlePath()
+    {
+        return mMiddlePath;
+    }
+
+    public int getBottomPath()
+    {
+        return mBottomPath;
+    }
+
+    public void setNid(int id)
+    {
+        nid = id;
     }
 
     public void setTopPath(int topPath)
@@ -117,7 +163,7 @@ public class Tower
 
         if(topPath != 0)
         {
-            mTopPathDiscounts = new double[topPath];
+            //mTopPathDiscounts = new double[topPath];
         }
     }
 
@@ -127,7 +173,7 @@ public class Tower
 
         if(middlePath != 0)
         {
-            mMiddlePathDiscounts = new double[middlePath];
+            //mMiddlePathDiscounts = new double[middlePath];
         }
     }
 
@@ -137,11 +183,11 @@ public class Tower
 
         if(bottomPath != 0)
         {
-            mBottomPathDiscounts = new double[bottomPath];
+            //mBottomPathDiscounts = new double[bottomPath];
         }
     }
 
-    public void setUpgrades(int topPath, int middlePath, int bottomPath)
+    /*public void setUpgrades(int topPath, int middlePath, int bottomPath)
     {
         mTopPath = topPath;
         mMiddlePath = middlePath;
@@ -191,5 +237,5 @@ public class Tower
         }
 
         mBaseDiscount = baseDiscount;
-    }
+    }*/
 }

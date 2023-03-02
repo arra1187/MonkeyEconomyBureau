@@ -1,6 +1,6 @@
 <resources>
     <!-- Strings used for logistics -->
-    <string name="app_name">Cost Calculator 3.0</string>
+    <string name="app_name">Monkey Economy Bureau</string>
     <string name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -15,9 +15,10 @@
 
     <!-- Heading Strings -->
     <string name="app_heading">MONKEY ECONOMY BUREAU</string>
-    <string name="page_heading_1.1">Cost</string>
+    <string name="page_heading_1.1">Cost\nCalculator</string>
     <string name="page_heading_2">Calculator</string>
     <string name="page_heading_1.2">Affordability</string>
+    <string name="page_heading_template">Page\nHeader</string>
 
     <!-- Button Strings -->
     <string name="menu_button">MENU</string>
@@ -29,6 +30,7 @@
     <string name="target_button_label">Target  </string>
     <string name="x_button">X</string>
     <string name="enter_button_label">Enter</string>
+    <string name="clear_towers_button_label">Clear towers</string>
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>
@@ -106,6 +108,9 @@
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>
+
+    <!-- Long sections of text -->
+    <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Menu Button to begin</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>

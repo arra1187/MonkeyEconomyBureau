@@ -1,6 +1,5 @@
 package com.example.costcalculator30;
 
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,13 +30,15 @@ import java.util.concurrent.Executors;
 
 public class CostCalculator extends Fragment
 {
-    //private FragmentCostCalculatorBinding binding;
-    //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
 
+    private View mCalculatorView;
+
     private RecyclerView mTowerRecycler;
+
+    private TextView mPageHeader;
     private TextView mFinalPrice;
 
     private Spinner mTowerDropdown;
@@ -47,33 +48,37 @@ public class CostCalculator extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        //binding = FragmentCostCalculatorBinding.inflate(inflater, container, false);
+        final String pageHeader = "Cost\nCalculator";
+        final String initialCost = "$0";
 
-        View view = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
+        View view = inflater.inflate(R.layout.page_template, container, false);
 
-        //return fragmentFirstLayout;
+        FrameLayout pageFrame = (FrameLayout) view.findViewById(R.id.page_frame);
 
-        //mDatabase = UpgradeDatabase.getDatabase(getContext());
-        //mUpgradeDao = mDatabase.mUpgradeDao();
+        mCalculatorView = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
+        pageFrame.addView(mCalculatorView);
 
         getDatabase();
 
-        mFinalPrice = view.findViewById(R.id.final_price);
-        mFinalPrice.setText("$0");
+        mPageHeader = view.findViewById(R.id.page_header);
+        mPageHeader.setText(pageHeader);
 
-        mTowerRecycler = view.findViewById(R.id.tower_recyclerView);
+        mFinalPrice = mCalculatorView.findViewById(R.id.final_price);
+        mFinalPrice.setText(initialCost);
+
+        mTowerRecycler = mCalculatorView.findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
-        mTowerDropdown = view.findViewById(R.id.target_tower_dropdown);
+        mTowerDropdown = mCalculatorView.findViewById(R.id.target_tower_dropdown);
         ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.towers, android.R.layout.simple_spinner_item);
         towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mTowerDropdown.setAdapter(towerAdapter);
 
-        mDifficultyDropdown = view.findViewById(R.id.difficulty_dropdown);
+        mDifficultyDropdown = mCalculatorView.findViewById(R.id.difficulty_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -88,7 +93,26 @@ public class CostCalculator extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
+        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
+            }
+        });
+
+        view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast towerToast = Toast.makeText(getActivity(), "There are " + ConnectTowerList.getTowers().size() + " towers.", Toast.LENGTH_LONG);
+                towerToast.show();
+            }
+        });
+
+        mCalculatorView.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -103,7 +127,7 @@ public class CostCalculator extends Fragment
                     return;
                 }
 
-                Tower newTower = new Tower(newTowerTitle, mUpgradeDao);
+                Tower newTower = new Tower(newTowerTitle, 0, 0, 0, 0, mUpgradeDao);
 
                 ConnectTowerList.getTowers().add(newTower);
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
@@ -111,22 +135,13 @@ public class CostCalculator extends Fragment
             }
         });
 
-        view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
+        mCalculatorView.findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Toast towerToast = Toast.makeText(getActivity(), "There are " + ConnectTowerList.getTowers().size() + " towers.", Toast.LENGTH_LONG);
-                towerToast.show();
-            }
-        });
-
-        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
+                ConnectTowerList.clearTowers();
+                mTowerTypeAdapter.notifyDataSetChanged();
             }
         });
 
@@ -197,29 +212,6 @@ public class CostCalculator extends Fragment
         mFinalPrice.setText(finalPriceDisplay);
     }
 
-    private String loadJSONFromAsset(Context context)
-    {
-        String jsonString = null;
-        try
-        {
-            InputStream inputStream = context.getAssets().open("dart.json");
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-
-            inputStream.read(buffer);
-            inputStream.close();
-
-            jsonString = new String(buffer, "UTF-8");
-        }
-        catch(IOException exception)
-        {
-            exception.printStackTrace();
-            return null;
-        }
-
-        return jsonString;
-    }
-
     private void getDatabase()
     {
         ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
@@ -240,8 +232,6 @@ public class CostCalculator extends Fragment
             mUpgradeDao.deleteAll();
 
             towerFiles = getContext().getAssets();
-
-            //jsonString = loadJSONFromAsset(getContext());
 
             try
             {
