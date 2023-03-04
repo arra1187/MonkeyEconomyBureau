@@ -93,14 +93,14 @@ public class CostCalculator extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        /*view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
             }
-        });
+        });*/
 
         view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
         {
@@ -239,29 +239,34 @@ public class CostCalculator extends Fragment
 
                 for(String fileName : aFileArray)
                 {
-                    InputStream inputStream = towerFiles.open(fileName);
-                    int size = inputStream.available();
-                    byte[] buffer = new byte[size];
-
-                    inputStream.read(buffer);
-                    inputStream.close();
-
-                    jsonString = new String(buffer, "UTF-8");
-
-                    jsonArray = new JSONArray(jsonString);
-
-                    for(int i = 0; i < jsonArray.length(); i++)
+                    if(!(fileName.equals("images")))
                     {
-                        JSONObject jsonItem = jsonArray.getJSONObject(i);
+                        if(!(fileName.equals("webkit")))
+                        {
+                            InputStream inputStream = towerFiles.open(fileName);
+                            int size = inputStream.available();
+                            byte[] buffer = new byte[size];
 
-                        title = jsonItem.getString("mTitle");
-                        upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                        tower = jsonItem.getString("mTower");
-                        cost = Integer.parseInt(jsonItem.getString("mCost"));
+                            inputStream.read(buffer);
+                            inputStream.close();
 
-                        Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+                            jsonString = new String(buffer, "UTF-8");
 
-                        mUpgradeDao.insert(newUpgrade);
+                            jsonArray = new JSONArray(jsonString);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                                title = jsonItem.getString("mTitle");
+                                upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                                tower = jsonItem.getString("mTower");
+                                cost = Integer.parseInt(jsonItem.getString("mCost"));
+
+                                Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+
+                                mUpgradeDao.insert(newUpgrade);
+                            }
+                        }
                     }
                 }
             }

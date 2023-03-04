@@ -1,12 +1,17 @@
 package com.example.costcalculator30;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
@@ -22,7 +27,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -35,12 +39,15 @@ public class MainActivity extends AppCompatActivity
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
 
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
         final String appName = getApplicationContext().getResources().getString(R.string.app_name);
+        ActionBar mActionBar = getSupportActionBar();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -52,7 +59,14 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         //getActionBar().setTitle(appName);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(appName);
+
+        if(mActionBar != null)
+        {
+            mActionBar.setTitle(appName);
+        }
+
+        fragmentManager = getSupportFragmentManager();
+
 
         //getDatabase();
 
@@ -70,33 +84,46 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up help_button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        Fragment fragment = new Fragment();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(item.getItemId())
+        {
+            case R.id.welcome_page:
+                fragment = new WelcomePage();
+                break;
+            case R.id.cost_calculator_page:
+                fragment = new CostCalculator();
+                break;
+            case R.id.affordability_calculator_page:
+                fragment = new AffordabilityCalculator();
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+        //NavHostFragment.findNavController(fragment).navigate(CostCalculatorDirections.moveToAC());
+
+        return true;
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp()
+    {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 
     public UpgradeDao getUpgradeDao()
     {

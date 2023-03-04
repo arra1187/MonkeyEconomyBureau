@@ -1,7 +1,11 @@
 <resources>
     <!-- Strings used for logistics -->
     <string name="app_name">Monkey Economy Bureau</string>
-    <string name="action_settings">Settings</string>
+
+    <!-- Page name -->
+    <string name="welcome_page">Welcome</string>
+    <string name="cost_calculator_page">Cost Calculator</string>
+    <string name="affordability_calculator_page">Affordability Calculator</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
