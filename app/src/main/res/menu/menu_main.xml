@@ -1,20 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.costcalculator30.MainActivity">
+    tools:showIn="navigation_view">
     <item
         android:id="@+id/welcome_page"
         android:orderInCategory="1"
-        android:title="@string/welcome_page"
-        app:showAsAction="never"/>
+        android:title="@string/welcome_page" />
     <item
         android:id="@+id/cost_calculator_page"
         android:orderInCategory="2"
-        android:title="@string/cost_calculator_page"
-        app:showAsAction="never"/>
+        android:icon="@drawable/cost_calculator_symbol"
+        android:title="@string/cost_calculator_page" />
     <item
         android:id="@+id/affordability_calculator_page"
         android:orderInCategory="3"
-        android:title="@string/affordability_calculator_page"
-        app:showAsAction="never"/>
+        android:title="@string/affordability_calculator_page" />
 </menu>

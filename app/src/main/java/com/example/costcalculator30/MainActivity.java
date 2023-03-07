@@ -5,10 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -17,9 +20,12 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +47,12 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager fragmentManager;
 
+    public DrawerLayout mDrawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+
+    //public View currentView;
+    //public NavController mNavController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,8 +62,11 @@ public class MainActivity extends AppCompatActivity
         ActionBar mActionBar = getSupportActionBar();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        //currentView = binding.getRoot();
         setContentView(binding.getRoot());
 
+        //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_graph);
+        //mNavCon = navHostFragment.getNavController();
         setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -65,8 +80,20 @@ public class MainActivity extends AppCompatActivity
             mActionBar.setTitle(appName);
         }
 
-        fragmentManager = getSupportFragmentManager();
+        //fragmentManager = getSupportFragmentManager();
 
+        //mDrawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setNavigationDrawer();
 
         //getDatabase();
 
@@ -83,11 +110,48 @@ public class MainActivity extends AppCompatActivity
         });*/
     }
 
+    private void setNavigationDrawer()
+    {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout); // initiate a DrawerLayout
+        NavigationView navView = (NavigationView) findViewById(R.id.navigation); // initiate a Navigation View
+// implement setNavigationItemSelectedListener event on NavigationView
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem)
+            {
+                Fragment fragment = null; // create a Fragment Object
+                int itemId = menuItem.getItemId(); // get selected menu item's id
+// check selected menu item's id and replace a Fragment Accordingly
+                if (itemId == R.id.welcome_page)
+                {
+                    fragment = new WelcomePage();
+                } else if (itemId == R.id.cost_calculator_page)
+                {
+                    fragment = new CostCalculator();
+                } else if (itemId == R.id.affordability_calculator_page)
+                {
+                    fragment = new AffordabilityCalculator();
+                }
+// display a toast message with menu item's title
+                Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+
+                if (fragment != null) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.page_frame, fragment); // replace a Fragment with Frame Layout
+                    transaction.commit(); // commit the changes
+                    mDrawerLayout.closeDrawers(); // close the all open Drawer Views
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -95,24 +159,46 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        Fragment fragment = new Fragment();
+        //Fragment fragment = new Fragment();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        int destination = 0;
 
         switch(item.getItemId())
         {
             case R.id.welcome_page:
-                fragment = new WelcomePage();
+                //fragment = new WelcomePage();
+                destination = R.id.action_global_welcome_page;
                 break;
             case R.id.cost_calculator_page:
-                fragment = new CostCalculator();
+                //fragment = new CostCalculator();
+                destination = R.id.action_global_CostCalculator;
                 break;
             case R.id.affordability_calculator_page:
-                fragment = new AffordabilityCalculator();
+                //fragment = new AffordabilityCalculator();
+                destination = R.id.action_global_AffordabilityCalculator;
                 break;
         }
 
+        if(destination != 0)
+        {
+            navController.navigate(destination);
+        }
+
+
         //NavHostFragment.findNavController(fragment).navigate(CostCalculatorDirections.moveToAC());
 
-        return true;
+        //View view = findViewById(androidx.appcompat.R.id.content);
+
+        //mNavController.navigate(destination);
+
+
+
+        if(actionBarDrawerToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
