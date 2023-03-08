@@ -109,6 +109,8 @@
     <string name="database_test_label">Enter Dart Monkey Upgrade</string>
     <string name="affordability_calculator_label">Affordability Calculator</string>
     <string name="cost_calculator_label">Cost Calculator</string>
+    <string name="start_round_label">Start Round</string>
+    <string name="end_round_label">End Round</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>

@@ -6,7 +6,7 @@
     app:startDestination="@id/CostCalculator">
 
     <fragment
-        android:id="@+id/welcome_page"
+        android:id="@+id/WelcomePage"
         android:name="com.example.costcalculator30.WelcomePage"
         android:label="@string/welcome_page"
         tools:layout="@layout/fragment_cost_calculator">

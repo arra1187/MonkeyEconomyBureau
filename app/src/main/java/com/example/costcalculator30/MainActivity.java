@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity
 
         //getActionBar().setTitle(appName);
 
+        setNavigationDrawer();
+
         if(mActionBar != null)
         {
             mActionBar.setTitle(appName);
@@ -83,17 +85,15 @@ public class MainActivity extends AppCompatActivity
         //fragmentManager = getSupportFragmentManager();
 
         //mDrawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.nav_open, R.string.nav_close);
+        //actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.nav_open, R.string.nav_close);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
-        mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+        //mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
+        //actionBarDrawerToggle.syncState();
 
         // to make the Navigation drawer icon always appear on the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        setNavigationDrawer();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getDatabase();
 
@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity
 // display a toast message with menu item's title
                 Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 
-                if (fragment != null) {
+                if (fragment != null)
+                {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.page_frame, fragment); // replace a Fragment with Frame Layout
                     transaction.commit(); // commit the changes
