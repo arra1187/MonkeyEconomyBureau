@@ -33,8 +33,7 @@ public class CostCalculator extends Fragment
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
     private UpgradeDatabase mDatabase;
     private UpgradeDao mUpgradeDao;
-
-    private View mCalculatorView;
+    private AppPage mAppPage;
 
     private RecyclerView mTowerRecycler;
 
@@ -50,35 +49,31 @@ public class CostCalculator extends Fragment
     {
         final String pageHeader = "Cost\nCalculator";
         final String initialCost = "$0";
+        final int fragmentLayout = R.layout.fragment_cost_calculator;
 
-        View view = inflater.inflate(R.layout.page_template, container, false);
-
-        FrameLayout pageFrame = (FrameLayout) view.findViewById(R.id.page_frame);
-
-        mCalculatorView = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
-        pageFrame.addView(mCalculatorView);
+        mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
         getDatabase();
 
-        mPageHeader = view.findViewById(R.id.page_header);
-        mPageHeader.setText(pageHeader);
+        //mPageHeader = mAppPage.getPage().findViewById(R.id.page_header);
+        //mPageHeader.setText(pageHeader);
 
-        mFinalPrice = mCalculatorView.findViewById(R.id.final_price);
+        mFinalPrice = mAppPage.getCustomView().findViewById(R.id.final_price);
         mFinalPrice.setText(initialCost);
 
-        mTowerRecycler = mCalculatorView.findViewById(R.id.tower_recyclerView);
+        mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
-        mTowerDropdown = mCalculatorView.findViewById(R.id.target_tower_dropdown);
+        mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.target_tower_dropdown);
         ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.towers, android.R.layout.simple_spinner_item);
         towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mTowerDropdown.setAdapter(towerAdapter);
 
-        mDifficultyDropdown = mCalculatorView.findViewById(R.id.difficulty_dropdown);
+        mDifficultyDropdown = mAppPage.getCustomView().findViewById(R.id.difficulty_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -86,7 +81,7 @@ public class CostCalculator extends Fragment
 
         mDifficultyDropdown.setSelection(1);
 
-        return view;
+        return mAppPage.getOverView();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
@@ -112,7 +107,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mCalculatorView.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -135,7 +130,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mCalculatorView.findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -174,6 +169,7 @@ public class CostCalculator extends Fragment
     public void onDestroyView()
     {
         super.onDestroyView();
+
         //binding = null;
     }
 

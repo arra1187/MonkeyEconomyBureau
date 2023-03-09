@@ -59,15 +59,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         final String appName = getApplicationContext().getResources().getString(R.string.app_name);
-        ActionBar mActionBar = getSupportActionBar();
-
+        ActionBar mActionBar;
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        //currentView = binding.getRoot();
+
         setContentView(binding.getRoot());
 
         //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_graph);
         //mNavCon = navHostFragment.getNavController();
         setSupportActionBar(binding.toolbar);
+
+        mActionBar = getSupportActionBar();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity
         if(mActionBar != null)
         {
             mActionBar.setTitle(appName);
+            //mActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         //fragmentManager = getSupportFragmentManager();
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity
         //actionBarDrawerToggle.syncState();
 
         // to make the Navigation drawer icon always appear on the action bar
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getDatabase();
 
@@ -112,10 +114,15 @@ public class MainActivity extends AppCompatActivity
 
     private void setNavigationDrawer()
     {
+
+        //View customView = findViewById(R.id.page_frame).getRootView();
+        //View customView = findLayoutById(R.layout.page_template);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout); // initiate a DrawerLayout
         NavigationView navView = (NavigationView) findViewById(R.id.navigation); // initiate a Navigation View
 // implement setNavigationItemSelectedListener event on NavigationView
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
+        {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem)
             {
@@ -133,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                     fragment = new AffordabilityCalculator();
                 }
 // display a toast message with menu item's title
-                Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 
                 if (fragment != null)
                 {
@@ -152,7 +159,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -161,45 +168,32 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
         //Fragment fragment = new Fragment();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        int destination = 0;
+        //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        //int destination = 0;
+        NavigationView navView = (NavigationView) findViewById(R.id.navigation);
+        Fragment fragment = null;
 
         switch(item.getItemId())
         {
             case R.id.welcome_page:
-                //fragment = new WelcomePage();
-                destination = R.id.action_global_welcome_page;
+                fragment = new WelcomePage();
                 break;
             case R.id.cost_calculator_page:
-                //fragment = new CostCalculator();
-                destination = R.id.action_global_CostCalculator;
+                fragment = new CostCalculator();
                 break;
             case R.id.affordability_calculator_page:
-                //fragment = new AffordabilityCalculator();
-                destination = R.id.action_global_AffordabilityCalculator;
+                fragment = new AffordabilityCalculator();
                 break;
         }
 
-        if(destination != 0)
+        if (fragment != null)
         {
-            navController.navigate(destination);
-        }
-
-
-        //NavHostFragment.findNavController(fragment).navigate(CostCalculatorDirections.moveToAC());
-
-        //View view = findViewById(androidx.appcompat.R.id.content);
-
-        //mNavController.navigate(destination);
-
-
-
-        if(actionBarDrawerToggle.onOptionsItemSelected(item))
-        {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.page_frame, fragment); // replace a Fragment with Frame Layout
+            transaction.commit(); // commit the changes
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override
@@ -210,7 +204,10 @@ public class MainActivity extends AppCompatActivity
                 || super.onSupportNavigateUp();
     }
 
-
+    private boolean navigate()
+    {
+        return true;
+    }
 
     public UpgradeDao getUpgradeDao()
     {

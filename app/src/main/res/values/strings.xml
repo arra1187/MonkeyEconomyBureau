@@ -35,6 +35,8 @@
     <string name="x_button">X</string>
     <string name="enter_button_label">Enter</string>
     <string name="clear_towers_button_label">Clear towers</string>
+    <string name="compare_button_label">Compare with Defense</string>
+
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>
@@ -116,7 +118,7 @@
     <string name="difficulty_description">Choose difficulty</string>
 
     <!-- Long sections of text -->
-    <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Menu Button to begin</string>
+    <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Options Button (3 vertical dots) to begin</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>

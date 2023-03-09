@@ -26,6 +26,8 @@ public class WelcomePage extends Fragment
     public View mWelcomePageView;
     private TextView mPageHeader;
 
+    private AppPage mAppPage;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -70,18 +72,16 @@ public class WelcomePage extends Fragment
                              Bundle savedInstanceState)
     {
         final String pageHeader = "Welcome";
+        final int fragmentLayout = R.layout.fragment_welcome_page;
 
-        View view = inflater.inflate(R.layout.page_template, container, false);
+        mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        FrameLayout pageFrame = (FrameLayout) view.findViewById(R.id.page_frame);
+        //mPageHeader = mAppPage.getPage().findViewById(R.id.page_header);
+        //mPageHeader.setText(pageHeader);
 
-        mWelcomePageView = inflater.inflate(R.layout.fragment_welcome_page, container, false);
-        pageFrame.addView(mWelcomePageView);
-
-        mPageHeader = view.findViewById(R.id.page_header);
-        mPageHeader.setText(pageHeader);
-
+        //return mAppPage.getCustomView();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_welcome_page, container, false);
+        //return inflater.inflate(R.layout.fragment_welcome_page, container, false);
+        return mAppPage.getOverView();
     }
 }

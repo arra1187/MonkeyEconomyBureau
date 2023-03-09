@@ -24,16 +24,18 @@
         android:id="@+id/constraintLayout_big"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".CostCalculator">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_small"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,10 +58,9 @@
 
             <TextView
                 android:id="@+id/end_round_label"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/end_round_label"
-                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
@@ -81,10 +82,9 @@
 
             <TextView
                 android:id="@+id/start_round_label"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_round_label"
-                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/end_round_label"
                 app:layout_constraintEnd_toStartOf="@+id/start_round_entry"

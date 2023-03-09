@@ -16,6 +16,7 @@ import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorB
 public class AffordabilityCalculator extends Fragment {
 
     private FragmentAffordabilityCalculatorBinding binding;
+    private AppPage mAppPage;
 
     private EditText mMoneyCount;
     private EditText mCurrentRound;
@@ -28,18 +29,23 @@ public class AffordabilityCalculator extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        binding = FragmentAffordabilityCalculatorBinding.inflate(inflater, container,
-          false);
-        return binding.getRoot();
+        final String pageHeader = "Affordability\nCalculator";
+        final String initialCost = "$0";
+        final int fragmentLayout = R.layout.fragment_affordability_calculator;
 
+        mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
+
+        //binding = FragmentAffordabilityCalculatorBinding.inflate(inflater, container,
+        //  false);
+        //return binding.getRoot();
+
+        return mAppPage.getOverView();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
 
-        mMoneyCount = view.findViewById(R.id.enter_current_round);
-        mCurrentRound = view.findViewById(R.id.enter_money_count);
         mTargetTower = view.findViewById(R.id.target_tower_dropdown);
         mTopPath = view.findViewById(R.id.top_path);
         mMiddlePath = view.findViewById(R.id.middle_path);
@@ -53,14 +59,14 @@ public class AffordabilityCalculator extends Fragment {
             }
         });*/
 
-        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        /*view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 NavHostFragment.findNavController(AffordabilityCalculator.this).navigate(AffordabilityCalculatorDirections.moveToCC());
             }
-        });
+        });*/
     }
 
     @Override
