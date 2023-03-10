@@ -18,12 +18,9 @@ public class AffordabilityCalculator extends Fragment {
     private FragmentAffordabilityCalculatorBinding binding;
     private AppPage mAppPage;
 
-    private EditText mMoneyCount;
-    private EditText mCurrentRound;
-    private Spinner mTargetTower;
-    private Spinner mTopPath;
-    private Spinner mMiddlePath;
-    private Spinner mBottomPath;
+    private EditText mStartRoundEntry;
+    private EditText mEndRoundEntry;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,10 +43,8 @@ public class AffordabilityCalculator extends Fragment {
     {
         super.onViewCreated(view, savedInstanceState);
 
-        mTargetTower = view.findViewById(R.id.target_tower_dropdown);
-        mTopPath = view.findViewById(R.id.top_path);
-        mMiddlePath = view.findViewById(R.id.middle_path);
-        mBottomPath = view.findViewById(R.id.bottom_path);
+
+
 
         /*binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override

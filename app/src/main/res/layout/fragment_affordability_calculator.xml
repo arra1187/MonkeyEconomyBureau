@@ -21,76 +21,114 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_big"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="130dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/round_range_constraint"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@id/cash_multiplier_constraint"
+        app:layout_constraintEnd_toEndOf="@+id/background_view"
+        app:layout_constraintStart_toStartOf="@+id/background_view"
+        app:layout_constraintTop_toTopOf="@+id/background_view"
         tools:context=".CostCalculator">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_small"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="150dp"
+        <EditText
+            android:id="@+id/start_round_entry"
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:background="@drawable/white_background"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/end_round_label"
+            app:layout_constraintStart_toEndOf="@+id/start_round_label"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/end_round_label"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/end_round_label"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
+            app:layout_constraintStart_toEndOf="@+id/start_round_entry"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/end_round_entry"
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:background="@drawable/white_background"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/end_round_label"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/start_round_label"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/start_round_label"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/start_round_entry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cash_multiplier_constraint"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/enter_round_range_constraint"
+        app:layout_constraintEnd_toEndOf="@+id/background_view"
+        app:layout_constraintStart_toStartOf="@+id/background_view"
+        app:layout_constraintTop_toBottomOf="@+id/round_range_constraint">
+
+        <View
+            android:id="@+id/cash_multiplier_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/cash_multiplier_spinner"
+            app:layout_constraintEnd_toEndOf="@+id/cash_multiplier_spinner"
+            app:layout_constraintStart_toStartOf="@+id/cash_multiplier_spinner"
+            app:layout_constraintTop_toTopOf="@+id/cash_multiplier_spinner" />
+
+        <Spinner
+            android:id="@+id/cash_multiplier_spinner"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".CostCalculator">
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <EditText
-                android:id="@+id/start_round_entry"
-                android:layout_width="210dp"
-                android:layout_height="48dp"
-                android:background="@drawable/white_background"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/end_round_entry"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/start_round_label"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/enter_round_range_constraint"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/enter_afford_defense_constraint"
+        app:layout_constraintEnd_toEndOf="@+id/background_view"
+        app:layout_constraintStart_toStartOf="@+id/background_view"
+        app:layout_constraintTop_toBottomOf="@+id/cash_multiplier_constraint">
 
-            <TextView
-                android:id="@+id/end_round_label"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="@string/end_round_label"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/start_round_label" />
-
-            <EditText
-                android:id="@+id/end_round_entry"
-                android:layout_width="210dp"
-                android:layout_height="48dp"
-                android:background="@drawable/white_background"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/end_round_label"
-                app:layout_constraintTop_toBottomOf="@+id/start_round_entry"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/start_round_label"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="@string/start_round_label"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/end_round_label"
-                app:layout_constraintEnd_toStartOf="@+id/start_round_entry"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/description1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/round_cash_message"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/money_display"
@@ -100,12 +138,12 @@
             android:ems="10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/enter_button"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_small"
+            app:layout_constraintStart_toEndOf="@+id/enter_for_money_button"
+            app:layout_constraintTop_toBottomOf="@+id/description1"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/enter_button"
+            android:id="@+id/enter_for_money_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/green_rectangle_button_template"
@@ -113,18 +151,98 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/money_display"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_small" />
+            app:layout_constraintTop_toBottomOf="@+id/description1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/compare_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/green_rectangle_button_template"
-        android:text="@string/compare_button_label"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/enter_afford_defense_constraint"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/final_price_constraint"
+        app:layout_constraintEnd_toEndOf="@+id/background_view"
+        app:layout_constraintStart_toStartOf="@+id/background_view"
+        app:layout_constraintTop_toBottomOf="@+id/enter_round_range_constraint">
+
+        <TextView
+            android:id="@+id/description2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/afford_defense_message"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/round_display"
+            android:layout_width="210dp"
+            android:layout_height="48dp"
+            android:background="@drawable/white_background"
+            android:ems="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/enter_for_round_button"
+            app:layout_constraintTop_toBottomOf="@+id/description2"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/enter_for_round_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_rectangle_button_template"
+            android:text="@string/enter_button_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/round_display"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/final_price_constraint"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_big" />
+        app:layout_constraintTop_toBottomOf="@+id/enter_afford_defense_constraint">
+
+        <TextView
+            android:id="@+id/description3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defense_cost_message"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/final_price_view"
+            android:layout_width="371dp"
+            android:layout_height="60dp"
+            android:background="#B9D8F1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description3" />
+
+        <TextView
+            android:id="@+id/final_price"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple"
+            android:text="@string/default_price"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
+            app:layout_constraintEnd_toEndOf="@+id/final_price_view"
+            app:layout_constraintStart_toStartOf="@+id/final_price_view"
+            app:layout_constraintTop_toTopOf="@+id/final_price_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

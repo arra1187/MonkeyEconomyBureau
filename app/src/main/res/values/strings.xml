@@ -119,6 +119,9 @@
 
     <!-- Long sections of text -->
     <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Options Button (3 vertical dots) to begin</string>
+    <string name="round_cash_message">How much money will I get from the rounds entered above?</string>
+    <string name="afford_defense_message">Based on my start round, when will I afford my defense?</string>
+    <string name="defense_cost_message">This is the cost of your defense as saved in the Cost Calculator</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>
