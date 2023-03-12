@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Monkey Ace",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "Rapid Fire",
+    "mUpgradeID": 11,
+    "mTower": "Monkey Ace",
+    "mCost": 650
+  },
+
+  {
+    "mTitle": "Lots More Darts",
+    "mUpgradeID": 12,
+    "mTower": "Monkey Ace",
+    "mCost": 650
+  },
+
+  {
+    "mTitle": "Fighter Plane",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Ace",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Operation: Dart Storm",
+    "mUpgradeID": 14,
+    "mTower": "Monkey Ace",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Sky Shredder",
+    "mUpgradeID": 15,
+    "mTower": "Monkey Ace",
+    "mCost": 41500
+  },
+
+  {
+    "mTitle": "Exploding Pineapple",
+    "mUpgradeID": 21,
+    "mTower": "Monkey Ace",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Spy Plane",
+    "mUpgradeID": 22,
+    "mTower": "Monkey Ace",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Bomber Ace",
+    "mUpgradeID": 23,
+    "mTower": "Monkey Ace",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "Ground Zero",
+    "mUpgradeID": 24,
+    "mTower": "Monkey Ace",
+    "mCost": 18000
+  },
+
+  {
+    "mTitle": "Tsar Bomba",
+    "mUpgradeID": 25,
+    "mTower": "Monkey Ace",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Sharper Darts",
+    "mUpgradeID": 31,
+    "mTower": "Monkey Ace",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Centered Path",
+    "mUpgradeID": 32,
+    "mTower": "Monkey Ace",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Neva-Miss Targeting",
+    "mUpgradeID": 33,
+    "mTower": "Monkey Ace",
+    "mCost": 2800
+  },
+
+  {
+    "mTitle": "Spectre",
+    "mUpgradeID": 34,
+    "mTower": "Monkey Ace",
+    "mCost": 23400
+  },
+
+  {
+    "mTitle": "Flying Fortress",
+    "mUpgradeID": 35,
+    "mTower": "Monkey Ace",
+    "mCost": 85000
+  },
+
+  {
+    "mTitle": "Goliath Doomship",
+    "mUpgradeID": 6,
+    "mTower": "Monkey Ace",
+    "mCost": 900000
+  }
+]

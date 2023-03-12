@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Dartling Gunner",
+    "mCost": 850
+  },
+
+  {
+    "mTitle": "Focused Firing",
+    "mUpgradeID": 11,
+    "mTower": "Dartling Gunner",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Laser Shock",
+    "mUpgradeID": 12,
+    "mTower": "Dartling Gunner",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "Laser Cannon",
+    "mUpgradeID": 13,
+    "mTower": "Dartling Gunner",
+    "mCost": 3750
+  },
+
+  {
+    "mTitle": "Plasma Accelerator",
+    "mUpgradeID": 14,
+    "mTower": "Dartling Gunner",
+    "mCost": 11000
+  },
+
+  {
+    "mTitle": "Ray of Doom",
+    "mUpgradeID": 15,
+    "mTower": "Dartling Gunner",
+    "mCost": 80000
+  },
+
+  {
+    "mTitle": "Advanced Targeting",
+    "mUpgradeID": 21,
+    "mTower": "Dartling Gunner",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Faster Barrel",
+    "mUpgradeID": 22,
+    "mTower": "Dartling Gunner",
+    "mCost": 950
+  },
+
+  {
+    "mTitle": "Hydra Rocket Pods",
+    "mUpgradeID": 23,
+    "mTower": "Dartling Gunner",
+    "mCost": 5100
+  },
+
+  {
+    "mTitle": "Rocket Storm",
+    "mUpgradeID": 24,
+    "mTower": "Dartling Gunner",
+    "mCost": 5250
+  },
+
+  {
+    "mTitle": "M.A.D.",
+    "mUpgradeID": 25,
+    "mTower": "Dartling Gunner",
+    "mCost": 60000
+  },
+
+  {
+    "mTitle": "Faster Swivel",
+    "mUpgradeID": 31,
+    "mTower": "Dartling Gunner",
+    "mCost": 150
+  },
+
+  {
+    "mTitle": "Powerful Darts",
+    "mUpgradeID": 32,
+    "mTower": "Dartling Gunner",
+    "mCost": 1200
+  },
+
+  {
+    "mTitle": "Buckshot",
+    "mUpgradeID": 33,
+    "mTower": "Dartling Gunner",
+    "mCost": 3400
+  },
+
+  {
+    "mTitle": "Bloon Area Denial System",
+    "mUpgradeID": 34,
+    "mTower": "Dartling Gunner",
+    "mCost": 12000
+  },
+
+  {
+    "mTitle": "Bloon Exclusion Zone",
+    "mUpgradeID": 35,
+    "mTower": "Dartling Gunner",
+    "mCost": 58000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Dartling Gunner",
+    "mCost": 0
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Heli Pilot",
+    "mCost": 1600
+  },
+
+  {
+    "mTitle": "Quad Darts",
+    "mUpgradeID": 11,
+    "mTower": "Heli Pilot",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "Pursuit",
+    "mUpgradeID": 12,
+    "mTower": "Heli Pilot",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Razor Rotor",
+    "mUpgradeID": 13,
+    "mTower": "Heli Pilot",
+    "mCost": 1750
+  },
+
+  {
+    "mTitle": "Apache Dartship",
+    "mUpgradeID": 14,
+    "mTower": "Heli Pilot",
+    "mCost": 19600
+  },
+
+  {
+    "mTitle": "Apache Prime",
+    "mUpgradeID": 15,
+    "mTower": "Heli Pilot",
+    "mCost": 45000
+  },
+
+  {
+    "mTitle": "Bigger Jets",
+    "mUpgradeID": 21,
+    "mTower": "Heli Pilot",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "IFR",
+    "mUpgradeID": 22,
+    "mTower": "Heli Pilot",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Downdraft",
+    "mUpgradeID": 23,
+    "mTower": "Heli Pilot",
+    "mCost": 3500
+  },
+
+  {
+    "mTitle": "Support Chinook",
+    "mUpgradeID": 24,
+    "mTower": "Heli Pilot",
+    "mCost": 10500
+  },
+
+  {
+    "mTitle": "Special Poperations",
+    "mUpgradeID": 25,
+    "mTower": "Heli Pilot",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Faster Darts",
+    "mUpgradeID": 31,
+    "mTower": "Heli Pilot",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Faster Firing",
+    "mUpgradeID": 32,
+    "mTower": "Heli Pilot",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "MOAB Shove",
+    "mUpgradeID": 33,
+    "mTower": "Heli Pilot",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Comanche Defense",
+    "mUpgradeID": 34,
+    "mTower": "Heli Pilot",
+    "mCost": 8500
+  },
+
+  {
+    "mTitle": "Comanche Commander",
+    "mUpgradeID": 35,
+    "mTower": "Heli Pilot",
+    "mCost": 35000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Heli Pilot",
+    "mCost": 0
+  }
+]

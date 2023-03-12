@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Mortar Monkey",
+    "mCost": 750
+  },
+
+  {
+    "mTitle": "Bigger Blast",
+    "mUpgradeID": 11,
+    "mTower": "Mortar Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Bloon Buster",
+    "mUpgradeID": 12,
+    "mTower": "Mortar Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Shell Shock",
+    "mUpgradeID": 13,
+    "mTower": "Mortar Monkey",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "The Big One",
+    "mUpgradeID": 14,
+    "mTower": "Mortar Monkey",
+    "mCost": 8000
+  },
+
+  {
+    "mTitle": "The Biggest One",
+    "mUpgradeID": 15,
+    "mTower": "Mortar Monkey",
+    "mCost": 36000
+  },
+
+  {
+    "mTitle": "Faster Reload",
+    "mUpgradeID": 21,
+    "mTower": "Mortar Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Rapid Reload",
+    "mUpgradeID": 22,
+    "mTower": "Mortar Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Heavy Shells",
+    "mUpgradeID": 23,
+    "mTower": "Mortar Monkey",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "Artillery Battery",
+    "mUpgradeID": 24,
+    "mTower": "Mortar Monkey",
+    "mCost": 5500
+  },
+
+  {
+    "mTitle": "Pop and Awe",
+    "mUpgradeID": 25,
+    "mTower": "Mortar Monkey",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Increased Accuracy",
+    "mUpgradeID": 31,
+    "mTower": "Mortar Monkey",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Burny Stuff",
+    "mUpgradeID": 32,
+    "mTower": "Mortar Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Signal Flare",
+    "mUpgradeID": 33,
+    "mTower": "Mortar Monkey",
+    "mCost": 700
+  },
+
+  {
+    "mTitle": "Shattering Shells",
+    "mUpgradeID": 34,
+    "mTower": "Mortar Monkey",
+    "mCost": 11000
+  },
+
+  {
+    "mTitle": "Blooncineration",
+    "mUpgradeID": 35,
+    "mTower": "Mortar Monkey",
+    "mCost": 40000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Mortar Monkey",
+    "mCost": 0
+  }
+]
