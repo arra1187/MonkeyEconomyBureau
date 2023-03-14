@@ -2,6 +2,7 @@ package com.example.costcalculator30;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -83,6 +84,9 @@ public class MainActivity extends AppCompatActivity
             mActionBar.setTitle(appName);
             //mActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        fillUpgradeDatabase();
+
 
         //fragmentManager = getSupportFragmentManager();
 
@@ -214,68 +218,69 @@ public class MainActivity extends AppCompatActivity
         return mUpgradeDao;
     }
 
-    private String loadJSONFromAsset(Context context)
-    {
-        String jsonString = null;
-        try
-        {
-          InputStream inputStream = context.getAssets().open("dart.json");
-          int size = inputStream.available();
-          byte[] buffer = new byte[size];
-
-          inputStream.read(buffer);
-          inputStream.close();
-
-          jsonString = new String(buffer, "UTF-8");
-        }
-        catch(IOException exception)
-        {
-            exception.printStackTrace();
-            return null;
-        }
-
-        return jsonString;
-    }
-
-    private void getDatabase()
-    {
-        mExecutor = Executors.newSingleThreadExecutor ();
+    private void fillUpgradeDatabase() {
+        ExecutorService mExecutor = Executors.newSingleThreadExecutor();
         mExecutor.execute(() ->
         {
-            String jsonString;
+            String jsonString, aFileArray[];
             JSONArray jsonArray;
+            AssetManager towerFiles;
 
             String title, tower;
             int upgradeID, cost;
 
-            mDatabase = Room.databaseBuilder (getApplicationContext(),
+            mDatabase = Room.databaseBuilder(getApplicationContext(),
                     UpgradeDatabase.class, "Upgrade-db").build();
 
             mUpgradeDao = mDatabase.mUpgradeDao();
 
             mUpgradeDao.deleteAll();
 
-            jsonString = loadJSONFromAsset(getApplicationContext());
+            towerFiles = getApplicationContext().getAssets();
 
             try
             {
-                jsonArray = new JSONArray(jsonString);
+                aFileArray = towerFiles.list("");
 
-                for(int i = 0; i < jsonArray.length(); i++)
+                for (String fileName : aFileArray)
                 {
-                    JSONObject jsonItem = jsonArray.getJSONObject(i);
+                    if (!(fileName.equals("images")))
+                    {
+                        if (!(fileName.equals("webkit")))
+                        {
+                            InputStream inputStream = towerFiles.open(fileName);
+                            int size = inputStream.available();
+                            byte[] buffer = new byte[size];
 
-                    title = jsonItem.getString("mTitle");
-                    upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                    tower = jsonItem.getString("mTower");
-                    cost = Integer.parseInt(jsonItem.getString("mCost"));
+                            inputStream.read(buffer);
+                            inputStream.close();
 
-                    Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+                            jsonString = new String(buffer, "UTF-8");
 
-                    mUpgradeDao.insert(newUpgrade);
+                            jsonArray = new JSONArray(jsonString);
+
+                            for (int i = 0; i < jsonArray.length(); i++)
+                            {
+                                JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                                title = jsonItem.getString("mTitle");
+                                upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                                tower = jsonItem.getString("mTower");
+                                cost = Integer.parseInt(jsonItem.getString("mCost"));
+
+                                Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+
+                                mUpgradeDao.insert(newUpgrade);
+                            }
+                        }
+                    }
                 }
             }
             catch(JSONException exception)
+            {
+                exception.printStackTrace();
+            }
+            catch(IOException exception)
             {
                 exception.printStackTrace();
             }

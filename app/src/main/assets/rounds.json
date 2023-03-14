@@ -237,5 +237,126 @@
     "mRoundNumber": 40,
     "mRBE": 616,
     "mCash": 381
+  },
+
+  {
+    "mRoundNumber": 41,
+    "mRBE": 2040,
+    "mCash": 2040
+  },
+
+  {
+    "mRoundNumber": 42,
+    "mRBE": 517,
+    "mCash": 517
+  },
+
+  {
+    "mRoundNumber": 43,
+    "mRBE": 1198,
+    "mCash": 1135
+  },
+
+  {
+    "mRoundNumber": 44,
+    "mRBE": 1150,
+    "mCash": 1150
+  },
+
+  {
+    "mRoundNumber": 45,
+    "mRBE": 1015,
+    "mCash": 1015
+  },
+
+  {
+    "mRoundNumber": 46,
+    "mRBE": 2289,
+    "mCash": 2277
+  },
+
+  {
+    "mRoundNumber": 47,
+    "mRBE": 1598,
+    "mCash": 1490
+  },
+
+  {
+    "mRoundNumber": 48,
+    "mRBE": 2752,
+    "mCash": 2695
+  },
+
+  {
+    "mRoundNumber": 49,
+    "mRBE": 4771,
+    "mCash": 4609
+  },
+
+  {
+    "mRoundNumber": 50,
+    "mRBE": 3540,
+    "mCash": 2866
+  },
+
+  {
+    "mRoundNumber": 51,
+    "mRBE": 2030,
+    "mCash": 947
+  },
+
+  {
+    "mRoundNumber": 52,
+    "mRBE": 3447,
+    "mCash": 1443
+  },
+
+  {
+    "mRoundNumber": 53,
+    "mRBE": 2248,
+    "mCash": 771
+  },
+
+  {
+    "mRoundNumber": 54,
+    "mRBE": 4872,
+    "mCash": 2043
+  },
+
+  {
+    "mRoundNumber": 55,
+    "mRBE": 5296,
+    "mCash": 2328
+  },
+
+  {
+    "mRoundNumber": 56,
+    "mRBE": 2496,
+    "mCash": 1130
+  },
+
+  {
+    "mRoundNumber": 57,
+    "mRBE": 4344,
+    "mCash": 1702
+  },
+
+  {
+    "mRoundNumber": 58,
+    "mRBE": 5780,
+    "mCash": 2140
+  },
+
+  {
+    "mRoundNumber": 59,
+    "mRBE": 4270,
+    "mCash": 2000
+  },
+
+  {
+    "mRoundNumber": 60,
+    "mRBE": 3164,
+    "mCash": 762
   }
+
 ]
