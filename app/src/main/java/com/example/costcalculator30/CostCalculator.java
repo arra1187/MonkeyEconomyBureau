@@ -31,13 +31,13 @@ import java.util.concurrent.Executors;
 public class CostCalculator extends Fragment
 {
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
-    private UpgradeDatabase mDatabase;
-    private UpgradeDao mUpgradeDao;
     private AppPage mAppPage;
+
+    private UpgradeDao mUpgradeDao;
+    private DefenseDao mDefenseDao;
 
     private RecyclerView mTowerRecycler;
 
-    private TextView mPageHeader;
     private TextView mFinalPrice;
 
     private Spinner mTowerDropdown;
@@ -55,16 +55,13 @@ public class CostCalculator extends Fragment
 
         getDatabase();
 
-        //mPageHeader = mAppPage.getPage().findViewById(R.id.page_header);
-        //mPageHeader.setText(pageHeader);
-
         mFinalPrice = mAppPage.getCustomView().findViewById(R.id.final_price);
         mFinalPrice.setText(initialCost);
 
         mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao, mDefenseDao);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
         mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.target_tower_dropdown);
@@ -74,12 +71,14 @@ public class CostCalculator extends Fragment
         mTowerDropdown.setAdapter(towerAdapter);
 
         mDifficultyDropdown = mAppPage.getCustomView().findViewById(R.id.difficulty_dropdown);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mDifficultyDropdown.setAdapter(adapter);
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mDifficultyDropdown.setAdapter(difficultyAdapter);
 
         mDifficultyDropdown.setSelection(1);
+
+        ConnectTowerList.setTowers(mDefenseDao.getTowers(0));
 
         return mAppPage.getOverView();
     }
@@ -87,15 +86,6 @@ public class CostCalculator extends Fragment
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-
-        /*view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
-            }
-        });*/
 
         view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
         {
@@ -127,6 +117,8 @@ public class CostCalculator extends Fragment
                 ConnectTowerList.getTowers().add(newTower);
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
                 mTowerRecycler.scrollToPosition(mTowerTypeAdapter.getItemCount() - 1);
+
+                ConnectTowerList.setTowers(mDefenseDao.getTowers(0));
             }
         });
 
@@ -137,6 +129,8 @@ public class CostCalculator extends Fragment
             {
                 ConnectTowerList.clearTowers();
                 mTowerTypeAdapter.notifyDataSetChanged();
+
+                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
             }
         });
 
@@ -206,6 +200,8 @@ public class CostCalculator extends Fragment
         finalPriceDisplay = "$" + finalPrice;
 
         mFinalPrice.setText(finalPriceDisplay);
+
+        mDefenseDao.setCost(finalPrice, 0);
     }
 
     private void getDatabase()
@@ -215,12 +211,15 @@ public class CostCalculator extends Fragment
         {
             UpgradeDatabase upgradeDatabase = Room.databaseBuilder (getContext(),
                     UpgradeDatabase.class, "Upgrade-db").build();
+            DefenseDatabase defenseDatabase = Room.databaseBuilder (getContext(),
+                    DefenseDatabase.class, "Defense-db").build();
 
             mUpgradeDao = upgradeDatabase.mUpgradeDao();
+            mDefenseDao = defenseDatabase.mDefenseDao();
         });
     }
 
-    private void getDatabaseOld()
+    /*private void getDatabaseOld()
     {
         ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
@@ -287,5 +286,5 @@ public class CostCalculator extends Fragment
                 exception.printStackTrace();
             }
         });
-    }
+    }*/
 }

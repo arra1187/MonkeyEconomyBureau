@@ -27,11 +27,13 @@ public class TowerRecyclerViewAdapter
     //private ArrayList<Tower> mTowers;
     Context mContext;
     UpgradeDao mUpgradeDao;
+    DefenseDao mDefenseDao;
 
-    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao)
+    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao, DefenseDao defenseDao)
     {
         mContext = context;
         mUpgradeDao = upgradeDao;
+        mDefenseDao = defenseDao;
     }
 
     @NonNull
@@ -65,6 +67,8 @@ public class TowerRecyclerViewAdapter
             {
                 ConnectTowerList.removeTower(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
+
+                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
             }
         });
 
@@ -77,6 +81,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setTopPath(newTopPath);
 
                 ConnectTowerList.setTowers(towers);
+
+                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -94,6 +100,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setMiddlePath(newMiddlePath);
 
                 ConnectTowerList.setTowers(towers);
+
+                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -111,6 +119,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setBottomPath(newBottomPath);
 
                 ConnectTowerList.setTowers(towers);
+
+                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
             }
             public void onNothingSelected(AdapterView<?> parent)
             {

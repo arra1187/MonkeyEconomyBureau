@@ -36,7 +36,8 @@
             android:layout_height="48dp"
             android:background="@drawable/white_background"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/end_round_label"
             app:layout_constraintStart_toEndOf="@+id/start_round_label"
@@ -45,11 +46,11 @@
 
         <TextView
             android:id="@+id/end_round_label"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/end_round_label"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
             app:layout_constraintStart_toEndOf="@+id/start_round_entry"
@@ -61,7 +62,8 @@
             android:layout_height="48dp"
             android:background="@drawable/white_background"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/end_round_label"
@@ -70,11 +72,11 @@
 
         <TextView
             android:id="@+id/start_round_label"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_round_label"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/start_round_entry"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,9 +107,29 @@
             android:layout_width="170dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rounds_type_spinner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/round_type_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/rounds_type_spinner"
+            app:layout_constraintEnd_toEndOf="@+id/rounds_type_spinner"
+            app:layout_constraintStart_toStartOf="@+id/rounds_type_spinner"
+            app:layout_constraintTop_toTopOf="@+id/rounds_type_spinner" />
+
+        <Spinner
+            android:id="@+id/rounds_type_spinner"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cash_multiplier_background"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,6 +158,9 @@
             android:layout_height="48dp"
             android:background="@drawable/white_background"
             android:ems="10"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/enter_for_money_button"

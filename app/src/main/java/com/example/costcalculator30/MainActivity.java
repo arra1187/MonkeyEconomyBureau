@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -117,33 +118,31 @@ public class MainActivity extends AppCompatActivity
 
     private void setNavigationDrawer()
     {
-
-        //View customView = findViewById(R.id.page_frame).getRootView();
-        //View customView = findLayoutById(R.layout.page_template);
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout); // initiate a DrawerLayout
         NavigationView navView = (NavigationView) findViewById(R.id.navigation); // initiate a Navigation View
-// implement setNavigationItemSelectedListener event on NavigationView
+
+        // implement setNavigationItemSelectedListener event on NavigationView
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
         {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem)
             {
-                Fragment fragment = null; // create a Fragment Object
-                int itemId = menuItem.getItemId(); // get selected menu item's id
-// check selected menu item's id and replace a Fragment Accordingly
+                Fragment fragment = null;               // create a Fragment Object
+                int itemId = menuItem.getItemId();      // get selected menu item's id
+
+                // check selected menu item's id and replace a Fragment Accordingly
                 if (itemId == R.id.welcome_page)
                 {
                     fragment = new WelcomePage();
-                } else if (itemId == R.id.cost_calculator_page)
+                }
+                else if (itemId == R.id.cost_calculator_page)
                 {
                     fragment = new CostCalculator();
-                } else if (itemId == R.id.affordability_calculator_page)
+                }
+                else if (itemId == R.id.affordability_calculator_page)
                 {
                     fragment = new AffordabilityCalculator();
                 }
-// display a toast message with menu item's title
-                //Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 
                 if (fragment != null)
                 {
@@ -233,12 +232,21 @@ public class MainActivity extends AppCompatActivity
                     UpgradeDatabase.class, "Upgrade-db").build();
             RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
                     RoundDatabase.class, "Round-db").build();
+            DefenseDatabase defenseDatabase = Room.databaseBuilder(getApplicationContext(),
+                    DefenseDatabase.class, "Defense-db").build();
 
             UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
             upgradeDao.deleteAll();
 
             RoundDao roundDao = roundDatabase.mRoundDao();
             roundDao.deleteAll();
+
+            DefenseDao defenseDao = defenseDatabase.mDefenseDao();
+
+            if(defenseDao.getSize() == 0)
+            {
+                defenseDao.insert(new Defense(new ArrayList<Tower>(), 0, 0));
+            }
 
             towerFiles = getApplicationContext().getAssets();
 
@@ -248,7 +256,7 @@ public class MainActivity extends AppCompatActivity
 
                 for (String fileName : aFileArray)
                 {
-                    InputStream inputStream = towerFiles.open(fileName);
+                    InputStream inputStream = towerFiles.open("towers/" + fileName);
                     int size = inputStream.available();
                     byte[] buffer = new byte[size];
 
@@ -278,7 +286,7 @@ public class MainActivity extends AppCompatActivity
 
                 for (String fileName : aFileArray)
                 {
-                    InputStream inputStream = towerFiles.open(fileName);
+                    InputStream inputStream = towerFiles.open("rounds/" + fileName);
                     int size = inputStream.available();
                     byte[] buffer = new byte[size];
 

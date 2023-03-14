@@ -103,6 +103,21 @@
         <item>Impoppable</item>
     </string-array>
 
+    <!-- Cash multiplier dropdown -->
+    <string-array name="cash_multipliers">
+        <item>Half Cash</item>
+        <item>Normal Cash</item>
+        <item>Double Cash</item>
+    </string-array>
+
+    <!-- Round type dropdown -->
+    <string-array name="round_types">
+        <item>Normal Rounds</item>
+        <item>Alternate Bloons Rounds</item>
+    </string-array>
+
+
+
     <!-- Label section -->
     <string name="money_count_label">Money count</string>
     <string name="current_round_label">Current Round</string>
