@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Monkey Sub",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Longer Range",
+    "mUpgradeID": 11,
+    "mTower": "Monkey Sub",
+    "mCost": 130
+  },
+
+  {
+    "mTitle": "Advanced Intel",
+    "mUpgradeID": 12,
+    "mTower": "Monkey Sub",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Submerge and Support",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Sub",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Bloontonium Reactor",
+    "mUpgradeID": 14,
+    "mTower": "Monkey Sub",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Energizer",
+    "mUpgradeID": 15,
+    "mTower": "Monkey Sub",
+    "mCost": 32000
+  },
+
+  {
+    "mTitle": "Barbed Darts",
+    "mUpgradeID": 21,
+    "mTower": "Monkey Sub",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Heat-tipped Darts",
+    "mUpgradeID": 22,
+    "mTower": "Monkey Sub",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Ballistic Missile",
+    "mUpgradeID": 23,
+    "mTower": "Monkey Sub",
+    "mCost": 1400
+  },
+
+  {
+    "mTitle": "First Strike Capability",
+    "mUpgradeID": 24,
+    "mTower": "Monkey Sub",
+    "mCost": 1300
+  },
+
+  {
+    "mTitle": "Pre-emptive Strike",
+    "mUpgradeID": 25,
+    "mTower": "Monkey Sub",
+    "mCost": 32000
+  },
+
+  {
+    "mTitle": "Twin Guns",
+    "mUpgradeID": 31,
+    "mTower": "Monkey Sub",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Airburst Darts",
+    "mUpgradeID": 32,
+    "mTower": "Monkey Sub",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Triple Guns",
+    "mUpgradeID": 33,
+    "mTower": "Monkey Sub",
+    "mCost": 1100
+  },
+
+  {
+    "mTitle": "Armor Piercing Darts",
+    "mUpgradeID": 34,
+    "mTower": "Monkey Sub",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Sub Commander",
+    "mUpgradeID": 35,
+    "mTower": "Monkey Sub",
+    "mCost": 25000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Monkey Sub",
+    "mCost": 0
+  }
+]

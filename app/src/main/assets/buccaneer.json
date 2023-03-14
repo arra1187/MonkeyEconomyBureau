@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Faster Shooting",
+    "mUpgradeID": 11,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Double Shot",
+    "mUpgradeID": 12,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 550
+  },
+
+  {
+    "mTitle": "Destroyer",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 2950
+  },
+
+  {
+    "mTitle": "Aircraft Carrier",
+    "mUpgradeID": 14,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 7200
+  },
+
+  {
+    "mTitle": "Carrier Flagship",
+    "mUpgradeID": 15,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 25000
+  },
+
+  {
+    "mTitle": "Grape Shot",
+    "mUpgradeID": 21,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 550
+  },
+
+  {
+    "mTitle": "Hot Shot",
+    "mUpgradeID": 22,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Cannon Ship",
+    "mUpgradeID": 23,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "Monkey Pirates",
+    "mUpgradeID": 24,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 4900
+  },
+
+  {
+    "mTitle": "Pirate Lord",
+    "mUpgradeID": 25,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 26000
+  },
+
+  {
+    "mTitle": "Long Range",
+    "mUpgradeID": 31,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 180
+  },
+
+  {
+    "mTitle": "Crow's Nest",
+    "mUpgradeID": 32,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Merchantman",
+    "mUpgradeID": 33,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 2300
+  },
+
+  {
+    "mTitle": "Favored Trades",
+    "mUpgradeID": 34,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 5500
+  },
+
+  {
+    "mTitle": "Trade Empire",
+    "mUpgradeID": 35,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 23000
+  },
+
+  {
+    "mTitle": "Navarch of the Seas",
+    "mUpgradeID": 6,
+    "mTower": "Monkey Buccaneer",
+    "mCost": 550000
+  }
+]
