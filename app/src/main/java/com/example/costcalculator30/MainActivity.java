@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity
             //mActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        fillUpgradeDatabase();
-
+        fillDatabases();
 
         //fragmentManager = getSupportFragmentManager();
 
@@ -218,7 +217,8 @@ public class MainActivity extends AppCompatActivity
         return mUpgradeDao;
     }
 
-    private void fillUpgradeDatabase() {
+    private void fillDatabases()
+    {
         ExecutorService mExecutor = Executors.newSingleThreadExecutor();
         mExecutor.execute(() ->
         {
@@ -227,52 +227,79 @@ public class MainActivity extends AppCompatActivity
             AssetManager towerFiles;
 
             String title, tower;
-            int upgradeID, cost;
+            int upgradeID, cost, roundNumber, RBE, cash;
 
-            mDatabase = Room.databaseBuilder(getApplicationContext(),
+            UpgradeDatabase upgradeDatabase = Room.databaseBuilder(getApplicationContext(),
                     UpgradeDatabase.class, "Upgrade-db").build();
+            RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
+                    RoundDatabase.class, "Round-db").build();
 
-            mUpgradeDao = mDatabase.mUpgradeDao();
+            UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
+            upgradeDao.deleteAll();
 
-            mUpgradeDao.deleteAll();
+            RoundDao roundDao = roundDatabase.mRoundDao();
+            roundDao.deleteAll();
 
             towerFiles = getApplicationContext().getAssets();
 
             try
             {
-                aFileArray = towerFiles.list("");
+                aFileArray = towerFiles.list("towers/");
 
                 for (String fileName : aFileArray)
                 {
-                    if (!(fileName.equals("images")))
+                    InputStream inputStream = towerFiles.open(fileName);
+                    int size = inputStream.available();
+                    byte[] buffer = new byte[size];
+
+                    inputStream.read(buffer);
+                    inputStream.close();
+
+                    jsonString = new String(buffer, "UTF-8");
+
+                    jsonArray = new JSONArray(jsonString);
+
+                    for (int i = 0; i < jsonArray.length(); i++)
                     {
-                        if (!(fileName.equals("webkit")))
-                        {
-                            InputStream inputStream = towerFiles.open(fileName);
-                            int size = inputStream.available();
-                            byte[] buffer = new byte[size];
+                        JSONObject jsonItem = jsonArray.getJSONObject(i);
 
-                            inputStream.read(buffer);
-                            inputStream.close();
+                        title = jsonItem.getString("mTitle");
+                        upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
+                        tower = jsonItem.getString("mTower");
+                        cost = Integer.parseInt(jsonItem.getString("mCost"));
 
-                            jsonString = new String(buffer, "UTF-8");
+                        Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
 
-                            jsonArray = new JSONArray(jsonString);
+                        upgradeDao.insert(newUpgrade);
+                    }
+                }
 
-                            for (int i = 0; i < jsonArray.length(); i++)
-                            {
-                                JSONObject jsonItem = jsonArray.getJSONObject(i);
+                aFileArray = towerFiles.list("rounds/");
 
-                                title = jsonItem.getString("mTitle");
-                                upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                                tower = jsonItem.getString("mTower");
-                                cost = Integer.parseInt(jsonItem.getString("mCost"));
+                for (String fileName : aFileArray)
+                {
+                    InputStream inputStream = towerFiles.open(fileName);
+                    int size = inputStream.available();
+                    byte[] buffer = new byte[size];
 
-                                Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
+                    inputStream.read(buffer);
+                    inputStream.close();
 
-                                mUpgradeDao.insert(newUpgrade);
-                            }
-                        }
+                    jsonString = new String(buffer, "UTF-8");
+
+                    jsonArray = new JSONArray(jsonString);
+
+                    for (int i = 0; i < jsonArray.length(); i++)
+                    {
+                        JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                        roundNumber = Integer.parseInt(jsonItem.getString("mRoundNumber"));
+                        RBE = Integer.parseInt(jsonItem.getString("mRBE"));
+                        cash = Integer.parseInt(jsonItem.getString("mCash"));
+
+                        Round newRound = new Round(roundNumber, RBE, cash);
+
+                        roundDao.insert(newRound);
                     }
                 }
             }

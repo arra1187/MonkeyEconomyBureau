@@ -213,6 +213,18 @@ public class CostCalculator extends Fragment
         ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
+            UpgradeDatabase upgradeDatabase = Room.databaseBuilder (getContext(),
+                    UpgradeDatabase.class, "Upgrade-db").build();
+
+            mUpgradeDao = upgradeDatabase.mUpgradeDao();
+        });
+    }
+
+    private void getDatabaseOld()
+    {
+        ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
+        mExecutor.execute(() ->
+        {
             String jsonString, aFileArray[];
             JSONArray jsonArray;
             AssetManager towerFiles;
