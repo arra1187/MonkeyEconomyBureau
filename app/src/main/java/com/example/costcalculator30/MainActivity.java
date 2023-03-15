@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity
 
             if(defenseDao.getSize() == 0)
             {
-                defenseDao.insert(new Defense(new ArrayList<Tower>(), 0, 0));
+                defenseDao.insert(new Defense(new ArrayList<>(), 0, 0));
             }
 
             towerFiles = getApplicationContext().getAssets();

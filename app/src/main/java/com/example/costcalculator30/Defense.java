@@ -3,26 +3,39 @@ package com.example.costcalculator30;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
 @Entity
 public class Defense
 {
-    @PrimaryKey()
+    @PrimaryKey(autoGenerate = true)
     private int nid;
 
+    @ColumnInfo(name = "id")
+    private int mDefenseID;
+
+    @TypeConverters(Converters.class)
     @ColumnInfo(name = "towers")
+    @SerializedName("towers")
     private ArrayList<Tower> mTowers;
 
     @ColumnInfo(name = "cost")
     private int mCost;
 
-    public Defense(ArrayList<Tower> towers, int cost, int id)
+    public Defense(ArrayList<Tower> towers, int cost, int defenseID)
     {
         mTowers = towers;
         mCost = cost;
-        nid = id;
+        mDefenseID = defenseID;
+    }
+
+    public int getDefenseID()
+    {
+        return mDefenseID;
     }
 
     public ArrayList<Tower> getTowers()
@@ -38,6 +51,11 @@ public class Defense
     public int getNid()
     {
         return nid;
+    }
+
+    public void setDefenseID(int defenseID)
+    {
+        mDefenseID = defenseID;
     }
 
     public void setTowers(ArrayList<Tower> towers)

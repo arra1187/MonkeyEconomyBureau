@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,6 +44,8 @@ public class CostCalculator extends Fragment
     private Spinner mTowerDropdown;
     private Spinner mDifficultyDropdown;
 
+    private ExecutorService mExecutor;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -52,6 +55,8 @@ public class CostCalculator extends Fragment
         final int fragmentLayout = R.layout.fragment_cost_calculator;
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
+
+        mExecutor = Executors.newSingleThreadExecutor ();
 
         getDatabase();
 
@@ -78,7 +83,7 @@ public class CostCalculator extends Fragment
 
         mDifficultyDropdown.setSelection(1);
 
-        ConnectTowerList.setTowers(mDefenseDao.getTowers(0));
+        updateTowers();
 
         return mAppPage.getOverView();
     }
@@ -118,7 +123,7 @@ public class CostCalculator extends Fragment
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
                 mTowerRecycler.scrollToPosition(mTowerTypeAdapter.getItemCount() - 1);
 
-                ConnectTowerList.setTowers(mDefenseDao.getTowers(0));
+                updateTowers();
             }
         });
 
@@ -169,44 +174,46 @@ public class CostCalculator extends Fragment
 
     private void updateFinalPrice()
     {
-        final double EASY_MULTIPLIER = 0.85;
-        final double HARD_MULTIPLIER = 1.075;
-        final double IMPOPPABLE_MULTIPLIER = 1.2;
-
-        int finalPrice = 0;
-        String finalPriceDisplay;
-        String difficulty;
-
-        for(Tower tower : ConnectTowerList.getTowers())
+        mExecutor.execute(() ->
         {
-            finalPrice += tower.getTowerCost();
-        }
+            final double EASY_MULTIPLIER = 0.85;
+            final double HARD_MULTIPLIER = 1.075;
+            final double IMPOPPABLE_MULTIPLIER = 1.2;
 
-        difficulty = mDifficultyDropdown.getSelectedItem().toString();
+            int finalPrice = 0;
+            String finalPriceDisplay;
+            String difficulty;
 
-        switch(difficulty)
-        {
-            case "Easy":
-                finalPrice *= EASY_MULTIPLIER;
-                break;
-            case "Hard":
-                finalPrice *= HARD_MULTIPLIER;
-                break;
-            case "Impoppable":
-                finalPrice *= IMPOPPABLE_MULTIPLIER;
-                break;
-        }
+            for(Tower tower : ConnectTowerList.getTowers())
+            {
+                finalPrice += tower.getTowerCost();
+            }
 
-        finalPriceDisplay = "$" + finalPrice;
+            difficulty = mDifficultyDropdown.getSelectedItem().toString();
 
-        mFinalPrice.setText(finalPriceDisplay);
+            switch(difficulty)
+            {
+                case "Easy":
+                    finalPrice *= EASY_MULTIPLIER;
+                    break;
+                case "Hard":
+                    finalPrice *= HARD_MULTIPLIER;
+                    break;
+                case "Impoppable":
+                    finalPrice *= IMPOPPABLE_MULTIPLIER;
+                    break;
+            }
 
-        mDefenseDao.setCost(finalPrice, 0);
+            finalPriceDisplay = "$" + finalPrice;
+
+            mFinalPrice.setText(finalPriceDisplay);
+
+            mDefenseDao.setCost(finalPrice, 0);
+        });
     }
 
     private void getDatabase()
     {
-        ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
             UpgradeDatabase upgradeDatabase = Room.databaseBuilder (getContext(),
@@ -219,72 +226,19 @@ public class CostCalculator extends Fragment
         });
     }
 
-    /*private void getDatabaseOld()
+    private void updateTowers()
     {
-        ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
-            String jsonString, aFileArray[];
-            JSONArray jsonArray;
-            AssetManager towerFiles;
+            List<Defense> defenses = mDefenseDao.getAll();
 
-            String title, tower;
-            int upgradeID, cost;
-
-            mDatabase = Room.databaseBuilder (getContext(),
-                    UpgradeDatabase.class, "Upgrade-db").build();
-
-            mUpgradeDao = mDatabase.mUpgradeDao();
-
-            mUpgradeDao.deleteAll();
-
-            towerFiles = getContext().getAssets();
-
-            try
+            for(Defense defense : defenses)
             {
-                aFileArray = towerFiles.list("");
-
-                for(String fileName : aFileArray)
+                if(defense.getDefenseID() == 0)
                 {
-                    if(!(fileName.equals("images")))
-                    {
-                        if(!(fileName.equals("webkit")))
-                        {
-                            InputStream inputStream = towerFiles.open(fileName);
-                            int size = inputStream.available();
-                            byte[] buffer = new byte[size];
-
-                            inputStream.read(buffer);
-                            inputStream.close();
-
-                            jsonString = new String(buffer, "UTF-8");
-
-                            jsonArray = new JSONArray(jsonString);
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonItem = jsonArray.getJSONObject(i);
-
-                                title = jsonItem.getString("mTitle");
-                                upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                                tower = jsonItem.getString("mTower");
-                                cost = Integer.parseInt(jsonItem.getString("mCost"));
-
-                                Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
-
-                                mUpgradeDao.insert(newUpgrade);
-                            }
-                        }
-                    }
+                    ConnectTowerList.setTowers(defense.getTowers());
                 }
             }
-            catch(JSONException exception)
-            {
-                exception.printStackTrace();
-            }
-            catch(IOException exception)
-            {
-                exception.printStackTrace();
-            }
         });
-    }*/
+    }
 }

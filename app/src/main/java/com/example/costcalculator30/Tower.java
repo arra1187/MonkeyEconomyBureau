@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,21 +14,26 @@ import java.util.concurrent.Executors;
 public class Tower
 {
     //@PrimaryKey(autoGenerate = true)
-    private int nid;
+    //private int nid;
 
     //@ColumnInfo(name = "title")
+    @SerializedName("title")
     private String mTitle;
 
     //@ColumnInfo(name = "topPath")
+    @SerializedName("topPath")
     private int mTopPath;
 
     //@ColumnInfo(name = "middlePath")
+    @SerializedName("middlePath")
     private int mMiddlePath;
 
     //@ColumnInfo(name = "bottomPath")
+    @SerializedName("bottomPath")
     private int mBottomPath;
 
     //@ColumnInfo(name = "towerCost")
+    @SerializedName("towerCost")
     private int mTowerCost;
 
     //@ColumnInfo(name = "upgradeDao")
@@ -46,21 +53,26 @@ public class Tower
 
     //@ColumnInfo(name = "baseCost")
     @Ignore
+    @SerializedName("baseCost")
     private int mBaseCost;
 
     //@ColumnInfo(name = "topPathCosts")
     @Ignore
+    @SerializedName("topPathCosts")
     private int mTopPathCosts[];
 
     //@ColumnInfo(name = "middlePathCosts")
     @Ignore
+    @SerializedName("middlePathCosts")
     private int mMiddlePathCosts[];
 
     //@ColumnInfo(name = "bottomPathCosts")
     @Ignore
+    @SerializedName("bottomPathCosts")
     private int mBottomPathCosts[];
 
     @Ignore
+    @SerializedName("numTiers")
     private final int numTiers = 6;
 
     Tower(String title, int topPath, int middlePath, int bottomPath, int towerCost, UpgradeDao upgradeDao)
@@ -110,11 +122,6 @@ public class Tower
         return mTitle;
     }
 
-    public int getNid()
-    {
-        return nid;
-    }
-
     public int getTowerCost()
     {
         mTowerCost = mBaseCost;
@@ -150,11 +157,6 @@ public class Tower
     public int getBottomPath()
     {
         return mBottomPath;
-    }
-
-    public void setNid(int id)
-    {
-        nid = id;
     }
 
     public void setTopPath(int topPath)
