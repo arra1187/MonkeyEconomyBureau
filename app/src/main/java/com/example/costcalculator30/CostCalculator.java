@@ -1,30 +1,20 @@
 package com.example.costcalculator30;
 
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,6 +24,7 @@ public class CostCalculator extends Fragment
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
     private AppPage mAppPage;
 
+    private DatabaseRepository mRepository;
     private UpgradeDao mUpgradeDao;
     private DefenseDao mDefenseDao;
 
@@ -47,18 +38,17 @@ public class CostCalculator extends Fragment
     private ExecutorService mExecutor;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         final String pageHeader = "Cost\nCalculator";
         final String initialCost = "$0";
         final int fragmentLayout = R.layout.fragment_cost_calculator;
 
+        mRepository = new DatabaseRepository();
+        mExecutor = Executors.newSingleThreadExecutor();
+
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
-
-        mExecutor = Executors.newSingleThreadExecutor ();
-
-        getDatabase();
 
         mFinalPrice = mAppPage.getCustomView().findViewById(R.id.final_price);
         mFinalPrice.setText(initialCost);
@@ -66,7 +56,7 @@ public class CostCalculator extends Fragment
         mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao, mDefenseDao);
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext());
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
         mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.target_tower_dropdown);
@@ -135,7 +125,7 @@ public class CostCalculator extends Fragment
                 ConnectTowerList.clearTowers();
                 mTowerTypeAdapter.notifyDataSetChanged();
 
-                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                mTowerTypeAdapter.updateDatabase();
             }
         });
 
@@ -212,24 +202,19 @@ public class CostCalculator extends Fragment
         });
     }
 
-    private void getDatabase()
-    {
-        mExecutor.execute(() ->
-        {
-            UpgradeDatabase upgradeDatabase = Room.databaseBuilder (getContext(),
-                    UpgradeDatabase.class, "Upgrade-db").build();
-            DefenseDatabase defenseDatabase = Room.databaseBuilder (getContext(),
-                    DefenseDatabase.class, "Defense-db").build();
-
-            mUpgradeDao = upgradeDatabase.mUpgradeDao();
-            mDefenseDao = defenseDatabase.mDefenseDao();
-        });
-    }
-
     private void updateTowers()
     {
         mExecutor.execute(() ->
         {
+            if(mUpgradeDao == null)
+            {
+                mUpgradeDao = mRepository.getUpgradeDao(getContext());
+            }
+            if(mDefenseDao == null)
+            {
+                mDefenseDao = mRepository.getDefenseDao(getContext());
+            }
+
             List<Defense> defenses = mDefenseDao.getAll();
 
             for(Defense defense : defenses)

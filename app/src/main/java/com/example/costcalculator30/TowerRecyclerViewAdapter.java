@@ -20,20 +20,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class TowerRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerRecyclerViewAdapter.ViewHolder>
 {
-    //private ArrayList<Tower> mTowers;
-    Context mContext;
-    UpgradeDao mUpgradeDao;
-    DefenseDao mDefenseDao;
+    private final Context mContext;
+    private final UpgradeDao mUpgradeDao;
+    private final DefenseDao mDefenseDao;
+    private final Executor mExecutor;
 
-    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao, DefenseDao defenseDao)
+    public TowerRecyclerViewAdapter(Context context)
     {
         mContext = context;
-        mUpgradeDao = upgradeDao;
-        mDefenseDao = defenseDao;
+
+        DatabaseRepository repository = new DatabaseRepository();
+        mUpgradeDao = repository.getUpgradeDao(context);
+        mDefenseDao = repository.getDefenseDao(context);
+
+        mExecutor = Executors.newSingleThreadExecutor();
     }
 
     @NonNull
@@ -82,7 +88,7 @@ public class TowerRecyclerViewAdapter
 
                 ConnectTowerList.setTowers(towers);
 
-                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -101,7 +107,7 @@ public class TowerRecyclerViewAdapter
 
                 ConnectTowerList.setTowers(towers);
 
-                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -120,7 +126,7 @@ public class TowerRecyclerViewAdapter
 
                 ConnectTowerList.setTowers(towers);
 
-                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -129,6 +135,14 @@ public class TowerRecyclerViewAdapter
         });
 
         holder.bindData();
+    }
+
+    public void updateDatabase()
+    {
+        mExecutor.execute(() ->
+        {
+            mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+        });
     }
 
     @Override

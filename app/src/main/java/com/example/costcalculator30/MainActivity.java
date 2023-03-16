@@ -1,7 +1,6 @@
 package com.example.costcalculator30;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
@@ -15,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
@@ -25,8 +23,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,9 +48,6 @@ public class MainActivity extends AppCompatActivity
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-    //public View currentView;
-    //public NavController mNavController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,8 +59,6 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(binding.getRoot());
 
-        //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_graph);
-        //mNavCon = navHostFragment.getNavController();
         setSupportActionBar(binding.toolbar);
 
         mActionBar = getSupportActionBar();
@@ -76,50 +67,20 @@ public class MainActivity extends AppCompatActivity
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        //getActionBar().setTitle(appName);
-
         setNavigationDrawer();
 
         if(mActionBar != null)
         {
             mActionBar.setTitle(appName);
-            //mActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         fillDatabases();
-
-        //fragmentManager = getSupportFragmentManager();
-
-        //mDrawerLayout = findViewById(R.id.my_drawer_layout);
-        //actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.nav_open, R.string.nav_close);
-
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
-        //mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
-        //actionBarDrawerToggle.syncState();
-
-        // to make the Navigation drawer icon always appear on the action bar
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //getDatabase();
-
-        /*binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
-
-                Intent intent = new Intent(getApplicationContext(), DatabaseTest.class);
-
-                startActivity(intent);
-            }
-        });*/
     }
 
     private void setNavigationDrawer()
     {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout); // initiate a DrawerLayout
-        NavigationView navView = (NavigationView) findViewById(R.id.navigation); // initiate a Navigation View
+        mDrawerLayout = findViewById(R.id.drawer_layout); // initiate a DrawerLayout
+        NavigationView navView = findViewById(R.id.navigation); // initiate a Navigation View
 
         // implement setNavigationItemSelectedListener event on NavigationView
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
@@ -169,10 +130,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        //Fragment fragment = new Fragment();
-        //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        //int destination = 0;
-        NavigationView navView = (NavigationView) findViewById(R.id.navigation);
         Fragment fragment = null;
 
         switch(item.getItemId())
@@ -204,11 +161,6 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private boolean navigate()
-    {
-        return true;
     }
 
     public UpgradeDao getUpgradeDao()
@@ -311,11 +263,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             }
-            catch(JSONException exception)
-            {
-                exception.printStackTrace();
-            }
-            catch(IOException exception)
+            catch(JSONException | IOException exception)
             {
                 exception.printStackTrace();
             }

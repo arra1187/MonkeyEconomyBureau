@@ -11,17 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorBinding;
 
+import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AffordabilityCalculator extends Fragment
 {
-
     private FragmentAffordabilityCalculatorBinding binding;
     private AppPage mAppPage;
 
@@ -32,9 +32,10 @@ public class AffordabilityCalculator extends Fragment
     private Spinner mRoundTypeDropdown;
 
     private TextView mMoneyDisplay;
+    private TextView mFinalPrice;
 
+    private DatabaseRepository mRepository;
     private RoundDao mRoundDao;
-    private DefenseDao mDefenseDao;
 
     private final int END_OF_ROUND_CASH_CONSTANT = 100;
 
@@ -52,6 +53,7 @@ public class AffordabilityCalculator extends Fragment
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
+        mFinalPrice = mAppPage.getCustomView().findViewById(R.id.final_price);
 
         mCashMultiplierDropdown = mAppPage.getCustomView().findViewById(R.id.cash_multiplier_spinner);
         ArrayAdapter<CharSequence> cashMultiplierAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -67,25 +69,16 @@ public class AffordabilityCalculator extends Fragment
 
         mCashMultiplierDropdown.setSelection(1);
 
-        ExecutorService mExecutor= Executors.newSingleThreadExecutor();
-        mExecutor.execute(() ->
+        mRepository = new DatabaseRepository();
+        mRoundDao = mRepository.getRoundDao(getContext());
+
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() ->
         {
-            RoundDatabase roundDatabase = Room.databaseBuilder(getContext(),
-                    RoundDatabase.class, "Round-db").build();
-            DefenseDatabase defenseDatabase = Room.databaseBuilder(getContext(),
-                    DefenseDatabase.class, "Defense-db").build();
+            String finalPriceDisplay = "$" + mRepository.getDefenseDao(getContext()).getCost(0);
 
-            mRoundDao = roundDatabase.mRoundDao();
-            mDefenseDao = defenseDatabase.mDefenseDao();
+            mAppPage.getCustomView().post (() -> mFinalPrice.setText(finalPriceDisplay));
         });
-
-        //binding = FragmentAffordabilityCalculatorBinding.inflate(inflater, container,
-        //  false);
-        //return binding.getRoot();
-
-        String finalPriceDisplay = "$" + mDefenseDao.getCost(0);
-
-        mMoneyDisplay.setText(finalPriceDisplay);
 
         return mAppPage.getOverView();
     }
@@ -125,24 +118,6 @@ public class AffordabilityCalculator extends Fragment
                 });
             }
         });
-
-
-        /*binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(AffordabilityCalculator.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });*/
-
-        /*view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                NavHostFragment.findNavController(AffordabilityCalculator.this).navigate(AffordabilityCalculatorDirections.moveToCC());
-            }
-        });*/
     }
 
     @Override
@@ -150,5 +125,4 @@ public class AffordabilityCalculator extends Fragment
         super.onDestroyView();
         binding = null;
     }
-
 }
