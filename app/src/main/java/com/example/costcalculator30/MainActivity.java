@@ -104,6 +104,10 @@ public class MainActivity extends AppCompatActivity
                 {
                     fragment = new AffordabilityCalculator();
                 }
+                else if (itemId == R.id.saved_defenses_page)
+                {
+                    fragment = new SavedDefenses();
+                }
 
                 if (fragment != null)
                 {
@@ -142,6 +146,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.affordability_calculator_page:
                 fragment = new AffordabilityCalculator();
+                break;
+            case R.id.saved_defenses_page:
+                fragment = new SavedDefenses();
                 break;
         }
 

@@ -38,7 +38,19 @@
             app:destination="@id/CostCalculator" />
     </fragment>
 
-    <action android:id="@+id/action_global_welcome_page" app:destination="@id/welcome_page"/>
+    <fragment
+        android:id="@+id/SavedDefenses"
+        android:name="com.example.costcalculator30.AffordabilityCalculator"
+        android:label="@string/saved_defenses_page"
+        tools:layout="@layout/page_template">
+
+        <action
+            android:id="@+id/move_to_CC"
+            app:destination="@id/CostCalculator" />
+    </fragment>
+
+    <action android:id="@+id/action_global_WelcomePage" app:destination="@id/welcome_page"/>
     <action android:id="@+id/action_global_AffordabilityCalculator" app:destination="@id/AffordabilityCalculator"/>
     <action android:id="@+id/action_global_CostCalculator" app:destination="@id/CostCalculator"/>
+    <action android:id="@+id/action_global_SavedDefenses" app:destination="@id/SavedDefenses"/>
 </navigation>

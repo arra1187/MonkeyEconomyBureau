@@ -188,13 +188,6 @@ public class TowerRecyclerViewAdapter
 
             mBottomPath = (Spinner) itemView.findViewById(R.id.bottom_path);
             mBottomPath.setAdapter(mUpgradeAdapter);
-
-            /*if(mTower != null)
-            {
-                Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
-                topPath.setAdapter(mUpgradeAdapter);
-                topPath.setSelection(mTower.getTopPath());
-            }*/
         }
 
         public void setTower(Tower tower)
@@ -228,7 +221,6 @@ public class TowerRecyclerViewAdapter
         {
             return (ImageButton) itemView.findViewById(R.id.remove_tower_button);
         }
-
 
         public Spinner getTopPath()
         {

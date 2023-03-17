@@ -23,8 +23,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/round_range_constraint"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toTopOf="@id/cash_multiplier_constraint"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/my_cash_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
         app:layout_constraintTop_toTopOf="@+id/background_view"
@@ -84,13 +84,50 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cash_multiplier_constraint"
+        android:id="@+id/my_cash_constraint"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/enter_round_range_constraint"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/cash_multiplier_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
         app:layout_constraintTop_toBottomOf="@+id/round_range_constraint">
+
+        <EditText
+            android:id="@+id/my_cash_entry"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:background="@drawable/white_background"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@string/zero"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/my_cash_label"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/my_cash_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_cash_label"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/my_cash_entry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cash_multiplier_constraint"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/enter_round_range_constraint"
+        app:layout_constraintEnd_toEndOf="@+id/background_view"
+        app:layout_constraintStart_toStartOf="@+id/background_view"
+        app:layout_constraintTop_toBottomOf="@+id/my_cash_constraint">
 
         <View
             android:id="@+id/cash_multiplier_background"
@@ -135,7 +172,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enter_round_range_constraint"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toTopOf="@+id/enter_afford_defense_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
@@ -147,7 +184,7 @@
             android:layout_height="wrap_content"
             android:text="@string/round_cash_message"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -183,7 +220,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enter_afford_defense_constraint"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toTopOf="@+id/final_price_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
@@ -195,7 +232,7 @@
             android:layout_height="wrap_content"
             android:text="@string/afford_defense_message"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -230,7 +267,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/final_price_constraint"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -242,7 +279,7 @@
             android:layout_height="wrap_content"
             android:text="@string/defense_cost_message"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

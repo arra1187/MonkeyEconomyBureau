@@ -6,6 +6,7 @@
     <string name="welcome_page">Welcome</string>
     <string name="cost_calculator_page">Cost Calculator</string>
     <string name="affordability_calculator_page">Affordability Calculator</string>
+    <string name="saved_defenses_page">Saved Defenses</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -38,6 +39,7 @@
     <string name="compare_button_label">Compare with Defense</string>
     <string name="save_defense_button_label">Save Defense</string>
     <string name="load_defense_button_label">Load Defense</string>
+    <string name="set_as_current_button">Set as Current</string>
 
 
     <!-- Defence section -->
@@ -128,6 +130,7 @@
     <string name="cost_calculator_label">Cost Calculator</string>
     <string name="start_round_label">Start Round</string>
     <string name="end_round_label">End Round</string>
+    <string name="my_cash_label">My cash</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>

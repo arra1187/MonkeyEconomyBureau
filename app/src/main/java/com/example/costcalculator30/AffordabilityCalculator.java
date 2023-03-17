@@ -26,6 +26,7 @@ public class AffordabilityCalculator extends Fragment
 
     private EditText mStartRoundEntry;
     private EditText mEndRoundEntry;
+    private EditText mMyCash;
 
     private Spinner mCashMultiplierDropdown;
     private Spinner mRoundTypeDropdown;
@@ -51,6 +52,7 @@ public class AffordabilityCalculator extends Fragment
 
         mStartRoundEntry = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
+        mMyCash = mAppPage.getCustomView().findViewById(R.id.my_cash_entry);
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
         mRoundDisplay = mAppPage.getCustomView().findViewById(R.id.round_display);
@@ -149,6 +151,8 @@ public class AffordabilityCalculator extends Fragment
                     double defenseCost = mDefenseDao.getCost(0), multiplier = 1;
                     String output = null;
 
+                    defenseCost -= Double.parseDouble(mMyCash.getText().toString());
+
                     switch(mCashMultiplierDropdown.getSelectedItem().toString())
                     {
                         case "Half Cash":
@@ -190,7 +194,8 @@ public class AffordabilityCalculator extends Fragment
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
         binding = null;
     }

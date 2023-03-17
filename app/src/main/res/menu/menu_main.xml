@@ -15,4 +15,8 @@
         android:id="@+id/affordability_calculator_page"
         android:orderInCategory="3"
         android:title="@string/affordability_calculator_page" />
+    <item
+        android:id="@+id/saved_defenses_page"
+        android:orderInCategory="4"
+        android:title="@string/saved_defenses_page" />
 </menu>
