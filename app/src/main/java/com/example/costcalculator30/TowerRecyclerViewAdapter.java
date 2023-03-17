@@ -74,7 +74,7 @@ public class TowerRecyclerViewAdapter
                 ConnectTowerList.removeTower(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
 
-                mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                updateDatabase();
             }
         });
 

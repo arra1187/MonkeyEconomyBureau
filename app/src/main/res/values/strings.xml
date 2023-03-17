@@ -36,6 +36,8 @@
     <string name="enter_button_label">Enter</string>
     <string name="clear_towers_button_label">Clear towers</string>
     <string name="compare_button_label">Compare with Defense</string>
+    <string name="save_defense_button_label">Save Defense</string>
+    <string name="load_defense_button_label">Load Defense</string>
 
 
     <!-- Defence section -->
@@ -116,8 +118,6 @@
         <item>Alternate Bloons Rounds</item>
     </string-array>
 
-
-
     <!-- Label section -->
     <string name="money_count_label">Money count</string>
     <string name="current_round_label">Current Round</string>
@@ -134,9 +134,9 @@
 
     <!-- Long sections of text -->
     <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Options Button (3 vertical dots) to begin</string>
-    <string name="round_cash_message">How much money will I get from the rounds entered above?</string>
-    <string name="afford_defense_message">Based on my start round, when will I afford my defense?</string>
-    <string name="defense_cost_message">This is the cost of your defense as saved in the Cost Calculator</string>
+    <string name="round_cash_message">Cash gained from entered round range</string>
+    <string name="afford_defense_message">When will I afford my defense?</string>
+    <string name="defense_cost_message">Defense cost from the Cost Calculator</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>

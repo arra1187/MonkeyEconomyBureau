@@ -1,6 +1,7 @@
 package com.example.costcalculator30;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +114,10 @@ public class CostCalculator extends Fragment
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
                 mTowerRecycler.scrollToPosition(mTowerTypeAdapter.getItemCount() - 1);
 
-                updateTowers();
+                mExecutor.execute(() ->
+                {
+                    mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                });
             }
         });
 
@@ -126,6 +130,23 @@ public class CostCalculator extends Fragment
                 mTowerTypeAdapter.notifyDataSetChanged();
 
                 mTowerTypeAdapter.updateDatabase();
+            }
+        });
+
+        mAppPage.getCustomView().findViewById(R.id.save_defense_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                mExecutor.execute(() ->
+                {
+                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseDao.getCost(0), mDefenseDao.getSize());
+                    mDefenseDao.insert(newDefense);
+
+                    Looper.prepare();
+                    Toast saveToast = Toast.makeText(getActivity(), "Defense saved", Toast.LENGTH_LONG);
+                    view.post (() -> saveToast.show());
+                });
             }
         });
 

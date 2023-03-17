@@ -141,22 +141,37 @@
                 android:contentDescription="@string/add_same_tower_button"
                 android:fontFamily="serif-monospace"
                 android:text="@string/add_tower_button"
-                app:layout_constraintBottom_toTopOf="@+id/set_monkey_knowledge_button"
+                app:layout_constraintBottom_toTopOf="@+id/save_defense_button"
                 app:layout_constraintEnd_toStartOf="@+id/clear_towers_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/set_monkey_knowledge_button"
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tan_rectangle_button_template"
+                android:id="@+id/save_defense_button"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@drawable/light_blue_rectangle_button_template"
                 android:contentDescription="@string/mk"
                 android:fontFamily="serif-monospace"
-                android:text="@string/mk"
+                android:text="@string/save_defense_button_label"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/load_defense_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
+
+            <Button
+                android:id="@+id/load_defense_button"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@drawable/dark_blue_rectangle_button_template"
+                android:contentDescription="@string/mk"
+                android:fontFamily="serif-monospace"
+                android:text="@string/load_defense_button_label"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/save_defense_button"
                 app:layout_constraintTop_toBottomOf="@+id/clear_towers_button" />
 
             <Button
@@ -167,7 +182,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/clear_towers_button_label"
                 android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/set_monkey_knowledge_button"
+                app:layout_constraintBottom_toTopOf="@+id/save_defense_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/add_tower_button"
                 app:layout_constraintTop_toTopOf="parent" />

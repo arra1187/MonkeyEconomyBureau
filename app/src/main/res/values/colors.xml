@@ -14,6 +14,7 @@
     <color name="red">#FFC63D3D</color>
     <color name="sky_blue">#FFB9D8F1</color>
     <color name="yellow">#ECE398</color>
-    <color name="dark_blue">#44536E</color>
     <color name="light_blue">#86A1C1</color>
+    <color name="dark_blue">#44536E</color>
+    <color name="darkest_blue">#343D50</color>
 </resources>

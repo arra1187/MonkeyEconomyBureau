@@ -8,14 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
 import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorBinding;
 
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,10 +31,12 @@ public class AffordabilityCalculator extends Fragment
     private Spinner mRoundTypeDropdown;
 
     private TextView mMoneyDisplay;
-    private TextView mFinalPrice;
+    private TextView mRoundDisplay;
+    private TextView mDefenseCost;
 
     private DatabaseRepository mRepository;
     private RoundDao mRoundDao;
+    private DefenseDao mDefenseDao;
 
     private final int END_OF_ROUND_CASH_CONSTANT = 100;
 
@@ -44,7 +45,6 @@ public class AffordabilityCalculator extends Fragment
             Bundle savedInstanceState)
     {
         final String pageHeader = "Affordability\nCalculator";
-        final String initialCost = "$0";
         final int fragmentLayout = R.layout.fragment_affordability_calculator;
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
@@ -53,7 +53,8 @@ public class AffordabilityCalculator extends Fragment
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
-        mFinalPrice = mAppPage.getCustomView().findViewById(R.id.final_price);
+        mRoundDisplay = mAppPage.getCustomView().findViewById(R.id.round_display);
+        mDefenseCost = mAppPage.getCustomView().findViewById(R.id.final_price);
 
         mCashMultiplierDropdown = mAppPage.getCustomView().findViewById(R.id.cash_multiplier_spinner);
         ArrayAdapter<CharSequence> cashMultiplierAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -71,13 +72,14 @@ public class AffordabilityCalculator extends Fragment
 
         mRepository = new DatabaseRepository();
         mRoundDao = mRepository.getRoundDao(getContext());
+        mDefenseDao = mRepository.getDefenseDao(getContext());
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->
         {
-            String finalPriceDisplay = "$" + mRepository.getDefenseDao(getContext()).getCost(0);
+            String finalPriceDisplay = "$" + mDefenseDao.getCost(0);
 
-            mAppPage.getCustomView().post (() -> mFinalPrice.setText(finalPriceDisplay));
+            mAppPage.getCustomView().post (() -> mDefenseCost.setText(finalPriceDisplay));
         });
 
         return mAppPage.getOverView();
@@ -92,13 +94,21 @@ public class AffordabilityCalculator extends Fragment
             @Override
             public void onClick(View view)
             {
+                if(mStartRoundEntry.getText().toString().equals("") || mEndRoundEntry.getText().toString().equals(""))
+                {
+                    Toast towerToast = Toast.makeText(getActivity(), "Enter a range of rounds first", Toast.LENGTH_LONG);
+                    towerToast.show();
+
+                    return;
+                }
+
                 ExecutorService mExecutor= Executors.newSingleThreadExecutor();
                 mExecutor.execute(() ->
                 {
                     Integer money = 0;
 
                     for(int i = Integer.parseInt(mStartRoundEntry.getText().toString());
-                        i < Integer.parseInt(mEndRoundEntry.getText().toString()); i++)
+                        i < Integer.parseInt(mEndRoundEntry.getText().toString()) + 1; i++)
                     {
                         money += mRoundDao.getCash(i);
                         money += END_OF_ROUND_CASH_CONSTANT + i;
@@ -115,6 +125,65 @@ public class AffordabilityCalculator extends Fragment
                     }
 
                     mMoneyDisplay.setText(money.toString());
+                });
+            }
+        });
+
+        view.findViewById(R.id.enter_for_round_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(mStartRoundEntry.getText().toString().equals(""))
+                {
+                    Toast towerToast = Toast.makeText(getActivity(), "Enter a starting round first", Toast.LENGTH_LONG);
+                    towerToast.show();
+
+                    return;
+                }
+
+                ExecutorService mExecutor= Executors.newSingleThreadExecutor();
+                mExecutor.execute(() ->
+                {
+                    int round = Integer.parseInt(mStartRoundEntry.getText().toString());
+                    double defenseCost = mDefenseDao.getCost(0), multiplier = 1;
+                    String output = null;
+
+                    switch(mCashMultiplierDropdown.getSelectedItem().toString())
+                    {
+                        case "Half Cash":
+                            multiplier = 0.5;
+                            break;
+                        case "Double Cash":
+                            multiplier = 2;
+                            break;
+                    }
+
+                    while(defenseCost > 0)
+                    {
+                        defenseCost -= mRoundDao.getCash(round) * multiplier;
+
+                        if(defenseCost <= 0)
+                        {
+                            output = "Middle of Round " + round;
+                        }
+                        else
+                        {
+                            defenseCost -= (END_OF_ROUND_CASH_CONSTANT + round) * multiplier;
+
+                            if(defenseCost <= 0)
+                            {
+                                output = "End of Round " + round;
+                            }
+                            else
+                            {
+                                round++;
+                            }
+
+                        }
+                    }
+
+                    mRoundDisplay.setText(output);
                 });
             }
         });
