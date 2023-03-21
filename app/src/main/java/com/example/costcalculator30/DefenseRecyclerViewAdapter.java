@@ -23,19 +23,9 @@ public class DefenseRecyclerViewAdapter
 {
     ArrayList<Defense> mDefenses;
 
-    DefenseDao mDefenseDao;
-    Executor mExecutor;
-
-    public DefenseRecyclerViewAdapter(Context context)
+    public DefenseRecyclerViewAdapter(ArrayList<Defense> defenses)
     {
-        DatabaseRepository repository = new DatabaseRepository();
-        mDefenseDao = repository.getDefenseDao(context);
-        mExecutor = Executors.newSingleThreadExecutor();
-
-        mExecutor.execute(() ->
-        {
-            mDefenses = (ArrayList<Defense>) mDefenseDao.getAll();
-        });
+        mDefenses = defenses;
     }
 
     @NonNull
@@ -45,7 +35,7 @@ public class DefenseRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.defense_display, parent,
                 false);
 
-        return new DefenseRecyclerViewAdapter.ViewHolder(view, mDefenseDao, mExecutor);
+        return new DefenseRecyclerViewAdapter.ViewHolder(view);
     }
 
     @Override
@@ -65,9 +55,6 @@ public class DefenseRecyclerViewAdapter
     {
         Defense mDefense;
 
-        DefenseDao mDefenseDao;
-        Executor mExecutor;
-
         TextView mDefenseID;
         TextView mDefenseCost;
         TextView mTowerList;
@@ -77,12 +64,9 @@ public class DefenseRecyclerViewAdapter
 
         ImageButton mClearDefenseButton;
 
-        public ViewHolder(@NonNull View itemView, DefenseDao defenseDao, Executor executor)
+        public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-
-            mDefenseDao = defenseDao;
-            mExecutor = executor;
         }
 
         public void setDefense(Defense defense)

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -20,6 +21,7 @@ public class SavedDefenses extends Fragment
     private AppPage mAppPage;
     private RecyclerView mDefenseRecycler;
     private DefenseRecyclerViewAdapter mDefenseAdapter;
+    private ArrayList<Defense> mDefenses;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +38,20 @@ public class SavedDefenses extends Fragment
         mDefenseRecycler = mAppPage.getCustomView().findViewById(R.id.defense_recyclerView);
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(getContext());
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenses);
         mDefenseRecycler.setAdapter(mDefenseAdapter);
+
+        mExecutor.execute(() ->
+        {
+            mDefenses = (ArrayList<Defense>) mRepository.getDefenseDao(getContext()).getAll();
+
+            //for()
+
+            //mAppPage.getCustomView().post (() -> mDefenseAdapter.notifyDataSetChanged());
+        });
+
+        //mDefenseRecycler.setAdapter(mDefenseAdapter);
+        //mDefenseAdapter.notifyDataSetChanged();
 
         return mAppPage.getOverView();
     }
