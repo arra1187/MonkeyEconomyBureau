@@ -1,6 +1,8 @@
 package com.example.costcalculator30;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -11,7 +13,7 @@ import java.util.List;
 public interface DefenseDao
 {
     @Query("SELECT * FROM Defense")
-    List<Defense> getAll();
+    LiveData<List<Defense>> getAll();
 
     //@Query("SELECT towers FROM Defense WHERE id = :id")
     //ArrayList<Tower> getTowers(int id);
@@ -25,6 +27,9 @@ public interface DefenseDao
     @Insert
     void insert(Defense defense);
 
+    @Delete
+    void delete(Defense defense);
+
     @Query("UPDATE Defense SET id = :newID WHERE id = :oldID")
     void setID(int oldID, int newID);
 
@@ -33,4 +38,6 @@ public interface DefenseDao
 
     @Query("UPDATE Defense SET cost = :cost WHERE id = :id")
     void setCost(int cost, int id);
+
+
 }

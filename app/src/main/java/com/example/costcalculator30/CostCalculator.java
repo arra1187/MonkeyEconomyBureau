@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -127,7 +128,7 @@ public class CostCalculator extends Fragment
             public void onClick(View view)
             {
                 ConnectTowerList.clearTowers();
-                mTowerTypeAdapter.notifyDataSetChanged();
+                mTowerTypeAdapter.notifyItemRangeRemoved(0, ConnectTowerList.getTowers().size());
 
                 mTowerTypeAdapter.updateDatabase();
             }
@@ -236,15 +237,15 @@ public class CostCalculator extends Fragment
                 mDefenseDao = mRepository.getDefenseDao(getContext());
             }
 
-            List<Defense> defenses = mDefenseDao.getAll();
+            LiveData<List<Defense>> defenses = mDefenseDao.getAll();
 
-            for(Defense defense : defenses)
+            /*for(Defense defense : defenses)
             {
                 if(defense.getDefenseID() == 0)
                 {
                     ConnectTowerList.setTowers(defense.getTowers());
                 }
-            }
+            }*/
         });
     }
 }
