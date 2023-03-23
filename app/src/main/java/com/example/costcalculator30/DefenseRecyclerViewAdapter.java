@@ -7,8 +7,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DefenseRecyclerViewAdapter
         extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
@@ -39,8 +41,15 @@ public class DefenseRecyclerViewAdapter
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount()
+    {
+        return mDefenses.size();
+    }
+
+    public void setListData(ArrayList<Defense> defenses)
+    {
+        mDefenses = defenses;
+        notifyItemRangeInserted(0, mDefenses.size());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -98,9 +107,17 @@ public class DefenseRecyclerViewAdapter
                 mClearDefenseButton = (ImageButton) itemView.findViewById(R.id.clear_defense_button);
             }
 
+            final int CURRENT_ID = 0;
             String cost = "$" + mDefense.getCost();
+            Integer id = mDefense.getNid() - 1;
+            String label = id.toString();
 
-            mDefenseID.setText(mDefense.getDefenseID());
+            if(id == CURRENT_ID)
+            {
+                label = "Current";
+            }
+
+            mDefenseID.setText(label);
             mDefenseCost.setText(cost);
 
             mDropDownButton.setOnClickListener(new View.OnClickListener()
@@ -119,10 +136,7 @@ public class DefenseRecyclerViewAdapter
                             towerList.append(", ");
                         }
 
-                        towerList.append(currentTower.getTitle()
-                                            + " " + currentTower.getTopPath()
-                                            + " - " + currentTower.getMiddlePath()
-                                            + " - " + currentTower.getBottomPath());
+                        towerList.append(currentTower.getTitle()).append(" ").append(currentTower.getTopPath()).append(" - ").append(currentTower.getMiddlePath()).append(" - ").append(currentTower.getBottomPath());
                     }
 
                     mTowerList.setText(towerList.toString());

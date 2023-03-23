@@ -74,7 +74,7 @@ public class AffordabilityCalculator extends Fragment
 
         mRepository = new DatabaseRepository();
         mRoundDao = mRepository.getRoundDao(getContext());
-        mDefenseDao = mRepository.getDefenseDao(getContext());
+        //mDefenseDao = mRepository.getDefenseDao(getContext());
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->

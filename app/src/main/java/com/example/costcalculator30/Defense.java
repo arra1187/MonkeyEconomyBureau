@@ -15,8 +15,8 @@ public class Defense
     @PrimaryKey(autoGenerate = true)
     private int nid;
 
-    @ColumnInfo(name = "id")
-    private int mDefenseID;
+    //@ColumnInfo(name = "id")
+    //private int mDefenseID;
 
     @TypeConverters(Converters.class)
     @ColumnInfo(name = "towers")
@@ -26,17 +26,17 @@ public class Defense
     @ColumnInfo(name = "cost")
     private int mCost;
 
-    public Defense(ArrayList<Tower> towers, int cost, int defenseID)
+    public Defense(ArrayList<Tower> towers, int cost)//, int defenseID)
     {
         mTowers = towers;
         mCost = cost;
-        mDefenseID = defenseID;
+        //mDefenseID = defenseID;
     }
 
-    public int getDefenseID()
+    /*public int getDefenseID()
     {
         return mDefenseID;
-    }
+    }*/
 
     public ArrayList<Tower> getTowers()
     {
@@ -53,10 +53,10 @@ public class Defense
         return nid;
     }
 
-    public void setDefenseID(int defenseID)
+    /*public void setDefenseID(int defenseID)
     {
         mDefenseID = defenseID;
-    }
+    }*/
 
     public void setTowers(ArrayList<Tower> towers)
     {

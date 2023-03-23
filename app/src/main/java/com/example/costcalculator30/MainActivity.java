@@ -12,6 +12,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -187,24 +189,33 @@ public class MainActivity extends AppCompatActivity
             String title, tower;
             int upgradeID, cost, roundNumber, RBE, cash;
 
-            UpgradeDatabase upgradeDatabase = Room.databaseBuilder(getApplicationContext(),
-                    UpgradeDatabase.class, "Upgrade-db").build();
+            //UpgradeDatabase upgradeDatabase = Room.databaseBuilder(getApplicationContext(),
+                    //UpgradeDatabase.class, "Upgrade-db").build();
             RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
                     RoundDatabase.class, "Round-db").build();
-            DefenseDatabase defenseDatabase = Room.databaseBuilder(getApplicationContext(),
-                    DefenseDatabase.class, "Defense-db").build();
+            //DefenseDatabase defenseDatabase = Room.databaseBuilder(getApplicationContext(),
+                    //DefenseDatabase.class, "Defense-db").build();
 
-            UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
-            upgradeDao.deleteAll();
+            //UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
+            //upgradeDao.deleteAll();
 
             RoundDao roundDao = roundDatabase.mRoundDao();
             roundDao.deleteAll();
 
-            DefenseDao defenseDao = defenseDatabase.mDefenseDao();
+            //DefenseDao defenseDao = defenseDatabase.mDefenseDao();
 
-            if(defenseDao.getSize() == 0)
+            //UpgradeViewModel upgradeViewModel = new ViewModelProvider(this).get(UpgradeViewModel.class);
+
+            UpgradeRepository upgradeRepository = new UpgradeRepository(getApplication());
+            DefenseViewModel defenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+
+            //upgradeViewModel.deleteAll();
+
+            upgradeRepository.deleteAll();
+
+            if(defenseViewModel.getSize() == 0)
             {
-                defenseDao.insert(new Defense(new ArrayList<>(), 0, 0));
+                defenseViewModel.insertItem(new Defense(new ArrayList<>(), 0));
             }
 
             towerFiles = getApplicationContext().getAssets();
@@ -237,7 +248,8 @@ public class MainActivity extends AppCompatActivity
 
                         Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
 
-                        upgradeDao.insert(newUpgrade);
+                        //upgradeDao.insert(newUpgrade);
+                        upgradeRepository.insert(newUpgrade);
                     }
                 }
 

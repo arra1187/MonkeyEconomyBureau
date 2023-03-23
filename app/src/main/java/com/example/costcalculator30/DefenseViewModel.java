@@ -16,13 +16,18 @@ public class DefenseViewModel extends AndroidViewModel
     public DefenseViewModel(@NonNull Application application)
     {
         super(application);
-        mDataRepository = new DefenseRepository((application));
+        mDataRepository = new DefenseRepository(application);
         mListLiveData = mDataRepository.getAll();
     }
 
     public LiveData<List<Defense>> getAllData()
     {
         return mListLiveData;
+    }
+
+    public int getSize()
+    {
+        return mDataRepository.getSize();
     }
 
     public void insertItem(Defense defense)

@@ -41,13 +41,16 @@ public class SavedDefenses extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
+        mDefenses = new ArrayList<>();
+
         mDefenseRecycler = mAppPage.getCustomView().findViewById(R.id.defense_recyclerView);
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+        //mViewModel.initializeDefense(getContext());
+
         mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenses);
         mDefenseRecycler.setAdapter(mDefenseAdapter);
-
-        mViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
         //bind to Livedata
         mViewModel.getAllData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
@@ -62,7 +65,7 @@ public class SavedDefenses extends Fragment
             }
         });
 
-        setListData(mViewModel.getAllData().getValue());
+        //setListData(mViewModel.getAllData().getValue());
 
         /*mExecutor.execute(() ->
         {
@@ -75,7 +78,17 @@ public class SavedDefenses extends Fragment
             );
         });*/
 
-        updateDefense();
+        //updateDefense();
+
+        mExecutor.execute(() ->
+        {
+            int numDefenses;
+
+            numDefenses = mViewModel.getSize();
+
+            mAppPage.getCustomView().post(() ->
+                    mDefenseAdapter.notifyItemRangeInserted(0, numDefenses));
+        });
 
         return mAppPage.getOverView();
     }
@@ -94,7 +107,8 @@ public class SavedDefenses extends Fragment
 
         if (mDefenseAdapter != null)
         {
-            mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size());
+            mDefenseAdapter.setListData(mDefenses);
+            //mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size());
         }
     }
 

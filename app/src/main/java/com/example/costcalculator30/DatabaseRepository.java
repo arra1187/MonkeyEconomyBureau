@@ -9,13 +9,13 @@ import java.util.concurrent.Executors;
 
 public class DatabaseRepository
 {
-    public DefenseDao getDefenseDao(Context context)
+    /*public DefenseDao getDefenseDao(Context context)
     {
         DefenseDatabase defenseDatabase = Room.databaseBuilder(context,
                 DefenseDatabase.class, "Defense-db").build();
 
         return defenseDatabase.mDefenseDao();
-    }
+    }*/
 
     public RoundDao getRoundDao(Context context)
     {

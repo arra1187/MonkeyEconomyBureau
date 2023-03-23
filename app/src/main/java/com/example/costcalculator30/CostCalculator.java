@@ -14,10 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,7 +28,10 @@ public class CostCalculator extends Fragment
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
     private AppPage mAppPage;
 
-    private DatabaseRepository mRepository;
+    private UpgradeRepository mUpgradeRepository;
+    private DefenseViewModel mDefenseViewModel;
+
+    //private DatabaseRepository mRepository;
     private UpgradeDao mUpgradeDao;
     private DefenseDao mDefenseDao;
 
@@ -47,7 +52,9 @@ public class CostCalculator extends Fragment
         final String initialCost = "$0";
         final int fragmentLayout = R.layout.fragment_cost_calculator;
 
-        mRepository = new DatabaseRepository();
+        mUpgradeRepository = new UpgradeRepository(getActivity().getApplication());
+        mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+
         mExecutor = Executors.newSingleThreadExecutor();
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
@@ -141,7 +148,7 @@ public class CostCalculator extends Fragment
             {
                 mExecutor.execute(() ->
                 {
-                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseDao.getCost(0), mDefenseDao.getSize());
+                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseDao.getCost(0));
                     mDefenseDao.insert(newDefense);
 
                     Looper.prepare();
@@ -228,24 +235,24 @@ public class CostCalculator extends Fragment
     {
         mExecutor.execute(() ->
         {
-            if(mUpgradeDao == null)
+            /*if(mUpgradeDao == null)
             {
                 mUpgradeDao = mRepository.getUpgradeDao(getContext());
             }
             if(mDefenseDao == null)
             {
-                mDefenseDao = mRepository.getDefenseDao(getContext());
-            }
+                //mDefenseDao = mRepository.getDefenseDao(getContext());
+            }*/
 
-            LiveData<List<Defense>> defenses = mDefenseDao.getAll();
+            LiveData<List<Defense>> defenses = mDefenseViewModel.getAllData();
 
-            /*for(Defense defense : defenses)
+            for(Defense defense : Objects.requireNonNull(defenses.getValue()))
             {
-                if(defense.getDefenseID() == 0)
+                if(defense.getNid() == 1)
                 {
                     ConnectTowerList.setTowers(defense.getTowers());
                 }
-            }*/
+            }
         });
     }
 }
