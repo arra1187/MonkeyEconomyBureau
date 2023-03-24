@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.costcalculator30.databinding.FragmentAffordabilityCalculatorBinding;
 
@@ -33,11 +34,14 @@ public class AffordabilityCalculator extends Fragment
 
     private TextView mMoneyDisplay;
     private TextView mRoundDisplay;
-    private TextView mDefenseCost;
+    private TextView mDefenseCostView;
 
     private DatabaseRepository mRepository;
     private RoundDao mRoundDao;
-    private DefenseDao mDefenseDao;
+    //private DefenseDao mDefenseDao;
+    private DefenseViewModel mDefenseViewModel;
+
+    private String mDefenseCost;
 
     private final int END_OF_ROUND_CASH_CONSTANT = 100;
 
@@ -50,13 +54,15 @@ public class AffordabilityCalculator extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
+        mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+
         mStartRoundEntry = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
         mMyCash = mAppPage.getCustomView().findViewById(R.id.my_cash_entry);
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
         mRoundDisplay = mAppPage.getCustomView().findViewById(R.id.round_display);
-        mDefenseCost = mAppPage.getCustomView().findViewById(R.id.final_price);
+        mDefenseCostView = mAppPage.getCustomView().findViewById(R.id.final_price);
 
         mCashMultiplierDropdown = mAppPage.getCustomView().findViewById(R.id.cash_multiplier_spinner);
         ArrayAdapter<CharSequence> cashMultiplierAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -79,9 +85,10 @@ public class AffordabilityCalculator extends Fragment
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->
         {
-            String finalPriceDisplay = "$" + mDefenseDao.getCost(0);
+            //String finalPriceDisplay = "$" + mDefenseViewModel.getCost(1);
+            mDefenseCost = "$" + mDefenseViewModel.getCost(1);
 
-            mAppPage.getCustomView().post (() -> mDefenseCost.setText(finalPriceDisplay));
+            mAppPage.getCustomView().post (() -> mDefenseCostView.setText(mDefenseCost));
         });
 
         return mAppPage.getOverView();
@@ -148,7 +155,7 @@ public class AffordabilityCalculator extends Fragment
                 mExecutor.execute(() ->
                 {
                     int round = Integer.parseInt(mStartRoundEntry.getText().toString());
-                    double defenseCost = mDefenseDao.getCost(0), multiplier = 1;
+                    double defenseCost = Double.parseDouble(mDefenseCost), multiplier = 1;
                     String output = null;
 
                     defenseCost -= Double.parseDouble(mMyCash.getText().toString());

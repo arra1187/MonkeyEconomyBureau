@@ -15,6 +15,9 @@ public interface DefenseDao
     @Query("SELECT * FROM Defense")
     LiveData<List<Defense>> getAll();
 
+    @Query("Select * FROM Defense WHERE nid = :id")
+    Defense getDefense(int id);
+
     //@Query("SELECT towers FROM Defense WHERE id = :id")
     //ArrayList<Tower> getTowers(int id);
 
@@ -38,6 +41,4 @@ public interface DefenseDao
 
     @Query("UPDATE Defense SET cost = :cost WHERE nid = :id")
     void setCost(int cost, int id);
-
-
 }

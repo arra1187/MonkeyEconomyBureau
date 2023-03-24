@@ -47,9 +47,8 @@ public class SavedDefenses extends Fragment
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
-        //mViewModel.initializeDefense(getContext());
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenses);
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenses, getContext());
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
         //bind to Livedata

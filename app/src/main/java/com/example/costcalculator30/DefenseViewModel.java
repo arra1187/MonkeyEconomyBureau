@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DefenseViewModel extends AndroidViewModel
@@ -23,6 +24,21 @@ public class DefenseViewModel extends AndroidViewModel
     public LiveData<List<Defense>> getAllData()
     {
         return mListLiveData;
+    }
+
+    public void setCost(int cost, int id)
+    {
+        mDataRepository.setCost(cost, id);
+    }
+
+    public void setTowers(ArrayList<Tower> towers, int id)
+    {
+        mDataRepository.setTowers(towers, id);
+    }
+
+    public int getCost(int id)
+    {
+        return mDataRepository.getCost(id);
     }
 
     public int getSize()

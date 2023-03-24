@@ -93,6 +93,6 @@ public class UpgradeRepository
 
     public int getCost(String tower, int upgradeID)
     {
-        return getCost(tower, upgradeID);
+        return mUpgradeDao.getCost(tower, upgradeID);
     }
 }

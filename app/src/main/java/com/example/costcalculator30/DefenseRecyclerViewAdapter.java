@@ -1,5 +1,7 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -15,11 +18,13 @@ import java.util.List;
 public class DefenseRecyclerViewAdapter
         extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
 {
-    ArrayList<Defense> mDefenses;
+    private ArrayList<Defense> mDefenses;
+    private Context mContext;
 
-    public DefenseRecyclerViewAdapter(ArrayList<Defense> defenses)
+    public DefenseRecyclerViewAdapter(ArrayList<Defense> defenses, Context context)
     {
         mDefenses = defenses;
+        mContext = context;
     }
 
     @NonNull
@@ -29,7 +34,7 @@ public class DefenseRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.defense_display, parent,
                 false);
 
-        return new DefenseRecyclerViewAdapter.ViewHolder(view);
+        return new DefenseRecyclerViewAdapter.ViewHolder(view, mContext);
     }
 
     @Override
@@ -54,20 +59,26 @@ public class DefenseRecyclerViewAdapter
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        Defense mDefense;
+        private Defense mDefense;
 
-        TextView mDefenseID;
-        TextView mDefenseCost;
-        TextView mTowerList;
+        private TextView mDefenseID;
+        private TextView mDefenseCost;
+        private TextView mTowerListView;
 
-        Button mDropDownButton;
-        Button mLoadDefenseButton;
+        private Button mDropDownButton;
+        private Button mLoadDefenseButton;
 
-        ImageButton mClearDefenseButton;
+        private ImageButton mClearDefenseButton;
 
-        public ViewHolder(@NonNull View itemView)
+        private StringBuilder mTowerList;
+        private boolean mTowerListShowing;
+
+        private Context mContext;
+
+        public ViewHolder(@NonNull View itemView, Context context)
         {
             super(itemView);
+            mContext = context;
         }
 
         public void setDefense(Defense defense)
@@ -89,7 +100,7 @@ public class DefenseRecyclerViewAdapter
 
             if(mTowerList == null)
             {
-                mTowerList = (TextView) itemView.findViewById(R.id.tower_list);
+                mTowerListView = (TextView) itemView.findViewById(R.id.tower_list);
             }
 
             if(mDropDownButton == null)
@@ -120,26 +131,51 @@ public class DefenseRecyclerViewAdapter
             mDefenseID.setText(label);
             mDefenseCost.setText(cost);
 
+            mTowerList = new StringBuilder();
+            boolean first = true;
+
+            for(Tower currentTower : mDefense.getTowers())
+            {
+                if(first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    mTowerList.append("\n");
+                }
+
+                mTowerList.append(currentTower.getTitle()).append(" ").append(currentTower.getTopPath()).append(" - ").append(currentTower.getMiddlePath()).append(" - ").append(currentTower.getBottomPath());
+            }
+
+            mTowerListShowing = false;
+
+            mDropDownButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.asset_triangle_down, null));
+
+            if(id == CURRENT_ID)
+            {
+                //mClearDefenseButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.clear_button_template, null));
+                mClearDefenseButton.setVisibility(View.INVISIBLE);
+            }
+
             mDropDownButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    StringBuilder towerList = new StringBuilder();
-                    boolean first = true;
-
-                    for(Tower currentTower : mDefense.getTowers())
+                    if(!mTowerListShowing)
                     {
-                        if(first)
-                        {
-                            first = false;
-                            towerList.append(", ");
-                        }
-
-                        towerList.append(currentTower.getTitle()).append(" ").append(currentTower.getTopPath()).append(" - ").append(currentTower.getMiddlePath()).append(" - ").append(currentTower.getBottomPath());
+                        mTowerListView.setText(mTowerList.toString());
+                        mDropDownButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.asset_triangle_up, null));
+                        mTowerListShowing = true;
+                    }
+                    else
+                    {
+                        mTowerListView.setText("");
+                        mDropDownButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.asset_triangle_down, null));
+                        mTowerListShowing = false;
                     }
 
-                    mTowerList.setText(towerList.toString());
                 }
             });
         }

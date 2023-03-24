@@ -75,7 +75,7 @@ public class Tower
     @SerializedName("numTiers")
     private final int numTiers = 6;
 
-    Tower(String title, int topPath, int middlePath, int bottomPath, int towerCost, UpgradeDao upgradeDao)
+    Tower(String title, int topPath, int middlePath, int bottomPath, int towerCost, UpgradeRepository upgradeRepository)
     {
         mTitle = title;
         mTopPath = topPath;
@@ -92,24 +92,24 @@ public class Tower
         {
             int paragonCost;
 
-            mBaseCost = upgradeDao.getCost(mTitle, 0);
+            mBaseCost = upgradeRepository.getCost(mTitle, 0);
 
             for (int i = 0; i < numTiers; i++)
             {
-                mTopPathCosts[i] = upgradeDao.getCost(mTitle, 10 + i + 1);
+                mTopPathCosts[i] = upgradeRepository.getCost(mTitle, 10 + i + 1);
             }
 
             for (int i = 0; i < numTiers; i++)
             {
-                mMiddlePathCosts[i] = upgradeDao.getCost(mTitle, 20 + i + 1);
+                mMiddlePathCosts[i] = upgradeRepository.getCost(mTitle, 20 + i + 1);
             }
 
             for (int i = 0; i < numTiers; i++)
             {
-                mBottomPathCosts[i] = upgradeDao.getCost(mTitle, 30 + i + 1);
+                mBottomPathCosts[i] = upgradeRepository.getCost(mTitle, 30 + i + 1);
             }
 
-            paragonCost = upgradeDao.getCost(mTitle, 6);
+            paragonCost = upgradeRepository.getCost(mTitle, 6);
 
             mTopPathCosts[numTiers - 1] = paragonCost;
             mMiddlePathCosts[numTiers - 1] = paragonCost;

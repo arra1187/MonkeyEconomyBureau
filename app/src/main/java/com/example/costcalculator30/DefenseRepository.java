@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,12 +26,32 @@ public class DefenseRepository
         return mDefenses;
     }
 
+    public Defense getDefense(int id)
+    {
+        return mDefenseDao.getDefense(id);
+    }
+
     public int getSize()
     {
         return mDefenseDao.getSize();
     }
 
     //You must call these methods on a non-UI thread or your app will crash
+
+    public int getCost(int id)
+    {
+        return mDefenseDao.getCost(id);
+    }
+
+    public void setCost(int cost, int id)
+    {
+        mDefenseDao.setCost(cost, id);
+    }
+
+    public void setTowers(ArrayList<Tower> towers, int id)
+    {
+        mDefenseDao.setTowers(towers, id);
+    }
 
     public void insert(Defense defense)
     {
@@ -80,7 +101,7 @@ public class DefenseRepository
         }
     }*/
 
-    public Defense getDefense(int id)
+    /*public Defense getDefense(int id)
     {
         for(Defense defense : Objects.requireNonNull(mDefenses.getValue()))
         {
@@ -91,5 +112,5 @@ public class DefenseRepository
         }
 
         return null;
-    }
+    }*/
 }
