@@ -7,207 +7,79 @@
     tools:context=".CostCalculator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/app_header_constraint"
+        android:id="@+id/tower_constraint"
         android:layout_width="0dp"
-        android:layout_height="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/page_header_constraint"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toTopOf="@+id/modifier_constraint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/background1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#44536E"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/app_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:layerType="none"
-            android:text="@string/app_heading"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/background1"
-            app:layout_constraintEnd_toStartOf="@id/menu_button"
-            app:layout_constraintStart_toStartOf="@id/background1"
-            app:layout_constraintTop_toTopOf="@id/background1" />
-
-        <Button
-            android:id="@+id/menu_button"
-            android:layout_width="90dp"
-            android:layout_height="48dp"
-            android:background="@drawable/green_rectangle_button_template"
-            android:contentDescription="@string/menu_button"
-            android:fontFamily="serif-monospace"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:text="@string/menu_button"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:theme="@style/GreenButton"
-            app:layout_constraintBottom_toBottomOf="@id/background1"
-            app:layout_constraintEnd_toEndOf="@id/background1"
-            app:layout_constraintStart_toEndOf="@id/app_header"
-            app:layout_constraintTop_toTopOf="@id/background1"
-            app:strokeColor="#000000" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/page_header_constraint"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toTopOf="@id/calculator_constraint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_header_constraint">
-
-        <View
-            android:id="@+id/background2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#86A1C1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintBottom_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/page_header1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="casual"
-            android:text="@string/page_heading_1.1"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/page_header2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/page_header2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="casual"
-            android:text="@string/page_heading_2"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/page_header1" />
-
-        <Button
-            android:id="@+id/help_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cyan_circle_button_template"
-            android:fontFamily="serif-monospace"
-            android:text="@string/help_button"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/page_header2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/cost_calculator_symbol"
-            android:layout_width="96dp"
-            android:layout_height="120dp"
-            android:src="@drawable/cost_calculator_symbol"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/background2"
-            app:layout_constraintStart_toEndOf="@+id/page_header2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/calculator_constraint"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/page_header_constraint">
-
-        <View
-            android:id="@+id/background3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#44536E"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tower_constraint"
+            android:id="@+id/tower_selector_constraint"
             android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toTopOf="@id/modifier_constraint"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/towers_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/tower_selector_constraint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/sky_blue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tower_selector_constraint" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tower_recyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="@+id/view"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/modifier_constraint"
+        <View
+            android:id="@+id/towers_view"
             android:layout_width="0dp"
-            android:layout_height="120dp"
-            app:layout_constraintBottom_toTopOf="@id/final_price_constraint"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/sky_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tower_constraint">
+            app:layout_constraintTop_toBottomOf="@+id/tower_selector_constraint" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tower_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/towers_view"
+            app:layout_constraintEnd_toEndOf="@+id/towers_view"
+            app:layout_constraintStart_toStartOf="@+id/towers_view"
+            app:layout_constraintTop_toTopOf="@+id/towers_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/modifier_constraint"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/final_price_constraint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tower_constraint">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#86A1C1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dropdown_constraint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <View
                 android:id="@+id/target_tower_dropdown_background"
@@ -224,22 +96,9 @@
                 android:layout_width="170dp"
                 android:layout_height="48dp"
                 android:contentDescription="@string/tower_selection"
-                app:layout_constraintBottom_toTopOf="@+id/difficulty_dropdown_background"
-                app:layout_constraintEnd_toStartOf="@+id/add_tower_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/add_tower_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/green_rectangle_button_template"
-                android:contentDescription="@string/add_same_tower_button"
-                android:fontFamily="serif-monospace"
-                android:text="@string/add_tower_button"
-                app:layout_constraintBottom_toTopOf="@+id/set_monkey_knowledge_button"
+                app:layout_constraintBottom_toTopOf="@+id/difficulty_dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/target_tower_dropdown_background"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -249,7 +108,6 @@
                 android:background="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/difficulty_dropdown"
                 app:layout_constraintEnd_toEndOf="@+id/difficulty_dropdown"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/difficulty_dropdown"
                 app:layout_constraintTop_toTopOf="@+id/difficulty_dropdown" />
 
@@ -259,59 +117,111 @@
                 android:layout_height="48dp"
                 android:contentDescription="@string/tower_selection"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/set_monkey_knowledge_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
-
-            <Button
-                android:id="@+id/set_monkey_knowledge_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tan_rectangle_button_template"
-                android:contentDescription="@string/mk"
-                android:fontFamily="serif-monospace"
-                android:text="@string/mk"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/difficulty_dropdown_background"
-                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/target_tower_dropdown" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/final_price_constraint"
+            android:id="@+id/button_constraint"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/modifier_constraint">
+            app:layout_constraintStart_toEndOf="@+id/dropdown_constraint"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-            <View
-                android:id="@+id/final_price_view"
-                android:layout_width="371dp"
-                android:layout_height="60dp"
-                android:background="#B9D8F1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+            <Button
+                android:id="@+id/add_tower_button"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/green_rectangle_button_template"
+                android:contentDescription="@string/add_same_tower_button"
+                android:fontFamily="serif-monospace"
+                android:text="@string/add_tower_button"
+                app:layout_constraintBottom_toTopOf="@+id/save_defense_button"
+                app:layout_constraintEnd_toStartOf="@+id/clear_towers_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/final_price"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:background="@color/purple"
-                android:text="@string/default_price"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
-                app:layout_constraintEnd_toEndOf="@+id/final_price_view"
-                app:layout_constraintStart_toStartOf="@+id/final_price_view"
-                app:layout_constraintTop_toTopOf="@+id/final_price_view" />
+            <Button
+                android:id="@+id/save_defense_button"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@drawable/light_blue_rectangle_button_template"
+                android:contentDescription="@string/mk"
+                android:fontFamily="serif-monospace"
+                android:text="@string/save_defense_button_label"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/load_defense_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_tower_button" />
 
+            <Button
+                android:id="@+id/load_defense_button"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:background="@drawable/dark_blue_rectangle_button_template"
+                android:contentDescription="@string/mk"
+                android:fontFamily="serif-monospace"
+                android:text="@string/load_defense_button_label"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/save_defense_button"
+                app:layout_constraintTop_toBottomOf="@+id/clear_towers_button" />
+
+            <Button
+                android:id="@+id/clear_towers_button"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_rectangle_button"
+                android:fontFamily="serif-monospace"
+                android:text="@string/clear_towers_button_label"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/save_defense_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/add_tower_button"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/final_price_constraint"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifier_constraint">
+
+        <View
+            android:id="@+id/final_price_view"
+            android:layout_width="371dp"
+            android:layout_height="60dp"
+            android:background="#B9D8F1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/final_price"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple"
+            android:text="@string/default_price"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
+            app:layout_constraintEnd_toEndOf="@+id/final_price_view"
+            app:layout_constraintStart_toStartOf="@+id/final_price_view"
+            app:layout_constraintTop_toTopOf="@+id/final_price_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

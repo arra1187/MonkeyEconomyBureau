@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Ice Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Permafrost",
+    "mUpgradeID": 11,
+    "mTower": "Ice Monkey",
+    "mCost": 150
+  },
+
+  {
+    "mTitle": "Cold Snap",
+    "mUpgradeID": 12,
+    "mTower": "Ice Monkey",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Ice Shards",
+    "mUpgradeID": 13,
+    "mTower": "Ice Monkey",
+    "mCost": 1500
+  },
+
+  {
+    "mTitle": "Embrittlement",
+    "mUpgradeID": 14,
+    "mTower": "Ice Monkey",
+    "mCost": 2200
+  },
+
+  {
+    "mTitle": "Super Brittle",
+    "mUpgradeID": 15,
+    "mTower": "Ice Monkey",
+    "mCost": 28000
+  },
+
+  {
+    "mTitle": "Enhanced Freeze",
+    "mUpgradeID": 21,
+    "mTower": "Ice Monkey",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Deep Freeze",
+    "mUpgradeID": 22,
+    "mTower": "Ice Monkey",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Arctic Wind",
+    "mUpgradeID": 23,
+    "mTower": "Ice Monkey",
+    "mCost": 2800
+  },
+
+  {
+    "mTitle": "Snowstorm",
+    "mUpgradeID": 24,
+    "mTower": "Ice Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Absolute Zero",
+    "mUpgradeID": 25,
+    "mTower": "Ice Monkey",
+    "mCost": 20000
+  },
+
+  {
+    "mTitle": "Larger Radius",
+    "mUpgradeID": 31,
+    "mTower": "Ice Monkey",
+    "mCost": 175
+  },
+
+  {
+    "mTitle": "Re-Freeze",
+    "mUpgradeID": 32,
+    "mTower": "Ice Monkey",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Cryo Cannon",
+    "mUpgradeID": 33,
+    "mTower": "Ice Monkey",
+    "mCost": 2250
+  },
+
+  {
+    "mTitle": "Icicles",
+    "mUpgradeID": 34,
+    "mTower": "Ice Monkey",
+    "mCost": 2750
+  },
+
+  {
+    "mTitle": "Icicle Impale",
+    "mUpgradeID": 35,
+    "mTower": "Ice Monkey",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Ice Monkey",
+    "mCost": 0
+  }
+]

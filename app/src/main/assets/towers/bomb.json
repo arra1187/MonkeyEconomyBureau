@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Bomb Shooter",
+    "mCost": 525
+  },
+
+  {
+    "mTitle": "Bigger Bombs",
+    "mUpgradeID": 11,
+    "mTower": "Bomb Shooter",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Heavy Bombs",
+    "mUpgradeID": 12,
+    "mTower": "Bomb Shooter",
+    "mCost": 650
+  },
+
+  {
+    "mTitle": "Really Big Bombs",
+    "mUpgradeID": 13,
+    "mTower": "Bomb Shooter",
+    "mCost": 1200
+  },
+
+  {
+    "mTitle": "Bloon Impact",
+    "mUpgradeID": 14,
+    "mTower": "Bomb Shooter",
+    "mCost": 3600
+  },
+
+  {
+    "mTitle": "Bloon Crush",
+    "mUpgradeID": 15,
+    "mTower": "Bomb Shooter",
+    "mCost": 55000
+  },
+
+  {
+    "mTitle": "Faster Reload",
+    "mUpgradeID": 21,
+    "mTower": "Bomb Shooter",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Missile Launcher",
+    "mUpgradeID": 22,
+    "mTower": "Bomb Shooter",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "MOAB Mauler",
+    "mUpgradeID": 23,
+    "mTower": "Bomb Shooter",
+    "mCost": 1100
+  },
+
+  {
+    "mTitle": "MOAB Assassin",
+    "mUpgradeID": 24,
+    "mTower": "Bomb Shooter",
+    "mCost": 3200
+  },
+
+  {
+    "mTitle": "Moan Eliminator",
+    "mUpgradeID": 25,
+    "mTower": "Bomb Shooter",
+    "mCost": 25000
+  },
+
+  {
+    "mTitle": "Extra Range",
+    "mUpgradeID": 31,
+    "mTower": "Bomb Shooter",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Frag Bombs",
+    "mUpgradeID": 32,
+    "mTower": "Bomb Shooter",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Cluster Bombs",
+    "mUpgradeID": 33,
+    "mTower": "Bomb Shooter",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "Recursive Cluster",
+    "mUpgradeID": 34,
+    "mTower": "Bomb Shooter",
+    "mCost": 2800
+  },
+
+  {
+    "mTitle": "Bomb Blitz",
+    "mUpgradeID": 35,
+    "mTower": "Bomb Shooter",
+    "mCost": 35000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Bomb Shooter",
+    "mCost": 0
+  }
+]

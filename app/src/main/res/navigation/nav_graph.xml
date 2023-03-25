@@ -3,26 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/CostCalculator">
+    app:startDestination="@id/WelcomePage">
 
     <fragment
-        android:id="@+id/CostCalculator"
-        android:name="com.example.costcalculator30.CostCalculator"
-        android:label="@string/cost_calculator_label"
-        tools:layout="@layout/fragment_cost_calculator">
+        android:id="@+id/WelcomePage"
+        android:name="com.example.costcalculator30.WelcomePage"
+        android:label="@string/welcome_page"
+        tools:layout="@layout/page_template">
 
         <action
             android:id="@+id/move_To_AC"
             app:destination="@id/AffordabilityCalculator" />
     </fragment>
+
+    <fragment
+        android:id="@+id/CostCalculator"
+        android:name="com.example.costcalculator30.CostCalculator"
+        android:label="@string/cost_calculator_label"
+        tools:layout="@layout/page_template">
+
+        <action
+            android:id="@+id/move_To_AC"
+            app:destination="@id/AffordabilityCalculator" />
+    </fragment>
+
     <fragment
         android:id="@+id/AffordabilityCalculator"
         android:name="com.example.costcalculator30.AffordabilityCalculator"
         android:label="@string/affordability_calculator_label"
-        tools:layout="@layout/fragment_affordability_calculator">
+        tools:layout="@layout/page_template">
 
         <action
             android:id="@+id/move_to_CC"
             app:destination="@id/CostCalculator" />
     </fragment>
+
+    <fragment
+        android:id="@+id/SavedDefenses"
+        android:name="com.example.costcalculator30.AffordabilityCalculator"
+        android:label="@string/saved_defenses_page"
+        tools:layout="@layout/page_template">
+
+        <action
+            android:id="@+id/move_to_CC"
+            app:destination="@id/CostCalculator" />
+    </fragment>
+
+    <action android:id="@+id/action_global_WelcomePage" app:destination="@id/welcome_page"/>
+    <action android:id="@+id/action_global_AffordabilityCalculator" app:destination="@id/AffordabilityCalculator"/>
+    <action android:id="@+id/action_global_CostCalculator" app:destination="@id/CostCalculator"/>
+    <action android:id="@+id/action_global_SavedDefenses" app:destination="@id/SavedDefenses"/>
 </navigation>

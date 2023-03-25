@@ -20,18 +20,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class TowerRecyclerViewAdapter
         extends RecyclerView.Adapter<TowerRecyclerViewAdapter.ViewHolder>
 {
-    //private ArrayList<Tower> mTowers;
-    Context mContext;
-    UpgradeDao mUpgradeDao;
+    private final Context mContext;
+    private final UpgradeDao mUpgradeDao;
+    //private final DefenseDao mDefenseDao;
+    private final Executor mExecutor;
 
-    public TowerRecyclerViewAdapter(Context context, UpgradeDao upgradeDao)
+    public TowerRecyclerViewAdapter(Context context)
     {
         mContext = context;
-        mUpgradeDao = upgradeDao;
+
+        DatabaseRepository repository = new DatabaseRepository();
+        mUpgradeDao = repository.getUpgradeDao(context);
+        //mDefenseDao = repository.getDefenseDao(context);
+
+        mExecutor = Executors.newSingleThreadExecutor();
     }
 
     @NonNull
@@ -39,7 +47,7 @@ public class TowerRecyclerViewAdapter
     public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                       int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_tower_display, parent,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
                 false);
 
 
@@ -52,6 +60,12 @@ public class TowerRecyclerViewAdapter
     {
         holder.setTower(ConnectTowerList.getTowers().get(position));
 
+        /*int topPath = holder.getTower().getTopPath();
+
+        holder.getTopPath().setSelection(topPath);
+        holder.getMiddlePath().setSelection(holder.getTower().getMiddlePath());
+        holder.getBottomPath().setSelection(holder.getTower().getBottomPath());*/
+
         holder.getRemoveButton().setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -59,6 +73,8 @@ public class TowerRecyclerViewAdapter
             {
                 ConnectTowerList.removeTower(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
+
+                updateDatabase();
             }
         });
 
@@ -71,6 +87,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setTopPath(newTopPath);
 
                 ConnectTowerList.setTowers(towers);
+
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -88,6 +106,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setMiddlePath(newMiddlePath);
 
                 ConnectTowerList.setTowers(towers);
+
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -105,6 +125,8 @@ public class TowerRecyclerViewAdapter
                 towers.get(holder.getAdapterPosition()).setBottomPath(newBottomPath);
 
                 ConnectTowerList.setTowers(towers);
+
+                updateDatabase();
             }
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -113,6 +135,14 @@ public class TowerRecyclerViewAdapter
         });
 
         holder.bindData();
+    }
+
+    public void updateDatabase()
+    {
+        mExecutor.execute(() ->
+        {
+            //mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+        });
     }
 
     @Override
@@ -126,6 +156,10 @@ public class TowerRecyclerViewAdapter
         private Tower mTower;
         private String mTitle;
         private UpgradeDao mUpgradeDao;
+
+        private Spinner mTopPath;
+        private Spinner mMiddlePath;
+        private Spinner mBottomPath;
 
         private Button mDiscountButton;
         private ImageView mTowerSymbol;
@@ -145,11 +179,32 @@ public class TowerRecyclerViewAdapter
             mUpgradeAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
                 android.R.layout.simple_spinner_item);
             mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+            mTopPath = (Spinner) itemView.findViewById(R.id.top_path);
+            mTopPath.setAdapter(mUpgradeAdapter);
+
+            mMiddlePath = (Spinner) itemView.findViewById(R.id.middle_path);
+            mMiddlePath.setAdapter(mUpgradeAdapter);
+
+            mBottomPath = (Spinner) itemView.findViewById(R.id.bottom_path);
+            mBottomPath.setAdapter(mUpgradeAdapter);
         }
 
         public void setTower(Tower tower)
         {
             mTower = tower;
+
+            Spinner topPath = (Spinner) itemView.findViewById(R.id.top_path);
+
+            mUpgradeAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.upgrades,
+                    android.R.layout.simple_spinner_item);
+            mUpgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+            topPath.setAdapter(mUpgradeAdapter);
+
+            int value = tower.getTopPath();
+
+            topPath.setSelection(value);
         }
 
         public void setTitle(String title)
@@ -194,9 +249,14 @@ public class TowerRecyclerViewAdapter
             return bottomPath;
         }
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         public void bindData()
         {
             Drawable towerSymbol = null;
+
+            mTopPath.setSelection(mTower.getTopPath());
+            mMiddlePath.setSelection(mTower.getMiddlePath());
+            mBottomPath.setSelection(mTower.getBottomPath());
 
             if(mDiscountButton == null)
             {
@@ -214,6 +274,12 @@ public class TowerRecyclerViewAdapter
                     break;
                 case "Boomerang Monkey":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.boomerang_monkey_symbol);
+                    break;
+                case "Bomb Shooter":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.bomb_shooter_symbol);
+                    break;
+                case "Tack Shooter":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.tack_shooter_symbol);
                     break;
             }
 

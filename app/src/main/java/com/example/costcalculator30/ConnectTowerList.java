@@ -43,6 +43,16 @@ public class ConnectTowerList
         }
     }
 
+    public static void clearTowers()
+    {
+        mTowers.clear();
+
+        for (ConnectionArrayListChangedListener listener : listeners)
+        {
+            listener.OnMyArrayListChanged();
+        }
+    }
+
     public static void addMyArrayListListener(ConnectionArrayListChangedListener listener)
     {
         listeners.add(listener);

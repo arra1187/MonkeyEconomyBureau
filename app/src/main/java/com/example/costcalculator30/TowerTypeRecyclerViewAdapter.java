@@ -33,7 +33,7 @@ public class TowerTypeRecyclerViewAdapter
     public TowerTypeRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                                   int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_type_display,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display,
                 parent, false);
         TowerTypeRecyclerViewAdapter.ViewHolder holder
                 = new TowerTypeRecyclerViewAdapter.ViewHolder(view, mContext, mUpgradeDao);

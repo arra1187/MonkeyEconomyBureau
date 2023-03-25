@@ -1,5 +1,6 @@
 package com.example.costcalculator30;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,10 +12,10 @@ import java.util.List;
 public interface UpgradeDao
 {
     @Query ("Select * from Upgrade")
-    List<Upgrade> getAll();
+    LiveData<List<Upgrade>> getAll();
 
     @Query("Select * FROM Upgrade WHERE nid = :id")
-    Upgrade findByID(int id);
+    Upgrade getUpgrade(int id);
 
     @Insert
     void insert(Upgrade upgrade);

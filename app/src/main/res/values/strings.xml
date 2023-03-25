@@ -1,7 +1,12 @@
 <resources>
     <!-- Strings used for logistics -->
-    <string name="app_name">Cost Calculator 3.0</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Monkey Economy Bureau</string>
+
+    <!-- Page name -->
+    <string name="welcome_page">Welcome</string>
+    <string name="cost_calculator_page">Cost Calculator</string>
+    <string name="affordability_calculator_page">Affordability Calculator</string>
+    <string name="saved_defenses_page">Saved Defenses</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -15,9 +20,10 @@
 
     <!-- Heading Strings -->
     <string name="app_heading">MONKEY ECONOMY BUREAU</string>
-    <string name="page_heading_1.1">Cost</string>
+    <string name="page_heading_1.1">Cost\nCalculator</string>
     <string name="page_heading_2">Calculator</string>
     <string name="page_heading_1.2">Affordability</string>
+    <string name="page_heading_template">Page\nHeader</string>
 
     <!-- Button Strings -->
     <string name="menu_button">MENU</string>
@@ -29,6 +35,12 @@
     <string name="target_button_label">Target  </string>
     <string name="x_button">X</string>
     <string name="enter_button_label">Enter</string>
+    <string name="clear_towers_button_label">Clear towers</string>
+    <string name="compare_button_label">Compare with Defense</string>
+    <string name="save_defense_button_label">Save Defense</string>
+    <string name="load_defense_button_label">Load Defense</string>
+    <string name="set_as_current_button">Set as Current</string>
+
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>
@@ -75,6 +87,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <!-- Numbers -->
@@ -84,6 +97,7 @@
     <string name="three">3</string>
     <string name="four">4</string>
     <string name="five">5</string>
+    <string name="six">6</string>
 
     <!-- Difficulty dropdown -->
     <string-array name="difficulties">
@@ -91,6 +105,19 @@
         <item>Medium</item>
         <item>Hard</item>
         <item>Impoppable</item>
+    </string-array>
+
+    <!-- Cash multiplier dropdown -->
+    <string-array name="cash_multipliers">
+        <item>Half Cash</item>
+        <item>Normal Cash</item>
+        <item>Double Cash</item>
+    </string-array>
+
+    <!-- Round type dropdown -->
+    <string-array name="round_types">
+        <item>Normal Rounds</item>
+        <item>Alternate Bloons Rounds</item>
     </string-array>
 
     <!-- Label section -->
@@ -101,13 +128,24 @@
     <string name="database_test_label">Enter Dart Monkey Upgrade</string>
     <string name="affordability_calculator_label">Affordability Calculator</string>
     <string name="cost_calculator_label">Cost Calculator</string>
+    <string name="start_round_label">Start Round</string>
+    <string name="end_round_label">End Round</string>
+    <string name="my_cash_label">My cash</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>
+
+    <!-- Long sections of text -->
+    <string name="welcome_message">Welcome to the Monkey Economy Bureau\n\nThis app features a Cost Calculator which you can use to calculate the cost of your defense.\n\nIt also features an Affordability Calculator which you can use to figure out the round you will afford your defense\n\n(placeholder)\n\nSelect the Options Button (3 vertical dots) to begin</string>
+    <string name="round_cash_message">Cash gained from entered round range</string>
+    <string name="afford_defense_message">When will I afford my defense?</string>
+    <string name="defense_cost_message">Defense cost from the Cost Calculator</string>
 
     <!-- Mischellaneous section -->
     <string name="default_price">$0</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test_button">Test</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 
 </resources>

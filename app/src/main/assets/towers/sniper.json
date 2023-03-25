@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Sniper Monkey",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Full Metal Jacket",
+    "mUpgradeID": 11,
+    "mTower": "Sniper Monkey",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Large Calibre",
+    "mUpgradeID": 12,
+    "mTower": "Sniper Monkey",
+    "mCost": 1500
+  },
+
+  {
+    "mTitle": "Deadly Precision",
+    "mUpgradeID": 13,
+    "mTower": "Sniper Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Main MOAB",
+    "mUpgradeID": 14,
+    "mTower": "Sniper Monkey",
+    "mCost": 5400
+  },
+
+  {
+    "mTitle": "Cripple MOAB",
+    "mUpgradeID": 15,
+    "mTower": "Sniper Monkey",
+    "mCost": 32000
+  },
+
+  {
+    "mTitle": "Night Vision Goggles",
+    "mUpgradeID": 21,
+    "mTower": "Sniper Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Shrapnel Shot",
+    "mUpgradeID": 22,
+    "mTower": "Sniper Monkey",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Bouncing Bullet",
+    "mUpgradeID": 23,
+    "mTower": "Sniper Monkey",
+    "mCost": 3200
+  },
+
+  {
+    "mTitle": "Supply Drop",
+    "mUpgradeID": 24,
+    "mTower": "Sniper Monkey",
+    "mCost": 7200
+  },
+
+  {
+    "mTitle": "Elite Sniper",
+    "mUpgradeID": 25,
+    "mTower": "Sniper Monkey",
+    "mCost": 14500
+  },
+
+  {
+    "mTitle": "Fast Firing",
+    "mUpgradeID": 31,
+    "mTower": "Sniper Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Even Faster Firing",
+    "mUpgradeID": 32,
+    "mTower": "Sniper Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Semi-Automatic",
+    "mUpgradeID": 33,
+    "mTower": "Sniper Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Full Auto Rifle",
+    "mUpgradeID": 34,
+    "mTower": "Sniper Monkey",
+    "mCost": 4250
+  },
+
+  {
+    "mTitle": "Elite Defender",
+    "mUpgradeID": 35,
+    "mTower": "Sniper Monkey",
+    "mCost": 14500
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Sniper Monkey",
+    "mCost": 0
+  }
+]

@@ -1,37 +1,87 @@
 package com.example.costcalculator30;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
+//@Entity
 public class Tower
 {
+    //@PrimaryKey(autoGenerate = true)
+    //private int nid;
+
+    //@ColumnInfo(name = "title")
+    @SerializedName("title")
     private String mTitle;
 
+    //@ColumnInfo(name = "topPath")
+    @SerializedName("topPath")
     private int mTopPath;
+
+    //@ColumnInfo(name = "middlePath")
+    @SerializedName("middlePath")
     private int mMiddlePath;
+
+    //@ColumnInfo(name = "bottomPath")
+    @SerializedName("bottomPath")
     private int mBottomPath;
 
+    //@ColumnInfo(name = "towerCost")
+    @SerializedName("towerCost")
+    private int mTowerCost;
+
+    //@ColumnInfo(name = "upgradeDao")
+    //private UpgradeDao mUpgradeDao;
+
+    /*@ColumnInfo(name = "topPathDiscounts")
     private double [] mTopPathDiscounts;
+
+    @ColumnInfo(name = "middlePathDiscounts")
     private double [] mMiddlePathDiscounts;
+
+    @ColumnInfo(name = "bottomPathDiscounts")
     private double [] mBottomPathDiscounts;
-    private double mBaseDiscount;
 
+    @ColumnInfo(name = "baseDiscount")
+    private double mBaseDiscount;*/
+
+    //@ColumnInfo(name = "baseCost")
+    @Ignore
+    @SerializedName("baseCost")
     private int mBaseCost;
+
+    //@ColumnInfo(name = "topPathCosts")
+    @Ignore
+    @SerializedName("topPathCosts")
     private int mTopPathCosts[];
+
+    //@ColumnInfo(name = "middlePathCosts")
+    @Ignore
+    @SerializedName("middlePathCosts")
     private int mMiddlePathCosts[];
+
+    //@ColumnInfo(name = "bottomPathCosts")
+    @Ignore
+    @SerializedName("bottomPathCosts")
     private int mBottomPathCosts[];
-    private int mParagonCost;
 
-    private final int numTiers = 5;
+    @Ignore
+    @SerializedName("numTiers")
+    private final int numTiers = 6;
 
-    Tower(String title, UpgradeDao upgradeDao)
+    Tower(String title, int topPath, int middlePath, int bottomPath, int towerCost, UpgradeRepository upgradeRepository)
     {
         mTitle = title;
-        mTopPath = 0;
-        mMiddlePath = 0;
-        mBottomPath = 0;
-        mBaseDiscount = 0;
+        mTopPath = topPath;
+        mMiddlePath = middlePath;
+        mBottomPath = bottomPath;
+        //mBaseDiscount = 0;
 
         mTopPathCosts = new int[numTiers];
         mMiddlePathCosts = new int[numTiers];
@@ -40,24 +90,30 @@ public class Tower
         ExecutorService mExecutor = Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
-            mBaseCost = upgradeDao.getCost(mTitle, 0);
+            int paragonCost;
+
+            mBaseCost = upgradeRepository.getCost(mTitle, 0);
 
             for (int i = 0; i < numTiers; i++)
             {
-                mTopPathCosts[i] = upgradeDao.getCost(mTitle, 10 + i + 1);
+                mTopPathCosts[i] = upgradeRepository.getCost(mTitle, 10 + i + 1);
             }
 
             for (int i = 0; i < numTiers; i++)
             {
-                mMiddlePathCosts[i] = upgradeDao.getCost(mTitle, 20 + i + 1);
+                mMiddlePathCosts[i] = upgradeRepository.getCost(mTitle, 20 + i + 1);
             }
 
             for (int i = 0; i < numTiers; i++)
             {
-                mBottomPathCosts[i] = upgradeDao.getCost(mTitle, 30 + i + 1);
+                mBottomPathCosts[i] = upgradeRepository.getCost(mTitle, 30 + i + 1);
             }
 
-            mParagonCost = upgradeDao.getCost(mTitle, 6);
+            paragonCost = upgradeRepository.getCost(mTitle, 6);
+
+            mTopPathCosts[numTiers - 1] = paragonCost;
+            mMiddlePathCosts[numTiers - 1] = paragonCost;
+            mBottomPathCosts[numTiers - 1] = paragonCost;
         });
     }
 
@@ -68,24 +124,39 @@ public class Tower
 
     public int getTowerCost()
     {
-        int towerCost = mBaseCost;
+        mTowerCost = mBaseCost;
 
         for (int i = 0; i < mTopPath; i++)
         {
-            towerCost += mTopPathCosts[i];
+            mTowerCost += mTopPathCosts[i];
         }
 
         for (int i = 0; i < mMiddlePath; i++)
         {
-            towerCost += mMiddlePathCosts[i];
+            mTowerCost += mMiddlePathCosts[i];
         }
 
         for (int i = 0; i < mBottomPath; i++)
         {
-            towerCost += mBottomPathCosts[i];
+            mTowerCost += mBottomPathCosts[i];
         }
 
-        return towerCost;
+        return mTowerCost;
+    }
+
+    public int getTopPath()
+    {
+        return mTopPath;
+    }
+
+    public int getMiddlePath()
+    {
+        return mMiddlePath;
+    }
+
+    public int getBottomPath()
+    {
+        return mBottomPath;
     }
 
     public void setTopPath(int topPath)
@@ -94,7 +165,7 @@ public class Tower
 
         if(topPath != 0)
         {
-            mTopPathDiscounts = new double[topPath];
+            //mTopPathDiscounts = new double[topPath];
         }
     }
 
@@ -104,7 +175,7 @@ public class Tower
 
         if(middlePath != 0)
         {
-            mMiddlePathDiscounts = new double[middlePath];
+            //mMiddlePathDiscounts = new double[middlePath];
         }
     }
 
@@ -114,11 +185,11 @@ public class Tower
 
         if(bottomPath != 0)
         {
-            mBottomPathDiscounts = new double[bottomPath];
+            //mBottomPathDiscounts = new double[bottomPath];
         }
     }
 
-    public void setUpgrades(int topPath, int middlePath, int bottomPath)
+    /*public void setUpgrades(int topPath, int middlePath, int bottomPath)
     {
         mTopPath = topPath;
         mMiddlePath = middlePath;
@@ -168,5 +239,5 @@ public class Tower
         }
 
         mBaseDiscount = baseDiscount;
-    }
+    }*/
 }

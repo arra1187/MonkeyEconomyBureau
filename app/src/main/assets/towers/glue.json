@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Glue Gunner",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Glue Soak",
+    "mUpgradeID": 11,
+    "mTower": "Glue Gunner",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Corrosive Glue",
+    "mUpgradeID": 12,
+    "mTower": "Glue Gunner",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Bloon Dissolver",
+    "mUpgradeID": 13,
+    "mTower": "Glue Gunner",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Bloon Liquefier",
+    "mUpgradeID": 14,
+    "mTower": "Glue Gunner",
+    "mCost": 5000
+  },
+
+  {
+    "mTitle": "The Bloon Solver",
+    "mUpgradeID": 15,
+    "mTower": "Glue Gunner",
+    "mCost": 22000
+  },
+
+  {
+    "mTitle": "Bigger Globs",
+    "mUpgradeID": 21,
+    "mTower": "Glue Gunner",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Glue Splatter",
+    "mUpgradeID": 22,
+    "mTower": "Glue Gunner",
+    "mCost": 1650
+  },
+
+  {
+    "mTitle": "Glue Host",
+    "mUpgradeID": 23,
+    "mTower": "Glue Gunner",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Glue Strike",
+    "mUpgradeID": 24,
+    "mTower": "Glue Gunner",
+    "mCost": 3450
+  },
+
+  {
+    "mTitle": "Glue Storm",
+    "mUpgradeID": 25,
+    "mTower": "Glue Gunner",
+    "mCost": 15000
+  },
+
+  {
+    "mTitle": "Sticker Glue",
+    "mUpgradeID": 31,
+    "mTower": "Glue Gunner",
+    "mCost": 280
+  },
+
+  {
+    "mTitle": "Stronger Glue",
+    "mUpgradeID": 32,
+    "mTower": "Glue Gunner",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "MOAB Glue",
+    "mUpgradeID": 33,
+    "mTower": "Glue Gunner",
+    "mCost": 3400
+  },
+
+  {
+    "mTitle": "Relentless Glue",
+    "mUpgradeID": 34,
+    "mTower": "Glue Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Super Glue",
+    "mUpgradeID": 35,
+    "mTower": "Glue Monkey",
+    "mCost": 28000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Glue Monkey",
+    "mCost": 0
+  }
+]

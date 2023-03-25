@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Tack Shooter",
+    "mCost": 280
+  },
+
+  {
+    "mTitle": "Faster Shooting",
+    "mUpgradeID": 11,
+    "mTower": "Tack Shooter",
+    "mCost": 150
+  },
+
+  {
+    "mTitle": "Even Faster Shooting",
+    "mUpgradeID": 12,
+    "mTower": "Tack Shooter",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Hot Shots",
+    "mUpgradeID": 13,
+    "mTower": "Tack Shooter",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Ring of Fire",
+    "mUpgradeID": 14,
+    "mTower": "Tack Shooter",
+    "mCost": 3500
+  },
+
+  {
+    "mTitle": "Inferno Ring",
+    "mUpgradeID": 15,
+    "mTower": "Tack Shooter",
+    "mCost": 45500
+  },
+
+  {
+    "mTitle": "Long Range Tacks",
+    "mUpgradeID": 21,
+    "mTower": "Tack Shooter",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Super Range Tacks",
+    "mUpgradeID": 22,
+    "mTower": "Tack Shooter",
+    "mCost": 225
+  },
+
+  {
+    "mTitle": "Blade Shooter",
+    "mUpgradeID": 23,
+    "mTower": "Tack Shooter",
+    "mCost": 550
+  },
+
+  {
+    "mTitle": "Blade Maelstrom",
+    "mUpgradeID": 24,
+    "mTower": "Tack Shooter",
+    "mCost": 2700
+  },
+
+  {
+    "mTitle": "Super Maelstrom",
+    "mUpgradeID": 25,
+    "mTower": "Tack Shooter",
+    "mCost": 15000
+  },
+
+  {
+    "mTitle": "More Tacks",
+    "mUpgradeID": 31,
+    "mTower": "Tack Shooter",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Even More Tacks",
+    "mUpgradeID": 32,
+    "mTower": "Tack Shooter",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Tack Sprayer",
+    "mUpgradeID": 33,
+    "mTower": "Tack Shooter",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Overdrive",
+    "mUpgradeID": 34,
+    "mTower": "Tack Shooter",
+    "mCost": 3200
+  },
+
+  {
+    "mTitle": "The Tack Zone",
+    "mUpgradeID": 35,
+    "mTower": "Tack Shooter",
+    "mCost": 20000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Tack Shooter",
+    "mCost": 0
+  }
+]

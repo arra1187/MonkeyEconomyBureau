@@ -1,8 +1,7 @@
 package com.example.costcalculator30;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,80 +13,102 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CostCalculator extends Fragment
 {
-    //private FragmentCostCalculatorBinding binding;
-    //private RecyclerView.Adapter mTowerTypeAdapter;
     private TowerRecyclerViewAdapter mTowerTypeAdapter;
-    private UpgradeDatabase mDatabase;
+    private AppPage mAppPage;
+
+    private UpgradeRepository mUpgradeRepository;
+    private DefenseViewModel mDefenseViewModel;
+
+    //private DatabaseRepository mRepository;
     private UpgradeDao mUpgradeDao;
+    private DefenseDao mDefenseDao;
 
     private RecyclerView mTowerRecycler;
-    private TextView mFinalPrice;
+
+    private TextView mFinalPriceView;
 
     private Spinner mTowerDropdown;
     private Spinner mDifficultyDropdown;
 
+    private ExecutorService mExecutor;
+
+    private int mDefenseCost;
+    private final int mCurrentDefenseID;
+
+    public CostCalculator()
+    {
+        mCurrentDefenseID = 1;
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        //binding = FragmentCostCalculatorBinding.inflate(inflater, container, false);
+        final String pageHeader = "Cost\nCalculator";
+        final String initialCost = "$0";
+        final int fragmentLayout = R.layout.fragment_cost_calculator;
 
-        View view = inflater.inflate(R.layout.fragment_cost_calculator, container, false);
+        mUpgradeRepository = new UpgradeRepository(getActivity().getApplication());
+        mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
-        //return fragmentFirstLayout;
+        mExecutor = Executors.newSingleThreadExecutor();
 
-        //mDatabase = UpgradeDatabase.getDatabase(getContext());
-        //mUpgradeDao = mDatabase.mUpgradeDao();
+        mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        getDatabase();
+        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.final_price);
+        mFinalPriceView.setText(initialCost);
 
-        mFinalPrice = view.findViewById(R.id.final_price);
-        mFinalPrice.setText("$0");
-
-        mTowerRecycler = view.findViewById(R.id.tower_recyclerView);
+        mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mUpgradeDao);
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext());
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
-        mTowerDropdown = view.findViewById(R.id.target_tower_dropdown);
+        mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.target_tower_dropdown);
         ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.towers, android.R.layout.simple_spinner_item);
         towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mTowerDropdown.setAdapter(towerAdapter);
 
-        mDifficultyDropdown = view.findViewById(R.id.difficulty_dropdown);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+        mDifficultyDropdown = mAppPage.getCustomView().findViewById(R.id.difficulty_dropdown);
+        ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.difficulties, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mDifficultyDropdown.setAdapter(adapter);
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mDifficultyDropdown.setAdapter(difficultyAdapter);
 
         mDifficultyDropdown.setSelection(1);
 
-        return view;
+        mDefenseCost = 0;
+
+        updateTowers();
+
+        return mAppPage.getOverView();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
+        view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast towerToast = Toast.makeText(getActivity(), "There are " + ConnectTowerList.getTowers().size() + " towers.", Toast.LENGTH_LONG);
+                towerToast.show();
+            }
+        });
+
+        mAppPage.getCustomView().findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -102,30 +123,48 @@ public class CostCalculator extends Fragment
                     return;
                 }
 
-                Tower newTower = new Tower(newTowerTitle, mUpgradeDao);
+                Tower newTower = new Tower(newTowerTitle, 0, 0, 0, 0, mUpgradeRepository);
 
                 ConnectTowerList.getTowers().add(newTower);
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);
                 mTowerRecycler.scrollToPosition(mTowerTypeAdapter.getItemCount() - 1);
+
+                mExecutor.execute(() ->
+                {
+                    //mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+                    mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), mCurrentDefenseID);
+                });
             }
         });
 
-        view.findViewById(R.id.help_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Toast towerToast = Toast.makeText(getActivity(), "There are " + ConnectTowerList.getTowers().size() + " towers.", Toast.LENGTH_LONG);
-                towerToast.show();
+                int size = ConnectTowerList.getTowers().size();
+
+                ConnectTowerList.clearTowers();
+                mTowerTypeAdapter.notifyItemRangeRemoved(0, size);
+
+                mTowerTypeAdapter.updateDatabase();
             }
         });
 
-        view.findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.save_defense_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                NavHostFragment.findNavController(CostCalculator.this).navigate(CostCalculatorDirections.moveToAC());
+                mExecutor.execute(() ->
+                {
+                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost);
+                    mDefenseViewModel.insertItem(newDefense);
+
+                    Looper.prepare();
+                    Toast saveToast = Toast.makeText(getActivity(), "Defense saved", Toast.LENGTH_LONG);
+                    view.post (() -> saveToast.show());
+                });
             }
         });
 
@@ -158,6 +197,7 @@ public class CostCalculator extends Fragment
     public void onDestroyView()
     {
         super.onDestroyView();
+
         //binding = null;
     }
 
@@ -193,95 +233,41 @@ public class CostCalculator extends Fragment
 
         finalPriceDisplay = "$" + finalPrice;
 
-        mFinalPrice.setText(finalPriceDisplay);
-    }
+        mFinalPriceView.setText(finalPriceDisplay);
 
-    private String loadJSONFromAsset(Context context)
-    {
-        String jsonString = null;
-        try
-        {
-            InputStream inputStream = context.getAssets().open("dart.json");
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
+        mDefenseCost = finalPrice;
 
-            inputStream.read(buffer);
-            inputStream.close();
-
-            jsonString = new String(buffer, "UTF-8");
-        }
-        catch(IOException exception)
-        {
-            exception.printStackTrace();
-            return null;
-        }
-
-        return jsonString;
-    }
-
-    private void getDatabase()
-    {
-        ExecutorService mExecutor= Executors.newSingleThreadExecutor ();
         mExecutor.execute(() ->
         {
-            String jsonString, aFileArray[];
-            JSONArray jsonArray;
-            AssetManager towerFiles;
+            //mDefenseDao.setCost(mDefenseCost, 1);
+            mDefenseViewModel.setCost(mDefenseCost, mCurrentDefenseID);
+        });
+    }
 
-            String title, tower;
-            int upgradeID, cost;
-
-            mDatabase = Room.databaseBuilder (getContext(),
-                    UpgradeDatabase.class, "Upgrade-db").build();
-
-            mUpgradeDao = mDatabase.mUpgradeDao();
-
-            mUpgradeDao.deleteAll();
-
-            towerFiles = getContext().getAssets();
-
-            //jsonString = loadJSONFromAsset(getContext());
-
-            try
+    private void updateTowers()
+    {
+        mExecutor.execute(() ->
+        {
+            /*if(mUpgradeDao == null)
             {
-                aFileArray = towerFiles.list("");
+                mUpgradeDao = mRepository.getUpgradeDao(getContext());
+            }
+            if(mDefenseDao == null)
+            {
+                //mDefenseDao = mRepository.getDefenseDao(getContext());
+            }*/
 
-                for(String fileName : aFileArray)
+            /*LiveData<List<Defense>> defenses = mDefenseViewModel.getAllData();
+
+            for(Defense defense : Objects.requireNonNull(defenses.getValue()))
+            {
+                if(defense.getNid() == 1)
                 {
-                    InputStream inputStream = towerFiles.open(fileName);
-                    int size = inputStream.available();
-                    byte[] buffer = new byte[size];
-
-                    inputStream.read(buffer);
-                    inputStream.close();
-
-                    jsonString = new String(buffer, "UTF-8");
-
-                    jsonArray = new JSONArray(jsonString);
-
-                    for(int i = 0; i < jsonArray.length(); i++)
-                    {
-                        JSONObject jsonItem = jsonArray.getJSONObject(i);
-
-                        title = jsonItem.getString("mTitle");
-                        upgradeID = Integer.parseInt(jsonItem.getString("mUpgradeID"));
-                        tower = jsonItem.getString("mTower");
-                        cost = Integer.parseInt(jsonItem.getString("mCost"));
-
-                        Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
-
-                        mUpgradeDao.insert(newUpgrade);
-                    }
+                    ConnectTowerList.setTowers(defense.getTowers());
                 }
-            }
-            catch(JSONException exception)
-            {
-                exception.printStackTrace();
-            }
-            catch(IOException exception)
-            {
-                exception.printStackTrace();
-            }
+            }*/
+
+            ConnectTowerList.setTowers(mDefenseViewModel.getDefense(mCurrentDefenseID).getTowers());
         });
     }
 }

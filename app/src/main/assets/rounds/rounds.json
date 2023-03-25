@@ -1,0 +1,601 @@
+[
+  {
+    "mRoundNumber": 1,
+    "mRBE": 20,
+    "mCash": 20
+  },
+
+  {
+    "mRoundNumber": 2,
+    "mRBE": 35,
+    "mCash": 35
+  },
+
+  {
+    "mRoundNumber": 3,
+    "mRBE": 35,
+    "mCash": 35
+  },
+
+  {
+    "mRoundNumber": 4,
+    "mRBE": 71,
+    "mCash": 71
+  },
+
+  {
+    "mRoundNumber": 5,
+    "mRBE": 59,
+    "mCash": 59
+  },
+
+  {
+    "mRoundNumber": 6,
+    "mRBE": 57,
+    "mCash": 57
+  },
+
+  {
+    "mRoundNumber": 7,
+    "mRBE": 75,
+    "mCash": 75
+  },
+
+  {
+    "mRoundNumber": 8,
+    "mRBE": 92,
+    "mCash": 92
+  },
+
+  {
+    "mRoundNumber": 9,
+    "mRBE": 90,
+    "mCash": 90
+  },
+
+  {
+    "mRoundNumber": 10,
+    "mRBE": 204,
+    "mCash": 204
+  },
+
+  {
+    "mRoundNumber": 11,
+    "mRBE": 78,
+    "mCash": 78
+  },
+
+  {
+    "mRoundNumber": 12,
+    "mRBE": 80,
+    "mCash": 80
+  },
+
+  {
+    "mRoundNumber": 13,
+    "mRBE": 169,
+    "mCash": 169
+  },
+
+  {
+    "mRoundNumber": 14,
+    "mRBE": 145,
+    "mCash": 145
+  },
+
+  {
+    "mRoundNumber": 15,
+    "mRBE": 151,
+    "mCash": 151
+  },
+
+  {
+    "mRoundNumber": 16,
+    "mRBE": 152,
+    "mCash": 152
+  },
+
+  {
+    "mRoundNumber": 17,
+    "mRBE": 48,
+    "mCash": 48
+  },
+
+  {
+    "mRoundNumber": 18,
+    "mRBE": 240,
+    "mCash": 240
+  },
+
+  {
+    "mRoundNumber": 19,
+    "mRBE": 141,
+    "mCash": 141
+  },
+
+  {
+    "mRoundNumber": 20,
+    "mRBE": 66,
+    "mCash": 66
+  },
+
+  {
+    "mRoundNumber": 21,
+    "mRBE": 230,
+    "mCash": 230
+  },
+
+  {
+    "mRoundNumber": 22,
+    "mRBE": 176,
+    "mCash": 176
+  },
+
+  {
+    "mRoundNumber": 23,
+    "mRBE": 154,
+    "mCash": 154
+  },
+
+  {
+    "mRoundNumber": 24,
+    "mRBE": 43,
+    "mCash": 43
+  },
+
+  {
+    "mRoundNumber": 25,
+    "mRBE": 210,
+    "mCash": 210
+  },
+
+  {
+    "mRoundNumber": 26,
+    "mRBE": 207,
+    "mCash": 207
+  },
+
+  {
+    "mRoundNumber": 27,
+    "mRBE": 535,
+    "mCash": 535
+  },
+
+  {
+    "mRoundNumber": 28,
+    "mRBE": 138,
+    "mCash": 138
+  },
+
+  {
+    "mRoundNumber": 29,
+    "mRBE": 260,
+    "mCash": 260
+  },
+
+  {
+    "mRoundNumber": 30,
+    "mRBE": 207,
+    "mCash": 207
+  },
+
+  {
+    "mRoundNumber": 31,
+    "mRBE": 406,
+    "mCash": 406
+  },
+
+  {
+    "mRoundNumber": 32,
+    "mRBE": 3495,
+    "mCash": 495
+  },
+
+  {
+    "mRoundNumber": 33,
+    "mRBE": 72,
+    "mCash": 72
+  },
+
+  {
+    "mRoundNumber": 34,
+    "mRBE": 778,
+    "mCash": 778
+  },
+
+  {
+    "mRoundNumber": 35,
+    "mRBE": 1015,
+    "mCash": 1015
+  },
+
+  {
+    "mRoundNumber": 36,
+    "mRBE": 760,
+    "mCash": 760
+  },
+
+  {
+    "mRoundNumber": 37,
+    "mRBE": 1202,
+    "mCash": 1202
+  },
+
+  {
+    "mRoundNumber": 38,
+    "mRBE": 1157,
+    "mCash": 1139
+  },
+
+  {
+    "mRoundNumber": 39,
+    "mRBE": 1620,
+    "mCash": 1620
+  },
+
+  {
+    "mRoundNumber": 40,
+    "mRBE": 616,
+    "mCash": 381
+  },
+
+  {
+    "mRoundNumber": 41,
+    "mRBE": 2040,
+    "mCash": 2040
+  },
+
+  {
+    "mRoundNumber": 42,
+    "mRBE": 517,
+    "mCash": 517
+  },
+
+  {
+    "mRoundNumber": 43,
+    "mRBE": 1198,
+    "mCash": 1135
+  },
+
+  {
+    "mRoundNumber": 44,
+    "mRBE": 1150,
+    "mCash": 1150
+  },
+
+  {
+    "mRoundNumber": 45,
+    "mRBE": 1015,
+    "mCash": 1015
+  },
+
+  {
+    "mRoundNumber": 46,
+    "mRBE": 2289,
+    "mCash": 2277
+  },
+
+  {
+    "mRoundNumber": 47,
+    "mRBE": 1598,
+    "mCash": 1490
+  },
+
+  {
+    "mRoundNumber": 48,
+    "mRBE": 2752,
+    "mCash": 2695
+  },
+
+  {
+    "mRoundNumber": 49,
+    "mRBE": 4771,
+    "mCash": 4609
+  },
+
+  {
+    "mRoundNumber": 50,
+    "mRBE": 3540,
+    "mCash": 2866
+  },
+
+  {
+    "mRoundNumber": 51,
+    "mRBE": 2030,
+    "mCash": 947
+  },
+
+  {
+    "mRoundNumber": 52,
+    "mRBE": 3447,
+    "mCash": 1443
+  },
+
+  {
+    "mRoundNumber": 53,
+    "mRBE": 2248,
+    "mCash": 771
+  },
+
+  {
+    "mRoundNumber": 54,
+    "mRBE": 4872,
+    "mCash": 2043
+  },
+
+  {
+    "mRoundNumber": 55,
+    "mRBE": 5296,
+    "mCash": 2328
+  },
+
+  {
+    "mRoundNumber": 56,
+    "mRBE": 2496,
+    "mCash": 1130
+  },
+
+  {
+    "mRoundNumber": 57,
+    "mRBE": 4344,
+    "mCash": 1702
+  },
+
+  {
+    "mRoundNumber": 58,
+    "mRBE": 5780,
+    "mCash": 2140
+  },
+
+  {
+    "mRoundNumber": 59,
+    "mRBE": 4270,
+    "mCash": 2000
+  },
+
+  {
+    "mRoundNumber": 60,
+    "mRBE": 3164,
+    "mCash": 762
+  },
+
+  {
+    "mRoundNumber": 61,
+    "mRBE": 6530,
+    "mCash": 1071
+  },
+
+  {
+    "mRoundNumber": 62,
+    "mRBE": 8247,
+    "mCash": 1224
+  },
+
+  {
+    "mRoundNumber": 63,
+    "mRBE": 14413,
+    "mCash": 2663
+  },
+
+  {
+    "mRoundNumber": 64,
+    "mRBE": 6264,
+    "mCash": 685
+  },
+
+  {
+    "mRoundNumber": 65,
+    "mRBE": 18966,
+    "mCash": 2906
+  },
+
+  {
+    "mRoundNumber": 66,
+    "mRBE": 7496,
+    "mCash": 838
+  },
+
+  {
+    "mRoundNumber": 67,
+    "mRBE": 6410,
+    "mCash": 838
+  },
+
+  {
+    "mRoundNumber": 68,
+    "mRBE": 5628,
+    "mCash": 609
+  },
+
+  {
+    "mRoundNumber": 69,
+    "mRBE": 6680,
+    "mCash": 1222
+  },
+
+  {
+    "mRoundNumber": 70,
+    "mRBE": 13184,
+    "mCash": 2448
+  },
+
+  {
+    "mRoundNumber": 71,
+    "mRBE": 9280,
+    "mCash": 10280
+  },
+
+  {
+    "mRoundNumber": 72,
+    "mRBE": 10280,
+    "mCash": 1332
+  },
+
+  {
+    "mRoundNumber": 73,
+    "mRBE": 11256,
+    "mCash": 1219
+  },
+
+  {
+    "mRoundNumber": 74,
+    "mRBE": 18054,
+    "mCash": 2870
+  },
+
+  {
+    "mRoundNumber": 75,
+    "mRBE": 25402,
+    "mCash": 2492
+  },
+
+  {
+    "mRoundNumber": 76,
+    "mRBE": 6240,
+    "mCash": 1140
+  },
+
+  {
+    "mRoundNumber": 77,
+    "mRBE": 22596,
+    "mCash": 2363
+  },
+
+  {
+    "mRoundNumber": 78,
+    "mRBE": 26382,
+    "mCash": 4648
+  },
+
+  {
+    "mRoundNumber": 79,
+    "mRBE": 45804,
+    "mCash": 6530
+  },
+
+  {
+    "mRoundNumber": 80,
+    "mRBE": 16656,
+    "mCash": 1220
+  },
+
+  {
+    "mRoundNumber": 81,
+    "mRBE": 44506,
+    "mCash": 5185
+  },
+
+  {
+    "mRoundNumber": 82,
+    "mRBE": 52320,
+    "mCash": 2575
+  },
+
+  {
+    "mRoundNumber": 83,
+    "mRBE": 25080,
+    "mCash": 4566
+  },
+
+  {
+    "mRoundNumber": 84,
+    "mRBE": 51480,
+    "mCash": 6860
+  },
+
+  {
+    "mRoundNumber": 85,
+    "mRBE": 30704,
+    "mCash": 2440
+  },
+
+  {
+    "mRoundNumber": 86,
+    "mRBE": 27040,
+    "mCash": 762
+  },
+
+  {
+    "mRoundNumber": 87,
+    "mRBE": 63008,
+    "mCash": 2440
+  },
+
+  {
+    "mRoundNumber": 88,
+    "mRBE": 63600,
+    "mCash": 3126
+  },
+
+  {
+    "mRoundNumber": 89,
+    "mRBE": 64384,
+    "mCash": 1982
+  },
+
+  {
+    "mRoundNumber": 90,
+    "mRBE": 2756,
+    "mCash": 149
+  },
+
+  {
+    "mRoundNumber": 91,
+    "mRBE": 71160,
+    "mCash": 4000
+  },
+
+  {
+    "mRoundNumber": 92,
+    "mRBE": 117408,
+    "mCash": 4345
+  },
+
+  {
+    "mRoundNumber": 93,
+    "mRBE": 62936,
+    "mCash": 1753
+  },
+
+  {
+    "mRoundNumber": 94,
+    "mRBE": 178112,
+    "mCash": 7473
+  },
+
+  {
+    "mRoundNumber": 95,
+    "mRBE": 80860,
+    "mCash": 3523
+  },
+
+  {
+    "mRoundNumber": 96,
+    "mRBE": 238952,
+    "mCash": 9759
+  },
+
+  {
+    "mRoundNumber": 97,
+    "mRBE": 69984,
+    "mCash": 1220
+  },
+
+  {
+    "mRoundNumber": 98,
+    "mRBE": 327456,
+    "mCash": 9455
+  },
+
+  {
+    "mRoundNumber": 99,
+    "mRBE": 47424,
+    "mCash": 2628
+  },
+
+  {
+    "mRoundNumber": 100,
+    "mRBE": 67200,
+    "mCash": 1334
+  }
+]
