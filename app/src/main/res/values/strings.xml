@@ -141,8 +141,13 @@
     <string name="afford_defense_message">When will I afford my defense?</string>
     <string name="defense_cost_message">Defense cost from the Cost Calculator</string>
 
-    <!-- Mischellaneous section -->
+    <!-- Outputs -->
     <string name="default_price">$0</string>
+    <string name="sell_count">Sells: 0</string>
+    <string name="rebuy_count">Re-buys: 0</string>
+
+
+    <!-- Mischellaneous section -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test_button">Test</string>
     <string name="nav_open">Open</string>
