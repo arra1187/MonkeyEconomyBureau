@@ -1,0 +1,128 @@
+[
+  {
+    "mTitle": "Red Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 1,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Blue Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 2,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Green Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 3,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Yellow Bloon",
+    "mType": "Bloon",
+    "mRBE": 4,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Pink Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 5,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Black Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 11,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "White Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 11,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Purple Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 11,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Zebra Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 23,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Lead Bloon",
+    "mType": "Heavy Bloon",
+    "mbFortified": "false",
+    "mRBE": 23,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Rainbow Bloon",
+    "mType": "Bloon",
+    "mbFortified": "false",
+    "mRBE": 47,
+    "mHealth": 1
+  },
+
+  {
+    "mTitle": "Ceramic Bloon",
+    "mType": "Heavy Bloon",
+    "mbFortified": "false",
+    "mRBE": 104,
+    "mHealth": 10
+  },
+
+  {
+    "mTitle": "Lead Bloon",
+    "mType": "Heavy Bloon",
+    "mbFortified": "true",
+    "mRBE": 26,
+    "mHealth": 4
+  },
+
+  {
+    "mTitle": "Ceramic Bloon",
+    "mType": "Heavy Bloon",
+    "mbFortified": "true",
+    "mRBE": 26,
+    "mHealth": 4
+  },
+
+  {
+    "mTitle": "Super Ceramic",
+    "mType": "Heavy Bloon",
+    "mbFortified": "false",
+    "mRBE": 68,
+    "mHealth": 60
+  },
+
+  {
+    "mTitle": "Super Ceramic",
+    "mType": "Heavy Bloon",
+    "mbFortified": "true",
+    "mRBE": 128,
+    "mHealth": 120
+  }
+]

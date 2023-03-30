@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Alchemist",
+    "mCost": 550
+  },
+
+  {
+    "mTitle": "Larger Potions",
+    "mUpgradeID": 11,
+    "mTower": "Alchemist",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Acidic Mixture Dip",
+    "mUpgradeID": 12,
+    "mTower": "Alchemist",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Berserker Brew",
+    "mUpgradeID": 13,
+    "mTower": "Alchemist",
+    "mCost": 1250
+  },
+
+  {
+    "mTitle": "Stronger Stimulant",
+    "mUpgradeID": 14,
+    "mTower": "Alchemist",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Permabrew",
+    "mUpgradeID": 15,
+    "mTower": "Alchemist",
+    "mCost": 600000
+  },
+
+  {
+    "mTitle": "Stronger Acid",
+    "mUpgradeID": 21,
+    "mTower": "Alchemist",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Perishing Potions",
+    "mUpgradeID": 22,
+    "mTower": "Alchemist",
+    "mCost": 475
+  },
+
+  {
+    "mTitle": "Unstable Concoction",
+    "mUpgradeID": 23,
+    "mTower": "Alchemist",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Transforming Tonic",
+    "mUpgradeID": 24,
+    "mTower": "Alchemist",
+    "mCost": 4500
+  },
+
+  {
+    "mTitle": "Total Transformation",
+    "mUpgradeID": 25,
+    "mTower": "Alchemist",
+    "mCost": 45000
+  },
+
+  {
+    "mTitle": "Faster Throwing",
+    "mUpgradeID": 31,
+    "mTower": "Alchemist",
+    "mCost": 650
+  },
+
+  {
+    "mTitle": "Acid Pools",
+    "mUpgradeID": 32,
+    "mTower": "Alchemist",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Lead to Gold",
+    "mUpgradeID": 33,
+    "mTower": "Alchemist",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Rubber to Gold",
+    "mUpgradeID": 34,
+    "mTower": "Alchemist",
+    "mCost": 2750
+  },
+
+  {
+    "mTitle": "Bloon Master Alchemist",
+    "mUpgradeID": 35,
+    "mTower": "Alchemist",
+    "mCost": 40000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Alchemist",
+    "mCost": 0
+  }
+]

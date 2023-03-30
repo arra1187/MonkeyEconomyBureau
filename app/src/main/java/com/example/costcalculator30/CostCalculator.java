@@ -64,7 +64,7 @@ public class CostCalculator extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.final_price);
+        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);
         mFinalPriceView.setText(initialCost);
 
         mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
@@ -123,7 +123,7 @@ public class CostCalculator extends Fragment
                     return;
                 }
 
-                Tower newTower = new Tower(newTowerTitle, 0, 0, 0, 0, mUpgradeRepository);
+                Tower newTower = new Tower(newTowerTitle, 0, 0, 0, mUpgradeRepository);
 
                 ConnectTowerList.getTowers().add(newTower);
                 mTowerTypeAdapter.notifyItemInserted(ConnectTowerList.getTowers().size() - 1);

@@ -1,0 +1,81 @@
+[
+  {
+    "mTitle": "MOAB",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 616,
+    "mHealth": 200
+  },
+
+  {
+    "mTitle": "BFB",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 3164,
+    "mHealth": 700
+  },
+
+  {
+    "mTitle": "MOAB",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 856,
+    "mHealth": 400
+  },
+
+  {
+    "mTitle": "BFB",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 4824,
+    "mHealth": 1400
+  },
+
+  {
+    "mTitle": "ZOMG",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 16656,
+    "mHealth": 4000
+  },
+
+  {
+    "mTitle": "DDT",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 816,
+    "mHealth": 400
+  },
+
+  {
+    "mTitle": "ZOMG",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 27296,
+    "mHealth": 8000
+  },
+
+  {
+    "mTitle": "DDT",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 1256,
+    "mHealth": 800
+  },
+
+  {
+    "mTitle": "BAD",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 55760,
+    "mHealth": 20000
+  },
+
+  {
+    "mTitle": "BAD",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 98360,
+    "mHealth": 40000
+  }
+]

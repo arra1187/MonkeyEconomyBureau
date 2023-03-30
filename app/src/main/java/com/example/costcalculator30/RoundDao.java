@@ -13,6 +13,6 @@ public interface RoundDao
     @Query("Delete from Round")
     void deleteAll();
 
-    @Query("Select cash from Round WHERE round = :round")
-    int getCash(int round);
+    @Query("Select cash from Round WHERE round = :round AND type = :type")
+    int getCash(int round, String type);
 }

@@ -281,6 +281,48 @@ public class TowerRecyclerViewAdapter
                 case "Tack Shooter":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.tack_shooter_symbol);
                     break;
+                case "Ice Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.ice_monkey_symbol);
+                    break;
+                case "Glue Gunner":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.glue_gunner_symbol);
+                    break;
+                case "Sniper Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.sniper_monkey_symbol);
+                    break;
+                case "Monkey Bucaneer":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.monkey_bucaneer_symbol);
+                    break;
+                case "Monkey Sub":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.monkey_sub_symbol);
+                    break;
+                case "Monkey Ace":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.monkey_ace_symbol);
+                    break;
+                case "Heli Pilot":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.heli_pilot_symbol);
+                    break;
+                case "Mortar Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.mortar_monkey_symbol);
+                    break;
+                case "Dartling Gunner":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.dartling_gunner_symbol);
+                    break;
+                case "Wizard Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.wizard_monkey_symbol);
+                    break;
+                case "Super Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.super_monkey_symbol);
+                    break;
+                case "Ninja Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.ninja_monkey_symbol);
+                    break;
+                case "Alchemist":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.alchemist_symbol);
+                    break;
+                case "Druid":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.druid_symbol);
+                    break;
             }
 
             mTowerSymbol.setImageDrawable(towerSymbol);

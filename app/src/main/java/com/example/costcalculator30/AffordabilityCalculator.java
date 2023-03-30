@@ -39,6 +39,8 @@ public class AffordabilityCalculator extends Fragment
     private DatabaseRepository mRepository;
     private RoundDao mRoundDao;
     //private DefenseDao mDefenseDao;
+
+    private RoundRepository mRoundRepository;
     private DefenseViewModel mDefenseViewModel;
 
     private String mDefenseCost;
@@ -58,11 +60,11 @@ public class AffordabilityCalculator extends Fragment
 
         mStartRoundEntry = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
-        mMyCash = mAppPage.getCustomView().findViewById(R.id.my_cash_entry);
+        mMyCash = mAppPage.getCustomView().findViewById(R.id.starting_cash);
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
         mRoundDisplay = mAppPage.getCustomView().findViewById(R.id.round_display);
-        mDefenseCostView = mAppPage.getCustomView().findViewById(R.id.final_price);
+        mDefenseCostView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);
 
         mCashMultiplierDropdown = mAppPage.getCustomView().findViewById(R.id.cash_multiplier_spinner);
         ArrayAdapter<CharSequence> cashMultiplierAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -78,9 +80,11 @@ public class AffordabilityCalculator extends Fragment
 
         mCashMultiplierDropdown.setSelection(1);
 
-        mRepository = new DatabaseRepository();
-        mRoundDao = mRepository.getRoundDao(getContext());
+        //mRepository = new DatabaseRepository();
+        //mRoundDao = mRepository.getRoundDao(getContext());
         //mDefenseDao = mRepository.getDefenseDao(getContext());
+
+        mRoundRepository = new RoundRepository(getActivity().getApplication());
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->
@@ -114,12 +118,14 @@ public class AffordabilityCalculator extends Fragment
                 ExecutorService mExecutor= Executors.newSingleThreadExecutor();
                 mExecutor.execute(() ->
                 {
-                    Integer money = 0;
+                    int money = 0;
+                    String roundType = mRoundTypeDropdown.getSelectedItem().toString();
+                    String output;
 
                     for(int i = Integer.parseInt(mStartRoundEntry.getText().toString());
                         i < Integer.parseInt(mEndRoundEntry.getText().toString()) + 1; i++)
                     {
-                        money += mRoundDao.getCash(i);
+                        money += mRoundRepository.getRoundCash(i, roundType);
                         money += END_OF_ROUND_CASH_CONSTANT + i;
                     }
 
@@ -133,7 +139,9 @@ public class AffordabilityCalculator extends Fragment
                             break;
                     }
 
-                    mMoneyDisplay.setText(money.toString());
+                    output = "$" + money;
+
+                    mMoneyDisplay.setText(output);
                 });
             }
         });
@@ -156,6 +164,7 @@ public class AffordabilityCalculator extends Fragment
                 {
                     int round = Integer.parseInt(mStartRoundEntry.getText().toString());
                     double defenseCost = Double.parseDouble(mDefenseCost), multiplier = 1;
+                    String roundType = mRoundTypeDropdown.getSelectedItem().toString();
                     String output = null;
 
                     defenseCost -= Double.parseDouble(mMyCash.getText().toString());
@@ -172,7 +181,7 @@ public class AffordabilityCalculator extends Fragment
 
                     while(defenseCost > 0)
                     {
-                        defenseCost -= mRoundDao.getCash(round) * multiplier;
+                        defenseCost -= mRoundRepository.getRoundCash(round, roundType) * multiplier;
 
                         if(defenseCost <= 0)
                         {

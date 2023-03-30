@@ -21,7 +21,6 @@ import java.util.concurrent.Executors;
 
 public class SavedDefenses extends Fragment
 {
-    private DatabaseRepository mRepository;
     private DefenseViewModel mViewModel;
     private Executor mExecutor;
     private AppPage mAppPage;
@@ -36,7 +35,6 @@ public class SavedDefenses extends Fragment
         final String pageHeader = "Saved\nDefenses";
         final int fragmentLayout = R.layout.fragment_saved_defenses;
 
-        mRepository = new DatabaseRepository();
         mExecutor = Executors.newSingleThreadExecutor();
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);

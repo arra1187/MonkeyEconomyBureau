@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Druid",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Hard Thorns",
+    "mUpgradeID": 11,
+    "mTower": "Druid",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Heart of Thunder",
+    "mUpgradeID": 12,
+    "mTower": "Druid",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Druid of the Storm",
+    "mUpgradeID": 13,
+    "mTower": "Druid",
+    "mCost": 1650
+  },
+
+  {
+    "mTitle": "Ball Lightning",
+    "mUpgradeID": 14,
+    "mTower": "Druid",
+    "mCost": 4500
+  },
+
+  {
+    "mTitle": "Superstorm",
+    "mUpgradeID": 15,
+    "mTower": "Druid",
+    "mCost": 650000
+  },
+
+  {
+    "mTitle": "Thorn Swarm",
+    "mUpgradeID": 21,
+    "mTower": "Druid",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Heart of Oak",
+    "mUpgradeID": 22,
+    "mTower": "Druid",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Druid of the Jungle",
+    "mUpgradeID": 23,
+    "mTower": "Druid",
+    "mCost": 950
+  },
+
+  {
+    "mTitle": "Jungle's Bounty",
+    "mUpgradeID": 24,
+    "mTower": "Druid",
+    "mCost": 5000
+  },
+
+  {
+    "mTitle": "Spirit of the Forest",
+    "mUpgradeID": 25,
+    "mTower": "Druid",
+    "mCost": 35000
+  },
+
+  {
+    "mTitle": "Druidic Reach",
+    "mUpgradeID": 31,
+    "mTower": "Druid",
+    "mCost": 100
+  },
+
+  {
+    "mTitle": "Heart of Vengeance",
+    "mUpgradeID": 32,
+    "mTower": "Druid",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Druid of Wrath",
+    "mUpgradeID": 33,
+    "mTower": "Druid",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Poplust",
+    "mUpgradeID": 34,
+    "mTower": "Druid",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Avatar of Wrath",
+    "mUpgradeID": 35,
+    "mTower": "Druid",
+    "mCost": 45000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Druid",
+    "mCost": 0
+  }
+]

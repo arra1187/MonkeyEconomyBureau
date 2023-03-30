@@ -5,7 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Round {
+public class Round
+{
     @PrimaryKey(autoGenerate = true)
     private int nid;
 
@@ -18,16 +19,20 @@ public class Round {
     @ColumnInfo(name = "cash")
     private int mCash;
 
+    @ColumnInfo(name = "type", defaultValue = "normal")
+    private String mType;
+
     Round()
     {
 
     }
 
-    Round(int roundNumber, int RBE, int cash)
+    Round(int roundNumber, int RBE, int cash, String type)
     {
         mRoundNumber = roundNumber;
         mRBE = RBE;
         mCash = cash;
+        mType = type;
     }
 
     public int getRoundNumber()
@@ -45,6 +50,11 @@ public class Round {
         return mCash;
     }
 
+    public String getType()
+    {
+        return mType;
+    }
+
     public int getNid() { return nid; }
 
     public void setRoundNumber(int roundNumber)
@@ -60,6 +70,11 @@ public class Round {
     public void setCash(int cash)
     {
         mCash = cash;
+    }
+
+    public void setType(String type)
+    {
+        mType = type;
     }
 
     public void setNid(int value) { nid = value; }

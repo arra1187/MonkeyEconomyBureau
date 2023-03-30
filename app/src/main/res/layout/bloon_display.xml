@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageButton
+            android:id="@+id/clear_bloon_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:drawable/btn_dialog"
+            android:backgroundTint="@color/red"
+            android:text="@string/x_button"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            tools:ignore="SpeakableTextPresentCheck"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fortified_checkbox" />
+
+    <ImageView
+            android:layout_width="83dp"
+            android:layout_height="89dp"
+            app:srcCompat="@drawable/cost_calculator_symbol"
+            android:id="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bloon_name" />
+
+    <TextView
+            android:text="bloon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bloon_name"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName" />
+
+    <CheckBox
+            android:text="@string/fortified_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fortified_checkbox"
+            app:layout_constraintEnd_toStartOf="@+id/clear_bloon_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName" />
+
+    <EditText
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="@string/one"
+            android:ems="10"
+            android:id="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toEndOf="@+id/bloon_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fortified_checkbox"
+            android:textAlignment="center" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -186,32 +186,34 @@ public class MainActivity extends AppCompatActivity
             JSONArray jsonArray;
             AssetManager towerFiles;
 
-            String title, tower;
+            String title, tower, type;
             int upgradeID, cost, roundNumber, RBE, cash;
 
             //UpgradeDatabase upgradeDatabase = Room.databaseBuilder(getApplicationContext(),
                     //UpgradeDatabase.class, "Upgrade-db").build();
-            RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
-                    RoundDatabase.class, "Round-db").build();
+            //RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
+                    //RoundDatabase.class, "Round-db").build();
             //DefenseDatabase defenseDatabase = Room.databaseBuilder(getApplicationContext(),
                     //DefenseDatabase.class, "Defense-db").build();
 
             //UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
             //upgradeDao.deleteAll();
 
-            RoundDao roundDao = roundDatabase.mRoundDao();
-            roundDao.deleteAll();
+            //RoundDao roundDao = roundDatabase.mRoundDao();
+            //roundDao.deleteAll();
 
             //DefenseDao defenseDao = defenseDatabase.mDefenseDao();
 
             //UpgradeViewModel upgradeViewModel = new ViewModelProvider(this).get(UpgradeViewModel.class);
 
             UpgradeRepository upgradeRepository = new UpgradeRepository(getApplication());
+            RoundRepository roundRepository = new RoundRepository(getApplication());
             DefenseViewModel defenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
             //upgradeViewModel.deleteAll();
 
             upgradeRepository.deleteAll();
+            roundRepository.deleteAll();
 
             if(defenseViewModel.getSize() == 0)
             {
@@ -275,10 +277,16 @@ public class MainActivity extends AppCompatActivity
                         roundNumber = Integer.parseInt(jsonItem.getString("mRoundNumber"));
                         RBE = Integer.parseInt(jsonItem.getString("mRBE"));
                         cash = Integer.parseInt(jsonItem.getString("mCash"));
+                        type = jsonItem.getString("mType");
 
-                        Round newRound = new Round(roundNumber, RBE, cash);
+                        if(type.equals(""))
+                        {
+                            type = "normal";
+                        }
 
-                        roundDao.insert(newRound);
+                        Round newRound = new Round(roundNumber, RBE, cash, type);
+
+                        roundRepository.insert(newRound);
                     }
                 }
             }

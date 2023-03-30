@@ -31,19 +31,126 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="390dp"
-                android:layout_height="180dp"
+                android:layout_height="122dp"
+                android:id="@+id/current_defense_sellback"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tower_constraint">
+
+            <TextView
+                    android:id="@+id/sellback_price_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/defense_sellback_message"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                    android:id="@+id/defense_sellback_price_holder"
+                    android:layout_width="371dp"
+                    android:layout_height="60dp"
+                    android:background="#B9D8F1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sellback_price_message" />
+
+            <TextView
+                    android:id="@+id/defense_sellback_price"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/purple"
+                    android:text="@string/default_price"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="@+id/defense_sellback_price_holder"
+                    app:layout_constraintStart_toStartOf="@+id/defense_sellback_price_holder"
+                    app:layout_constraintBottom_toBottomOf="@+id/defense_sellback_price_holder"
+                    app:layout_constraintTop_toTopOf="@+id/defense_sellback_price_holder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="390dp"
+                android:layout_height="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/tower_constraint"
-                app:layout_constraintBottom_toTopOf="@+id/my_cash_constraint">
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/current_defense_sellback">
+
+            <Spinner
+                    android:id="@+id/top_path"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_template"
+                    android:contentDescription="@string/path_1"
+                    app:layout_constraintEnd_toStartOf="@+id/middle_path"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
+
+            <Spinner
+                    android:id="@+id/middle_path"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_template"
+                    android:contentDescription="@string/path_2"
+                    app:layout_constraintEnd_toStartOf="@+id/bottom_path"
+                    app:layout_constraintStart_toEndOf="@+id/top_path"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
+
+            <Spinner
+                    android:id="@+id/bottom_path"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_template"
+                    android:contentDescription="@string/path_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/middle_path"
+                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
+
+            <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/tower_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/tower_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/tower_spinner"
+                    app:layout_constraintBottom_toBottomOf="@+id/tower_spinner"
+                    android:background="@color/white" />
+
+            <Spinner
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/tower_spinner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sellback_tower_label"
+                    app:layout_constraintBottom_toTopOf="@+id/top_path" />
+
+            <TextView
+                    android:text="@string/sellback_tower_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sellback_tower_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/my_cash_constraint"
+                android:id="@+id/starting_cash_constraint"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -51,42 +158,76 @@
                 app:layout_constraintBottom_toTopOf="@+id/button_constraint">
 
             <EditText
-                    android:id="@+id/my_cash_entry"
-                    android:layout_width="200dp"
+                    android:id="@+id/starting_cash"
+                    android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:background="@drawable/white_background"
                     android:ems="10"
                     android:inputType="number"
                     android:text="@string/zero"
                     android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/my_cash_label"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    app:layout_constraintBottom_toTopOf="@+id/enter_starting_cash_button"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/starting_cash_label" />
 
             <Button
-                    android:id="@+id/my_cash_label"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/enter_starting_cash_button"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/my_cash_label"
+                    android:text="@string/enter_sellback_data"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/my_cash_entry"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@drawable/green_rectangle_button_template"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/starting_cash" />
+
+            <TextView
+                    android:text="@string/starting_cash_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/starting_cash_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/starting_cash"
+                    app:layout_constraintBottom_toTopOf="@+id/enter_starting_cash_button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="24sp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="335dp"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/button_constraint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/count_displays_constraint"
-                app:layout_constraintTop_toBottomOf="@+id/my_cash_constraint">
+                app:layout_constraintTop_toBottomOf="@+id/starting_cash_constraint">
 
+            <Button
+                    android:text="@string/sell_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sell_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/rebuy_button"
+                    android:background="@drawable/red_rectangle_button"
+                    android:textColor="@color/white" />
+
+            <Button
+                    android:text="@string/buy_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rebuy_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sell_button"
+                    android:background="@drawable/green_rectangle_button_template" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -131,10 +272,10 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                    android:id="@+id/description3"
+                    android:id="@+id/remaining_cash_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/defense_cost_message"
+                    android:text="@string/remaining_cash_label"
                     android:textAlignment="center"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -142,17 +283,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                    android:id="@+id/final_price_view"
+                    android:id="@+id/remaining_cash_holder"
                     android:layout_width="371dp"
                     android:layout_height="60dp"
                     android:background="#B9D8F1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/description3" />
+                    app:layout_constraintTop_toBottomOf="@+id/remaining_cash_message" />
 
             <TextView
-                    android:id="@+id/final_price"
+                    android:id="@+id/remaining_cash"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:background="@color/purple"
@@ -160,10 +301,10 @@
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
-                    app:layout_constraintEnd_toEndOf="@+id/final_price_view"
-                    app:layout_constraintStart_toStartOf="@+id/final_price_view"
-                    app:layout_constraintTop_toTopOf="@+id/final_price_view" />
+                    app:layout_constraintBottom_toBottomOf="@+id/remaining_cash_holder"
+                    app:layout_constraintEnd_toEndOf="@+id/remaining_cash_holder"
+                    app:layout_constraintStart_toStartOf="@+id/remaining_cash_holder"
+                    app:layout_constraintTop_toTopOf="@+id/remaining_cash_holder" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

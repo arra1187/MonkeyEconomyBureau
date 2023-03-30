@@ -40,7 +40,13 @@
     <string name="save_defense_button_label">Save Defense</string>
     <string name="load_defense_button_label">Load Defense</string>
     <string name="set_as_current_button">Set as Current</string>
-
+    <string name="sell_button">Sell</string>
+    <string name="buy_button">Buy</string>
+    <string name="rebuy_button">Rebuy</string>
+    <string name="enter_sellback_data">Enter sellback data</string>
+    <string name="add_bloon_button">ADD BLOON</string>
+    <string name="clear_bloons_button">CLEAR BLOONS</string>
+    <string name="consideration_switch_label">Consider list of bloons / round range</string>
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>
@@ -51,6 +57,8 @@
 
     <!-- Image section -->
     <string name="dart_symbol">A symbol for dart monkeys</string>
+
+    <!-- Dropdowns -->
 
     <!-- Defence dropdown -->
     <string-array name="towers">
@@ -120,6 +128,79 @@
         <item>Alternate Bloons Rounds</item>
     </string-array>
 
+    <!-- Bloon type dropdown -->
+    <string-array name="bloon_type">
+        <item>Select Bloon type</item>
+        <item>Bloon</item>
+        <item>Blimp</item>
+    </string-array>
+
+    <!-- Normal Bloons dropdown -->
+    <string-array name="normal_bloons">
+        <item>Select Bloon</item>
+        <item>Red Bloon</item>
+        <item>Blue Bloon</item>
+        <item>Green Bloon</item>
+        <item>Yellow Bloon</item>
+        <item>Pink Bloon</item>
+        <item>Black Bloon</item>
+        <item>White Bloon</item>
+        <item>Purple Bloon</item>
+        <item>Zebra Bloon</item>
+        <item>Lead Bloon</item>
+        <item>Rainbow Bloon</item>
+        <item>Ceramic Bloon</item>
+    </string-array>
+
+    <!-- Blimps dropdown -->
+    <string-array name="blimps">
+        <item>Select Blimp</item>
+        <item>MOAB</item>
+        <item>BFB</item>
+        <item>ZOMG</item>
+        <item>DDT</item>
+        <item>BAD</item>
+    </string-array>
+
+    <string-array name="RBE_bloons">
+        <item>Select Bloon</item>
+        <item>Red Bloon</item>
+        <item>Blue Bloon</item>
+        <item>Green Bloon</item>
+        <item>Yellow Bloon</item>
+        <item>Pink Bloon</item>
+        <item>Black Bloon</item>
+        <item>White Bloon</item>
+        <item>Purple Bloon</item>
+        <item>Zebra Bloon</item>
+        <item>Lead Bloon</item>
+        <item>Rainbow Bloon</item>
+        <item>Ceramic Bloon</item>
+        <item>MOAB</item>
+        <item>BFB</item>
+        <item>ZOMG</item>
+        <item>DDT</item>
+        <item>BAD</item>
+        <item>Rock Bloon</item>
+    </string-array>
+
+    <!-- Boss dropdown -->
+    <string-array name="bosses">
+        <item>Select Boss</item>
+        <item>Bloonarius</item>
+        <item>Lych</item>
+        <item>Vortex</item>
+        <item>Dreadbloon</item>
+    </string-array>
+
+    <!-- Extra dropdown -->
+    <string-array name="extras">
+        <item>Select Extra</item>
+        <item>Golden Bloon</item>
+        <item>Lych Soul</item>
+        <item>Rock Bloon</item>
+    </string-array>
+
     <!-- Label section -->
     <string name="money_count_label">Money count</string>
     <string name="current_round_label">Current Round</string>
@@ -131,6 +212,7 @@
     <string name="start_round_label">Start Round</string>
     <string name="end_round_label">End Round</string>
     <string name="my_cash_label">My cash</string>
+    <string name="fortified_label">Fortified</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>
@@ -140,12 +222,15 @@
     <string name="round_cash_message">Cash gained from entered round range</string>
     <string name="afford_defense_message">When will I afford my defense?</string>
     <string name="defense_cost_message">Defense cost from the Cost Calculator</string>
+    <string name="defense_sellback_message">Selling price of current defense</string>
 
     <!-- Outputs -->
     <string name="default_price">$0</string>
     <string name="sell_count">Sells: 0</string>
     <string name="rebuy_count">Re-buys: 0</string>
-
+    <string name="remaining_cash_label">Remaining cash</string>
+    <string name="sellback_tower_label">Tower that is being sold and rebought</string>
+    <string name="starting_cash_label">Starting cash</string>
 
     <!-- Mischellaneous section -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

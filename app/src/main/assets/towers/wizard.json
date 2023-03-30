@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Wizard Monkey",
+    "mCost": 375
+  },
+
+  {
+    "mTitle": "Guided Magic",
+    "mUpgradeID": 11,
+    "mTower": "Wizard Monkey",
+    "mCost": 150
+  },
+
+  {
+    "mTitle": "Arcane Blast",
+    "mUpgradeID": 12,
+    "mTower": "Wizard Monkey",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Arcane Mastery",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Ace",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Arcane Spike",
+    "mUpgradeID": 14,
+    "mTower": "Wizard Monkey",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Archmage",
+    "mUpgradeID": 15,
+    "mTower": "Wizard Monkey",
+    "mCost": 32000
+  },
+
+  {
+    "mTitle": "Fireball",
+    "mUpgradeID": 21,
+    "mTower": "Wizard Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Wall of Fire",
+    "mUpgradeID": 22,
+    "mTower": "Wizard Monkey",
+    "mCost": 950
+  },
+
+  {
+    "mTitle": "Dragon's Breath",
+    "mUpgradeID": 23,
+    "mTower": "Wizard Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Summon Phoenix",
+    "mUpgradeID": 24,
+    "mTower": "Wizard Monkey",
+    "mCost": 6000
+  },
+
+  {
+    "mTitle": "Wizard Lord Phoenix",
+    "mUpgradeID": 25,
+    "mTower": "Wizard Monkey",
+    "mCost": 52500
+  },
+
+  {
+    "mTitle": "Intense Magic",
+    "mUpgradeID": 31,
+    "mTower": "Wizard Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Monkey Sense",
+    "mUpgradeID": 32,
+    "mTower": "Wizard Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Shimmer",
+    "mUpgradeID": 33,
+    "mTower": "Wizard Monkey",
+    "mCost": 1500
+  },
+
+  {
+    "mTitle": "Necromancer: Unpopped Army",
+    "mUpgradeID": 34,
+    "mTower": "Wizard Monkey",
+    "mCost": 23400
+  },
+
+  {
+    "mTitle": "Prince of Darkness",
+    "mUpgradeID": 35,
+    "mTower": "Wizard Monkey",
+    "mCost": 26500
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Wizard Monkey",
+    "mCost": 0
+  }
+]

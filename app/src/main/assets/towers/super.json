@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Super Monkey",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Laser Blasts",
+    "mUpgradeID": 11,
+    "mTower": "Super Monkey",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Plasma Blasts",
+    "mUpgradeID": 12,
+    "mTower": "Super Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Sun Avatar",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Ace",
+    "mCost": 20000
+  },
+
+  {
+    "mTitle": "Sun Temple",
+    "mUpgradeID": 14,
+    "mTower": "Super Monkey",
+    "mCost": 100000
+  },
+
+  {
+    "mTitle": "5th Tier Temple",
+    "mUpgradeID": 15,
+    "mTower": "Super Monkey",
+    "mCost": 500000
+  },
+
+  {
+    "mTitle": "Super Range",
+    "mUpgradeID": 21,
+    "mTower": "Super Monkey",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Epic Range",
+    "mUpgradeID": 22,
+    "mTower": "Super Monkey",
+    "mCost": 1400
+  },
+
+  {
+    "mTitle": "Robo Monkey",
+    "mUpgradeID": 23,
+    "mTower": "Super Monkey",
+    "mCost": 7000
+  },
+
+  {
+    "mTitle": "Tech Terror",
+    "mUpgradeID": 24,
+    "mTower": "Super Monkey",
+    "mCost": 19000
+  },
+
+  {
+    "mTitle": "The Anti-Bloon",
+    "mUpgradeID": 25,
+    "mTower": "Super Monkey",
+    "mCost": 90000
+  },
+
+  {
+    "mTitle": "Knockback",
+    "mUpgradeID": 31,
+    "mTower": "Super Monkey",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Ultravision",
+    "mUpgradeID": 32,
+    "mTower": "Super Monkey",
+    "mCost": 1200
+  },
+
+  {
+    "mTitle": "Dark Knight",
+    "mUpgradeID": 33,
+    "mTower": "Super Monkey",
+    "mCost": 5600
+  },
+
+  {
+    "mTitle": "Dark Champion",
+    "mUpgradeID": 34,
+    "mTower": "Super Monkey",
+    "mCost": 60000
+  },
+
+  {
+    "mTitle": "Legend of the Night",
+    "mUpgradeID": 35,
+    "mTower": "Super Monkey",
+    "mCost": 200000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Super Monkey",
+    "mCost": 0
+  }
+]

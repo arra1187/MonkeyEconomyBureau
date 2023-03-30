@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Ninja Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Ninja Discipline",
+    "mUpgradeID": 11,
+    "mTower": "Ninja Monkey",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Sharp Shurikens",
+    "mUpgradeID": 12,
+    "mTower": "Ninja Monkey",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Double Shot",
+    "mUpgradeID": 13,
+    "mTower": "Ninja Monkey",
+    "mCost": 850
+  },
+
+  {
+    "mTitle": "Bloonjitzu",
+    "mUpgradeID": 14,
+    "mTower": "Ninja Monkey",
+    "mCost": 2750
+  },
+
+  {
+    "mTitle": "Grandmaster Ninja",
+    "mUpgradeID": 15,
+    "mTower": "Ninja Monkey",
+    "mCost": 35000
+  },
+
+  {
+    "mTitle": "Distraction",
+    "mUpgradeID": 21,
+    "mTower": "Ninja Monkey",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Counter Espionage",
+    "mUpgradeID": 22,
+    "mTower": "Ninja Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Shinobi Tactics",
+    "mUpgradeID": 23,
+    "mTower": "Ninja Monkey",
+    "mCost": 900
+  },
+
+  {
+    "mTitle": "Bloon Sabotage",
+    "mUpgradeID": 24,
+    "mTower": "Ninja Monkey",
+    "mCost": 5200
+  },
+
+  {
+    "mTitle": "Grand Saboteur",
+    "mUpgradeID": 25,
+    "mTower": "Ninja Monkey",
+    "mCost": 22000
+  },
+
+  {
+    "mTitle": "Seeking Shuriken",
+    "mUpgradeID": 31,
+    "mTower": "Ninja Monkey",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Caltrops",
+    "mUpgradeID": 32,
+    "mTower": "Ninja Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Flash Bomb",
+    "mUpgradeID": 33,
+    "mTower": "Ninja Monkey",
+    "mCost": 2250
+  },
+
+  {
+    "mTitle": "Sticky Bomb",
+    "mUpgradeID": 34,
+    "mTower": "Ninja Monkey",
+    "mCost": 5000
+  },
+
+  {
+    "mTitle": "Master Bomber",
+    "mUpgradeID": 35,
+    "mTower": "Ninja Monkey",
+    "mCost": 40000
+  },
+
+  {
+    "mTitle": "Ascended Shadow",
+    "mUpgradeID": 6,
+    "mTower": "Ninja Monkey",
+    "mCost": 600000
+  }
+]

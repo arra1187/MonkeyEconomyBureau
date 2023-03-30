@@ -24,7 +24,7 @@
         android:id="@+id/drop_down_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/clear_button_template"
+        android:background="@drawable/red_rectangle_button_template"
         app:layout_constraintBottom_toTopOf="@+id/tower_list"
         app:layout_constraintEnd_toStartOf="@+id/id_constraint"
         app:layout_constraintStart_toStartOf="parent"

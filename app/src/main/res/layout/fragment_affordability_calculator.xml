@@ -24,7 +24,7 @@
         android:id="@+id/round_range_constraint"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@id/my_cash_constraint"
+        app:layout_constraintBottom_toTopOf="@id/starting_cash_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
         app:layout_constraintTop_toTopOf="@+id/background_view"
@@ -84,7 +84,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/my_cash_constraint"
+        android:id="@+id/starting_cash_constraint"
         android:layout_width="0dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/cash_multiplier_constraint"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/round_range_constraint">
 
         <EditText
-            android:id="@+id/my_cash_entry"
+            android:id="@+id/starting_cash"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:background="@drawable/white_background"
@@ -103,18 +103,18 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/my_cash_label"
+            app:layout_constraintStart_toEndOf="@+id/enter_starting_cash_button"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/my_cash_label"
+            android:id="@+id/enter_starting_cash_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_cash_label"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/my_cash_entry"
+            app:layout_constraintEnd_toStartOf="@+id/starting_cash"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +127,7 @@
         app:layout_constraintBottom_toTopOf="@+id/enter_round_range_constraint"
         app:layout_constraintEnd_toEndOf="@+id/background_view"
         app:layout_constraintStart_toStartOf="@+id/background_view"
-        app:layout_constraintTop_toBottomOf="@+id/my_cash_constraint">
+        app:layout_constraintTop_toBottomOf="@+id/starting_cash_constraint">
 
         <View
             android:id="@+id/cash_multiplier_background"
@@ -274,7 +274,7 @@
         app:layout_constraintTop_toBottomOf="@+id/enter_afford_defense_constraint">
 
         <TextView
-            android:id="@+id/description3"
+            android:id="@+id/remaining_cash_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/defense_cost_message"
@@ -285,17 +285,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/final_price_view"
+            android:id="@+id/remaining_cash_holder"
             android:layout_width="371dp"
             android:layout_height="60dp"
             android:background="#B9D8F1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description3" />
+            app:layout_constraintTop_toBottomOf="@+id/remaining_cash_message" />
 
         <TextView
-            android:id="@+id/final_price"
+            android:id="@+id/remaining_cash"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@color/purple"
@@ -303,10 +303,10 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/final_price_view"
-            app:layout_constraintEnd_toEndOf="@+id/final_price_view"
-            app:layout_constraintStart_toStartOf="@+id/final_price_view"
-            app:layout_constraintTop_toTopOf="@+id/final_price_view" />
+            app:layout_constraintBottom_toBottomOf="@+id/remaining_cash_holder"
+            app:layout_constraintEnd_toEndOf="@+id/remaining_cash_holder"
+            app:layout_constraintStart_toStartOf="@+id/remaining_cash_holder"
+            app:layout_constraintTop_toTopOf="@+id/remaining_cash_holder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
