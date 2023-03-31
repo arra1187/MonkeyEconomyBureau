@@ -16,8 +16,8 @@ public class Bloon
   @ColumnInfo(name = "type")
   private String mType;   //Bloon, Heavy Bloon (can be fortified), Blimp, Boss, or other
 
-  @ColumnInfo(name = "fortified", defaultValue = "false")
-  private boolean mbFortified;
+  @ColumnInfo(name = "fortified")
+  private boolean mFortified;
 
   @ColumnInfo(name = "RBE")
   private int mRBE;
@@ -25,11 +25,16 @@ public class Bloon
   @ColumnInfo(name = "health")
   private int mHealth;
 
+  public Bloon()
+  {
+    //Default constructor
+  }
+
   public Bloon(String title, String type, boolean bFortified, int RBE, int health)
   {
     mTitle = title;
     mType = type;
-    mbFortified = bFortified;
+    mFortified = bFortified;
     mRBE = RBE;
     mHealth = health;
   }
@@ -46,7 +51,7 @@ public class Bloon
 
   public boolean getFortified()
   {
-    return mbFortified;
+    return mFortified;
   }
 
   public int getRBE()
@@ -76,7 +81,7 @@ public class Bloon
 
   public void setFortified(boolean bFortified)
   {
-    mbFortified = bFortified;
+    mFortified = bFortified;
   }
 
   public void setRBE(int RBE)

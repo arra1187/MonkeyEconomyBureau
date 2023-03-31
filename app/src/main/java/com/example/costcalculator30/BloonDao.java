@@ -14,7 +14,7 @@ public interface BloonDao
   @Delete
   void delete(Bloon bloon);
 
-  @Delete
+  @Query("Delete from Bloon")
   void deleteAll();
 
   @Query("SELECT * FROM Bloon WHERE title = :title AND fortified = :bFortified")
