@@ -16,7 +16,15 @@
         android:orderInCategory="3"
         android:title="@string/affordability_calculator_page" />
     <item
-        android:id="@+id/saved_defenses_page"
-        android:orderInCategory="4"
-        android:title="@string/saved_defenses_page" />
+            android:id="@+id/saved_defenses_page"
+            android:orderInCategory="4"
+            android:title="@string/saved_defenses_page" />
+    <item
+            android:id="@+id/sellback_calculator_page"
+            android:orderInCategory="5"
+            android:title="@string/sellback_calculator_page" />
+    <item
+            android:id="@+id/hearts_lost_calculator_page"
+            android:orderInCategory="6"
+            android:title="@string/hearts_lost_calculator_page" />
 </menu>

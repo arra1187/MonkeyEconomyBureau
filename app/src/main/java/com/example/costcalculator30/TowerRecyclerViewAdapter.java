@@ -290,7 +290,7 @@ public class TowerRecyclerViewAdapter
                 case "Sniper Monkey":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.sniper_monkey_symbol);
                     break;
-                case "Monkey Bucaneer":
+                case "Monkey Buccaneer":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.monkey_bucaneer_symbol);
                     break;
                 case "Monkey Sub":

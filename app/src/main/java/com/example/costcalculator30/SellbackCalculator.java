@@ -48,16 +48,21 @@ public class SellbackCalculator extends Fragment
   private Button mRebuyButton;
 
   private TextView mRemainingCashView;
+  private TextView mSellCountView;
+  private TextView mRebuyCountView;
 
   private int mTowerCost;
   private int mRemainingCash;
-  private boolean mBuy;
+  private boolean mbBuy;
+
+  private int mNumSells;
+  private int mNumRebuys;
 
   @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
   {
     final String pageHeader = "Sellback\nCalculator";
-    final int fragmentLayout = R.layout.fragment_saved_defenses;
+    final int fragmentLayout = R.layout.fragment_sellback_calculator;
 
     mExecutor = Executors.newSingleThreadExecutor();
 
@@ -67,7 +72,9 @@ public class SellbackCalculator extends Fragment
     mExecutor = Executors.newSingleThreadExecutor();
     mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-    mBuy = true;
+    mbBuy = true;
+    mNumSells = 0;
+    mNumRebuys = 0;
 
     initializeViews();
 
@@ -85,9 +92,11 @@ public class SellbackCalculator extends Fragment
       {
         String startingCash = mStartingCashView.getText().toString(), output;
 
-        if(startingCash.equals("0") || startingCash.equals(""))
+        if(startingCash.equals("0")
+            || startingCash.equals("")
+            || mTowerDropdown.getSelectedItem().equals("Select Tower"))
         {
-          Toast towerToast = Toast.makeText(getActivity(), "Enter your starting cash", Toast.LENGTH_LONG);
+          Toast towerToast = Toast.makeText(getActivity(), "Enter your sellback data (tower, upgrade(s), and starting cash)", Toast.LENGTH_LONG);
           towerToast.show();
           return;
         }
@@ -98,11 +107,18 @@ public class SellbackCalculator extends Fragment
 
         mRemainingCashView.setText(output);
 
-        toggleButtons(ACTIVATE_CODE, NEUTRAL_CODE);
+        toggleButtons(NEUTRAL_CODE, ACTIVATE_CODE);
 
         setTowerCost();
 
-        mRebuyButton.setText(R.string.rebuy_button);
+        mbBuy = true;
+        mRebuyButton.setText(R.string.buy_button);
+
+        mNumSells = 0;
+        mNumRebuys = 0;
+
+        mSellCountView.setText("Sells: 0");
+        mRebuyCountView.setText("Rebuys: 0");
       }
     });
 
@@ -118,15 +134,21 @@ public class SellbackCalculator extends Fragment
           return;
         }
 
-        String sellbackText;
+        String sellbackText, sellCountText;
 
-        mRemainingCash += mTowerCost + SELLBACK_RATE;
+        mRemainingCash -= mTowerCost * SELLBACK_RATE;
 
         sellbackText = DOLLAR_SIGN + mTowerCost;
 
         mRemainingCashView.setText(sellbackText);
 
         toggleButtons(DEACTIVATE_CODE, ACTIVATE_CODE);
+
+        mNumSells++;
+
+        sellCountText = "Sells: " + mNumSells;
+
+        mSellCountView.setText(sellCountText);
       }
     });
 
@@ -142,20 +164,32 @@ public class SellbackCalculator extends Fragment
           return;
         }
 
-        String sellbackText;
+        if(mbBuy)
+        {
+          mRebuyButton.setText(R.string.rebuy_button);
+          mbBuy = false;
+        }
 
-        mRemainingCash += mTowerCost + SELLBACK_RATE;
+        String rebuyText, rebuyCountText;
 
-        sellbackText = DOLLAR_SIGN + mTowerCost;
+        mRemainingCash += mTowerCost * SELLBACK_RATE;
 
-        mRemainingCashView.setText(sellbackText);
+        rebuyText = DOLLAR_SIGN + mTowerCost;
+
+        mRemainingCashView.setText(rebuyText);
 
         toggleButtons(ACTIVATE_CODE, DEACTIVATE_CODE);
 
-        if(mBuy)
+        if(mbBuy)
         {
           mRebuyButton.setText(R.string.rebuy_button);
         }
+
+        mNumRebuys++;
+
+        rebuyCountText = "Rebuys: " + mNumRebuys;
+
+        mRebuyCountView.setText(rebuyCountText);
       }
     });
   }
@@ -185,6 +219,8 @@ public class SellbackCalculator extends Fragment
 
     mEnterStartingCash = mAppPage.getCustomView().findViewById(R.id.enter_starting_cash_button);
     mStartingCashView = mAppPage.getCustomView().findViewById(R.id.starting_cash);
+    mSellCountView = mAppPage.getCustomView().findViewById(R.id.sell_count_display);
+    mRebuyCountView = mAppPage.getCustomView().findViewById(R.id.rebuy_count_display);
 
     mSellButton = mAppPage.getCustomView().findViewById(R.id.sell_button);;
     mRebuyButton = mAppPage.getCustomView().findViewById(R.id.rebuy_button);
@@ -216,7 +252,7 @@ public class SellbackCalculator extends Fragment
       mSellButton.setActivated(false);
       mSellButton.setBackground(ResourcesCompat.getDrawable
       (
-          getContext ().getResources(),
+          getContext().getResources(),
           R.drawable.gray_rectangle_button_template, null
       ));
     }
@@ -225,7 +261,7 @@ public class SellbackCalculator extends Fragment
       mSellButton.setActivated(true);
       mSellButton.setBackground(ResourcesCompat.getDrawable
       (
-          getContext ().getResources(),
+          getContext().getResources(),
           R.drawable.red_rectangle_button_template, null
       ));
     }
@@ -235,7 +271,7 @@ public class SellbackCalculator extends Fragment
       mRebuyButton.setActivated(false);
       mRebuyButton.setBackground(ResourcesCompat.getDrawable
       (
-          getContext ().getResources(),
+          getContext().getResources(),
           R.drawable.gray_rectangle_button_template, null
       ));
     }
@@ -244,7 +280,7 @@ public class SellbackCalculator extends Fragment
       mRebuyButton.setActivated(true);
       mRebuyButton.setBackground(ResourcesCompat.getDrawable
       (
-          getContext ().getResources(),
+          getContext().getResources(),
           R.drawable.green_rectangle_button_template, null
       ));
     }

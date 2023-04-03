@@ -18,11 +18,11 @@ public interface BloonDao
   void deleteAll();
 
   @Query("SELECT * FROM Bloon WHERE title = :title AND fortified = :bFortified")
-  int getBloon(String title, boolean bFortified);
+  Bloon getBloon(String title, boolean bFortified);
 
-  @Query("SELECT RBE FROM Bloon WHERE title = :title")
-  int getRBE(String title);
+  @Query("SELECT RBE FROM Bloon WHERE title = :title AND fortified = :bFortified")
+  int getRBE(String title, boolean bFortified);
 
-  @Query("SELECT health FROM Bloon WHERE title = :title")
-  int getHealth(String title);
+  @Query("SELECT health FROM Bloon WHERE title = :title AND fortified = :bFortified")
+  int getHealth(String title, boolean bFortified);
 }

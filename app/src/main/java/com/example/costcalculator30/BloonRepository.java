@@ -30,4 +30,19 @@ public class BloonRepository
   {
     mBloonDao.deleteAll();
   }
+
+  public Bloon getBLoon(String title, boolean fortified)
+  {
+    return mBloonDao.getBloon(title, fortified);
+  }
+
+  public int getRBE(String title, boolean fortified)
+  {
+    return mBloonDao.getRBE(title, fortified);
+  }
+
+  public int getHealth(String title, boolean fortified)
+  {
+    return mBloonDao.getHealth(title, fortified);
+  }
 }

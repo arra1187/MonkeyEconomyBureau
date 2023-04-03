@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Monkey Village",
+    "mCost": 1200
+  },
+
+  {
+    "mTitle": "Bigger Radius",
+    "mUpgradeID": 11,
+    "mTower": "Monkey Village",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Jungle Drums",
+    "mUpgradeID": 12,
+    "mTower": "Monkey Village",
+    "mCost": 1500
+  },
+
+  {
+    "mTitle": "Primary Training",
+    "mUpgradeID": 13,
+    "mTower": "Monkey Village",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "Primary Mentoring",
+    "mUpgradeID": 14,
+    "mTower": "Monkey Village",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Primary Expertise",
+    "mUpgradeID": 15,
+    "mTower": "Monkey Village",
+    "mCost": 25000
+  },
+
+  {
+    "mTitle": "Grow Blocker",
+    "mUpgradeID": 21,
+    "mTower": "Monkey Village",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Radar Scanner",
+    "mUpgradeID": 22,
+    "mTower": "Monkey Village",
+    "mCost": 2000
+  },
+
+  {
+    "mTitle": "Monkey Intelligence Bureau",
+    "mUpgradeID": 23,
+    "mTower": "Monkey Village",
+    "mCost": 7500
+  },
+
+  {
+    "mTitle": "Call to Arms",
+    "mUpgradeID": 24,
+    "mTower": "Monkey Village",
+    "mCost": 20000
+  },
+
+  {
+    "mTitle": "Homeland Defense",
+    "mUpgradeID": 25,
+    "mTower": "Monkey Village",
+    "mCost": 40000
+  },
+
+  {
+    "mTitle": "Monkey Business",
+    "mUpgradeID": 31,
+    "mTower": "Monkey Village",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Monkey Commerce",
+    "mUpgradeID": 32,
+    "mTower": "Monkey Village",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Monkey Town",
+    "mUpgradeID": 33,
+    "mTower": "Monkey Village",
+    "mCost": 10000
+  },
+
+  {
+    "mTitle": "Monkey City",
+    "mUpgradeID": 34,
+    "mTower": "Monkey Village",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Monkeyopolis",
+    "mUpgradeID": 35,
+    "mTower": "Monkey Village",
+    "mCost": 5000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Monkey Village",
+    "mCost": 0
+  }
+]

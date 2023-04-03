@@ -110,6 +110,14 @@ public class MainActivity extends AppCompatActivity
                 {
                     fragment = new SavedDefenses();
                 }
+                else if (itemId == R.id.sellback_calculator_page)
+                {
+                    fragment = new SellbackCalculator();
+                }
+                else if (itemId == R.id.hearts_lost_calculator_page)
+                {
+                    fragment = new HeartsLostCalculator();
+                }
 
                 if (fragment != null)
                 {
@@ -151,6 +159,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.saved_defenses_page:
                 fragment = new SavedDefenses();
+                break;
+            case R.id.sellback_calculator_page:
+                fragment = new SellbackCalculator();
+                break;
+            case R.id.hearts_lost_calculator_page:
+                fragment = new HeartsLostCalculator();
                 break;
         }
 

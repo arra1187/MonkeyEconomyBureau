@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Banana Farm",
+    "mCost": 1250
+  },
+
+  {
+    "mTitle": "Increased Production",
+    "mUpgradeID": 11,
+    "mTower": "Banana Farm",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Greater Production",
+    "mUpgradeID": 12,
+    "mTower": "Banana Farm",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Banana Plantation",
+    "mUpgradeID": 13,
+    "mTower": "Banana Farm",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Banana Research Facility",
+    "mUpgradeID": 14,
+    "mTower": "Banana Farm",
+    "mCost": 19000
+  },
+
+  {
+    "mTitle": "Banana Central",
+    "mUpgradeID": 15,
+    "mTower": "Banana Farm",
+    "mCost": 100000
+  },
+
+  {
+    "mTitle": "Long Life Bananas",
+    "mUpgradeID": 21,
+    "mTower": "Banana Farm",
+    "mCost": 300
+  },
+
+  {
+    "mTitle": "Valuable Bananas",
+    "mUpgradeID": 22,
+    "mTower": "Banana Farm",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "Monkey Bank",
+    "mUpgradeID": 23,
+    "mTower": "Banana Farm",
+    "mCost": 3800
+  },
+
+  {
+    "mTitle": "IMF Loan",
+    "mUpgradeID": 24,
+    "mTower": "Banana Farm",
+    "mCost": 7500
+  },
+
+  {
+    "mTitle": "Monkey-Nomics",
+    "mUpgradeID": 25,
+    "mTower": "Banana Farm",
+    "mCost": 100000
+  },
+
+  {
+    "mTitle": "EZ Collect",
+    "mUpgradeID": 31,
+    "mTower": "Banana Farm",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Banana Salvage",
+    "mUpgradeID": 32,
+    "mTower": "Banana Farm",
+    "mCost": 200
+  },
+
+  {
+    "mTitle": "Marketplace",
+    "mUpgradeID": 33,
+    "mTower": "Banana Farm",
+    "mCost": 2900
+  },
+
+  {
+    "mTitle": "Central Market",
+    "mUpgradeID": 34,
+    "mTower": "Banana Farm",
+    "mCost": 15000
+  },
+
+  {
+    "mTitle": "Monkey Wall Street",
+    "mUpgradeID": 35,
+    "mTower": "Banana Farm",
+    "mCost": 60000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Banana Farm",
+    "mCost": 0
+  }
+]

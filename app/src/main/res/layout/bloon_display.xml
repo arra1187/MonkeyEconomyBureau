@@ -25,7 +25,7 @@
             android:layout_width="83dp"
             android:layout_height="89dp"
             app:srcCompat="@drawable/cost_calculator_symbol"
-            android:id="@+id/imageView"
+            android:id="@+id/bloon_symbol"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bloon_name"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/bloon_symbol"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName" />
+            app:layout_constraintEnd_toStartOf="@+id/bloon_count" />
 
     <CheckBox
             android:text="@string/fortified_label"
@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toStartOf="@+id/clear_bloon_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName" />
+            app:layout_constraintStart_toEndOf="@+id/bloon_count" />
 
     <EditText
             android:layout_width="50dp"
@@ -57,7 +57,7 @@
             android:inputType="number"
             android:text="@string/one"
             android:ems="10"
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/bloon_count"
             app:layout_constraintStart_toEndOf="@+id/bloon_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

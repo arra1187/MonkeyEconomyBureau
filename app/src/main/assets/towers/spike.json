@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Spike Factory",
+    "mCost": 1000
+  },
+
+  {
+    "mTitle": "Bigger Stacks",
+    "mUpgradeID": 11,
+    "mTower": "Spike Factory",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "White Hot Spikes",
+    "mUpgradeID": 12,
+    "mTower": "Spike Factory",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Spiked Balls",
+    "mUpgradeID": 13,
+    "mTower": "Spike Factory",
+    "mCost": 2300
+  },
+
+  {
+    "mTitle": "Spiked Mines",
+    "mUpgradeID": 14,
+    "mTower": "Spike Factory",
+    "mCost": 9500
+  },
+
+  {
+    "mTitle": "Super Mines",
+    "mUpgradeID": 15,
+    "mTower": "Spike Factory",
+    "mCost": 125000
+  },
+
+  {
+    "mTitle": "Faster Production",
+    "mUpgradeID": 21,
+    "mTower": "Spike Factory",
+    "mCost": 600
+  },
+
+  {
+    "mTitle": "Even Faster Production",
+    "mUpgradeID": 22,
+    "mTower": "Spike Factory",
+    "mCost": 800
+  },
+
+  {
+    "mTitle": "MOAB SHREDR",
+    "mUpgradeID": 23,
+    "mTower": "Spike Factory",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Spike Storm",
+    "mUpgradeID": 24,
+    "mTower": "Spike Factory",
+    "mCost": 5000
+  },
+
+  {
+    "mTitle": "Carpet of Spikes",
+    "mUpgradeID": 25,
+    "mTower": "Spike Factory",
+    "mCost": 40000
+  },
+
+  {
+    "mTitle": "Long Reach",
+    "mUpgradeID": 31,
+    "mTower": "Spike Factory",
+    "mCost": 150
+  },
+
+  {
+    "mTitle": "Smart Spikes",
+    "mUpgradeID": 32,
+    "mTower": "Spike Factory",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Long Life Spikes",
+    "mUpgradeID": 33,
+    "mTower": "Spike Factory",
+    "mCost": 1400
+  },
+
+  {
+    "mTitle": "Deadly Spikes",
+    "mUpgradeID": 34,
+    "mTower": "Spike Factory",
+    "mCost": 3500
+  },
+
+  {
+    "mTitle": "Perma-Spike",
+    "mUpgradeID": 35,
+    "mTower": "Spike Factory",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Spike Factory",
+    "mCost": 0
+  }
+]

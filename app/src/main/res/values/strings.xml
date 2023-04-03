@@ -2,11 +2,14 @@
     <!-- Strings used for logistics -->
     <string name="app_name">Monkey Economy Bureau</string>
 
-    <!-- Page name -->
+    <!-- Page names -->
     <string name="welcome_page">Welcome</string>
     <string name="cost_calculator_page">Cost Calculator</string>
     <string name="affordability_calculator_page">Affordability Calculator</string>
     <string name="saved_defenses_page">Saved Defenses</string>
+    <string name="sellback_calculator_page">Sellback Calculator</string>
+    <string name="hearts_lost_calculator_page">Hearts Lost Calculator</string>
+
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -229,8 +232,9 @@
     <string name="sell_count">Sells: 0</string>
     <string name="rebuy_count">Re-buys: 0</string>
     <string name="remaining_cash_label">Remaining cash</string>
-    <string name="sellback_tower_label">Tower that is being sold and rebought</string>
+    <string name="sellback_tower_label">Tower to sell and rebuy</string>
     <string name="starting_cash_label">Starting cash</string>
+    <string name="upgrades_label">Upgrades</string>
 
     <!-- Mischellaneous section -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

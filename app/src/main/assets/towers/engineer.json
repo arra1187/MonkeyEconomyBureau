@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Engineer Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Sentry Gun",
+    "mUpgradeID": 11,
+    "mTower": "Engineer Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Faster Engineering",
+    "mUpgradeID": 12,
+    "mTower": "Engineer Monkey",
+    "mCost": 400
+  },
+
+  {
+    "mTitle": "Sprockets",
+    "mUpgradeID": 13,
+    "mTower": "Engineer Monkey",
+    "mCost": 575
+  },
+
+  {
+    "mTitle": "Sentry Expert",
+    "mUpgradeID": 14,
+    "mTower": "Engineer Monkey",
+    "mCost": 2500
+  },
+
+  {
+    "mTitle": "Sentry Champion",
+    "mUpgradeID": 15,
+    "mTower": "Engineer Monkey",
+    "mCost": 32000
+  },
+
+  {
+    "mTitle": "Larger Service Area",
+    "mUpgradeID": 21,
+    "mTower": "Engineer Monkey",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Deconstruction",
+    "mUpgradeID": 22,
+    "mTower": "Engineer Monkey",
+    "mCost": 350
+  },
+
+  {
+    "mTitle": "Cleansing Foam",
+    "mUpgradeID": 23,
+    "mTower": "Engineer Monkey",
+    "mCost": 850
+  },
+
+  {
+    "mTitle": "Overclock",
+    "mUpgradeID": 24,
+    "mTower": "Engineer Monkey",
+    "mCost": 13500
+  },
+
+  {
+    "mTitle": "Ultraboost",
+    "mUpgradeID": 25,
+    "mTower": "Engineer Monkey",
+    "mCost": 72000
+  },
+
+  {
+    "mTitle": "Oversize Nails",
+    "mUpgradeID": 31,
+    "mTower": "Engineer Monkey",
+    "mCost": 450
+  },
+
+  {
+    "mTitle": "Pin",
+    "mUpgradeID": 32,
+    "mTower": "Engineer Monkey",
+    "mCost": 220
+  },
+
+  {
+    "mTitle": "Double Gun",
+    "mUpgradeID": 33,
+    "mTower": "Engineer Monkey",
+    "mCost": 500
+  },
+
+  {
+    "mTitle": "Bloon Trap",
+    "mUpgradeID": 34,
+    "mTower": "Engineer Monkey",
+    "mCost": 3500
+  },
+
+  {
+    "mTitle": "XXXL",
+    "mUpgradeID": 35,
+    "mTower": "Engineer Monkey",
+    "mCost": 54000
+  },
+
+  {
+    "mTitle": "Master Builder",
+    "mUpgradeID": 6,
+    "mTower": "Engineer Monkey",
+    "mCost": 650000
+  }
+]
