@@ -257,7 +257,7 @@ public class SellbackCalculator extends Fragment
     mSellButton = mAppPage.getCustomView().findViewById(R.id.sell_button);;
     mRebuyButton = mAppPage.getCustomView().findViewById(R.id.rebuy_button);
 
-    mRemainingCashView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);;
+    mRemainingCashView = mAppPage.getCustomView().findViewById(R.id.hearts_lost);;
   }
 
   private void setupPage()

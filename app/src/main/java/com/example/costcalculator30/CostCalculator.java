@@ -64,7 +64,7 @@ public class CostCalculator extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);
+        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
         mFinalPriceView.setText(initialCost);
 
         mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.bloon_recyclerView);

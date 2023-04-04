@@ -64,7 +64,7 @@ public class AffordabilityCalculator extends Fragment
 
         mMoneyDisplay = mAppPage.getCustomView().findViewById(R.id.money_display);
         mRoundDisplay = mAppPage.getCustomView().findViewById(R.id.round_display);
-        mDefenseCostView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);
+        mDefenseCostView = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
 
         mCashMultiplierDropdown = mAppPage.getCustomView().findViewById(R.id.cash_multiplier_spinner);
         ArrayAdapter<CharSequence> cashMultiplierAdapter = ArrayAdapter.createFromResource(getActivity(),

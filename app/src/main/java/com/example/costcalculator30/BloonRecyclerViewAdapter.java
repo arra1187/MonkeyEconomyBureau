@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,15 +23,20 @@ import java.util.List;
 public class BloonRecyclerViewAdapter
     extends RecyclerView.Adapter<BloonRecyclerViewAdapter.ViewHolder>
 {
-  private MutableLiveData<ArrayList<BloonItem>> mBloons;
+  //private MutableLiveData<ArrayList<BloonItem>> mBloons;
+  private ArrayList<BloonItem> mBloons;
   private Context mContext;
+  private MutableLiveData<Boolean> mbListener;
 
-  BloonRecyclerViewAdapter(ArrayList<BloonItem> bloons, Context context)
+  BloonRecyclerViewAdapter(ArrayList<BloonItem> bloons, Context context, MutableLiveData<Boolean> bListener)
   {
-    mBloons = new MutableLiveData<>();
+    //mBloons = new MutableLiveData<>();
 
-    mBloons.setValue(bloons);
+    //mBloons.setValue(bloons);
+
+    mBloons = bloons;
     mContext = context;
+    mbListener = bListener;
   }
 
   @NonNull
@@ -41,14 +47,33 @@ public class BloonRecyclerViewAdapter
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bloon_display, parent,
         false);
 
-    return new BloonRecyclerViewAdapter.ViewHolder(view, mContext);
+    return new BloonRecyclerViewAdapter.ViewHolder(view, mContext, mbListener);
   }
 
   @Override
   public void onBindViewHolder
       (@NonNull BloonRecyclerViewAdapter.ViewHolder holder, int position)
   {
-    holder.setBloons(mBloons.getValue().get(position));
+    holder.setBloon(mBloons.get(position));
+
+    holder.getRemoveButton().setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        mBloons.remove(holder.getAdapterPosition());
+        //notifyItemRemoved(holder.getAdapterPosition());
+
+        if(mbListener.getValue())
+        {
+          mbListener.setValue(false);
+        }
+        else
+        {
+          mbListener.setValue(true);
+        }
+      }
+    });
 
     holder.bindData();
   }
@@ -56,17 +81,17 @@ public class BloonRecyclerViewAdapter
   @Override
   public int getItemCount()
   {
-    return mBloons.getValue().size();
+    return mBloons.size();
   }
 
-  public MutableLiveData<ArrayList<BloonItem>> getLiveData()
+  /*public MutableLiveData<ArrayList<BloonItem>> getLiveData()
   {
     return mBloons;
-  }
+  }*/
 
   public void setBloons(ArrayList<BloonItem> bloons)
   {
-    mBloons.setValue(bloons);
+    mBloons = bloons;
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder
@@ -74,20 +99,28 @@ public class BloonRecyclerViewAdapter
     private Context mContext;
     private BloonItem mBloon;
 
+    private MutableLiveData<Boolean> mbListener;
+
     private ImageView mSymbol;
     private TextView mTitle;
     private EditText mCount;
     private CheckBox mFortified;
     private ImageButton mClearButton;
 
-    public ViewHolder(@NonNull View itemView, Context context)
+    public ViewHolder(@NonNull View itemView, Context context, MutableLiveData<Boolean> bListener)
     {
       super(itemView);
 
       mContext = context;
+      mbListener = bListener;
     }
 
-    public void setBloons(BloonItem bloon)
+    public ImageButton getRemoveButton()
+    {
+      return (ImageButton) itemView.findViewById(R.id.clear_bloon_button);
+    }
+
+    public void setBloon(BloonItem bloon)
     {
       mBloon = bloon;
     }
@@ -129,6 +162,15 @@ public class BloonRecyclerViewAdapter
             KeyEvent keyEvent)
         {
           mBloon.setNumBloons(Integer.parseInt(textView.getText().toString()));
+
+          if(mbListener.getValue())
+          {
+            mbListener.setValue(false);
+          }
+          else
+          {
+            mbListener.setValue(true);
+          }
 
           return false;
         }
