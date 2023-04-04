@@ -7,136 +7,137 @@
         tools:context=".HeartsLostCalculator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tower_constraint"
+        android:id="@+id/tower_constraint"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toTopOf="@+id/modifier_constraint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tower_selector_constraint"
             android:layout_width="0dp"
-            android:layout_height="220dp"
-            app:layout_constraintBottom_toTopOf="@+id/modifier_constraint"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/towers_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/tower_selector_constraint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/towers_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
-                android:id="@+id/towers_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/sky_blue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tower_selector_constraint" />
+            android:id="@+id/towers_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/sky_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tower_selector_constraint" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tower_recyclerView"
+            android:id="@+id/bloon_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/towers_view"
+            app:layout_constraintEnd_toEndOf="@+id/towers_view"
+            app:layout_constraintStart_toStartOf="@+id/towers_view"
+            app:layout_constraintTop_toTopOf="@+id/towers_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/modifier_constraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tower_constraint">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dropdown_constraint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/target_tower_dropdown_background"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/towers_view"
-                app:layout_constraintEnd_toEndOf="@+id/towers_view"
-                app:layout_constraintStart_toStartOf="@+id/towers_view"
-                app:layout_constraintTop_toTopOf="@+id/towers_view" />
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/bloon_dropdown"
+                app:layout_constraintEnd_toEndOf="@+id/bloon_dropdown"
+                app:layout_constraintStart_toStartOf="@+id/bloon_dropdown"
+                app:layout_constraintTop_toTopOf="@+id/bloon_dropdown" />
+
+            <Spinner
+                android:id="@+id/bloon_dropdown"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/tower_selection"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/button_constraint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dropdown_constraint"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/add_bloon_button"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/green_rectangle_button_template"
+                android:contentDescription="@string/add_same_tower_button"
+                android:fontFamily="serif-monospace"
+                android:text="@string/add_bloon_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clear_bloons_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/clear_bloons_button"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_rectangle_button_template"
+                android:fontFamily="serif-monospace"
+                android:text="@string/clear_bloons_button"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/add_bloon_button"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="#86A1C1"
-            app:layout_constraintTop_toBottomOf="@+id/modifier_constraint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/modifier_constraint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tower_constraint"
-            app:layout_constraintBottom_toTopOf="@+id/round_range_constraint">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/dropdown_constraint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/button_constraint"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-            <View
-                    android:id="@+id/target_tower_dropdown_background"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/target_tower_dropdown"
-                    app:layout_constraintEnd_toEndOf="@+id/target_tower_dropdown"
-                    app:layout_constraintStart_toStartOf="@+id/target_tower_dropdown"
-                    app:layout_constraintTop_toTopOf="@+id/target_tower_dropdown" />
-
-            <Spinner
-                    android:id="@+id/target_tower_dropdown"
-                    android:layout_width="170dp"
-                    android:layout_height="48dp"
-                    android:contentDescription="@string/tower_selection"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/button_constraint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/dropdown_constraint"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-            <Button
-                    android:id="@+id/add_tower_button"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/green_rectangle_button_template"
-                    android:contentDescription="@string/add_same_tower_button"
-                    android:fontFamily="serif-monospace"
-                    android:text="@string/add_bloon_button"
-                    app:layout_constraintEnd_toStartOf="@+id/clear_towers_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-            <Button
-                    android:id="@+id/clear_towers_button"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/red_rectangle_button_template"
-                    android:fontFamily="serif-monospace"
-                    android:text="@string/clear_bloons_button"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/add_tower_button"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#86A1C1"
+        app:layout_constraintBottom_toTopOf="@+id/round_range_constraint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modifier_constraint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/round_range_constraint"
@@ -163,16 +164,17 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-                android:id="@+id/end_round_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/end_round_label"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
-                app:layout_constraintStart_toEndOf="@+id/start_round_entry"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/end_round_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_round_label"
+            android:textAlignment="center"
+            android:textColor="@color/light_blue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/end_round_entry"
+            app:layout_constraintStart_toEndOf="@+id/start_round_entry"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
                 android:id="@+id/end_round_entry"
@@ -189,16 +191,17 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-                android:id="@+id/start_round_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_round_label"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/start_round_entry"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/start_round_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_round_label"
+            android:textAlignment="center"
+            android:textColor="@color/light_blue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/start_round_entry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -211,14 +214,15 @@
             app:layout_constraintEnd_toEndOf="parent">
 
         <Switch
-                android:text="@string/consideration_switch_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/consideration_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/consideration_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/consideration_switch_label"
+            android:textColor="@color/light_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

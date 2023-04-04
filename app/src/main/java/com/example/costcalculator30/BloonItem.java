@@ -2,15 +2,12 @@ package com.example.costcalculator30;
 
 import android.app.Application;
 
-import androidx.room.ColumnInfo;
-
-public class BloonItem
-{
+public class BloonItem {
   private String mTitle;
 
   private String mType;   //Bloon, Heavy Bloon (can be fortified), Blimp, Boss, or other
 
-  private boolean mFortified;
+  private boolean mbFortified;
 
   private int mRBE;
 
@@ -24,28 +21,31 @@ public class BloonItem
 
     mTitle = title;
 
-    if(mTitle.equals("Lead Bloon") || mTitle.equals("Ceramic Bloon"))
-    {
+    if (mTitle.equals("Lead Bloon") || mTitle.equals("Ceramic Bloon")) {
       mType = "Heavy Bloon";
     }
-    if(mTitle.equals("MOAB") || mTitle.equals("BFB") || mTitle.equals("ZOMG")
-                             || mTitle.equals("DDT") || mTitle.equals("BAD"))
-    {
+    if (mTitle.equals("MOAB") || mTitle.equals("BFB") || mTitle.equals("ZOMG")
+            || mTitle.equals("DDT") || mTitle.equals("BAD")) {
       mType = "Blimp";
-    }
-    else
-    {
+    } else {
       mType = "Bloon";
     }
 
-    mFortified = false;
-
-
+    mbFortified = false;
   }
 
-  public String getTitle()
-  {
+  public String getTitle() {
     return mTitle;
+  }
+
+  public String getType()
+  {
+    return mType;
+  }
+
+  public boolean getFortified()
+  {
+    return mbFortified;
   }
 
   public void setNumBloons(int numBloons)

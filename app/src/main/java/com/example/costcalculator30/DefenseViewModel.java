@@ -13,17 +13,24 @@ public class DefenseViewModel extends AndroidViewModel
 {
     private final DefenseRepository mDataRepository;
     private final LiveData<List<Defense>> mListLiveData;
+    private final List<Defense> mListData;
 
     public DefenseViewModel(@NonNull Application application)
     {
         super(application);
         mDataRepository = new DefenseRepository(application);
-        mListLiveData = mDataRepository.getAll();
+        mListLiveData = mDataRepository.getAllLive();
+        mListData = mDataRepository.getAll();
     }
 
-    public LiveData<List<Defense>> getAllData()
+    public LiveData<List<Defense>> getAllLiveData()
     {
         return mListLiveData;
+    }
+
+    public List<Defense> getAllData()
+    {
+        return mListData;
     }
 
     public void setCost(int cost, int id)

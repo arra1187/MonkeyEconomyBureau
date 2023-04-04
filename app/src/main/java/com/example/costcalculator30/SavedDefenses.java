@@ -50,7 +50,7 @@ public class SavedDefenses extends Fragment
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
         //bind to Livedata
-        mViewModel.getAllData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
+        mViewModel.getAllLiveData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
         {
             @Override
             public void onChanged(@Nullable List<Defense> defenses)

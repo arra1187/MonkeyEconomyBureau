@@ -13,19 +13,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BloonRecyclerViewAdapter
     extends RecyclerView.Adapter<BloonRecyclerViewAdapter.ViewHolder>
 {
-  private LiveData<ArrayList<BloonItem>> mBloons;
+  private MutableLiveData<ArrayList<BloonItem>> mBloons;
   private Context mContext;
 
-  BloonRecyclerViewAdapter(LiveData<ArrayList<BloonItem>> bloons, Context context)
+  BloonRecyclerViewAdapter(ArrayList<BloonItem> bloons, Context context)
   {
-    mBloons = bloons;
+    mBloons = new MutableLiveData<>();
+
+    mBloons.setValue(bloons);
     mContext = context;
   }
 
@@ -53,6 +57,16 @@ public class BloonRecyclerViewAdapter
   public int getItemCount()
   {
     return mBloons.getValue().size();
+  }
+
+  public MutableLiveData<ArrayList<BloonItem>> getLiveData()
+  {
+    return mBloons;
+  }
+
+  public void setBloons(ArrayList<BloonItem> bloons)
+  {
+    mBloons.setValue(bloons);
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder
@@ -102,6 +116,11 @@ public class BloonRecyclerViewAdapter
       }
 
       mTitle.setText(mBloon.getTitle());
+
+      if(mBloon.getType().equals("Bloon"))
+      {
+        mFortified.setVisibility(View.INVISIBLE);
+      }
 
       mCount.setOnEditorActionListener (new TextView.OnEditorActionListener()
       {

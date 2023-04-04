@@ -12,16 +12,23 @@ import java.util.Objects;
 public class DefenseRepository
 {
     private final DefenseDao mDefenseDao;
-    private final LiveData<List<Defense>> mDefenses;
+    private final LiveData<List<Defense>> mLiveDefenses;
+    private List<Defense> mDefenses;
 
     public DefenseRepository(Application application)
     {
         DefenseDatabase defenseDatabase = DefenseDatabase.getDatabase(application);
         mDefenseDao = defenseDatabase.mDefenseDao();
-        mDefenses = mDefenseDao.getAll();
+        mLiveDefenses = mDefenseDao.getAllLive();
+        //mDefenses = mDefenseDao.getAll();
     }
 
-    public LiveData<List<Defense>> getAll()
+    public LiveData<List<Defense>> getAllLive()
+    {
+        return mLiveDefenses;
+    }
+
+    public List<Defense> getAll()
     {
         return mDefenses;
     }
