@@ -2,68 +2,179 @@ package com.example.costcalculator30;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HeartsLostCalculator#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class HeartsLostCalculator extends Fragment
 {
+  private Executor mExecutor;
 
-  // TODO: Rename parameter arguments, choose names that match
-  // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
+  private BloonRepository mBloonRepository;
 
-  // TODO: Rename and change types of parameters
-  private String mParam1;
-  private String mParam2;
+  private ArrayList<BloonItem> mBloons;
 
-  public HeartsLostCalculator ()
-  {
-    // Required empty public constructor
-  }
+  private MutableLiveData<Boolean> mbListener;
 
-  /**
-   * Use this factory method to create a new instance of
-   * this fragment using the provided parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment HeartsLostCalculator.
-   */
-  // TODO: Rename and change types and number of parameters
-  public static HeartsLostCalculator newInstance (String param1, String param2)
-  {
-    HeartsLostCalculator fragment = new HeartsLostCalculator ();
-    Bundle args = new Bundle ();
-    args.putString (ARG_PARAM1, param1);
-    args.putString (ARG_PARAM2, param2);
-    fragment.setArguments (args);
-    return fragment;
-  }
+  private BloonRecyclerViewAdapter mAdapter;
 
-  @Override
-  public void onCreate (Bundle savedInstanceState)
-  {
-    super.onCreate (savedInstanceState);
-    if (getArguments () != null)
-    {
-      mParam1 = getArguments ().getString (ARG_PARAM1);
-      mParam2 = getArguments ().getString (ARG_PARAM2);
-    }
-  }
+  private AppPage mAppPage;
+
+  private RecyclerView mRecyclerView;
+  private Button mAddBloonButton;
+  private Button mClearBloonsButton;
+  private Spinner mBloonDropdown;
+  private TextView mHeartsLost;
 
   @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
   {
-    // Inflate the layout for this fragment
-    return inflater.inflate (R.layout.fragment_hearts_lost_calculator, container, false);
+    final String pageHeader = "Hearts Lost\nCalculator";
+    final int fragmentLayout = R.layout.fragment_hearts_lost_calculator;
+
+    ArrayList<BloonItem> bloons = new ArrayList<>();
+
+    mbListener = new MutableLiveData<>();
+
+    mbListener.setValue(false);
+
+    mExecutor = Executors.newSingleThreadExecutor();
+
+    mBloonRepository = new BloonRepository(getActivity().getApplication());
+    
+    mBloons = new ArrayList<>();
+
+    mAdapter = new BloonRecyclerViewAdapter(mBloons, getContext(), mbListener);
+
+    /*mAdapter.getLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<BloonItem>>()
+    {
+      @Override
+      public void onChanged(ArrayList<BloonItem> bloonItems)
+      {
+        if(bloonItems != null)
+        {
+          //Calculate hearts lost / RBE
+
+          mAdapter.notifyItemRangeInserted(0, bloonItems.size());
+        }
+      }
+    });*/
+
+    mbListener.observe(getViewLifecycleOwner(), new Observer<Boolean>()
+    {
+      @Override
+      public void onChanged(Boolean bBoolean)
+      {
+        mAdapter.notifyDataSetChanged();
+
+        calculateHeartsLost();
+      }
+    });
+
+    mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
+
+    initializeViews();
+
+    return mAppPage.getOverView();
+  }
+
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
+  {
+    mAddBloonButton.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        String title = mBloonDropdown.getSelectedItem().toString();
+
+        if(title.equals("Select Bloon"))
+        {
+          Toast towerToast = Toast.makeText(getActivity(), "Select a bloon", Toast.LENGTH_LONG);
+          towerToast.show();
+          return;
+        }
+
+        BloonItem bloonItem = new BloonItem
+        (
+          title,
+          getActivity().getApplication()
+        );
+
+        mBloons.add(bloonItem);
+
+        mAdapter.notifyItemInserted(mBloons.size() - 1);
+
+        calculateHeartsLost();
+      }
+    });
+
+    mClearBloonsButton.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        if(mBloons.size() == 0)
+        {
+          Toast towerToast = Toast.makeText(getActivity(), "There are no bloons to clear", Toast.LENGTH_LONG);
+          towerToast.show();
+          return;
+        }
+
+        int size = mBloons.size();
+
+        mBloons.clear();
+
+        mAdapter.notifyItemRangeRemoved(0, size);
+
+        calculateHeartsLost();
+      }
+    });
+  }
+
+  public void initializeViews()
+  {
+    mRecyclerView = mAppPage.getCustomView().findViewById(R.id.bloon_recyclerView);
+    mAddBloonButton = mAppPage.getCustomView().findViewById(R.id.add_bloon_button);
+    mClearBloonsButton = mAppPage.getCustomView().findViewById(R.id.clear_bloons_button);
+    mHeartsLost = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
+
+    mBloonDropdown = mAppPage.getCustomView().findViewById(R.id.bloon_dropdown);
+    ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
+            R.array.RBE_bloons, android.R.layout.simple_spinner_item);
+    towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+    mBloonDropdown.setAdapter(towerAdapter);
+
+    mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    mRecyclerView.setAdapter(mAdapter);
+  }
+
+  public void calculateHeartsLost()
+  {
+    Integer heartsLost = 0;
+
+    for(BloonItem bloonItem : mBloons)
+    {
+      heartsLost += bloonItem.getRBE();
+    }
+
+    mHeartsLost.setText(heartsLost.toString());
   }
 }

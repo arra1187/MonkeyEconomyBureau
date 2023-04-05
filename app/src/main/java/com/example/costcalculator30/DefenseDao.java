@@ -13,13 +13,13 @@ import java.util.List;
 public interface DefenseDao
 {
     @Query("SELECT * FROM Defense")
-    LiveData<List<Defense>> getAll();
+    LiveData<List<Defense>> getAllLive();
+
+    @Query("SELECT * FROM Defense")
+    List<Defense> getAll();
 
     @Query("Select * FROM Defense WHERE nid = :id")
     Defense getDefense(int id);
-
-    //@Query("SELECT towers FROM Defense WHERE id = :id")
-    //ArrayList<Tower> getTowers(int id);
 
     @Query("SELECT cost FROM Defense WHERE nid = :id")
     int getCost(int id);

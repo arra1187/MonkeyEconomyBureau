@@ -64,16 +64,16 @@ public class CostCalculator extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);
+        mFinalPriceView = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
         mFinalPriceView.setText(initialCost);
 
-        mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.tower_recyclerView);
+        mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.bloon_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext());
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
-        mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.target_tower_dropdown);
+        mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.bloon_dropdown);
         ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.towers, android.R.layout.simple_spinner_item);
         towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -108,7 +108,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mAppPage.getCustomView().findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.add_bloon_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -137,7 +137,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mAppPage.getCustomView().findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.clear_bloons_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)

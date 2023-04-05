@@ -41,6 +41,7 @@ public class SellbackCalculator extends Fragment
   private Spinner mMiddlePath;
   private Spinner mBottomPath;
 
+  private Button mHelpButton;
   private Button mEnterStartingCash;
   private EditText mStartingCashView;
 
@@ -51,6 +52,7 @@ public class SellbackCalculator extends Fragment
   private TextView mSellCountView;
   private TextView mRebuyCountView;
 
+  private Tower mTower;
   private int mTowerCost;
   private int mRemainingCash;
   private boolean mbBuy;
@@ -69,7 +71,6 @@ public class SellbackCalculator extends Fragment
     mUpgradeRepository = new UpgradeRepository(getActivity().getApplication());
     mDefenseRepository = new DefenseRepository(getActivity().getApplication());
 
-    mExecutor = Executors.newSingleThreadExecutor();
     mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
     mbBuy = true;
@@ -107,7 +108,7 @@ public class SellbackCalculator extends Fragment
 
         mRemainingCashView.setText(output);
 
-        toggleButtons(NEUTRAL_CODE, ACTIVATE_CODE);
+        toggleButtons(DEACTIVATE_CODE, ACTIVATE_CODE);
 
         setTowerCost();
 
@@ -136,9 +137,14 @@ public class SellbackCalculator extends Fragment
 
         String sellbackText, sellCountText;
 
-        mRemainingCash -= mTowerCost * SELLBACK_RATE;
+        if(mTowerCost == 0)
+        {
+          mTowerCost = mTower.getTowerCost();
+        }
 
-        sellbackText = DOLLAR_SIGN + mTowerCost;
+        mRemainingCash += mTowerCost * SELLBACK_RATE;
+
+        sellbackText = DOLLAR_SIGN + mRemainingCash;
 
         mRemainingCashView.setText(sellbackText);
 
@@ -172,9 +178,24 @@ public class SellbackCalculator extends Fragment
 
         String rebuyText, rebuyCountText;
 
-        mRemainingCash += mTowerCost * SELLBACK_RATE;
+        if(mTowerCost == 0)
+        {
+          mTowerCost = mTower.getTowerCost();
+        }
 
-        rebuyText = DOLLAR_SIGN + mTowerCost;
+        mRemainingCash -= mTowerCost;
+
+        if(mRemainingCash < 0)
+        {
+          mRemainingCash += mTowerCost;
+
+          Toast towerToast = Toast.makeText(getActivity(), "You don't have enough money to buy this tower", Toast.LENGTH_LONG);
+          towerToast.show();
+
+          return;
+        }
+
+        rebuyText = DOLLAR_SIGN + mRemainingCash;
 
         mRemainingCashView.setText(rebuyText);
 
@@ -190,6 +211,16 @@ public class SellbackCalculator extends Fragment
         rebuyCountText = "Rebuys: " + mNumRebuys;
 
         mRebuyCountView.setText(rebuyCountText);
+      }
+    });
+
+    mHelpButton.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        Toast towerToast = Toast.makeText(getActivity(), "Tower Cost: " + mTowerCost, Toast.LENGTH_LONG);
+        towerToast.show();
       }
     });
   }
@@ -221,11 +252,12 @@ public class SellbackCalculator extends Fragment
     mStartingCashView = mAppPage.getCustomView().findViewById(R.id.starting_cash);
     mSellCountView = mAppPage.getCustomView().findViewById(R.id.sell_count_display);
     mRebuyCountView = mAppPage.getCustomView().findViewById(R.id.rebuy_count_display);
+    mHelpButton = mAppPage.getPage().findViewById(R.id.help_button);
 
     mSellButton = mAppPage.getCustomView().findViewById(R.id.sell_button);;
     mRebuyButton = mAppPage.getCustomView().findViewById(R.id.rebuy_button);
 
-    mRemainingCashView = mAppPage.getCustomView().findViewById(R.id.remaining_cash);;
+    mRemainingCashView = mAppPage.getCustomView().findViewById(R.id.hearts_lost);;
   }
 
   private void setupPage()
@@ -288,18 +320,15 @@ public class SellbackCalculator extends Fragment
 
   private void setTowerCost()
   {
-    mExecutor.execute(() ->
-    {
-      Tower tower = new Tower
-          (
-              mTowerDropdown.getSelectedItem().toString(),
-              Integer.parseInt(mTopPath.getSelectedItem().toString()),
-              Integer.parseInt(mMiddlePath.getSelectedItem().toString()),
-              Integer.parseInt(mBottomPath.getSelectedItem().toString()),
-              mUpgradeRepository
-          );
+    mTower = new Tower
+    (
+        mTowerDropdown.getSelectedItem().toString(),
+        Integer.parseInt(mTopPath.getSelectedItem().toString()),
+        Integer.parseInt(mMiddlePath.getSelectedItem().toString()),
+        Integer.parseInt(mBottomPath.getSelectedItem().toString()),
+        mUpgradeRepository
+    );
 
-      mTowerCost = tower.getTowerCost();
-    });
+    mTowerCost = mTower.getTowerCost();
   }
 }

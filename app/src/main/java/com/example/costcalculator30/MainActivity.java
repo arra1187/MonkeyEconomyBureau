@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -201,33 +202,17 @@ public class MainActivity extends AppCompatActivity
             AssetManager towerFiles;
 
             String title, tower, type;
-            int upgradeID, cost, roundNumber, RBE, cash;
-
-            //UpgradeDatabase upgradeDatabase = Room.databaseBuilder(getApplicationContext(),
-                    //UpgradeDatabase.class, "Upgrade-db").build();
-            //RoundDatabase roundDatabase = Room.databaseBuilder(getApplicationContext(),
-                    //RoundDatabase.class, "Round-db").build();
-            //DefenseDatabase defenseDatabase = Room.databaseBuilder(getApplicationContext(),
-                    //DefenseDatabase.class, "Defense-db").build();
-
-            //UpgradeDao upgradeDao = upgradeDatabase.mUpgradeDao();
-            //upgradeDao.deleteAll();
-
-            //RoundDao roundDao = roundDatabase.mRoundDao();
-            //roundDao.deleteAll();
-
-            //DefenseDao defenseDao = defenseDatabase.mDefenseDao();
-
-            //UpgradeViewModel upgradeViewModel = new ViewModelProvider(this).get(UpgradeViewModel.class);
+            int upgradeID, cost, roundNumber, RBE, cash, health;
+            boolean bFortified;
 
             UpgradeRepository upgradeRepository = new UpgradeRepository(getApplication());
             RoundRepository roundRepository = new RoundRepository(getApplication());
+            BloonRepository bloonRepository = new BloonRepository(getApplication());
             DefenseViewModel defenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
-
-            //upgradeViewModel.deleteAll();
 
             upgradeRepository.deleteAll();
             roundRepository.deleteAll();
+            bloonRepository.deleteAll();
 
             if(defenseViewModel.getSize() == 0)
             {
@@ -301,6 +286,37 @@ public class MainActivity extends AppCompatActivity
                         Round newRound = new Round(roundNumber, RBE, cash, type);
 
                         roundRepository.insert(newRound);
+                    }
+                }
+
+                aFileArray = towerFiles.list("bloons/");
+
+                for (String fileName : aFileArray)
+                {
+                    InputStream inputStream = towerFiles.open("bloons/" + fileName);
+                    int size = inputStream.available();
+                    byte[] buffer = new byte[size];
+
+                    inputStream.read(buffer);
+                    inputStream.close();
+
+                    jsonString = new String(buffer, "UTF-8");
+
+                    jsonArray = new JSONArray(jsonString);
+
+                    for (int i = 0; i < jsonArray.length(); i++)
+                    {
+                        JSONObject jsonItem = jsonArray.getJSONObject(i);
+
+                        title = jsonItem.getString("mTitle");
+                        type = jsonItem.getString("mType");
+                        bFortified = Boolean.parseBoolean(jsonItem.getString("mbFortified"));
+                        RBE = Integer.parseInt(jsonItem.getString("mRBE"));
+                        health = Integer.parseInt(jsonItem.getString("mHealth"));
+
+                        Bloon newBloon = new Bloon(title, type, bFortified, RBE, health);
+
+                        bloonRepository.insert(newBloon);
                     }
                 }
             }

@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -112,7 +111,7 @@ public class TowerTypeRecyclerViewAdapter
 
             if(mSelectTower == null)
             {
-                mSelectTower = (Spinner) itemView.findViewById(R.id.target_tower_dropdown);
+                mSelectTower = (Spinner) itemView.findViewById(R.id.bloon_dropdown);
             }
 
             mSelectTower.setAdapter(UpgradeAdapter);
