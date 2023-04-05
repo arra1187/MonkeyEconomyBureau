@@ -150,12 +150,16 @@ public class BloonRecyclerViewAdapter
 
       mTitle.setText(mBloon.getTitle());
 
-      if(mBloon.getType().equals("Bloon"))
+      if(mBloon.getType().equals("Bloon") || mBloon.getType().equals("Extra"))
       {
         mFortified.setVisibility(View.INVISIBLE);
       }
+      else
+      {
+        mFortified.setVisibility(View.VISIBLE);
+      }
 
-      mCount.setOnEditorActionListener (new TextView.OnEditorActionListener()
+      mCount.setOnEditorActionListener(new TextView.OnEditorActionListener()
       {
         @Override
         public boolean onEditorAction (TextView textView, int i,
@@ -163,18 +167,41 @@ public class BloonRecyclerViewAdapter
         {
           mBloon.setNumBloons(Integer.parseInt(textView.getText().toString()));
 
-          if(mbListener.getValue())
-          {
-            mbListener.setValue(false);
-          }
-          else
-          {
-            mbListener.setValue(true);
-          }
+          signalListener();
 
           return false;
         }
       });
+
+      mFortified.setOnClickListener(new View.OnClickListener()
+      {
+        @Override
+        public void onClick(View view)
+        {
+          if(!mBloon.getFortified())
+          {
+            mBloon.setFortified(true);
+          }
+          else
+          {
+            mBloon.setFortified(false);
+          }
+
+          signalListener();
+        }
+      });
+    }
+
+    private void signalListener()
+    {
+      if(mbListener.getValue())
+      {
+        mbListener.setValue(false);
+      }
+      else
+      {
+        mbListener.setValue(true);
+      }
     }
   }
 }

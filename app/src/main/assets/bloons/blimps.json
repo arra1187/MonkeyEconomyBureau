@@ -4,6 +4,7 @@
     "mType": "Blimp",
     "mbFortified": "false",
     "mRBE": 616,
+    "mHeartsLost": 616,
     "mHealth": 200
   },
 
@@ -12,6 +13,7 @@
     "mType": "Blimp",
     "mbFortified": "false",
     "mRBE": 3164,
+    "mHeartsLost": 3164,
     "mHealth": 700
   },
 
@@ -20,6 +22,7 @@
     "mType": "Blimp",
     "mbFortified": "true",
     "mRBE": 856,
+    "mHeartsLost": 856,
     "mHealth": 400
   },
 
@@ -28,6 +31,7 @@
     "mType": "Blimp",
     "mbFortified": "true",
     "mRBE": 4824,
+    "mHeartsLost": 4824,
     "mHealth": 1400
   },
 
@@ -36,6 +40,34 @@
     "mType": "Blimp",
     "mbFortified": "false",
     "mRBE": 16656,
+    "mHeartsLost": 16656,
+    "mHealth": 4000
+  },
+
+  {
+    "mTitle": "Super MOAB",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 476,
+    "mHeartsLost": 440,
+    "mHealth": 200
+  },
+
+  {
+    "mTitle": "Super BFB",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 2618,
+    "mHeartsLost": 2540,
+    "mHealth": 700
+  },
+
+  {
+    "mTitle": "Super ZOMG",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 14522,
+    "mHeartsLost": 14160,
     "mHealth": 4000
   },
 

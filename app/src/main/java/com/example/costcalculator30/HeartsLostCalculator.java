@@ -120,7 +120,7 @@ public class HeartsLostCalculator extends Fragment
 
         mBloons.add(bloonItem);
 
-        mAdapter.notifyItemInserted(mBloons.size() - 1);
+        mAdapter.notifyItemInserted(mBloons.size());
 
         calculateHeartsLost();
       }
@@ -168,13 +168,21 @@ public class HeartsLostCalculator extends Fragment
 
   public void calculateHeartsLost()
   {
-    Integer heartsLost = 0;
+    Executor executor = Executors.newSingleThreadExecutor();;
 
-    for(BloonItem bloonItem : mBloons)
+    executor.execute(() ->
     {
-      heartsLost += bloonItem.getRBE();
-    }
+      int heartsLost = 0;
+      final Integer finalHeartsLost;
 
-    mHeartsLost.setText(heartsLost.toString());
+      for(BloonItem bloonItem : mBloons)
+      {
+        heartsLost += bloonItem.getNumBloons() * mBloonRepository.getRBE(bloonItem.getTitle(), bloonItem.getFortified());
+      }
+
+      finalHeartsLost = heartsLost;
+
+      mAppPage.getCustomView().post (() -> mHeartsLost.setText(finalHeartsLost.toString()));
+    });
   }
 }

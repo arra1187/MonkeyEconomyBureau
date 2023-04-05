@@ -4,6 +4,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 1,
+    "mHeartsLost": 1,
     "mHealth": 1
   },
 
@@ -12,6 +13,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 2,
+    "mHeartsLost": 2,
     "mHealth": 1
   },
 
@@ -20,13 +22,16 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 3,
+    "mHeartsLost": 3,
     "mHealth": 1
   },
 
   {
     "mTitle": "Yellow Bloon",
     "mType": "Bloon",
+    "mbFortified": "false",
     "mRBE": 4,
+    "mHeartsLost": 4,
     "mHealth": 1
   },
 
@@ -35,6 +40,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 5,
+    "mHeartsLost": 5,
     "mHealth": 1
   },
 
@@ -43,6 +49,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 11,
+    "mHeartsLost": 11,
     "mHealth": 1
   },
 
@@ -51,6 +58,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 11,
+    "mHeartsLost": 11,
     "mHealth": 1
   },
 
@@ -59,6 +67,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 11,
+    "mHeartsLost": 11,
     "mHealth": 1
   },
 
@@ -67,6 +76,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 23,
+    "mHeartsLost": 23,
     "mHealth": 1
   },
 
@@ -75,6 +85,7 @@
     "mType": "Heavy Bloon",
     "mbFortified": "false",
     "mRBE": 23,
+    "mHeartsLost": 23,
     "mHealth": 1
   },
 
@@ -83,6 +94,7 @@
     "mType": "Bloon",
     "mbFortified": "false",
     "mRBE": 47,
+    "mHeartsLost": 47,
     "mHealth": 1
   },
 
@@ -91,6 +103,7 @@
     "mType": "Heavy Bloon",
     "mbFortified": "false",
     "mRBE": 104,
+    "mHeartsLost": 104,
     "mHealth": 10
   },
 
@@ -99,6 +112,7 @@
     "mType": "Heavy Bloon",
     "mbFortified": "true",
     "mRBE": 26,
+    "mHeartsLost": 26,
     "mHealth": 4
   },
 
@@ -106,7 +120,8 @@
     "mTitle": "Ceramic Bloon",
     "mType": "Heavy Bloon",
     "mbFortified": "true",
-    "mRBE": 26,
+    "mRBE": 114,
+    "mHeartsLost": 114,
     "mHealth": 4
   },
 
@@ -115,6 +130,7 @@
     "mType": "Heavy Bloon",
     "mbFortified": "false",
     "mRBE": 68,
+    "mHeartsLost": 65,
     "mHealth": 60
   },
 
@@ -123,6 +139,7 @@
     "mType": "Heavy Bloon",
     "mbFortified": "true",
     "mRBE": 128,
+    "mHeartsLost": 75,
     "mHealth": 120
   }
 ]

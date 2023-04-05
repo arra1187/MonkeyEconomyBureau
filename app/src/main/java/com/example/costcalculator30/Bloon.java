@@ -22,6 +22,9 @@ public class Bloon
   @ColumnInfo(name = "RBE")
   private int mRBE;
 
+  @ColumnInfo(name = "hearts_lost")
+  private int mHeartsLost;
+
   @ColumnInfo(name = "health")
   private int mHealth;
 
@@ -30,12 +33,13 @@ public class Bloon
     //Default constructor
   }
 
-  public Bloon(String title, String type, boolean bFortified, int RBE, int health)
+  public Bloon(String title, String type, boolean bFortified, int RBE, int heartsLost, int health)
   {
     mTitle = title;
     mType = type;
     mFortified = bFortified;
     mRBE = RBE;
+    mHeartsLost = heartsLost;
     mHealth = health;
   }
 
@@ -57,6 +61,11 @@ public class Bloon
   public int getRBE()
   {
     return mRBE;
+  }
+
+  public int getHeartsLost()
+  {
+    return mHeartsLost;
   }
 
   public int getHealth()
@@ -87,6 +96,11 @@ public class Bloon
   public void setRBE(int RBE)
   {
     mRBE = RBE;
+  }
+
+  public void setHeartsLost(int heartsLost)
+  {
+    mHeartsLost = heartsLost;
   }
 
   public void setHealth(int health)

@@ -6,15 +6,11 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class BloonItem {
-  private String mTitle;
+  private final String mTitle;
 
-  private String mType;   //Bloon, Heavy Bloon (can be fortified), Blimp, Boss, or other
+  private final String mType;   //Bloon, Heavy Bloon (can be fortified), Blimp, Boss, or other
 
   private boolean mbFortified;
-
-  private int mRBE;
-
-  private int mHealth;
 
   private int mNumBloons;
 
@@ -41,12 +37,15 @@ public class BloonItem {
 
     mbFortified = false;
     mNumBloons = 1;
-
-    storeRBEData();
   }
 
   public String getTitle() {
     return mTitle;
+  }
+
+  public int getNumBloons()
+  {
+    return mNumBloons;
   }
 
   public String getType()
@@ -59,11 +58,6 @@ public class BloonItem {
     return mbFortified;
   }
 
-  public int getRBE()
-  {
-    return mRBE * mNumBloons;
-  }
-
   public void setNumBloons(int numBloons)
   {
     mNumBloons = numBloons;
@@ -72,17 +66,5 @@ public class BloonItem {
   public void setFortified(boolean bFortified)
   {
     mbFortified = bFortified;
-
-    storeRBEData();
-  }
-
-  public void storeRBEData()
-  {
-    Executor executor = Executors.newSingleThreadExecutor();;
-
-    executor.execute(() ->
-    {
-      mRBE = mBloonRepository.getRBE(mTitle, mbFortified);
-    });
   }
 }

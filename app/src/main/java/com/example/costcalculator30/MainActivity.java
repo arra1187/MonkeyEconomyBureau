@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
             AssetManager towerFiles;
 
             String title, tower, type;
-            int upgradeID, cost, roundNumber, RBE, cash, health;
+            int upgradeID, cost, roundNumber, RBE, cash, heartsLost, health;
             boolean bFortified;
 
             UpgradeRepository upgradeRepository = new UpgradeRepository(getApplication());
@@ -278,11 +278,6 @@ public class MainActivity extends AppCompatActivity
                         cash = Integer.parseInt(jsonItem.getString("mCash"));
                         type = jsonItem.getString("mType");
 
-                        if(type.equals(""))
-                        {
-                            type = "normal";
-                        }
-
                         Round newRound = new Round(roundNumber, RBE, cash, type);
 
                         roundRepository.insert(newRound);
@@ -312,9 +307,10 @@ public class MainActivity extends AppCompatActivity
                         type = jsonItem.getString("mType");
                         bFortified = Boolean.parseBoolean(jsonItem.getString("mbFortified"));
                         RBE = Integer.parseInt(jsonItem.getString("mRBE"));
+                        heartsLost = Integer.parseInt(jsonItem.getString("mHeartsLost"));
                         health = Integer.parseInt(jsonItem.getString("mHealth"));
 
-                        Bloon newBloon = new Bloon(title, type, bFortified, RBE, health);
+                        Bloon newBloon = new Bloon(title, type, bFortified, RBE, heartsLost, health);
 
                         bloonRepository.insert(newBloon);
                     }
