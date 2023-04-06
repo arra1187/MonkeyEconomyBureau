@@ -10,21 +10,45 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class DefenseRecyclerViewAdapter
         extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
 {
+    private DefenseViewModel mDefenseViewModel;
     private ArrayList<Defense> mDefenses;
     private Context mContext;
+    private Executor mExecutor;
 
-    public DefenseRecyclerViewAdapter(ArrayList<Defense> defenses, Context context)
+    private int mItemCount;
+    private Boolean mLock;
+
+    private ThreadRepository threadRepository;
+
+    private LifecycleOwner mLifecycleOwner;
+
+    public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner)
     {
+        mDefenseViewModel = defenseViewModel;
         mDefenses = defenses;
         mContext = context;
+
+        mLock = false;
+
+        mExecutor = Executors.newSingleThreadExecutor();
+        mLifecycleOwner = lifecycleOwner;
+        threadRepository = new ThreadRepository();
     }
 
     @NonNull
@@ -34,21 +58,64 @@ public class DefenseRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.defense_display, parent,
                 false);
 
-        return new DefenseRecyclerViewAdapter.ViewHolder(view, mContext);
+        return new DefenseRecyclerViewAdapter.ViewHolder(view, mContext, mLifecycleOwner);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DefenseRecyclerViewAdapter.ViewHolder holder, int position)
     {
-        holder.setDefense(mDefenses.get(position));
+        mExecutor.execute(() ->
+        {
+            holder.setDefense(mDefenseViewModel.getAllData().get(position));
 
-        holder.bindData();
+            holder.bindData();
+        });
+
+        holder.getClearDefenseButton().setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                mExecutor.execute(() ->
+                {
+                    mDefenseViewModel.deleteItem(holder.mDefense);
+                });
+            }
+        });
     }
 
     @Override
     public int getItemCount()
     {
-        return mDefenses.size();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        //mLock = true;
+
+        executorService.execute(() ->
+        {
+            mItemCount = mDefenseViewModel.getSize();
+            //mLock = false;
+        });
+
+        //while(mLock = true);
+
+        //mExecutor.join();
+
+        executorService.shutdown();
+
+        while(!executorService.isTerminated())
+        {
+            try
+            {
+                executorService.awaitTermination(1, TimeUnit.SECONDS);
+            }
+            catch(InterruptedException ignored)
+            {
+
+            }
+        }
+
+        return mDefenseViewModel.getAllLiveData().getValue().size();
     }
 
     public void setListData(ArrayList<Defense> defenses)
@@ -59,6 +126,7 @@ public class DefenseRecyclerViewAdapter
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        private MutableLiveData<Integer> mPosition;
         private Defense mDefense;
 
         private TextView mDefenseID;
@@ -75,19 +143,12 @@ public class DefenseRecyclerViewAdapter
 
         private Context mContext;
 
-        public ViewHolder(@NonNull View itemView, Context context)
+        public ViewHolder(@NonNull View itemView, Context context, LifecycleOwner lifecycleOwner)
         {
             super(itemView);
-            mContext = context;
-        }
 
-        public void setDefense(Defense defense)
-        {
-            mDefense = defense;
-        }
+            mPosition = new MutableLiveData<>(getAdapterPosition());
 
-        public void bindData()
-        {
             if(mDefenseID == null)
             {
                 mDefenseID = (TextView) itemView.findViewById(R.id.defense_id);
@@ -118,18 +179,49 @@ public class DefenseRecyclerViewAdapter
                 mClearDefenseButton = (ImageButton) itemView.findViewById(R.id.clear_defense_button);
             }
 
+            mPosition.observe(lifecycleOwner, new Observer<Integer>()
+            {
+                @Override
+                public void onChanged(Integer integer)
+                {
+                    setLabel();
+                }
+            });
+
+            mContext = context;
+        }
+
+        public ImageButton getClearDefenseButton()
+        {
+            return (ImageButton) itemView.findViewById(R.id.clear_defense_button);
+        }
+
+        public void setDefense(Defense defense)
+        {
+            mDefense = defense;
+        }
+
+        public void setLabel()
+        {
             final int CURRENT_ID = 0;
-            String cost = "$" + mDefense.getCost();
-            Integer id = mDefense.getNid() - 1;
+            Integer id = getAdapterPosition();
             String label = id.toString();
 
             if(id == CURRENT_ID)
             {
                 label = "Current";
+                mClearDefenseButton.setVisibility(View.INVISIBLE);
             }
 
             mDefenseID.setText(label);
+        }
+
+        public void bindData()
+        {
+            String cost = "$" + mDefense.getCost();
             mDefenseCost.setText(cost);
+
+            setLabel();
 
             mTowerList = new StringBuilder();
             boolean first = true;
@@ -151,12 +243,6 @@ public class DefenseRecyclerViewAdapter
             mTowerListShowing = false;
 
             mDropDownButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.asset_triangle_down, null));
-
-            if(id == CURRENT_ID)
-            {
-                //mClearDefenseButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.clear_button_template, null));
-                mClearDefenseButton.setVisibility(View.INVISIBLE);
-            }
 
             mDropDownButton.setOnClickListener(new View.OnClickListener()
             {

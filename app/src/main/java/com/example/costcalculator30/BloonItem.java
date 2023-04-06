@@ -5,7 +5,8 @@ import android.app.Application;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class BloonItem {
+public class BloonItem
+{
   private final String mTitle;
 
   private final String mType;   //Bloon, Heavy Bloon (can be fortified), Blimp, Boss, or other

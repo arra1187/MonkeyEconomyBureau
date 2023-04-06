@@ -13,14 +13,14 @@ public class DefenseViewModel extends AndroidViewModel
 {
     private final DefenseRepository mDataRepository;
     private final LiveData<List<Defense>> mListLiveData;
-    private final List<Defense> mListData;
+    private List<Defense> mListData;
 
     public DefenseViewModel(@NonNull Application application)
     {
         super(application);
         mDataRepository = new DefenseRepository(application);
         mListLiveData = mDataRepository.getAllLive();
-        mListData = mDataRepository.getAll();
+        //mListData = mDataRepository.getAll();
     }
 
     public LiveData<List<Defense>> getAllLiveData()
@@ -30,6 +30,11 @@ public class DefenseViewModel extends AndroidViewModel
 
     public List<Defense> getAllData()
     {
+        if(mListData == null)
+        {
+            mListData = mDataRepository.getAll();
+        }
+
         return mListData;
     }
 
@@ -46,6 +51,11 @@ public class DefenseViewModel extends AndroidViewModel
     public int getCost(int id)
     {
         return mDataRepository.getCost(id);
+    }
+
+    public void setID(int oldID, int newID)
+    {
+        mDataRepository.setID(oldID, newID);
     }
 
     public int getSize()

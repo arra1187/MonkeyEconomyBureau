@@ -20,7 +20,6 @@ public class DefenseRepository
         DefenseDatabase defenseDatabase = DefenseDatabase.getDatabase(application);
         mDefenseDao = defenseDatabase.mDefenseDao();
         mLiveDefenses = mDefenseDao.getAllLive();
-        //mDefenses = mDefenseDao.getAll();
     }
 
     public LiveData<List<Defense>> getAllLive()
@@ -30,6 +29,11 @@ public class DefenseRepository
 
     public List<Defense> getAll()
     {
+        if(mDefenses == null)
+        {
+            mDefenses = mDefenseDao.getAll();
+        }
+
         return mDefenses;
     }
 
@@ -50,6 +54,11 @@ public class DefenseRepository
         return mDefenseDao.getCost(id);
     }
 
+    public void setID(int oldID, int newID)
+    {
+        mDefenseDao.setID(oldID, newID);
+    }
+
     public void setCost(int cost, int id)
     {
         mDefenseDao.setCost(cost, id);
@@ -62,62 +71,11 @@ public class DefenseRepository
 
     public void insert(Defense defense)
     {
-        //new insertAsyncTask(mDefenseDao).execute(defense);
-
         mDefenseDao.insert(defense);
     }
-
-    /*private static class insertAsyncTask extends AsyncTask<Defense, Void, Void>
-    {
-        private final DefenseDao mAsyncTaskDao;
-
-        insertAsyncTask(DefenseDao defenseDao)
-        {
-            mAsyncTaskDao = defenseDao;
-        }
-
-        @Override
-        protected Void doInBackground(final Defense... params)
-        {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
-    }*/
 
     public void delete(Defense defense)
     {
-        //new deleteAsyncTask(mDefenseDao).execute(defense);
-
-        mDefenseDao.insert(defense);
+        mDefenseDao.delete(defense);
     }
-
-    /*private static class deleteAsyncTask extends AsyncTask<Defense, Void, Void>
-    {
-        private final DefenseDao mAsyncTaskDao;
-
-        deleteAsyncTask(DefenseDao defenseDao)
-        {
-            mAsyncTaskDao = defenseDao;
-        }
-
-        @Override
-        protected Void doInBackground(final Defense... params)
-        {
-            mAsyncTaskDao.delete(params[0]);
-            return null;
-        }
-    }*/
-
-    /*public Defense getDefense(int id)
-    {
-        for(Defense defense : Objects.requireNonNull(mDefenses.getValue()))
-        {
-            if(defense.getNid() == id)
-            {
-                return defense;
-            }
-        }
-
-        return null;
-    }*/
 }

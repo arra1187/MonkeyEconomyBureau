@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +35,7 @@ public class SavedDefenses extends Fragment
     {
         final String pageHeader = "Saved\nDefenses";
         final int fragmentLayout = R.layout.fragment_saved_defenses;
+        final LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
 
         mExecutor = Executors.newSingleThreadExecutor();
 
@@ -46,11 +48,10 @@ public class SavedDefenses extends Fragment
 
         mViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenses, getContext());
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mViewModel, mDefenses, getContext(), lifecycleOwner);
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
-        //bind to Livedata
-        mViewModel.getAllLiveData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
+        mViewModel.getAllLiveData().observe(lifecycleOwner, new Observer<List<Defense>>()
         {
             @Override
             public void onChanged(@Nullable List<Defense> defenses)
@@ -61,21 +62,6 @@ public class SavedDefenses extends Fragment
                 }
             }
         });
-
-        //setListData(mViewModel.getAllData().getValue());
-
-        /*mExecutor.execute(() ->
-        {
-            ArrayList<Defense> defenses = (ArrayList<Defense>) mRepository.getDefenseDao(getContext()).getAll();
-
-            mDefenses.addAll(defenses);
-
-            mAppPage.getCustomView().post (() ->
-                    mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size())
-            );
-        });*/
-
-        //updateDefense();
 
         mExecutor.execute(() ->
         {
@@ -121,6 +107,14 @@ public class SavedDefenses extends Fragment
                     mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size())
             );*/
         });
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+
     }
 
     public void onResume()

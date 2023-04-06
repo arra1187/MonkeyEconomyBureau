@@ -64,20 +64,6 @@ public class HeartsLostCalculator extends Fragment
 
     mAdapter = new BloonRecyclerViewAdapter(mBloons, getContext(), mbListener);
 
-    /*mAdapter.getLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<BloonItem>>()
-    {
-      @Override
-      public void onChanged(ArrayList<BloonItem> bloonItems)
-      {
-        if(bloonItems != null)
-        {
-          //Calculate hearts lost / RBE
-
-          mAdapter.notifyItemRangeInserted(0, bloonItems.size());
-        }
-      }
-    });*/
-
     mbListener.observe(getViewLifecycleOwner(), new Observer<Boolean>()
     {
       @Override

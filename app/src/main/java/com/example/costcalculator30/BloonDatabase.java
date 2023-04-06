@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database (entities = {Bloon.class}, version = 1, exportSchema = false)
+@Database (entities = {Bloon.class}, version = 2, exportSchema = false)
 public abstract class BloonDatabase extends RoomDatabase
 {
   private static volatile BloonDatabase INSTANCE;
@@ -22,8 +22,8 @@ public abstract class BloonDatabase extends RoomDatabase
         if (INSTANCE == null)
         {
           INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                  BloonDatabase.class, "bloon-db")
-              .fallbackToDestructiveMigration().build();
+            BloonDatabase.class, "bloon-db")
+            .fallbackToDestructiveMigration().build();
         }
       }
     }

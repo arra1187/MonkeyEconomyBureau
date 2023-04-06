@@ -23,17 +23,12 @@ import java.util.List;
 public class BloonRecyclerViewAdapter
     extends RecyclerView.Adapter<BloonRecyclerViewAdapter.ViewHolder>
 {
-  //private MutableLiveData<ArrayList<BloonItem>> mBloons;
   private ArrayList<BloonItem> mBloons;
   private Context mContext;
   private MutableLiveData<Boolean> mbListener;
 
   BloonRecyclerViewAdapter(ArrayList<BloonItem> bloons, Context context, MutableLiveData<Boolean> bListener)
   {
-    //mBloons = new MutableLiveData<>();
-
-    //mBloons.setValue(bloons);
-
     mBloons = bloons;
     mContext = context;
     mbListener = bListener;
