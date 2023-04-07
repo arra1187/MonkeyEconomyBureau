@@ -26,29 +26,25 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DefenseRecyclerViewAdapter
         extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
 {
-    private DefenseViewModel mDefenseViewModel;
-    private ArrayList<Defense> mDefenses;
-    private Context mContext;
-    private Executor mExecutor;
+    //private ArrayList<Defense> mDefenses;
+
+    private Utility mUtility;
+    private final DefenseViewModel mDefenseViewModel;
+    private final Context mContext;
+
+    private ExecutorService mDatabaseExecutor;
 
     private int mItemCount;
-    private Boolean mLock;
 
-    private ThreadRepository threadRepository;
-
-    private LifecycleOwner mLifecycleOwner;
+    private final LifecycleOwner mLifecycleOwner;
 
     public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner)
     {
+        mUtility = new Utility();
         mDefenseViewModel = defenseViewModel;
-        mDefenses = defenses;
+        //mDefenses = defenses;
         mContext = context;
-
-        mLock = false;
-
-        mExecutor = Executors.newSingleThreadExecutor();
         mLifecycleOwner = lifecycleOwner;
-        threadRepository = new ThreadRepository();
     }
 
     @NonNull
@@ -64,64 +60,47 @@ public class DefenseRecyclerViewAdapter
     @Override
     public void onBindViewHolder(@NonNull DefenseRecyclerViewAdapter.ViewHolder holder, int position)
     {
-        mExecutor.execute(() ->
+        mDatabaseExecutor = Executors.newSingleThreadExecutor();
+
+        mDatabaseExecutor.execute(() ->
         {
             holder.setDefense(mDefenseViewModel.getAllData().get(position));
-
-            holder.bindData();
         });
+
+        mUtility.joinExecutor(mDatabaseExecutor);
 
         holder.getClearDefenseButton().setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                mExecutor.execute(() ->
+                mDatabaseExecutor = Executors.newSingleThreadExecutor();
+
+                mDatabaseExecutor.execute(() ->
                 {
                     mDefenseViewModel.deleteItem(holder.mDefense);
                 });
+
+                mUtility.joinExecutor(mDatabaseExecutor);
             }
         });
+
+        holder.bindData();
     }
 
     @Override
     public int getItemCount()
     {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        mDatabaseExecutor = Executors.newSingleThreadExecutor();
 
-        //mLock = true;
-
-        executorService.execute(() ->
+        mDatabaseExecutor.execute(() ->
         {
             mItemCount = mDefenseViewModel.getSize();
-            //mLock = false;
         });
 
-        //while(mLock = true);
+        mUtility.joinExecutor(mDatabaseExecutor);
 
-        //mExecutor.join();
-
-        executorService.shutdown();
-
-        while(!executorService.isTerminated())
-        {
-            try
-            {
-                executorService.awaitTermination(1, TimeUnit.SECONDS);
-            }
-            catch(InterruptedException ignored)
-            {
-
-            }
-        }
-
-        return mDefenseViewModel.getAllLiveData().getValue().size();
-    }
-
-    public void setListData(ArrayList<Defense> defenses)
-    {
-        mDefenses = defenses;
-        notifyItemRangeInserted(0, mDefenses.size());
+        return mItemCount;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder

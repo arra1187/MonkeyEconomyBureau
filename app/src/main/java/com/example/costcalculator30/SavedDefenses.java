@@ -13,21 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SavedDefenses extends Fragment
 {
-    private DefenseViewModel mViewModel;
+    private DefenseViewModel mDefenseViewModel;
+    private ExecutorService mDatabaseExecutor;
     private Executor mExecutor;
     private AppPage mAppPage;
     private RecyclerView mDefenseRecycler;
     private DefenseRecyclerViewAdapter mDefenseAdapter;
     private ArrayList<Defense> mDefenses;
+    private Defense mCurrentDefense;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,20 +49,23 @@ public class SavedDefenses extends Fragment
 
         mDefenseRecycler = mAppPage.getCustomView().findViewById(R.id.defense_recyclerView);
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDefenseRecycler.setItemAnimator(null);
 
-        mViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+        mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(mViewModel, mDefenses, getContext(), lifecycleOwner);
+        setupCurrentDisplay(inflater, container);
+
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenseViewModel, mDefenses, getContext(), lifecycleOwner);
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
-        mViewModel.getAllLiveData().observe(lifecycleOwner, new Observer<List<Defense>>()
+        mDefenseViewModel.getAllLiveData().observe(lifecycleOwner, new Observer<List<Defense>>()
         {
             @Override
             public void onChanged(@Nullable List<Defense> defenses)
             {
                 if(defenses != null)
                 {
-                    setListData(defenses);
+                    mDefenseAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -67,7 +74,7 @@ public class SavedDefenses extends Fragment
         {
             int numDefenses;
 
-            numDefenses = mViewModel.getSize();
+            numDefenses = mDefenseViewModel.getSize();
 
             mAppPage.getCustomView().post(() ->
                     mDefenseAdapter.notifyItemRangeInserted(0, numDefenses));
@@ -76,51 +83,26 @@ public class SavedDefenses extends Fragment
         return mAppPage.getOverView();
     }
 
-    public void setListData(List<Defense> defenses)
+    private void setupCurrentDisplay(LayoutInflater inflater, ViewGroup container)
     {
-        //if data changed, set new list to adapter of recyclerview
+        Utility utility = new Utility();
+        View currentView = inflater.inflate(R.layout.defense_display, container, false);
+        String costText;
 
-        if (mDefenses == null)
+        ((FrameLayout) mAppPage.getCustomView().findViewById(R.id.page_frame)).addView(currentView);
+
+        mDatabaseExecutor = Executors.newSingleThreadExecutor();
+
+        mDatabaseExecutor.execute (() ->
         {
-            mDefenses = new ArrayList<>();
-        }
-
-        mDefenses.clear();
-        mDefenses.addAll(defenses);
-
-        if (mDefenseAdapter != null)
-        {
-            mDefenseAdapter.setListData(mDefenses);
-            //mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size());
-        }
-    }
-
-    public void updateDefense()
-    {
-        mExecutor.execute(() ->
-        {
-            /*ArrayList<Defense> defenses = (ArrayList<Defense>) mRepository.getDefenseDao(getContext()).getAll();
-
-            mDefenses.addAll(defenses);
-
-            mAppPage.getCustomView().post (() ->
-                    mDefenseAdapter.notifyItemRangeInserted(0, mDefenses.size())
-            );*/
+            mCurrentDefense = mDefenseViewModel.getCurrent().get(0);
         });
-    }
 
-    @Override
-    public void onPause()
-    {
-        super.onPause();
+        utility.joinExecutor(mDatabaseExecutor);
 
+        costText = "$" + mCurrentDefense.getCost();
 
-    }
-
-    public void onResume()
-    {
-        super.onResume();
-
-
+        ((TextView) currentView.findViewById(R.id.defense_id)).setText("Current");
+        ((TextView) currentView.findViewById(R.id.defense_cost)).setText(costText);
     }
 }

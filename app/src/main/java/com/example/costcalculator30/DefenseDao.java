@@ -12,11 +12,14 @@ import java.util.List;
 @Dao
 public interface DefenseDao
 {
-    @Query("SELECT * FROM Defense")
+    @Query("SELECT * FROM Defense WHERE current = 0")
     LiveData<List<Defense>> getAllLive();
 
-    @Query("SELECT * FROM Defense")
+    @Query("SELECT * FROM Defense WHERE current = 0")
     List<Defense> getAll();
+
+    @Query("SELECT * FROM Defense WHERE current = 1")
+    List<Defense> getCurrent();
 
     @Query("Select * FROM Defense WHERE nid = :id")
     Defense getDefense(int id);
@@ -32,6 +35,9 @@ public interface DefenseDao
 
     @Delete
     void delete(Defense defense);
+
+    @Query("Delete from Defense")
+    void deleteAll();
 
     @Query("UPDATE Defense SET nid = :newID WHERE nid = :oldID")
     void setID(int oldID, int newID);

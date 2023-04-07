@@ -23,6 +23,17 @@ public class Defense
     @ColumnInfo(name = "cost")
     private int mCost;
 
+    @ColumnInfo(name = "current")
+    private int mCurrent;
+
+    /*public Defense(int current)
+    {
+        mCurrent = current;
+
+        mCost = 0;
+        mTowers = new ArrayList<>();
+    }*/
+
     public Defense(ArrayList<Tower> towers, int cost)
     {
         mTowers = towers;
@@ -39,6 +50,11 @@ public class Defense
         return mCost;
     }
 
+    public int getCurrent()
+    {
+        return mCurrent;
+    }
+
     public int getNid()
     {
         return nid;
@@ -52,6 +68,11 @@ public class Defense
     public void setCost(int cost)
     {
         mCost = cost;
+    }
+
+    public void setCurrent(int current)
+    {
+        mCurrent = current;
     }
 
     public void setNid(int value)

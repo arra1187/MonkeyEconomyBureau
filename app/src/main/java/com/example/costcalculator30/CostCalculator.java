@@ -49,7 +49,7 @@ public class CostCalculator extends Fragment
 
     public CostCalculator()
     {
-        mCurrentDefenseID = 1;
+        mCurrentDefenseID = 0;
     }
 
     @Override

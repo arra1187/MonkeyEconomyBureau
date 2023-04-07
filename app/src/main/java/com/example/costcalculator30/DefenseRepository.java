@@ -13,7 +13,6 @@ public class DefenseRepository
 {
     private final DefenseDao mDefenseDao;
     private final LiveData<List<Defense>> mLiveDefenses;
-    private List<Defense> mDefenses;
 
     public DefenseRepository(Application application)
     {
@@ -27,14 +26,16 @@ public class DefenseRepository
         return mLiveDefenses;
     }
 
+    //You must call these methods on a non-UI thread or your app will crash
+
     public List<Defense> getAll()
     {
-        if(mDefenses == null)
-        {
-            mDefenses = mDefenseDao.getAll();
-        }
+        return mDefenseDao.getAll();
+    }
 
-        return mDefenses;
+    public List<Defense> getCurrent()
+    {
+        return mDefenseDao.getCurrent();
     }
 
     public Defense getDefense(int id)
@@ -46,8 +47,6 @@ public class DefenseRepository
     {
         return mDefenseDao.getSize();
     }
-
-    //You must call these methods on a non-UI thread or your app will crash
 
     public int getCost(int id)
     {
@@ -77,5 +76,10 @@ public class DefenseRepository
     public void delete(Defense defense)
     {
         mDefenseDao.delete(defense);
+    }
+
+    public void deleteAll()
+    {
+        mDefenseDao.deleteAll();
     }
 }
