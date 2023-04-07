@@ -26,18 +26,15 @@ public class Defense
     @ColumnInfo(name = "current")
     private int mCurrent;
 
-    /*public Defense(int current)
-    {
-        mCurrent = current;
+    @ColumnInfo(name = "difficulty")
+    private String mDifficulty;
 
-        mCost = 0;
-        mTowers = new ArrayList<>();
-    }*/
-
-    public Defense(ArrayList<Tower> towers, int cost)
+    public Defense(ArrayList<Tower> towers, int cost, String difficulty, int current)
     {
         mTowers = towers;
         mCost = cost;
+        mDifficulty = difficulty;
+        mCurrent = current;
     }
 
     public ArrayList<Tower> getTowers()
@@ -53,6 +50,11 @@ public class Defense
     public int getCurrent()
     {
         return mCurrent;
+    }
+
+    public String getDifficulty()
+    {
+        return mDifficulty;
     }
 
     public int getNid()
@@ -73,6 +75,11 @@ public class Defense
     public void setCurrent(int current)
     {
         mCurrent = current;
+    }
+
+    public void setDifficulty(String difficulty)
+    {
+        mDifficulty = difficulty;
     }
 
     public void setNid(int value)

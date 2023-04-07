@@ -213,12 +213,12 @@ public class MainActivity extends AppCompatActivity
             upgradeRepository.deleteAll();
             roundRepository.deleteAll();
             bloonRepository.deleteAll();
-            defenseViewModel.deleteAll();
+            //defenseViewModel.deleteAll();
 
             if(defenseViewModel.getSize() == 0)
             {
-                //defenseViewModel.insertItem(new Defense(new ArrayList<>(), 0));
-                defenseViewModel.insertItem(new Defense(0));
+                defenseViewModel.insertItem(new Defense(new ArrayList<>(), 0, "Medium", 1));
+                //defenseViewModel.insertItem(new Defense(0));
             }
 
             towerFiles = getApplicationContext().getAssets();

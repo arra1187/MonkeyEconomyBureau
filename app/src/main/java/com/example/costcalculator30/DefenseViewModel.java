@@ -36,14 +36,14 @@ public class DefenseViewModel extends AndroidViewModel
         return mDataRepository.getCurrent();
     }
 
-    public void setCost(int cost, int id)
+    public void setCost(int cost, int current)
     {
-        mDataRepository.setCost(cost, id);
+        mDataRepository.setCost(cost, current);
     }
 
-    public void setTowers(ArrayList<Tower> towers, int id)
+    public void setTowers(ArrayList<Tower> towers, int current)
     {
-        mDataRepository.setTowers(towers, id);
+        mDataRepository.setTowers(towers, current);
     }
 
     public int getCost(int id)
@@ -51,14 +51,19 @@ public class DefenseViewModel extends AndroidViewModel
         return mDataRepository.getCost(id);
     }
 
+    public int getSize()
+    {
+        return mDataRepository.getSize();
+    }
+
     public void setID(int oldID, int newID)
     {
         mDataRepository.setID(oldID, newID);
     }
 
-    public int getSize()
+    public void setDifficulty(String difficulty, int current)
     {
-        return mDataRepository.getSize();
+        mDataRepository.setDifficulty(difficulty, current);
     }
 
     public void insertItem(Defense defense)

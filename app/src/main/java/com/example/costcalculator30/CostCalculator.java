@@ -31,10 +31,6 @@ public class CostCalculator extends Fragment
     private UpgradeRepository mUpgradeRepository;
     private DefenseViewModel mDefenseViewModel;
 
-    //private DatabaseRepository mRepository;
-    private UpgradeDao mUpgradeDao;
-    private DefenseDao mDefenseDao;
-
     private RecyclerView mTowerRecycler;
 
     private TextView mFinalPriceView;
@@ -45,11 +41,12 @@ public class CostCalculator extends Fragment
     private ExecutorService mExecutor;
 
     private int mDefenseCost;
-    private final int mCurrentDefenseID;
+    private final int mCurrent;
+    private Defense mCurrentDefense;
 
     public CostCalculator()
     {
-        mCurrentDefenseID = 0;
+        mCurrent = 1;
     }
 
     @Override
@@ -70,7 +67,7 @@ public class CostCalculator extends Fragment
             {
                 if(defenses != null)
                 {
-
+                    int doNothing = 1;
                 }
             }
         });
@@ -147,7 +144,7 @@ public class CostCalculator extends Fragment
                 mExecutor.execute(() ->
                 {
                     //mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
-                    mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), mCurrentDefenseID);
+                    mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), mCurrent);
                 });
             }
         });
@@ -173,7 +170,7 @@ public class CostCalculator extends Fragment
             {
                 mExecutor.execute(() ->
                 {
-                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost);
+                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost, mDifficultyDropdown.getSelectedItem().toString(), mCurrent);
                     mDefenseViewModel.insertItem(newDefense);
 
                     Looper.prepare();
@@ -254,35 +251,47 @@ public class CostCalculator extends Fragment
 
         mExecutor.execute(() ->
         {
-            //mDefenseDao.setCost(mDefenseCost, 1);
-            mDefenseViewModel.setCost(mDefenseCost, mCurrentDefenseID);
+            mDefenseViewModel.setCost(mDefenseCost, mCurrent);
         });
+    }
+
+    public void setCost(int defenseCost)
+    {
+        String finalPriceDisplay = "$" + defenseCost;
+
+        mFinalPriceView.setText(finalPriceDisplay);
+
+        mDefenseCost = defenseCost;
     }
 
     private void updateTowers()
     {
         mExecutor.execute(() ->
         {
-            /*if(mUpgradeDao == null)
+            int position = 1;
+
+            mCurrentDefense = mDefenseViewModel.getCurrent().get(0);
+
+            ConnectTowerList.setTowers(mCurrentDefense.getTowers());
+            setCost(mCurrentDefense.getCost());
+
+            switch(mCurrentDefense.getDifficulty())
             {
-                mUpgradeDao = mRepository.getUpgradeDao(getContext());
+                case "Easy":
+                    position = 0;
+                    break;
+                case "Medium":
+                    position = 1;
+                    break;
+                case "Hard":
+                    position = 2;
+                    break;
+                case "Impoppable":
+                    position = 3;
+                    break;
             }
-            if(mDefenseDao == null)
-            {
-                //mDefenseDao = mRepository.getDefenseDao(getContext());
-            }*/
 
-            /*LiveData<List<Defense>> defenses = mDefenseViewModel.getAllData();
-
-            for(Defense defense : Objects.requireNonNull(defenses.getValue()))
-            {
-                if(defense.getNid() == 1)
-                {
-                    ConnectTowerList.setTowers(defense.getTowers());
-                }
-            }*/
-
-            ConnectTowerList.setTowers(mDefenseViewModel.getDefense(mCurrentDefenseID).getTowers());
+            mDifficultyDropdown.setSelection(position);
         });
     }
 }

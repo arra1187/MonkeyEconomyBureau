@@ -42,9 +42,12 @@ public interface DefenseDao
     @Query("UPDATE Defense SET nid = :newID WHERE nid = :oldID")
     void setID(int oldID, int newID);
 
-    @Query("UPDATE Defense SET towers = :towers WHERE nid = :id")
-    void setTowers(ArrayList<Tower> towers, int id);
+    @Query("UPDATE Defense SET towers = :towers WHERE current = :current")
+    void setTowers(ArrayList<Tower> towers, int current);
 
-    @Query("UPDATE Defense SET cost = :cost WHERE nid = :id")
-    void setCost(int cost, int id);
+    @Query("UPDATE Defense SET cost = :cost WHERE current = :current")
+    void setCost(int cost, int current);
+
+    @Query("UPDATE Defense SET difficulty = :difficulty WHERE current = :current")
+    void setDifficulty(String difficulty, int current);
 }

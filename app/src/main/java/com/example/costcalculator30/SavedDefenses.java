@@ -1,8 +1,11 @@
 package com.example.costcalculator30;
 
+import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -13,8 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +39,9 @@ public class SavedDefenses extends Fragment
     private DefenseRecyclerViewAdapter mDefenseAdapter;
     private ArrayList<Defense> mDefenses;
     private Defense mCurrentDefense;
+    private boolean mTowerListShowing;
+    private TextView mTowerListView;
+    private StringBuilder mTowerList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,8 +98,9 @@ public class SavedDefenses extends Fragment
         Utility utility = new Utility();
         View currentView = inflater.inflate(R.layout.defense_display, container, false);
         String costText;
+        Button dropDownButton;
 
-        ((FrameLayout) mAppPage.getCustomView().findViewById(R.id.page_frame)).addView(currentView);
+        ((FrameLayout) mAppPage.getCustomView().findViewById(R.id.current_frame)).addView(currentView);
 
         mDatabaseExecutor = Executors.newSingleThreadExecutor();
 
@@ -104,5 +115,36 @@ public class SavedDefenses extends Fragment
 
         ((TextView) currentView.findViewById(R.id.defense_id)).setText("Current");
         ((TextView) currentView.findViewById(R.id.defense_cost)).setText(costText);
+
+        mTowerListShowing = false;
+        mTowerListView = (TextView) currentView.findViewById(R.id.tower_list);
+
+        mTowerList = utility.setTowerList(mCurrentDefense.getTowers());
+
+        dropDownButton = currentView.findViewById(R.id.drop_down_button);
+
+        dropDownButton.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.asset_triangle_down, null));
+
+        dropDownButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(!mTowerListShowing)
+                {
+                    mTowerListView.setText(mTowerList.toString());
+                    view.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.asset_triangle_up, null));
+                    mTowerListShowing = true;
+                }
+                else
+                {
+                    mTowerListView.setText("");
+                    view.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.asset_triangle_down, null));
+                    mTowerListShowing = false;
+                }
+            }
+        });
+
+        currentView.findViewById(R.id.clear_defense_button).setVisibility(View.INVISIBLE);
     }
 }

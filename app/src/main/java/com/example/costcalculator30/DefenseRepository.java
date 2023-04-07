@@ -45,7 +45,7 @@ public class DefenseRepository
 
     public int getSize()
     {
-        return mDefenseDao.getSize();
+        return mDefenseDao.getAll().size();
     }
 
     public int getCost(int id)
@@ -58,14 +58,19 @@ public class DefenseRepository
         mDefenseDao.setID(oldID, newID);
     }
 
-    public void setCost(int cost, int id)
+    public void setCost(int cost, int current)
     {
-        mDefenseDao.setCost(cost, id);
+        mDefenseDao.setCost(cost, current);
     }
 
-    public void setTowers(ArrayList<Tower> towers, int id)
+    public void setTowers(ArrayList<Tower> towers, int current)
     {
-        mDefenseDao.setTowers(towers, id);
+        mDefenseDao.setTowers(towers, current);
+    }
+
+    public void setDifficulty(String difficulty, int current)
+    {
+        mDefenseDao.setDifficulty(difficulty, current);
     }
 
     public void insert(Defense defense)
