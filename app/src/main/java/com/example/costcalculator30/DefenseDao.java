@@ -27,6 +27,9 @@ public interface DefenseDao
     @Query("SELECT cost FROM Defense WHERE nid = :id")
     int getCost(int id);
 
+    @Query("SELECT cost FROM Defense WHERE current = 1")
+    int getCurrentCost();
+
     @Query("SELECT count(*) FROM Defense")
     int getSize();
 

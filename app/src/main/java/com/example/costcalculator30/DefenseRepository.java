@@ -48,6 +48,11 @@ public class DefenseRepository
         return mDefenseDao.getAll().size();
     }
 
+    public int getCurrentCost()
+    {
+        return mDefenseDao.getCurrentCost();
+    }
+
     public int getCost(int id)
     {
         return mDefenseDao.getCost(id);

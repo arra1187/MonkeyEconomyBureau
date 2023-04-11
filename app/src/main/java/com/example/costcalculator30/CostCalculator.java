@@ -171,6 +171,13 @@ public class CostCalculator extends Fragment
             @Override
             public void onClick(View view)
             {
+                if(mTowerTypeAdapter.getItemCount() == 0)
+                {
+                    Toast noToast = Toast.makeText(getActivity(), "Enter a tower to save defense", Toast.LENGTH_LONG);
+                    noToast.show();
+                    return;
+                }
+
                 mExecutor.execute(() ->
                 {
                     Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost, mDifficultyDropdown.getSelectedItem().toString(), 0);

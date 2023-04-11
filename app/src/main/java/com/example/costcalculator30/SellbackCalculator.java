@@ -264,12 +264,10 @@ public class SellbackCalculator extends Fragment
   {
     mExecutor.execute(() ->
     {
-      final int CURRENT_DEFENESE_ID = 1;
-
       String sellbackText;
-      int defenseCost = mDefenseRepository.getCost(CURRENT_DEFENESE_ID);
+      int defenseCost = mDefenseRepository.getCurrentCost();
 
-      sellbackText = DOLLAR_SIGN + (defenseCost * SELLBACK_RATE);
+      sellbackText = DOLLAR_SIGN + (int) (defenseCost * SELLBACK_RATE);
 
       mDefenseSellbackView.setText(sellbackText);
     });

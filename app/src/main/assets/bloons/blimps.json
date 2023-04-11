@@ -72,27 +72,48 @@
   },
 
   {
-    "mTitle": "DDT",
-    "mType": "Blimp",
-    "mbFortified": "false",
-    "mRBE": 816,
-    "mHealth": 400
-  },
-
-  {
     "mTitle": "ZOMG",
     "mType": "Blimp",
     "mbFortified": "true",
     "mRBE": 27296,
+    "mHeartsLost": 27296,
+    "mHealth": 8000
+  },
+
+  {
+    "mTitle": "Super ZOMG",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 27296,
+    "mHeartsLost": 27296,
     "mHealth": 8000
   },
 
   {
     "mTitle": "DDT",
     "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 896,
+    "mHeartsLost": 816,
+    "mHealth": 480
+  },
+
+  {
+    "mTitle": "Super DDT",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 752,
+    "mHeartsLost": 660,
+    "mHealth": 480
+  },
+
+  {
+    "mTitle": "DDT",
+    "mType": "Blimp",
     "mbFortified": "true",
-    "mRBE": 1256,
-    "mHealth": 800
+    "mRBE": 1416,
+    "mHeartsLost": 1256,
+    "mHealth": 1448
   },
 
   {
