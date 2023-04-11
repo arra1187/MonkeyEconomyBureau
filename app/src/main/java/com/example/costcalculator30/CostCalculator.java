@@ -1,5 +1,6 @@
 package com.example.costcalculator30;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,7 +63,7 @@ public class CostCalculator extends Fragment
         mUpgradeRepository = new UpgradeRepository(getActivity().getApplication());
         mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
 
-        mDefenseViewModel.getAllLiveData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
+        /*mDefenseViewModel.getAllLiveData().observe(getViewLifecycleOwner(), new Observer<List<Defense>>()
         {
             @Override
             public void onChanged(@Nullable List<Defense> defenses)
@@ -70,7 +73,7 @@ public class CostCalculator extends Fragment
                     int doNothing = 1;
                 }
             }
-        });
+        });*/
 
         mExecutor = Executors.newSingleThreadExecutor();
 
@@ -82,7 +85,7 @@ public class CostCalculator extends Fragment
         mTowerRecycler = mAppPage.getCustomView().findViewById(R.id.bloon_recyclerView);
         mTowerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext());
+        mTowerTypeAdapter = new TowerRecyclerViewAdapter(getContext(), mDefenseViewModel);
         mTowerRecycler.setAdapter(mTowerTypeAdapter);
 
         mTowerDropdown = mAppPage.getCustomView().findViewById(R.id.bloon_dropdown);
@@ -170,13 +173,28 @@ public class CostCalculator extends Fragment
             {
                 mExecutor.execute(() ->
                 {
-                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost, mDifficultyDropdown.getSelectedItem().toString(), mCurrent);
+                    Defense newDefense = new Defense(ConnectTowerList.getTowers(), mDefenseCost, mDifficultyDropdown.getSelectedItem().toString(), 0);
                     mDefenseViewModel.insertItem(newDefense);
 
-                    Looper.prepare();
+                    if (Looper.myLooper() == null)
+                    {
+                        Looper.prepare();
+                    }
+
                     Toast saveToast = Toast.makeText(getActivity(), "Defense saved", Toast.LENGTH_LONG);
                     view.post (() -> saveToast.show());
                 });
+            }
+        });
+
+        mAppPage.getCustomView().findViewById(R.id.load_defense_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.page_frame, new SavedDefenses());
+                transaction.commit();
             }
         });
 
@@ -252,6 +270,7 @@ public class CostCalculator extends Fragment
         mExecutor.execute(() ->
         {
             mDefenseViewModel.setCost(mDefenseCost, mCurrent);
+            mDefenseViewModel.setDifficulty(mDifficultyDropdown.getSelectedItem().toString(), 1);
         });
     }
 

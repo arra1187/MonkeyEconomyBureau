@@ -29,15 +29,17 @@ public class TowerRecyclerViewAdapter
     private final Context mContext;
     private final UpgradeDao mUpgradeDao;
     //private final DefenseDao mDefenseDao;
+    private final DefenseViewModel mDefenseViewModel;
     private final Executor mExecutor;
 
-    public TowerRecyclerViewAdapter(Context context)
+    public TowerRecyclerViewAdapter(Context context, DefenseViewModel defenseViewModel)
     {
         mContext = context;
 
         DatabaseRepository repository = new DatabaseRepository();
         mUpgradeDao = repository.getUpgradeDao(context);
         //mDefenseDao = repository.getDefenseDao(context);
+        mDefenseViewModel = defenseViewModel;
 
         mExecutor = Executors.newSingleThreadExecutor();
     }
@@ -142,6 +144,8 @@ public class TowerRecyclerViewAdapter
         mExecutor.execute(() ->
         {
             //mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+
+            mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), 1);
         });
     }
 

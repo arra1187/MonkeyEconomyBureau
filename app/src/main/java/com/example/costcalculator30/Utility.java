@@ -23,12 +23,14 @@ public class Utility
     }
   }
 
-  public StringBuilder setTowerList(ArrayList<Tower> towers)
+  public StringBuilder setTowerList(Defense defense)
   {
     StringBuilder towerList = new StringBuilder();
     boolean first = true;
 
-    for(Tower currentTower : towers)
+    towerList.append("Difficulty: " + defense.getDifficulty() + "\n");
+
+    for(Tower currentTower : defense.getTowers())
     {
       if(first)
       {

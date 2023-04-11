@@ -73,6 +73,11 @@ public class DefenseRepository
         mDefenseDao.setDifficulty(difficulty, current);
     }
 
+    public void setCurrent(int current, int id)
+    {
+        mDefenseDao.setCurrent(current, id);
+    }
+
     public void insert(Defense defense)
     {
         mDefenseDao.insert(defense);

@@ -43,7 +43,7 @@ public class AffordabilityCalculator extends Fragment
     private RoundRepository mRoundRepository;
     private DefenseViewModel mDefenseViewModel;
 
-    private String mDefenseCost;
+    private Integer mDefenseCost;
 
     private final int END_OF_ROUND_CASH_CONSTANT = 100;
 
@@ -89,10 +89,11 @@ public class AffordabilityCalculator extends Fragment
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->
         {
-            //String finalPriceDisplay = "$" + mDefenseViewModel.getCost(1);
-            mDefenseCost = "$" + mDefenseViewModel.getCost(1);
+            mDefenseCost = mDefenseViewModel.getCost(1);
 
-            mAppPage.getCustomView().post (() -> mDefenseCostView.setText(mDefenseCost));
+            String finalPriceDisplay = "$" + mDefenseCost;
+
+            mAppPage.getCustomView().post (() -> mDefenseCostView.setText(finalPriceDisplay));
         });
 
         return mAppPage.getOverView();
@@ -163,7 +164,7 @@ public class AffordabilityCalculator extends Fragment
                 mExecutor.execute(() ->
                 {
                     int round = Integer.parseInt(mStartRoundEntry.getText().toString());
-                    double defenseCost = Double.parseDouble(mDefenseCost), multiplier = 1;
+                    double defenseCost = Double.parseDouble(mDefenseCost.toString()), multiplier = 1;
                     String roundType = mRoundTypeDropdown.getSelectedItem().toString();
                     String output = null;
 

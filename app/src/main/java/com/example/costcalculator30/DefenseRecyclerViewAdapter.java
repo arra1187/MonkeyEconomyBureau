@@ -1,5 +1,7 @@
 package com.example.costcalculator30;
 
+import static java.util.concurrent.Executors.newSingleThreadExecutor;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -10,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -37,14 +41,16 @@ public class DefenseRecyclerViewAdapter
     private int mItemCount;
 
     private final LifecycleOwner mLifecycleOwner;
+    private final FragmentManager mFragmentManager;
 
-    public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner)
+    public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner, FragmentManager fragmentManager)
     {
         mUtility = new Utility();
         mDefenseViewModel = defenseViewModel;
         //mDefenses = defenses;
         mContext = context;
         mLifecycleOwner = lifecycleOwner;
+        mFragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -54,13 +60,13 @@ public class DefenseRecyclerViewAdapter
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.defense_display, parent,
                 false);
 
-        return new DefenseRecyclerViewAdapter.ViewHolder(view, mContext, mLifecycleOwner);
+        return new DefenseRecyclerViewAdapter.ViewHolder(view, mContext, mLifecycleOwner, mDefenseViewModel, mFragmentManager);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DefenseRecyclerViewAdapter.ViewHolder holder, int position)
     {
-        mDatabaseExecutor = Executors.newSingleThreadExecutor();
+        mDatabaseExecutor = newSingleThreadExecutor();
 
         mDatabaseExecutor.execute(() ->
         {
@@ -74,7 +80,9 @@ public class DefenseRecyclerViewAdapter
             @Override
             public void onClick(View view)
             {
-                mDatabaseExecutor = Executors.newSingleThreadExecutor();
+                holder.closeListView();
+
+                mDatabaseExecutor = newSingleThreadExecutor();
 
                 mDatabaseExecutor.execute(() ->
                 {
@@ -91,7 +99,7 @@ public class DefenseRecyclerViewAdapter
     @Override
     public int getItemCount()
     {
-        mDatabaseExecutor = Executors.newSingleThreadExecutor();
+        mDatabaseExecutor = newSingleThreadExecutor();
 
         mDatabaseExecutor.execute(() ->
         {
@@ -121,8 +129,12 @@ public class DefenseRecyclerViewAdapter
         private boolean mTowerListShowing;
 
         private Context mContext;
+        private DefenseViewModel mDefenseViewModel;
+        private Utility mUtility;
+        private FragmentManager mFragmentManager;
+        private Executor mExecutor;
 
-        public ViewHolder(@NonNull View itemView, Context context, LifecycleOwner lifecycleOwner)
+        public ViewHolder(@NonNull View itemView, Context context, LifecycleOwner lifecycleOwner, DefenseViewModel defenseViewModel, FragmentManager fragmentManager)
         {
             super(itemView);
 
@@ -168,6 +180,10 @@ public class DefenseRecyclerViewAdapter
             });
 
             mContext = context;
+            mDefenseViewModel = defenseViewModel;
+            mUtility = new Utility();
+            mFragmentManager = fragmentManager;
+            mExecutor = newSingleThreadExecutor();
         }
 
         public ImageButton getClearDefenseButton()
@@ -182,17 +198,15 @@ public class DefenseRecyclerViewAdapter
 
         public void setLabel()
         {
-            final int CURRENT_ID = 0;
-            Integer id = getAdapterPosition();
+            Integer id = getAdapterPosition() + 1;
             String label = id.toString();
 
-            if(id == CURRENT_ID)
-            {
-                label = "Current";
-                mClearDefenseButton.setVisibility(View.INVISIBLE);
-            }
-
             mDefenseID.setText(label);
+        }
+
+        public void closeListView()
+        {
+            mTowerListView.setText("");
         }
 
         public void bindData()
@@ -202,22 +216,7 @@ public class DefenseRecyclerViewAdapter
 
             setLabel();
 
-            mTowerList = new StringBuilder();
-            boolean first = true;
-
-            for(Tower currentTower : mDefense.getTowers())
-            {
-                if(first)
-                {
-                    first = false;
-                }
-                else
-                {
-                    mTowerList.append("\n");
-                }
-
-                mTowerList.append(currentTower.getTitle()).append(" ").append(currentTower.getTopPath()).append(" - ").append(currentTower.getMiddlePath()).append(" - ").append(currentTower.getBottomPath());
-            }
+            mTowerList = mUtility.setTowerList(mDefense);
 
             mTowerListShowing = false;
 
@@ -240,7 +239,23 @@ public class DefenseRecyclerViewAdapter
                         mDropDownButton.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.asset_triangle_down, null));
                         mTowerListShowing = false;
                     }
+                }
+            });
 
+            mLoadDefenseButton.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    mExecutor.execute(() ->
+                    {
+                        mDefenseViewModel.deleteItem(mDefenseViewModel.getCurrent().get(0));
+                        mDefenseViewModel.setCurrent(1, mDefense.getNid());
+
+                        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                        transaction.replace(R.id.page_frame, new CostCalculator());
+                        transaction.commit();
+                    });
                 }
             });
         }

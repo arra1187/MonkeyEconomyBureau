@@ -50,4 +50,7 @@ public interface DefenseDao
 
     @Query("UPDATE Defense SET difficulty = :difficulty WHERE current = :current")
     void setDifficulty(String difficulty, int current);
+
+    @Query("UPDATE Defense SET current = :current WHERE nid = :id")
+    void setCurrent(int current, int id);
 }
