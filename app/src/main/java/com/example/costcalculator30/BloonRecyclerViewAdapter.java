@@ -154,6 +154,8 @@ public class BloonRecyclerViewAdapter
         mFortified.setVisibility(View.VISIBLE);
       }
 
+      mCount.setText("1");
+
       mCount.setOnEditorActionListener(new TextView.OnEditorActionListener()
       {
         @Override

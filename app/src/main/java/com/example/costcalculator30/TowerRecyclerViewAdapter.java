@@ -176,6 +176,7 @@ public class TowerRecyclerViewAdapter
 
         private Button mDiscountButton;
         private ImageView mTowerSymbol;
+        private EditText mTowerCountView;
 
         private ArrayAdapter<CharSequence> mUpgradeAdapter;
 
@@ -284,6 +285,10 @@ public class TowerRecyclerViewAdapter
             {
                 mTowerSymbol = (ImageView) itemView.findViewById(R.id.tower_symbol);
             }
+            if(mTowerCountView == null)
+            {
+                mTowerCountView = (EditText) itemView.findViewById(R.id.tower_count);
+            }
 
             switch(mTower.getTitle())
             {
@@ -344,6 +349,7 @@ public class TowerRecyclerViewAdapter
             }
 
             mTowerSymbol.setImageDrawable(towerSymbol);
+            mTowerCountView.setText(String.format("%d", mTower.getNumTowers()));
         }
     }
 }

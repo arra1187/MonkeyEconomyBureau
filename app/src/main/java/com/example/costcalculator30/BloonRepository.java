@@ -45,4 +45,9 @@ public class BloonRepository
   {
     return mBloonDao.getHealth(title, fortified);
   }
+
+  public int getHeartsLost(String title, boolean fortified)
+  {
+    return mBloonDao.getHeartsLost(title, fortified);
+  }
 }

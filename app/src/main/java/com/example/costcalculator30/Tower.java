@@ -107,7 +107,7 @@ public class Tower
             mTowerCost += mBottomPathCosts[i];
         }
 
-        return mTowerCost;
+        return mTowerCost * mNumTowers;
     }
 
     public int getNumTowers()
