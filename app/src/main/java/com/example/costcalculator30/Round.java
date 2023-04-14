@@ -19,6 +19,9 @@ public class Round
     @ColumnInfo(name = "cash")
     private int mCash;
 
+    @ColumnInfo(name = "hearts_lost")
+    private int mHeartsLost;
+
     @ColumnInfo(name = "type", defaultValue = "normal")
     private String mType;
 
@@ -27,11 +30,12 @@ public class Round
 
     }
 
-    Round(int roundNumber, int RBE, int cash, String type)
+    Round(int roundNumber, int RBE, int cash, int heartsLost, String type)
     {
         mRoundNumber = roundNumber;
         mRBE = RBE;
         mCash = cash;
+        mHeartsLost = heartsLost;
         mType = type;
     }
 
@@ -48,6 +52,11 @@ public class Round
     public int getCash()
     {
         return mCash;
+    }
+
+    public int getHeartsLost()
+    {
+        return mHeartsLost;
     }
 
     public String getType()
@@ -70,6 +79,11 @@ public class Round
     public void setCash(int cash)
     {
         mCash = cash;
+    }
+
+    public void setHeartsLost(int heartsLost)
+    {
+        mHeartsLost = heartsLost;
     }
 
     public void setType(String type)

@@ -10,7 +10,6 @@
     <string name="sellback_calculator_page">Sellback Calculator</string>
     <string name="hearts_lost_calculator_page">Hearts Lost Calculator</string>
 
-
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -49,7 +48,10 @@
     <string name="enter_sellback_data">Enter sellback data</string>
     <string name="add_bloon_button">ADD BLOON</string>
     <string name="clear_bloons_button">CLEAR BLOONS</string>
+
+    <!-- Label Strings -->
     <string name="consideration_switch_label">Consider list of bloons / round range</string>
+    <string name="round_type_label">Normal Rounds / Alternate Bloons Rounds</string>
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>

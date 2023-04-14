@@ -185,7 +185,7 @@ public class HeartsLostCalculator extends Fragment
     mHeartsLost = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
     mConsiderationSwitch = mAppPage.getCustomView().findViewById(R.id.consideration_switch);
     mStartRound = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
-    mStartRound = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
+    mEndRound = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
 
     mBloonDropdown = mAppPage.getCustomView().findViewById(R.id.bloon_dropdown);
     ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -205,7 +205,7 @@ public class HeartsLostCalculator extends Fragment
     }
     else
     {
-
+      calculateHeartsLostRounds();
     }
   }
 
@@ -252,6 +252,14 @@ public class HeartsLostCalculator extends Fragment
 
   private void calculateHeartsLostRounds()
   {
+    if(mStartRound.getText().toString().equals(""))
+    {
+      Toast towerToast = Toast.makeText(getActivity(), "Enter a starting round first", Toast.LENGTH_LONG);
+      towerToast.show();
+
+      return;
+    }
+
     mExecutor.execute(() ->
     {
 
