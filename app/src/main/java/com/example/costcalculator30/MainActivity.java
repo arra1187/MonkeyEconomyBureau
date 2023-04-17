@@ -278,9 +278,10 @@ public class MainActivity extends AppCompatActivity
                         roundNumber = Integer.parseInt(jsonItem.getString("mRoundNumber"));
                         RBE = Integer.parseInt(jsonItem.getString("mRBE"));
                         cash = Integer.parseInt(jsonItem.getString("mCash"));
+                        heartsLost = Integer.parseInt(jsonItem.getString("mHeartsLost"));
                         type = jsonItem.getString("mType");
 
-                        Round newRound = new Round(roundNumber, RBE, cash, type);
+                        Round newRound = new Round(roundNumber, RBE, cash, heartsLost, type);
 
                         roundRepository.insert(newRound);
                     }
