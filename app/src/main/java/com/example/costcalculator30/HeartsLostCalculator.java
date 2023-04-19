@@ -69,7 +69,7 @@ public class HeartsLostCalculator extends Fragment
     
     mBloons = new ArrayList<>();
 
-    mAdapter = new BloonRecyclerViewAdapter(mBloons, getContext(), mbListener);
+    mAdapter = new BloonRecyclerViewAdapter(mBloons, getContext(), mbListener, getViewLifecycleOwner());
 
     mbConsiderBloons = true;
 

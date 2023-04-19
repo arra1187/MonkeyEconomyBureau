@@ -643,7 +643,7 @@
     "mRoundNumber": 81,
     "mRBE": 57670,
     "mCash": 6099,
-    "mHeartsLost": ,
+    "mHeartsLost": 52100,
     "mType": "abr"
   },
 
@@ -651,7 +651,7 @@
     "mRoundNumber": 82,
     "mRBE": 95816,
     "mCash": 8235,
-    "mHeartsLost": ,
+    "mHeartsLost": 85860,
     "mType": "abr"
   },
 
@@ -659,7 +659,7 @@
     "mRoundNumber": 83,
     "mRBE": 29280,
     "mCash": 3804,
-    "mHeartsLost": ,
+    "mHeartsLost": 22200,
     "mType": "abr"
   },
 
@@ -667,7 +667,7 @@
     "mRoundNumber": 84,
     "mRBE": 103720,
     "mCash": 8385,
-    "mHeartsLost": ,
+    "mHeartsLost": 86000,
     "mType": "abr"
   },
 
@@ -675,7 +675,7 @@
     "mRoundNumber": 85,
     "mRBE": 46056,
     "mCash": 3660,
-    "mHeartsLost": ,
+    "mHeartsLost": 42480,
     "mType": "abr"
   },
 
@@ -683,7 +683,7 @@
     "mRoundNumber": 86,
     "mRBE": 43264,
     "mCash": 1220,
-    "mHeartsLost": ,
+    "mHeartsLost": 33600,
     "mType": "abr"
   },
 
@@ -691,7 +691,7 @@
     "mRoundNumber": 87,
     "mRBE": 78760,
     "mCash": 3050,
-    "mHeartsLost": ,
+    "mHeartsLost": 70800,
     "mType": "abr"
   },
 
@@ -699,7 +699,7 @@
     "mRoundNumber": 88,
     "mRBE": 50784,
     "mCash": 2515,
-    "mHeartsLost": ,
+    "mHeartsLost": 42960,
     "mType": "abr"
   },
 
@@ -707,7 +707,7 @@
     "mRoundNumber": 89,
     "mRBE": 81768,
     "mCash": 2401,
-    "mHeartsLost": ,
+    "mHeartsLost": 60900,
     "mType": "abr"
   },
 
@@ -715,7 +715,7 @@
     "mRoundNumber": 90,
     "mRBE": 9408,
     "mCash": 627,
-    "mHeartsLost": ,
+    "mHeartsLost": 6390,
     "mType": "abr"
   },
 
@@ -723,7 +723,7 @@
     "mRoundNumber": 91,
     "mRBE": 98420,
     "mCash": 3237,
-    "mHeartsLost": ,
+    "mHeartsLost": 70500,
     "mType": "abr"
   },
 
@@ -731,7 +731,7 @@
     "mRoundNumber": 92,
     "mRBE": 120480,
     "mCash": 4497,
-    "mHeartsLost": ,
+    "mHeartsLost": 94280,
     "mType": "abr"
   },
 
@@ -739,7 +739,7 @@
     "mRoundNumber": 93,
     "mRBE": 109716,
     "mCash": 2859,
-    "mHeartsLost": ,
+    "mHeartsLost": 79100,
     "mType": "abr"
   },
 
@@ -747,7 +747,7 @@
     "mRoundNumber": 94,
     "mRBE": 212416,
     "mCash": 8693,
-    "mHeartsLost": ,
+    "mHeartsLost": 176780,
     "mType": "abr"
   },
 
@@ -755,7 +755,7 @@
     "mRoundNumber": 95,
     "mRBE": 57720,
     "mCash": 2586,
-    "mHeartsLost": ,
+    "mHeartsLost": 43800,
     "mType": "abr"
   },
 
@@ -763,7 +763,7 @@
     "mRoundNumber": 96,
     "mRBE": 341988,
     "mCash": 10904,
-    "mHeartsLost": ,
+    "mHeartsLost": 260360,
     "mType": "abr"
   },
 
@@ -771,7 +771,7 @@
     "mRoundNumber": 97,
     "mRBE": 82656,
     "mCash": 1525,
-    "mHeartsLost": ,
+    "mHeartsLost": 58400,
     "mType": "abr"
   },
 
@@ -779,7 +779,7 @@
     "mRoundNumber": 98,
     "mRBE": 320032,
     "mCash": 10157,
-    "mHeartsLost": ,
+    "mHeartsLost": 239760,
     "mType": "abr"
   },
 
@@ -787,7 +787,7 @@
     "mRoundNumber": 99,
     "mRBE": 97360,
     "mCash": 2820,
-    "mHeartsLost": ,
+    "mHeartsLost": 74000,
     "mType": "abr"
   },
 
@@ -795,7 +795,7 @@
     "mRoundNumber": 100,
     "mRBE": 133280,
     "mCash": 1334,
-    "mHeartsLost": ,
+    "mHeartsLost": 92900,
     "mType": "abr"
   }
 ]

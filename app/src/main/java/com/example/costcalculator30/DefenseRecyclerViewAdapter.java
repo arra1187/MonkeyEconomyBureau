@@ -249,13 +249,9 @@ public class DefenseRecyclerViewAdapter
                 {
                     mExecutor.execute(() ->
                     {
-                        //mDefenseViewModel.deleteItem(mDefenseViewModel.getCurrent().get(0));
-
                         mDefenseViewModel.setTowers(mDefense.getTowers(), 1);
                         mDefenseViewModel.setDifficulty(mDefense.getDifficulty(), 1);
                         mDefenseViewModel.setCost(mDefense.getCost(), 1);
-
-                        //mDefenseViewModel.setCurrent(1, mDefense.getNid());
 
                         FragmentTransaction transaction = mFragmentManager.beginTransaction();
                         transaction.replace(R.id.page_frame, new CostCalculator());
