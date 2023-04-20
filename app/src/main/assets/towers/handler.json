@@ -1,0 +1,120 @@
+[
+  {
+    "mTitle": "Base Cost",
+    "mUpgradeID": 0,
+    "mTower": "Beast Handler",
+    "mCost": 250
+  },
+
+  {
+    "mTitle": "Piranha",
+    "mUpgradeID": 11,
+    "mTower": "Beast Handler",
+    "mCost": 190
+  },
+
+  {
+    "mTitle": "Barracuda",
+    "mUpgradeID": 12,
+    "mTower": "Beast Handler",
+    "mCost": 875
+  },
+
+  {
+    "mTitle": "Great White",
+    "mUpgradeID": 13,
+    "mTower": "Beast Handler",
+    "mCost": 2950
+  },
+
+  {
+    "mTitle": "Orca",
+    "mUpgradeID": 14,
+    "mTower": "Beast Handler",
+    "mCost": 16000
+  },
+
+  {
+    "mTitle": "Megalodon",
+    "mUpgradeID": 15,
+    "mTower": "Beast Handler",
+    "mCost": 55000
+  },
+
+  {
+    "mTitle": "Microraptor",
+    "mUpgradeID": 21,
+    "mTower": "Beast Handler",
+    "mCost": 195
+  },
+
+  {
+    "mTitle": "Adasaurus",
+    "mUpgradeID": 22,
+    "mTower": "Beast Handler",
+    "mCost": 945
+  },
+
+  {
+    "mTitle": "Velociraptor",
+    "mUpgradeID": 23,
+    "mTower": "Beast Handler",
+    "mCost": 2600
+  },
+
+  {
+    "mTitle": "Tyrannosaurus Rex",
+    "mUpgradeID": 24,
+    "mTower": "Beast Handler",
+    "mCost": 9500
+  },
+
+  {
+    "mTitle": "Giganotosaurus",
+    "mUpgradeID": 25,
+    "mTower": "Beast Handler",
+    "mCost": 70000
+  },
+
+  {
+    "mTitle": "Gyrfalcon",
+    "mUpgradeID": 31,
+    "mTower": "Beast Handler",
+    "mCost": 180
+  },
+
+  {
+    "mTitle": "Horned Owl",
+    "mUpgradeID": 32,
+    "mTower": "Beast Handler",
+    "mCost": 915
+  },
+
+  {
+    "mTitle": "Golden Eagle",
+    "mUpgradeID": 33,
+    "mTower": "Beast Handler",
+    "mCost": 3000
+  },
+
+  {
+    "mTitle": "Giant Condor",
+    "mUpgradeID": 34,
+    "mTower": "Beast Handler",
+    "mCost": 8000
+  },
+
+  {
+    "mTitle": "Pouākai",
+    "mUpgradeID": 35,
+    "mTower": "Beast Handler",
+    "mCost": 30000
+  },
+
+  {
+    "mTitle": "Null Paragon",
+    "mUpgradeID": 6,
+    "mTower": "Beast Handler",
+    "mCost": 0
+  }
+]

@@ -7,60 +7,63 @@
         tools:context=".SellbackCalculator">
 
     <View
-            android:id="@+id/background"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/sky_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/sky_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@+id/background"
-            app:layout_constraintEnd_toEndOf="@+id/background"
-            app:layout_constraintTop_toTopOf="@+id/background"
-            app:layout_constraintBottom_toBottomOf="@+id/background"
-            android:id="@+id/page_constraint">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintLeft_toLeftOf="@+id/background"
+        app:layout_constraintRight_toRightOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="390dp"
-                android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/current_defense_sellback"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tower_constraint">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <TextView
+                <TextView
                     android:id="@+id/sellback_price_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/defense_sellback_message"
                     android:textAlignment="center"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/defense_sellback_price_holder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/defense_sellback_price_holder" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <View
+                <View
                     android:id="@+id/defense_sellback_price_holder"
                     android:layout_width="371dp"
                     android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
                     android:background="#B9D8F1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sellback_price_message" />
 
-            <TextView
+                <TextView
                     android:id="@+id/defense_sellback_price"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -69,246 +72,270 @@
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/defense_sellback_price_holder"
                     app:layout_constraintEnd_toEndOf="@+id/defense_sellback_price_holder"
                     app:layout_constraintStart_toStartOf="@+id/defense_sellback_price_holder"
-                    app:layout_constraintBottom_toBottomOf="@+id/defense_sellback_price_holder"
                     app:layout_constraintTop_toTopOf="@+id/defense_sellback_price_holder" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="390dp"
-                android:layout_height="180dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/tower_constraint"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintTop_toBottomOf="@+id/current_defense_sellback"
-                app:layout_constraintBottom_toTopOf="@+id/starting_cash_constraint">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/starting_cash_component"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <EditText
+                <EditText
                     android:id="@+id/starting_cash"
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:background="@drawable/white_background"
                     android:ems="10"
                     android:inputType="number"
                     android:text="@string/zero"
                     android:textAlignment="center"
-                    tools:ignore="SpeakableTextPresentCheck"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view"
-                    app:layout_constraintTop_toBottomOf="@+id/sellback_tower_label"
-                    app:layout_constraintBottom_toTopOf="@+id/bottom_path" />
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-            <Spinner
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/starting_cash_label"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/starting_cash"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tower_constraint"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <Spinner
                     android:id="@+id/top_path"
                     android:layout_width="52dp"
                     android:layout_height="48dp"
                     android:background="@drawable/spinner_template"
                     android:contentDescription="@string/path_1"
-                    app:layout_constraintEnd_toStartOf="@+id/middle_path"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner"
-                    app:layout_constraintStart_toEndOf="@+id/textView3" />
+                    app:layout_constraintEnd_toStartOf="@+id/middle_path"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
 
-            <Spinner
+                <Spinner
                     android:id="@+id/middle_path"
                     android:layout_width="52dp"
                     android:layout_height="48dp"
                     android:background="@drawable/spinner_template"
                     android:contentDescription="@string/path_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/bottom_path"
                     app:layout_constraintStart_toEndOf="@+id/top_path"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
 
-            <Spinner
+                <Spinner
                     android:id="@+id/bottom_path"
                     android:layout_width="52dp"
                     android:layout_height="48dp"
                     android:background="@drawable/spinner_template"
                     android:contentDescription="@string/path_3"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/middle_path"
                     app:layout_constraintTop_toBottomOf="@+id/tower_spinner" />
 
-            <View
+                <View
+                    android:id="@+id/tower_spinner_background"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:id="@+id/view"
-                    app:layout_constraintStart_toStartOf="@+id/tower_spinner"
-                    app:layout_constraintEnd_toEndOf="@+id/tower_spinner"
-                    app:layout_constraintTop_toTopOf="@+id/tower_spinner"
+                    android:background="@color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/tower_spinner"
-                    android:background="@color/white" />
+                    app:layout_constraintEnd_toEndOf="@+id/tower_spinner"
+                    app:layout_constraintStart_toStartOf="@+id/tower_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/tower_spinner" />
 
-            <Spinner
-                    android:layout_width="200dp"
-                    android:layout_height="48dp"
+                <View
+                    android:id="@+id/difficulty_spinner_background"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/difficulty_spinner"
+                    app:layout_constraintEnd_toEndOf="@+id/difficulty_spinner"
+                    app:layout_constraintStart_toStartOf="@+id/difficulty_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/difficulty_spinner" />
+
+                <Spinner
                     android:id="@+id/tower_spinner"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sellback_tower_label"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
                     app:layout_constraintBottom_toTopOf="@+id/top_path"
-                    app:layout_constraintEnd_toStartOf="@+id/starting_cash" />
-
-            <TextView
-                    android:text="@string/sellback_tower_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sellback_tower_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/view"
+                    app:layout_constraintEnd_toStartOf="@+id/difficulty_spinner_background"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView2"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/sellback_tower_label" />
 
-            <TextView
-                    android:text="@string/starting_cash_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView2"
-                    app:layout_constraintStart_toEndOf="@+id/sellback_tower_label"
+                <Spinner
+                    android:id="@+id/difficulty_spinner"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+                    app:layout_constraintBottom_toTopOf="@+id/middle_path"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/starting_cash"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="20dp" />
+                    app:layout_constraintStart_toEndOf="@+id/tower_spinner_background"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <TextView
-                    android:text="@string/upgrades_label"
+                <TextView
+                    android:id="@+id/sellback_tower_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView3"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/sellback_tower_label"
+                    app:layout_constraintBottom_toTopOf="@+id/tower_spinner_background"
+                    app:layout_constraintEnd_toStartOf="@+id/textView4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upgrades_label"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/top_path" />
+                    app:layout_constraintEnd_toStartOf="@+id/top_path"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tower_spinner_background" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/difficulty_description"
+                    app:layout_constraintBottom_toTopOf="@+id/difficulty_spinner_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sellback_tower_label"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/starting_cash_constraint"
-                android:layout_width="0dp"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sellback_data_constraint"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@+id/tower_constraint"
-                app:layout_constraintBottom_toTopOf="@+id/button_constraint">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <Button
-                    android:id="@+id/enter_starting_cash_button"
+                <Button
+                    android:id="@+id/enter_sellback_data_button"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/green_rectangle_button_template"
                     android:text="@string/enter_sellback_data"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:background="@drawable/green_rectangle_button_template"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="335dp"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/button_constraint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/count_displays_constraint"
-                app:layout_constraintTop_toBottomOf="@+id/starting_cash_constraint">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <Button
-                    android:text="@string/sell_button"
+                <Button
+                    android:id="@+id/sell_button"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/sell_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/red_rectangle_button_template"
+                    android:text="@string/sell_button"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rebuy_button"
-                    android:background="@drawable/red_rectangle_button_template"
-                    android:textColor="@color/white" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                    android:text="@string/buy_button"
+                <Button
+                    android:id="@+id/rebuy_button"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rebuy_button"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/green_rectangle_button_template"
+                    android:text="@string/buy_button"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/sell_button"
-                    android:background="@drawable/green_rectangle_button_template" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/count_displays_constraint"
-                app:layout_constraintTop_toBottomOf="@+id/button_constraint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/final_price_constraint">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <TextView
-                    android:text="@string/sell_count"
+                <TextView
+                    android:id="@+id/sell_count_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/sell_count_display"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/sell_count"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rebuy_count_display"
-                    android:textSize="30sp" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                    android:text="@string/rebuy_count"
+                <TextView
+                    android:id="@+id/rebuy_count_display"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rebuy_count_display"
+                    android:text="@string/rebuy_count"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/sell_count_display"
-                    android:textSize="30sp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/final_price_constraint"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/count_displays_constraint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
-            <TextView
+                <TextView
                     android:id="@+id/remaining_cash_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/remaining_cash_label"
                     android:textAlignment="center"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/hearts_lost_holder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/hearts_lost_holder" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <View
+                <View
                     android:id="@+id/hearts_lost_holder"
                     android:layout_width="371dp"
                     android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
                     android:background="#B9D8F1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/remaining_cash_message" />
 
-            <TextView
+                <TextView
                     android:id="@+id/hearts_lost"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -322,8 +349,9 @@
                     app:layout_constraintStart_toStartOf="@+id/hearts_lost_holder"
                     app:layout_constraintTop_toTopOf="@+id/hearts_lost_holder" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

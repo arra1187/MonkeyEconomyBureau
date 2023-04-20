@@ -49,7 +49,7 @@
     <string name="add_bloon_button">ADD BLOON</string>
     <string name="clear_bloons_button">CLEAR BLOONS</string>
 
-    <!-- Label Strings -->
+    <!-- Switch Strings -->
     <string name="consideration_switch_label">Consider list of bloons / round range</string>
     <string name="round_type_label">Normal Rounds / Alternate Bloons Rounds</string>
 
@@ -90,6 +90,7 @@
         <item>Spike Factory</item>
         <item>Monkey Village</item>
         <item>Engineer Monkey</item>
+        <item>Beast Handler</item>
     </string-array>
 
     <!-- Upgrade dropdowns -->
@@ -218,6 +219,7 @@
     <string name="end_round_label">End Round</string>
     <string name="my_cash_label">My cash</string>
     <string name="fortified_label">Fortified</string>
+    <string name="difficulty_label">Difficulty</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>

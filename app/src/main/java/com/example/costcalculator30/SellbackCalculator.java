@@ -37,12 +37,13 @@ public class SellbackCalculator extends Fragment
   private TextView mDefenseSellbackView;
 
   private Spinner mTowerDropdown;
+  private Spinner mDifficultyDropdown;
   private Spinner mTopPath;
   private Spinner mMiddlePath;
   private Spinner mBottomPath;
 
   private Button mHelpButton;
-  private Button mEnterStartingCash;
+  private Button mEnterSellbackData;
   private EditText mStartingCashView;
 
   private Button mSellButton;
@@ -86,7 +87,7 @@ public class SellbackCalculator extends Fragment
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
   {
-    mEnterStartingCash.setOnClickListener(new View.OnClickListener()
+    mEnterSellbackData.setOnClickListener(new View.OnClickListener()
     {
       @Override
       public void onClick(View view)
@@ -139,7 +140,8 @@ public class SellbackCalculator extends Fragment
 
         if(mTowerCost == 0)
         {
-          mTowerCost = mTower.getTowerCost();
+          //mTowerCost = mTower.getTowerCost();
+          setTowerCost();
         }
 
         mRemainingCash += mTowerCost * SELLBACK_RATE;
@@ -180,7 +182,8 @@ public class SellbackCalculator extends Fragment
 
         if(mTowerCost == 0)
         {
-          mTowerCost = mTower.getTowerCost();
+          //mTowerCost = mTower.getTowerCost();
+          setTowerCost();
         }
 
         mRemainingCash -= mTowerCost;
@@ -235,6 +238,12 @@ public class SellbackCalculator extends Fragment
     towerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
     mTowerDropdown.setAdapter(towerAdapter);
 
+    mDifficultyDropdown = mAppPage.getCustomView().findViewById(R.id.difficulty_spinner);
+    ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(getActivity(),
+            R.array.difficulties, android.R.layout.simple_spinner_item);
+    difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+    mDifficultyDropdown.setAdapter(towerAdapter);
+
     ArrayAdapter<CharSequence> upgradeAdapter = ArrayAdapter.createFromResource(getActivity(),
         R.array.upgrades, android.R.layout.simple_spinner_item);
     upgradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -248,7 +257,7 @@ public class SellbackCalculator extends Fragment
     mBottomPath = mAppPage.getCustomView().findViewById(R.id.bottom_path);
     mBottomPath.setAdapter(upgradeAdapter);
 
-    mEnterStartingCash = mAppPage.getCustomView().findViewById(R.id.enter_starting_cash_button);
+    mEnterSellbackData = mAppPage.getCustomView().findViewById(R.id.enter_sellback_data_button);
     mStartingCashView = mAppPage.getCustomView().findViewById(R.id.starting_cash);
     mSellCountView = mAppPage.getCustomView().findViewById(R.id.sell_count_display);
     mRebuyCountView = mAppPage.getCustomView().findViewById(R.id.rebuy_count_display);
@@ -318,6 +327,9 @@ public class SellbackCalculator extends Fragment
 
   private void setTowerCost()
   {
+    double multiplier;
+    String difficulty;
+
     mTower = new Tower
     (
         mTowerDropdown.getSelectedItem().toString(),
@@ -327,6 +339,10 @@ public class SellbackCalculator extends Fragment
         mUpgradeRepository
     );
 
-    mTowerCost = mTower.getTowerCost();
+    difficulty = mDifficultyDropdown.getSelectedItem().toString();
+
+    multiplier = Utility.getDifficultyMultiplier(difficulty);
+
+    mTowerCost = mTower.getTowerCost(multiplier);
   }
 }

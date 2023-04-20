@@ -88,23 +88,23 @@ public class Tower
         return mTitle;
     }
 
-    public int getTowerCost()
+    public int getTowerCost(double multiplier)
     {
-        mTowerCost = mBaseCost;
+        mTowerCost = Utility.convertCost(mBaseCost, multiplier);
 
         for (int i = 0; i < mTopPath; i++)
         {
-            mTowerCost += mTopPathCosts[i];
+            mTowerCost += Utility.convertCost(mTopPathCosts[i], multiplier);
         }
 
         for (int i = 0; i < mMiddlePath; i++)
         {
-            mTowerCost += mMiddlePathCosts[i];
+            mTowerCost += Utility.convertCost(mMiddlePathCosts[i], multiplier);
         }
 
         for (int i = 0; i < mBottomPath; i++)
         {
-            mTowerCost += mBottomPathCosts[i];
+            mTowerCost += Utility.convertCost(mBottomPathCosts[i], multiplier);
         }
 
         return mTowerCost * mNumTowers;

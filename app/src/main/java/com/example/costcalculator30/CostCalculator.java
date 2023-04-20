@@ -240,32 +240,23 @@ public class CostCalculator extends Fragment
 
     private void updateFinalPrice()
     {
-        final double EASY_MULTIPLIER = 0.85;
-        final double HARD_MULTIPLIER = 1.075;
-        final double IMPOPPABLE_MULTIPLIER = 1.2;
-
         int finalPrice = 0;
+        double multiplier = 1;
         String finalPriceDisplay;
         String difficulty;
 
-        for(Tower tower : ConnectTowerList.getTowers())
-        {
-            finalPrice += tower.getTowerCost();
-        }
-
         difficulty = mDifficultyDropdown.getSelectedItem().toString();
 
-        switch(difficulty)
+        multiplier = Utility.getDifficultyMultiplier(difficulty);
+
+        for(Tower tower : ConnectTowerList.getTowers())
         {
-            case "Easy":
-                finalPrice *= EASY_MULTIPLIER;
-                break;
-            case "Hard":
-                finalPrice *= HARD_MULTIPLIER;
-                break;
-            case "Impoppable":
-                finalPrice *= IMPOPPABLE_MULTIPLIER;
-                break;
+            finalPrice += tower.getTowerCost(multiplier);
+
+            if(!difficulty.equals("Medium"))
+            {
+
+            }
         }
 
         finalPriceDisplay = "$" + finalPrice;
