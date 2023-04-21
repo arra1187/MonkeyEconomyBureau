@@ -63,6 +63,15 @@
   },
 
   {
+    "mTitle": "Super BFB",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 5108,
+    "mHeartsLost": 4200,
+    "mHealth": 1400
+  },
+
+  {
     "mTitle": "Super ZOMG",
     "mType": "Blimp",
     "mbFortified": "false",
@@ -72,18 +81,47 @@
   },
 
   {
-    "mTitle": "DDT",
-    "mType": "Blimp",
-    "mbFortified": "false",
-    "mRBE": 816,
-    "mHealth": 400
-  },
-
-  {
     "mTitle": "ZOMG",
     "mType": "Blimp",
     "mbFortified": "true",
     "mRBE": 27296,
+    "mHeartsLost": 27296,
+    "mHealth": 8000
+  },
+
+  {
+    "mTitle": "Super MOAB",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 920,
+    "mHeartsLost": 700,
+    "mHealth": 400
+  },
+
+  {
+    "mTitle": "DDT",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 896,
+    "mHeartsLost": 816,
+    "mHealth": 480
+  },
+
+  {
+    "mTitle": "Super DDT",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 752,
+    "mHeartsLost": 660,
+    "mHealth": 480
+  },
+
+  {
+    "mTitle": "Super ZOMG",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 27296,
+    "mHeartsLost": 27296,
     "mHealth": 8000
   },
 
@@ -91,15 +129,35 @@
     "mTitle": "DDT",
     "mType": "Blimp",
     "mbFortified": "true",
-    "mRBE": 1256,
-    "mHealth": 800
+    "mRBE": 1416,
+    "mHeartsLost": 1256,
+    "mHealth": 960
+  },
+
+  {
+    "mTitle": "Super DDT",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 1472,
+    "mHeartsLost": 1100,
+    "mHealth": 960
   },
 
   {
     "mTitle": "BAD",
     "mType": "Blimp",
     "mbFortified": "false",
-    "mRBE": 55760,
+    "mRBE": 64000,
+    "mHeartsLost": 55760,
+    "mHealth": 20000
+  },
+
+  {
+    "mTitle": "Super BAD",
+    "mType": "Blimp",
+    "mbFortified": "false",
+    "mRBE": 64000,
+    "mHeartsLost": 50300,
     "mHealth": 20000
   },
 
@@ -107,7 +165,17 @@
     "mTitle": "BAD",
     "mType": "Blimp",
     "mbFortified": "true",
-    "mRBE": 98360,
-    "mHealth": 40000
+    "mRBE": 114840,
+    "mHeartsLost": 98360,
+    "mHealth": 56000
+  },
+
+  {
+    "mTitle": "Super BAD",
+    "mType": "Blimp",
+    "mbFortified": "true",
+    "mRBE": 133280,
+    "mHeartsLost": 92920,
+    "mHealth": 56000
   }
 ]

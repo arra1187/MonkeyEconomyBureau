@@ -48,6 +48,11 @@ public class DefenseRepository
         return mDefenseDao.getAll().size();
     }
 
+    public int getCurrentCost()
+    {
+        return mDefenseDao.getCurrentCost();
+    }
+
     public int getCost(int id)
     {
         return mDefenseDao.getCost(id);
@@ -71,6 +76,11 @@ public class DefenseRepository
     public void setDifficulty(String difficulty, int current)
     {
         mDefenseDao.setDifficulty(difficulty, current);
+    }
+
+    public void setCurrent(int current, int id)
+    {
+        mDefenseDao.setCurrent(current, id);
     }
 
     public void insert(Defense defense)

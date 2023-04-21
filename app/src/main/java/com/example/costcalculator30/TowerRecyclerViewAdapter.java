@@ -4,15 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -28,25 +31,28 @@ public class TowerRecyclerViewAdapter
 {
     private final Context mContext;
     private final UpgradeDao mUpgradeDao;
+    private final DefenseViewModel mDefenseViewModel;
     private final Executor mExecutor;
 
-    public TowerRecyclerViewAdapter(Context context)
+    public TowerRecyclerViewAdapter(Context context, DefenseViewModel defenseViewModel)
     {
         mContext = context;
 
         DatabaseRepository repository = new DatabaseRepository();
         mUpgradeDao = repository.getUpgradeDao(context);
+        mDefenseViewModel = defenseViewModel;
 
         mExecutor = Executors.newSingleThreadExecutor();
     }
 
     @NonNull
     @Override
-    public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder
-        (@NonNull ViewGroup parent, int viewType)
+    public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                                      int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate
-            (R.layout.tower_display, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
+                false);
+
 
         return new ViewHolder(view, mContext, mUpgradeDao);
     }
@@ -56,12 +62,6 @@ public class TowerRecyclerViewAdapter
                                  int position)
     {
         holder.setTower(ConnectTowerList.getTowers().get(position));
-
-        /*int topPath = holder.getTower().getTopPath();
-
-        holder.getTopPath().setSelection(topPath);
-        holder.getMiddlePath().setSelection(holder.getTower().getMiddlePath());
-        holder.getBottomPath().setSelection(holder.getTower().getBottomPath());*/
 
         holder.getRemoveButton().setOnClickListener(new View.OnClickListener()
         {
@@ -131,6 +131,22 @@ public class TowerRecyclerViewAdapter
             }
         });
 
+        holder.getTowerCountView().setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent)
+            {
+                ArrayList<Tower> towers = ConnectTowerList.getTowers();
+                towers.get(holder.getAdapterPosition()).setNumTowers(Integer.parseInt(textView.getText().toString()));
+
+                ConnectTowerList.setTowers(towers);
+
+                updateDatabase();
+
+                return false;
+            }
+        });
+
         holder.bindData();
     }
 
@@ -138,7 +154,7 @@ public class TowerRecyclerViewAdapter
     {
         mExecutor.execute(() ->
         {
-            //mDefenseDao.setTowers(ConnectTowerList.getTowers(), 0);
+            mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), 1);
         });
     }
 
@@ -160,6 +176,7 @@ public class TowerRecyclerViewAdapter
 
         private Button mDiscountButton;
         private ImageView mTowerSymbol;
+        private EditText mTowerCountView;
 
         private ArrayAdapter<CharSequence> mUpgradeAdapter;
 
@@ -246,6 +263,11 @@ public class TowerRecyclerViewAdapter
             return bottomPath;
         }
 
+        public EditText getTowerCountView()
+        {
+            return (EditText) itemView.findViewById(R.id.tower_count);
+        }
+
         @SuppressLint("UseCompatLoadingForDrawables")
         public void bindData()
         {
@@ -262,6 +284,10 @@ public class TowerRecyclerViewAdapter
             if(mTowerSymbol == null)
             {
                 mTowerSymbol = (ImageView) itemView.findViewById(R.id.tower_symbol);
+            }
+            if(mTowerCountView == null)
+            {
+                mTowerCountView = (EditText) itemView.findViewById(R.id.tower_count);
             }
 
             switch(mTower.getTitle())
@@ -323,20 +349,7 @@ public class TowerRecyclerViewAdapter
             }
 
             mTowerSymbol.setImageDrawable(towerSymbol);
-
-            mDiscountButton.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    //PopupMenu discountPopup = new PopupMenu(itemView.getContext(), mDiscountButton);
-                    //discountPopup.getMenuInflater().inflate(R.layout.discount_popup, discountPopup.getMenu());
-
-                    LayoutInflater layoutInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View discountPopup = layoutInflater.inflate(R.layout.discount_popup, null);
-
-                }
-            });
+            mTowerCountView.setText(String.format("%d", mTower.getNumTowers()));
         }
     }
 }

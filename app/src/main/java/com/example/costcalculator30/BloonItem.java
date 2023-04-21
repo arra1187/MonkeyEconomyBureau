@@ -15,12 +15,8 @@ public class BloonItem
 
   private int mNumBloons;
 
-  private BloonRepository mBloonRepository;
-
   public BloonItem(String title, Application application)
   {
-    mBloonRepository = new BloonRepository(application);
-
     mTitle = title;
 
     if (mTitle.equals("Lead Bloon") || mTitle.equals("Ceramic Bloon"))

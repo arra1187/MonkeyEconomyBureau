@@ -23,12 +23,14 @@ public class Utility
     }
   }
 
-  public StringBuilder setTowerList(ArrayList<Tower> towers)
+  public StringBuilder setTowerList(Defense defense)
   {
     StringBuilder towerList = new StringBuilder();
     boolean first = true;
 
-    for(Tower currentTower : towers)
+    towerList.append("Difficulty: " + defense.getDifficulty() + "\n");
+
+    for(Tower currentTower : defense.getTowers())
     {
       if(first)
       {
@@ -43,5 +45,52 @@ public class Utility
     }
 
     return towerList;
+  }
+
+  public static double getDifficultyMultiplier(String difficulty)
+  {
+    final double EASY_MULTIPLIER = 0.85;
+    final double MEDIUM_MULTIPLIER = 1;
+    final double HARD_MULTIPLIER = 1.08;
+    final double IMPOPPABLE_MULTIPLIER = 1.2;
+
+    double multiplier = 1;
+
+    switch(difficulty)
+    {
+      case "Easy":
+        multiplier = EASY_MULTIPLIER;
+        break;
+      case "Medium":
+        multiplier = MEDIUM_MULTIPLIER;
+        break;
+      case "Hard":
+        multiplier = HARD_MULTIPLIER;
+        break;
+      case "Impoppable":
+        multiplier = IMPOPPABLE_MULTIPLIER;
+        break;
+    }
+
+    return multiplier;
+  }
+
+  public static int convertCost(int cost, double multiplier)
+  {
+    cost = (int) (cost * multiplier);
+
+    while(cost % 5 != 0)
+    {
+      if(multiplier > 1)
+      {
+        cost++;
+      }
+      else if(multiplier < 1)
+      {
+        cost--;
+      }
+    }
+
+    return cost;
   }
 }

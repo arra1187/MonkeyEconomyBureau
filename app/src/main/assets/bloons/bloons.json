@@ -126,7 +126,7 @@
   },
 
   {
-    "mTitle": "Super Ceramic",
+    "mTitle": "Super Ceramic Bloon",
     "mType": "Heavy Bloon",
     "mbFortified": "false",
     "mRBE": 68,
@@ -135,7 +135,7 @@
   },
 
   {
-    "mTitle": "Super Ceramic",
+    "mTitle": "Super Ceramic Bloon",
     "mType": "Heavy Bloon",
     "mbFortified": "true",
     "mRBE": 128,

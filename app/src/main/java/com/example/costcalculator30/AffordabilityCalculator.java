@@ -36,14 +36,11 @@ public class AffordabilityCalculator extends Fragment
     private TextView mRoundDisplay;
     private TextView mDefenseCostView;
 
-    private DatabaseRepository mRepository;
-    private RoundDao mRoundDao;
-    //private DefenseDao mDefenseDao;
-
     private RoundRepository mRoundRepository;
+    private DefenseRepository mDefenseRepository;
     private DefenseViewModel mDefenseViewModel;
 
-    private String mDefenseCost;
+    private Integer mDefenseCost;
 
     private final int END_OF_ROUND_CASH_CONSTANT = 100;
 
@@ -56,7 +53,8 @@ public class AffordabilityCalculator extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+        //mDefenseViewModel = new ViewModelProvider(this).get(DefenseViewModel.class);
+        mDefenseRepository = new DefenseRepository(getActivity().getApplication());
 
         mStartRoundEntry = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
         mEndRoundEntry = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
@@ -80,19 +78,16 @@ public class AffordabilityCalculator extends Fragment
 
         mCashMultiplierDropdown.setSelection(1);
 
-        //mRepository = new DatabaseRepository();
-        //mRoundDao = mRepository.getRoundDao(getContext());
-        //mDefenseDao = mRepository.getDefenseDao(getContext());
-
         mRoundRepository = new RoundRepository(getActivity().getApplication());
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() ->
         {
-            //String finalPriceDisplay = "$" + mDefenseViewModel.getCost(1);
-            mDefenseCost = "$" + mDefenseViewModel.getCost(1);
+            mDefenseCost = mDefenseRepository.getCurrentCost();
 
-            mAppPage.getCustomView().post (() -> mDefenseCostView.setText(mDefenseCost));
+            String finalPriceDisplay = "$" + mDefenseCost;
+
+            mAppPage.getCustomView().post (() -> mDefenseCostView.setText(finalPriceDisplay));
         });
 
         return mAppPage.getOverView();
@@ -121,6 +116,15 @@ public class AffordabilityCalculator extends Fragment
                     int money = 0;
                     String roundType = mRoundTypeDropdown.getSelectedItem().toString();
                     String output;
+
+                    if(roundType.equals("Normal Rounds"))
+                    {
+                        roundType = "normal";
+                    }
+                    else if(roundType.equals("Alternate Bloons Rounds"))
+                    {
+                        roundType = "abr";
+                    }
 
                     for(int i = Integer.parseInt(mStartRoundEntry.getText().toString());
                         i < Integer.parseInt(mEndRoundEntry.getText().toString()) + 1; i++)
@@ -159,11 +163,11 @@ public class AffordabilityCalculator extends Fragment
                     return;
                 }
 
-                ExecutorService mExecutor= Executors.newSingleThreadExecutor();
+                ExecutorService mExecutor = Executors.newSingleThreadExecutor();
                 mExecutor.execute(() ->
                 {
                     int round = Integer.parseInt(mStartRoundEntry.getText().toString());
-                    double defenseCost = Double.parseDouble(mDefenseCost), multiplier = 1;
+                    double defenseCost = Double.parseDouble(mDefenseCost.toString()), multiplier = 1;
                     String roundType = mRoundTypeDropdown.getSelectedItem().toString();
                     String output = null;
 
@@ -177,6 +181,15 @@ public class AffordabilityCalculator extends Fragment
                         case "Double Cash":
                             multiplier = 2;
                             break;
+                    }
+
+                    if(roundType.equals("Normal Rounds"))
+                    {
+                        roundType = "normal";
+                    }
+                    else if(roundType.equals("abr"))
+                    {
+                        roundType = "abr";
                     }
 
                     while(defenseCost > 0)

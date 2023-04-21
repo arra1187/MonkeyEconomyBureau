@@ -10,7 +10,6 @@
     <string name="sellback_calculator_page">Sellback Calculator</string>
     <string name="hearts_lost_calculator_page">Hearts Lost Calculator</string>
 
-
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -49,7 +48,10 @@
     <string name="enter_sellback_data">Enter sellback data</string>
     <string name="add_bloon_button">ADD BLOON</string>
     <string name="clear_bloons_button">CLEAR BLOONS</string>
+
+    <!-- Switch Strings -->
     <string name="consideration_switch_label">Consider list of bloons / round range</string>
+    <string name="round_type_label">Normal Rounds / Alternate Bloons Rounds</string>
 
     <!-- Defence section -->
     <string name="first_tower">Dart 1  </string>
@@ -88,6 +90,7 @@
         <item>Spike Factory</item>
         <item>Monkey Village</item>
         <item>Engineer Monkey</item>
+        <item>Beast Handler</item>
     </string-array>
 
     <!-- Upgrade dropdowns -->
@@ -216,6 +219,7 @@
     <string name="end_round_label">End Round</string>
     <string name="my_cash_label">My cash</string>
     <string name="fortified_label">Fortified</string>
+    <string name="difficulty_label">Difficulty</string>
 
     <!-- Content Description -->
     <string name="difficulty_description">Choose difficulty</string>

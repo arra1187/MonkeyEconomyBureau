@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,6 +38,7 @@ public class SavedDefenses extends Fragment
     private AppPage mAppPage;
     private RecyclerView mDefenseRecycler;
     private DefenseRecyclerViewAdapter mDefenseAdapter;
+    private ArrayList<Defense> mDefenses;
     private Defense mCurrentDefense;
     private boolean mTowerListShowing;
     private TextView mTowerListView;
@@ -54,6 +56,8 @@ public class SavedDefenses extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
+        mDefenses = new ArrayList<>();
+
         mDefenseRecycler = mAppPage.getCustomView().findViewById(R.id.defense_recyclerView);
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mDefenseRecycler.setItemAnimator(null);
@@ -62,7 +66,7 @@ public class SavedDefenses extends Fragment
 
         setupCurrentDisplay(inflater, container);
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenseViewModel, getContext(), lifecycleOwner);
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenseViewModel, mDefenses, getContext(), lifecycleOwner, getParentFragmentManager());
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
         mDefenseViewModel.getAllLiveData().observe(lifecycleOwner, new Observer<List<Defense>>()
@@ -116,7 +120,7 @@ public class SavedDefenses extends Fragment
         mTowerListShowing = false;
         mTowerListView = (TextView) currentView.findViewById(R.id.tower_list);
 
-        mTowerList = utility.setTowerList(mCurrentDefense.getTowers());
+        mTowerList = utility.setTowerList(mCurrentDefense);
 
         dropDownButton = currentView.findViewById(R.id.drop_down_button);
 
@@ -139,6 +143,17 @@ public class SavedDefenses extends Fragment
                     view.setBackground(ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.asset_triangle_down, null));
                     mTowerListShowing = false;
                 }
+            }
+        });
+
+        mAppPage.getCustomView().findViewById(R.id.load_defense_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.page_frame, new CostCalculator());
+                transaction.commit();
             }
         });
 

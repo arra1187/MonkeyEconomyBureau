@@ -26,6 +26,10 @@ public interface BloonDao
   @Query("SELECT RBE FROM Bloon WHERE title = :title AND fortified = :bFortified")
   int getRBE(String title, boolean bFortified);
 
+  @Query("SELECT hearts_lost FROM Bloon WHERE title = :title AND fortified = :bFortified")
+  int getHeartsLost(String title, boolean bFortified);
+
   @Query("SELECT health FROM Bloon WHERE title = :title AND fortified = :bFortified")
   int getHealth(String title, boolean bFortified);
+
 }

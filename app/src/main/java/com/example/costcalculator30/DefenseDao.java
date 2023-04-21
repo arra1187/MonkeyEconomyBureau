@@ -27,6 +27,9 @@ public interface DefenseDao
     @Query("SELECT cost FROM Defense WHERE nid = :id")
     int getCost(int id);
 
+    @Query("SELECT cost FROM Defense WHERE current = 1")
+    int getCurrentCost();
+
     @Query("SELECT count(*) FROM Defense")
     int getSize();
 
@@ -50,4 +53,7 @@ public interface DefenseDao
 
     @Query("UPDATE Defense SET difficulty = :difficulty WHERE current = :current")
     void setDifficulty(String difficulty, int current);
+
+    @Query("UPDATE Defense SET current = :current WHERE nid = :id")
+    void setCurrent(int current, int id);
 }

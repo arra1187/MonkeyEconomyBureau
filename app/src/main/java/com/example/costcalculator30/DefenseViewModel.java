@@ -66,6 +66,11 @@ public class DefenseViewModel extends AndroidViewModel
         mDataRepository.setDifficulty(difficulty, current);
     }
 
+    public void setCurrent(int current, int id)
+    {
+        mDataRepository.setCurrent(current, id);
+    }
+
     public void insertItem(Defense defense)
     {
         mDataRepository.insert(defense);

@@ -205,22 +205,36 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="409dp"
-            android:layout_height="67dp"
-            android:id="@+id/switch_constraint"
-            app:layout_constraintTop_toBottomOf="@+id/round_range_constraint"
-            app:layout_constraintBottom_toTopOf="@+id/final_price_constraint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        android:id="@+id/switch_constraint"
+        android:layout_width="409dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/final_price_constraint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/round_range_constraint">
 
         <Switch
             android:id="@+id/consideration_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/consideration_switch_label"
             android:textColor="@color/light_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/round_type_switch" />
+
+        <Switch
+            android:id="@+id/round_type_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/round_type_label"
+            android:textColor="@color/light_blue"
+            app:layout_constraintBottom_toTopOf="@+id/consideration_switch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
