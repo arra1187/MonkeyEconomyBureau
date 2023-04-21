@@ -23,12 +23,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DefenseRecyclerViewAdapter
-        extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
+public class DefenseRecyclerViewAdapter extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
 {
-    //private ArrayList<Defense> mDefenses;
-
-    private Utility mUtility;
+    private final Utility mUtility;
     private final DefenseViewModel mDefenseViewModel;
     private final Context mContext;
 
@@ -38,11 +35,10 @@ public class DefenseRecyclerViewAdapter
 
     private final LifecycleOwner mLifecycleOwner;
 
-    public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner)
+    public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, Context context, LifecycleOwner lifecycleOwner)
     {
         mUtility = new Utility();
-        mDefenseViewModel = defenseViewModel;
-        //mDefenses = defenses;
+        mDefenseViewModel = defenseViewModel;;
         mContext = context;
         mLifecycleOwner = lifecycleOwner;
     }

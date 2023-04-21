@@ -252,6 +252,8 @@ public class CostCalculator extends Fragment
         mExecutor.execute(() ->
         {
             mDefenseViewModel.setCost(mDefenseCost, mCurrent);
+            mDefenseViewModel.setTowers(ConnectTowerList.getTowers(), mCurrent);
+            mDefenseViewModel.setDifficulty(mDifficultyDropdown.getSelectedItem().toString(), mCurrent);
         });
     }
 

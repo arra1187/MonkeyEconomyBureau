@@ -14,9 +14,6 @@ public interface UpgradeDao
     @Query ("Select * from Upgrade")
     LiveData<List<Upgrade>> getAll();
 
-    @Query("Select * FROM Upgrade WHERE nid = :id")
-    Upgrade getUpgrade(int id);
-
     @Insert
     void insert(Upgrade upgrade);
 
@@ -25,9 +22,6 @@ public interface UpgradeDao
 
     @Delete
     void delete(Upgrade upgrade);
-
-    @Query("Delete FROM Upgrade WHERE nid = :id")
-    void deleteByID(int id);
 
     @Query("Delete from Upgrade")
     void deleteAll();

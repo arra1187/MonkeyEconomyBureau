@@ -250,8 +250,6 @@ public class MainActivity extends AppCompatActivity
                         cost = Integer.parseInt(jsonItem.getString("mCost"));
 
                         Upgrade newUpgrade = new Upgrade(title, upgradeID, tower, cost);
-
-                        //upgradeDao.insert(newUpgrade);
                         upgradeRepository.insert(newUpgrade);
                     }
                 }

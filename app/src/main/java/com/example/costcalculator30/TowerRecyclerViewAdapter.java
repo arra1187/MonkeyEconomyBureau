@@ -28,7 +28,6 @@ public class TowerRecyclerViewAdapter
 {
     private final Context mContext;
     private final UpgradeDao mUpgradeDao;
-    //private final DefenseDao mDefenseDao;
     private final Executor mExecutor;
 
     public TowerRecyclerViewAdapter(Context context)
@@ -37,19 +36,17 @@ public class TowerRecyclerViewAdapter
 
         DatabaseRepository repository = new DatabaseRepository();
         mUpgradeDao = repository.getUpgradeDao(context);
-        //mDefenseDao = repository.getDefenseDao(context);
 
         mExecutor = Executors.newSingleThreadExecutor();
     }
 
     @NonNull
     @Override
-    public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                                      int viewType)
+    public TowerRecyclerViewAdapter.ViewHolder onCreateViewHolder
+        (@NonNull ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tower_display, parent,
-                false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate
+            (R.layout.tower_display, parent, false);
 
         return new ViewHolder(view, mContext, mUpgradeDao);
     }

@@ -37,7 +37,6 @@ public class SavedDefenses extends Fragment
     private AppPage mAppPage;
     private RecyclerView mDefenseRecycler;
     private DefenseRecyclerViewAdapter mDefenseAdapter;
-    private ArrayList<Defense> mDefenses;
     private Defense mCurrentDefense;
     private boolean mTowerListShowing;
     private TextView mTowerListView;
@@ -55,8 +54,6 @@ public class SavedDefenses extends Fragment
 
         mAppPage = new AppPage(inflater, container, fragmentLayout, pageHeader);
 
-        mDefenses = new ArrayList<>();
-
         mDefenseRecycler = mAppPage.getCustomView().findViewById(R.id.defense_recyclerView);
         mDefenseRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mDefenseRecycler.setItemAnimator(null);
@@ -65,7 +62,7 @@ public class SavedDefenses extends Fragment
 
         setupCurrentDisplay(inflater, container);
 
-        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenseViewModel, mDefenses, getContext(), lifecycleOwner);
+        mDefenseAdapter = new DefenseRecyclerViewAdapter(mDefenseViewModel, getContext(), lifecycleOwner);
         mDefenseRecycler.setAdapter(mDefenseAdapter);
 
         mDefenseViewModel.getAllLiveData().observe(lifecycleOwner, new Observer<List<Defense>>()

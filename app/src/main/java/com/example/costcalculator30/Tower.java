@@ -76,7 +76,6 @@ public class Tower
         mTopPath = topPath;
         mMiddlePath = middlePath;
         mBottomPath = bottomPath;
-        //mBaseDiscount = 0;
 
         mTopPathCosts = new int[numTiers];
         mMiddlePathCosts = new int[numTiers];
