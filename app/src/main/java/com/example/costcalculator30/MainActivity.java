@@ -42,14 +42,7 @@ public class MainActivity extends AppCompatActivity
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    private ExecutorService mExecutor;
-    private UpgradeDatabase mDatabase;
-    private UpgradeDao mUpgradeDao;
-
-    private FragmentManager fragmentManager;
-
     public DrawerLayout mDrawerLayout;
-    public ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         final String appName = getApplicationContext().getResources().getString(R.string.app_name);
+        final String versionNumber = getApplicationContext().getResources().getString(R.string.app_subtitle);
         ActionBar mActionBar;
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
@@ -75,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         if(mActionBar != null)
         {
             mActionBar.setTitle(appName);
+            mActionBar.setSubtitle(versionNumber);
         }
 
         fillDatabases();
@@ -185,11 +180,6 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public UpgradeDao getUpgradeDao()
-    {
-        return mUpgradeDao;
     }
 
     private void fillDatabases()

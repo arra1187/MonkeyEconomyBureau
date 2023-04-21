@@ -1,6 +1,7 @@
 <resources>
     <!-- Strings used for logistics -->
     <string name="app_name">Monkey Economy Bureau</string>
+    <string name="app_subtitle">Version 36 of Bloons TD 6</string>
 
     <!-- Page names -->
     <string name="welcome_page">Welcome</string>

@@ -9,13 +9,11 @@ import java.util.List;
 public class RoundRepository
 {
   private final RoundDao mRoundDao;
-  //private final LiveData<List<Round>> mRounds;
 
   public RoundRepository(Application application)
   {
     RoundDatabase roundDatabase = RoundDatabase.getDatabase(application);
     mRoundDao = roundDatabase.mRoundDao();
-    //mRounds = mRoundDao.getAll();
   }
 
   public void insert(Round round)
@@ -31,5 +29,10 @@ public class RoundRepository
   public int getRoundCash(int round, String type)
   {
     return mRoundDao.getCash(round, type);
+  }
+
+  public int getHeartsLost(int round, String type)
+  {
+    return mRoundDao.getHeartsLost(round, type);
   }
 }

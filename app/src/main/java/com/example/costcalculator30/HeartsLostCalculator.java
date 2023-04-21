@@ -3,7 +3,6 @@ package com.example.costcalculator30;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,6 +31,7 @@ public class HeartsLostCalculator extends Fragment
   private Executor mExecutor;
 
   private BloonRepository mBloonRepository;
+  private RoundRepository mRoundRepository;
 
   private ArrayList<BloonItem> mBloons;
 
@@ -42,7 +41,8 @@ public class HeartsLostCalculator extends Fragment
 
   private AppPage mAppPage;
 
-  private boolean mbConsiderBloons;
+  private boolean mbConsiderRounds;
+  private boolean mbAlternateBloonsRounds;
 
   private RecyclerView mRecyclerView;
   private Button mAddBloonButton;
@@ -52,6 +52,7 @@ public class HeartsLostCalculator extends Fragment
   private EditText mStartRound;
   private EditText mEndRound;
   private Switch mConsiderationSwitch;
+  private Switch mRoundTypeSwitch;
 
   @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -66,12 +67,13 @@ public class HeartsLostCalculator extends Fragment
     mExecutor = Executors.newSingleThreadExecutor();
 
     mBloonRepository = new BloonRepository(getActivity().getApplication());
+    mRoundRepository = new RoundRepository(getActivity().getApplication());
     
     mBloons = new ArrayList<>();
 
     mAdapter = new BloonRecyclerViewAdapter(mBloons, getContext(), mbListener, getViewLifecycleOwner());
 
-    mbConsiderBloons = true;
+    mbConsiderRounds = true;
 
     mbListener.observe(getViewLifecycleOwner(), new Observer<Boolean>()
     {
@@ -80,7 +82,7 @@ public class HeartsLostCalculator extends Fragment
       {
         mAdapter.notifyDataSetChanged();
 
-        calculateHeartsLost();
+        calculateHeartsLostBloons();
       }
     });
 
@@ -117,7 +119,7 @@ public class HeartsLostCalculator extends Fragment
 
         mAdapter.notifyItemInserted(mBloons.size());
 
-        calculateHeartsLost();
+        calculateHeartsLostBloons();
       }
     });
 
@@ -139,7 +141,7 @@ public class HeartsLostCalculator extends Fragment
 
         mAdapter.notifyItemRangeRemoved(0, size);
 
-        calculateHeartsLost();
+        calculateHeartsLostBloons();
       }
     });
 
@@ -148,7 +150,20 @@ public class HeartsLostCalculator extends Fragment
       @Override
       public void onClick(View view)
       {
+        mbConsiderRounds = mConsiderationSwitch.isChecked();
 
+        chooseConsideration();
+      }
+    });
+
+    mRoundTypeSwitch.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        mbAlternateBloonsRounds = mRoundTypeSwitch.isChecked();
+
+        chooseConsideration();
       }
     });
 
@@ -158,7 +173,7 @@ public class HeartsLostCalculator extends Fragment
       public boolean onEditorAction (TextView textView, int i,
                                      KeyEvent keyEvent)
       {
-        calculateHeartsLost();
+        chooseConsideration();
 
         return false;
       }
@@ -170,7 +185,7 @@ public class HeartsLostCalculator extends Fragment
       public boolean onEditorAction (TextView textView, int i,
                                      KeyEvent keyEvent)
       {
-        calculateHeartsLost();
+        chooseConsideration();
 
         return false;
       }
@@ -183,9 +198,10 @@ public class HeartsLostCalculator extends Fragment
     mAddBloonButton = mAppPage.getCustomView().findViewById(R.id.add_bloon_button);
     mClearBloonsButton = mAppPage.getCustomView().findViewById(R.id.clear_bloons_button);
     mHeartsLost = mAppPage.getCustomView().findViewById(R.id.hearts_lost);
-    mConsiderationSwitch = mAppPage.getCustomView().findViewById(R.id.consideration_switch);
     mStartRound = mAppPage.getCustomView().findViewById(R.id.start_round_entry);
     mEndRound = mAppPage.getCustomView().findViewById(R.id.end_round_entry);
+    mConsiderationSwitch = mAppPage.getCustomView().findViewById(R.id.consideration_switch);
+    mRoundTypeSwitch = mAppPage.getCustomView().findViewById(R.id.round_type_switch);
 
     mBloonDropdown = mAppPage.getCustomView().findViewById(R.id.bloon_dropdown);
     ArrayAdapter<CharSequence> towerAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -199,17 +215,17 @@ public class HeartsLostCalculator extends Fragment
 
   private void chooseConsideration()
   {
-    if(mbConsiderBloons)
-    {
-      calculateHeartsLost();
-    }
-    else
+    if(mbConsiderRounds)
     {
       calculateHeartsLostRounds();
     }
+    else
+    {
+      calculateHeartsLostBloons();
+    }
   }
 
-  private void calculateHeartsLost()
+  private void calculateHeartsLostBloons()
   {
     mExecutor.execute(() ->
     {
@@ -252,7 +268,12 @@ public class HeartsLostCalculator extends Fragment
 
   private void calculateHeartsLostRounds()
   {
-    if(mStartRound.getText().toString().equals(""))
+    String startRoundText, endRoundText;
+
+    startRoundText = mStartRound.getText().toString();
+    endRoundText = mEndRound.getText().toString();
+
+    if(startRoundText.equals(""))
     {
       Toast towerToast = Toast.makeText(getActivity(), "Enter a starting round first", Toast.LENGTH_LONG);
       towerToast.show();
@@ -260,9 +281,55 @@ public class HeartsLostCalculator extends Fragment
       return;
     }
 
+    if(!endRoundText.equals(""))
+    {
+      if(Integer.parseInt(startRoundText) > Integer.parseInt(endRoundText))
+      {
+        Toast towerToast = Toast.makeText(getActivity(), "The end round larger than the starting round", Toast.LENGTH_LONG);
+        towerToast.show();
+
+        mHeartsLost.setText("0");
+
+        return;
+      }
+    }
+
     mExecutor.execute(() ->
     {
+      int heartsLost = 0, startRound, endRound;
+      String type, temp;
+      final Integer finalHeartsLost;
 
+      startRound = Integer.parseInt(mStartRound.getText().toString());
+
+      temp = mEndRound.getText().toString();
+
+      if(!temp.equals(""))
+      {
+        endRound = Integer.parseInt(temp);
+      }
+      else
+      {
+        endRound = startRound;
+      }
+
+      if(mbAlternateBloonsRounds)
+      {
+        type = "abr";
+      }
+      else
+      {
+        type = "normal";
+      }
+
+      for(int round = startRound; round <= endRound; round++)
+      {
+        heartsLost += mRoundRepository.getHeartsLost(round, type);
+      }
+
+      finalHeartsLost = heartsLost;
+
+      mAppPage.getCustomView().post (() -> mHeartsLost.setText(finalHeartsLost.toString()));
     });
   }
 }
