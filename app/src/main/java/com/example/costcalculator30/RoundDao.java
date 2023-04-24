@@ -15,4 +15,7 @@ public interface RoundDao
 
     @Query("Select cash from Round WHERE round = :round AND type = :type")
     int getCash(int round, String type);
+
+    @Query("Select hearts_lost from Round WHERE round = :round AND type = :type")
+    int getHeartsLost(int round, String type);
 }
