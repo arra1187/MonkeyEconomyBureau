@@ -1,6 +1,8 @@
 package com.example.costcalculator30;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,11 +85,6 @@ public class BloonRecyclerViewAdapter
     return mBloons.size();
   }
 
-  public void setBloons(ArrayList<BloonItem> bloons)
-  {
-    mBloons = bloons;
-  }
-
   public static class ViewHolder extends RecyclerView.ViewHolder
   {
     private Context mContext;
@@ -127,8 +124,12 @@ public class BloonRecyclerViewAdapter
       mBloon = bloon;
     }
 
+    @SuppressLint ("UseCompatLoadingForDrawables")
     public void bindData()
     {
+      String bloonName = mBloon.getTitle();
+      Drawable bloonSymbol = null;
+
       if(mSymbol == null)
       {
         mSymbol = itemView.findViewById(R.id.bloon_symbol);
@@ -146,7 +147,61 @@ public class BloonRecyclerViewAdapter
         mClearButton = itemView.findViewById(R.id.clear_bloon_button);
       }
 
-      mTitle.setText(mBloon.getTitle());
+      mTitle.setText(bloonName);
+
+      switch(bloonName)
+      {
+        case "Red Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.red_bloon_symbol);
+          break;
+        case "Blue Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.blue_bloon_symbol);
+          break;
+        case "Green Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.green_bloon_symbol);
+          break;
+        case "Yellow Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.yellow_bloon_symbol);
+          break;
+        case "Pink Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.pink_bloon_symbol);
+          break;
+        case "Black Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.black_bloon_symbol);
+          break;
+        case "White Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.white_bloon_symbol);
+          break;
+        case "Purple Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.purple_bloon_symbol);
+          break;
+        case "Zebra Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.zebra_bloon_symbol);
+          break;
+        case "Rainbow Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.rainbow_bloon_symbol);
+          break;
+        case "Ceramic Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.ceramic_bloon_symbol);
+          break;
+        case "MOAB":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.moab_symbol);
+          break;
+        case "BFB":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.bfb_symbol);
+          break;
+        case "ZOMG":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.zomg_symbol);
+          break;
+        case "DDT":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.ddt_symbol);
+          break;
+        case "BAD":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.bad_symbol);
+          break;
+      }
+
+      mSymbol.setImageDrawable(bloonSymbol);
 
       if(mBloon.getType().equals("Bloon") || mBloon.getType().equals("Extra"))
       {
