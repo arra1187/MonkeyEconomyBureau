@@ -10,14 +10,14 @@
     "mTitle": "Faster Shooting",
     "mUpgradeID": 11,
     "mTower": "Monkey Buccaneer",
-    "mCost": 350
+    "mCost": 275
   },
 
   {
     "mTitle": "Double Shot",
     "mUpgradeID": 12,
     "mTower": "Monkey Buccaneer",
-    "mCost": 550
+    "mCost": 425
   },
 
   {
@@ -80,14 +80,14 @@
     "mTitle": "Long Range",
     "mUpgradeID": 31,
     "mTower": "Monkey Buccaneer",
-    "mCost": 180
+    "mCost": 200
   },
 
   {
     "mTitle": "Crow's Nest",
     "mUpgradeID": 32,
     "mTower": "Monkey Buccaneer",
-    "mCost": 400
+    "mCost": 350
   },
 
   {

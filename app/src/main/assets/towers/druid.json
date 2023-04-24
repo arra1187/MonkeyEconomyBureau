@@ -59,14 +59,14 @@
     "mTitle": "Druid of the Jungle",
     "mUpgradeID": 23,
     "mTower": "Druid",
-    "mCost": 950
+    "mCost": 1050
   },
 
   {
     "mTitle": "Jungle's Bounty",
     "mUpgradeID": 24,
     "mTower": "Druid",
-    "mCost": 5000
+    "mCost": 4900
   },
 
   {
