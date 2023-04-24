@@ -331,6 +331,21 @@ public class TowerRecyclerViewAdapter
                 case "Dartling Gunner":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.dartling_gunner_symbol);
                     break;
+                case "Wizard Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.wizard_monkey_symbol);
+                    break;
+                case "Super Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.super_monkey_symbol);
+                    break;
+                case "Ninja Monkey":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.ninja_monkey_symbol);
+                    break;
+                case "Alchemist":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.alchemist_symbol);
+                    break;
+                case "Druid":
+                    towerSymbol = mContext.getResources().getDrawable(R.drawable.druid_symbol);
+                    break;
                 case "Banana Farm":
                     towerSymbol = mContext.getResources().getDrawable(R.drawable.banana_farm_symbol);
                     break;
