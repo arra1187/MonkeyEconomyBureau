@@ -243,6 +243,7 @@ public class SellbackCalculator extends Fragment
             R.array.difficulties, android.R.layout.simple_spinner_item);
     difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
     mDifficultyDropdown.setAdapter(difficultyAdapter);
+    mDifficultyDropdown.setSelection(1);
 
     ArrayAdapter<CharSequence> upgradeAdapter = ArrayAdapter.createFromResource(getActivity(),
         R.array.upgrades, android.R.layout.simple_spinner_item);

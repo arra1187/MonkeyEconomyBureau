@@ -96,7 +96,6 @@ public class SavedDefenses extends Fragment
 
     private void setupCurrentDisplay(LayoutInflater inflater, ViewGroup container)
     {
-        Utility utility = new Utility();
         View currentView = inflater.inflate(R.layout.defense_display, container, false);
         String costText;
         Button dropDownButton;
@@ -110,7 +109,7 @@ public class SavedDefenses extends Fragment
             mCurrentDefense = mDefenseViewModel.getCurrent().get(0);
         });
 
-        utility.joinExecutor(mDatabaseExecutor);
+        Utility.joinExecutor(mDatabaseExecutor);
 
         costText = "$" + mCurrentDefense.getCost();
 
@@ -120,7 +119,7 @@ public class SavedDefenses extends Fragment
         mTowerListShowing = false;
         mTowerListView = (TextView) currentView.findViewById(R.id.tower_list);
 
-        mTowerList = utility.setTowerList(mCurrentDefense);
+        mTowerList = Utility.setTowerList(mCurrentDefense);
 
         dropDownButton = currentView.findViewById(R.id.drop_down_button);
 

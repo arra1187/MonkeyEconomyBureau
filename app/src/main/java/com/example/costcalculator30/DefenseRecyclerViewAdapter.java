@@ -30,9 +30,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DefenseRecyclerViewAdapter
         extends RecyclerView.Adapter<DefenseRecyclerViewAdapter.ViewHolder>
 {
-    //private ArrayList<Defense> mDefenses;
-
-    private Utility mUtility;
     private final DefenseViewModel mDefenseViewModel;
     private final Context mContext;
 
@@ -45,9 +42,7 @@ public class DefenseRecyclerViewAdapter
 
     public DefenseRecyclerViewAdapter(DefenseViewModel defenseViewModel, ArrayList<Defense> defenses, Context context, LifecycleOwner lifecycleOwner, FragmentManager fragmentManager)
     {
-        mUtility = new Utility();
         mDefenseViewModel = defenseViewModel;
-        //mDefenses = defenses;
         mContext = context;
         mLifecycleOwner = lifecycleOwner;
         mFragmentManager = fragmentManager;
@@ -73,7 +68,7 @@ public class DefenseRecyclerViewAdapter
             holder.setDefense(mDefenseViewModel.getAllData().get(position));
         });
 
-        mUtility.joinExecutor(mDatabaseExecutor);
+        Utility.joinExecutor(mDatabaseExecutor);
 
         holder.getClearDefenseButton().setOnClickListener(new View.OnClickListener()
         {
@@ -89,7 +84,7 @@ public class DefenseRecyclerViewAdapter
                     mDefenseViewModel.deleteItem(holder.mDefense);
                 });
 
-                mUtility.joinExecutor(mDatabaseExecutor);
+                Utility.joinExecutor(mDatabaseExecutor);
             }
         });
 
@@ -106,7 +101,7 @@ public class DefenseRecyclerViewAdapter
             mItemCount = mDefenseViewModel.getSize();
         });
 
-        mUtility.joinExecutor(mDatabaseExecutor);
+        Utility.joinExecutor(mDatabaseExecutor);
 
         return mItemCount;
     }
@@ -130,7 +125,6 @@ public class DefenseRecyclerViewAdapter
 
         private Context mContext;
         private DefenseViewModel mDefenseViewModel;
-        private Utility mUtility;
         private FragmentManager mFragmentManager;
         private Executor mExecutor;
 
@@ -181,7 +175,6 @@ public class DefenseRecyclerViewAdapter
 
             mContext = context;
             mDefenseViewModel = defenseViewModel;
-            mUtility = new Utility();
             mFragmentManager = fragmentManager;
             mExecutor = newSingleThreadExecutor();
         }
@@ -216,7 +209,7 @@ public class DefenseRecyclerViewAdapter
 
             setLabel();
 
-            mTowerList = mUtility.setTowerList(mDefense);
+            mTowerList = Utility.setTowerList(mDefense);
 
             mTowerListShowing = false;
 

@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Utility
 {
-  public void joinExecutor(ExecutorService executorService)
+  public static void joinExecutor(ExecutorService executorService)
   {
     executorService.shutdown();
 
@@ -23,7 +23,7 @@ public class Utility
     }
   }
 
-  public StringBuilder setTowerList(Defense defense)
+  public static StringBuilder setTowerList(Defense defense)
   {
     StringBuilder towerList = new StringBuilder();
     boolean first = true;

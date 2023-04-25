@@ -123,7 +123,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mAppPage.getCustomView().findViewById(R.id.add_bloon_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.add_tower_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -152,7 +152,7 @@ public class CostCalculator extends Fragment
             }
         });
 
-        mAppPage.getCustomView().findViewById(R.id.clear_bloons_button).setOnClickListener(new View.OnClickListener()
+        mAppPage.getCustomView().findViewById(R.id.clear_towers_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -286,6 +286,7 @@ public class CostCalculator extends Fragment
         mExecutor.execute(() ->
         {
             int position = 1;
+            final int finalPosition;
 
             mCurrentDefense = mDefenseViewModel.getCurrent().get(0);
 
@@ -308,7 +309,9 @@ public class CostCalculator extends Fragment
                     break;
             }
 
-            mDifficultyDropdown.setSelection(position);
+            finalPosition = position;
+
+            mAppPage.getCustomView().post (() -> mDifficultyDropdown.setSelection(finalPosition));
         });
     }
 }

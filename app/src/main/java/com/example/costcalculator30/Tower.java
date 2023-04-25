@@ -81,6 +81,8 @@ public class Tower
             mMiddlePathCosts[numTiers - 1] = paragonCost;
             mBottomPathCosts[numTiers - 1] = paragonCost;
         });
+
+        Utility.joinExecutor(mExecutor);
     }
 
     public String getTitle()

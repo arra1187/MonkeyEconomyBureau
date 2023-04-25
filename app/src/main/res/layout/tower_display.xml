@@ -5,21 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/top_path"
+    <EditText
+        android:id="@+id/tower_count"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/spinner_template"
-        android:contentDescription="@string/path_1"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/one"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/middle_path"
-        app:layout_constraintStart_toEndOf="@id/tower_symbol"
+        app:layout_constraintEnd_toStartOf="@+id/tower_symbol"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/tower_symbol"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/top_path"
@@ -27,9 +33,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
+        android:id="@+id/top_path"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/spinner_template"
+        android:contentDescription="@string/path_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/middle_path"
+        app:layout_constraintStart_toEndOf="@id/tower_symbol"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
         android:id="@+id/middle_path"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/spinner_template"
         android:contentDescription="@string/path_2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +63,8 @@
         android:id="@+id/bottom_path"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/spinner_template"
         android:contentDescription="@string/path_3"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,6 +76,8 @@
         android:id="@+id/remove_tower_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@android:drawable/btn_dialog"
         android:backgroundTint="@color/red"
         android:text="@string/x_button"
@@ -64,18 +89,5 @@
         app:layout_constraintStart_toEndOf="@+id/bottom_path"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/tower_count"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="@string/one"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tower_symbol"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

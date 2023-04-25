@@ -118,8 +118,12 @@ public class HeartsLostCalculator extends Fragment
         mBloons.add(bloonItem);
 
         mAdapter.notifyItemInserted(mBloons.size());
+        mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
 
-        calculateHeartsLostBloons();
+        if(!mbConsiderRounds)
+        {
+          calculateHeartsLostBloons();
+        }
       }
     });
 
@@ -141,7 +145,10 @@ public class HeartsLostCalculator extends Fragment
 
         mAdapter.notifyItemRangeRemoved(0, size);
 
-        calculateHeartsLostBloons();
+        if(!mbConsiderRounds)
+        {
+          calculateHeartsLostBloons();
+        }
       }
     });
 

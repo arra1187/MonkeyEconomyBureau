@@ -365,6 +365,7 @@ public class TowerRecyclerViewAdapter
 
             mTowerSymbol.setImageDrawable(towerSymbol);
             mTowerCountView.setText(String.format("%d", mTower.getNumTowers()));
+            mTowerCountView.setSelected(false);
         }
     }
 }

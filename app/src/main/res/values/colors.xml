@@ -12,7 +12,8 @@
     <color name="cyan">#9DF4FF</color>
     <color name="tan">#FFD2D3A3</color>
     <color name="red">#FFC63D3D</color>
-    <color name="sky_blue">#FFB9D8F1</color>
+    <color name="sky_blue">#D2EBFF</color>
+    <color name="old_sky_blue">#FFB9D8F1</color>
     <color name="yellow">#ECE398</color>
     <color name="light_blue">#86A1C1</color>
     <color name="dark_blue">#44536E</color>
