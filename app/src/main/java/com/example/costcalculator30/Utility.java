@@ -41,6 +41,8 @@ public class Utility
         towerList.append("\n");
       }
 
+      towerList.append(Integer.toString(currentTower.getNumTowers())).append(": ");
+
       towerList.append(currentTower.getTitle()).append(" ").append(currentTower.getTopPath()).append(" - ").append(currentTower.getMiddlePath()).append(" - ").append(currentTower.getBottomPath());
     }
 
