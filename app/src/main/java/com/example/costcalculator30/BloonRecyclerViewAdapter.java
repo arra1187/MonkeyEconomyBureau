@@ -178,6 +178,9 @@ public class BloonRecyclerViewAdapter
         case "Zebra Bloon":
           bloonSymbol = mContext.getResources().getDrawable(R.drawable.zebra_bloon_symbol);
           break;
+        case "Lead Bloon":
+          bloonSymbol = mContext.getResources().getDrawable(R.drawable.lead_bloon_symbol);
+          break;
         case "Rainbow Bloon":
           bloonSymbol = mContext.getResources().getDrawable(R.drawable.rainbow_bloon_symbol);
           break;
